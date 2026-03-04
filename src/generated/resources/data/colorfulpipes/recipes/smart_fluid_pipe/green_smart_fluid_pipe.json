@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:green_dyes"
+    },
+    {
+      "item": "create:smart_fluid_pipe"
+    }
+  ],
+  "result": {
+    "item": "colorfulpipes:green_smart_fluid_pipe"
+  }
+}

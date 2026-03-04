@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_steam_whistle": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "create:steam_whistle"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "colorfulpipes:steam_whistle/cyan_steam_whistle"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_steam_whistle",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "colorfulpipes:steam_whistle/cyan_steam_whistle"
+    ]
+  },
+  "sends_telemetry_event": false
+}

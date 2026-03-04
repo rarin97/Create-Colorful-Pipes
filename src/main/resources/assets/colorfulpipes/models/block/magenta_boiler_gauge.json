@@ -1,0 +1,7 @@
+{
+	"parent": "colorfulpipes:block/white_boiler_gauge",
+	"textures": {
+		"0": "colorfulpipes:block/boiler_gauge/magenta",
+    "particle": "colorfulpipes:block/boiler_gauge/magenta"
+	}
+}

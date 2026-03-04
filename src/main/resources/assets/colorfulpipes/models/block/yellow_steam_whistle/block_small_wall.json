@@ -1,0 +1,9 @@
+{
+  "parent": "colorfulpipes:block/white_steam_whistle/block_small_wall",
+  "textures": {
+    "0": "create:block/whistle",
+    "1": "colorfulpipes:block/engine/yellow",
+    "2": "colorfulpipes:block/copper_redstone_plate/yellow",
+    "particle": "create:block/whistle_particle"
+  }
+}

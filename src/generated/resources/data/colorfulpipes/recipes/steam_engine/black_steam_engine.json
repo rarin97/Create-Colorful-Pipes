@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:black_dyes"
+    },
+    {
+      "item": "create:steam_engine"
+    }
+  ],
+  "result": {
+    "item": "colorfulpipes:black_steam_engine"
+  }
+}

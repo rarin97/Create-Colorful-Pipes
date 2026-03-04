@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:white_dyes"
+    },
+    {
+      "item": "create:steam_engine"
+    }
+  ],
+  "result": {
+    "item": "colorfulpipes:white_steam_engine"
+  }
+}

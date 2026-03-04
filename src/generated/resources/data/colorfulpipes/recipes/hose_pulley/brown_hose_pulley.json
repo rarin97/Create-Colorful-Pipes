@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:brown_dyes"
+    },
+    {
+      "item": "create:hose_pulley"
+    }
+  ],
+  "result": {
+    "item": "colorfulpipes:brown_hose_pulley"
+  }
+}

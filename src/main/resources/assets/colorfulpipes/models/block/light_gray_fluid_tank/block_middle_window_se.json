@@ -1,0 +1,9 @@
+{
+
+	 "parent": "colorfulpipes:block/white_fluid_tank/block_middle_window_se",
+	"textures": {
+		"1": "colorfulpipes:block/fluid_tank/light_gray",
+		"3": "create:block/fluid_tank_window",
+		"particle": "colorfulpipes:block/fluid_tank/light_gray"
+	  }
+}

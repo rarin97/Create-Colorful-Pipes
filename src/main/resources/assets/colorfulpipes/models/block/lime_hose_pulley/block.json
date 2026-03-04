@@ -1,0 +1,8 @@
+{
+  "parent": "colorfulpipes:block/white_hose_pulley/block",
+  "textures": {
+	"1": "colorfulpipes:block/hose_pulley/lime",
+	"3": "colorfulpipes:block/pump/lime",
+	"particle": "colorfulpipes:block/copper_underside/lime"
+  }
+}

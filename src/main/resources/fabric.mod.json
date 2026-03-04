@@ -1,31 +1,31 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "colorfulpipes",
   "version": "${version}",
-  "name": "Example Mod",
+  "name": "Colorful Pipes",
   "description": "This is an example description! Tell everyone what your mod is about!",
   "authors": [
-    "Me!"
+    "Rarin"
   ],
   "contact": {
     "sources": "https://github.com/Fabricators-of-Create/create-fabric-addon-template"
   },
   "license": "MIT",
-  "icon": "assets/modid/icon.png",
+  "icon": "assets/ColorfulPipes/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.example.modid.ExampleMod"
+      "net.rarin.colorfulpipes.ColorfulPipes"
     ],
     "client": [
-      "com.example.modid.ExampleClient"
+      "net.rarin.colorfulpipes.ColorfulPipesClient"
     ],
     "fabric-datagen": [
-      "com.example.modid.ExampleDatagen"
+      "net.rarin.colorfulpipes.ColorfulPipesDatagen"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "ColorfulPipes.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=${fabric_loader_version}",

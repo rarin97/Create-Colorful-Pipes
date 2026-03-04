@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "colorfulpipes:block/pink_hose_pulley/block",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "colorfulpipes:block/pink_hose_pulley/block"
+    },
+    "facing=south": {
+      "model": "colorfulpipes:block/pink_hose_pulley/block",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "colorfulpipes:block/pink_hose_pulley/block",
+      "y": 270
+    }
+  }
+}

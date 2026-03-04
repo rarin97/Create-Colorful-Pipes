@@ -1,0 +1,8 @@
+{
+  "parent": "colorfulpipes:block/white_fluid_valve/block_vertical_closed",
+	"textures": {
+		"2": "colorfulpipes:block/fluid_valve/orange",
+		"4": "colorfulpipes:block/valve_closed/orange",
+		"particle": "colorfulpipes:block/copper_underside/orange"
+  }
+}

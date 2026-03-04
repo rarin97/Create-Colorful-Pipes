@@ -1,0 +1,58 @@
+package net.rarin.colorfulpipes.content.steamWhistle;
+
+
+import com.simibubi.create.Create;
+import com.simibubi.create.content.decoration.steamWhistle.WhistleBlock;
+import com.simibubi.create.content.decoration.steamWhistle.WhistleGenerator;
+
+import com.simibubi.create.foundation.data.AssetLookup;
+import com.simibubi.create.foundation.data.SpecialBlockStateGen;
+
+import com.tterrag.registrate.providers.DataGenContext;
+import com.tterrag.registrate.providers.RegistrateBlockstateProvider;
+
+import io.github.fabricators_of_create.porting_lib.models.generators.ModelFile;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.rarin.colorfulpipes.ColorfulPipes;
+
+public class ColorfulWhistleGenerator extends SpecialBlockStateGen {
+
+	protected final DyeColor color;
+
+	public ColorfulWhistleGenerator(DyeColor color) {
+		this.color = color;
+	}
+
+	@Override
+	protected int getXRotation(BlockState state) {
+		return 0;
+	}
+
+	@Override
+	protected int getYRotation(BlockState state) {
+		return horizontalAngle(state.getValue(ColorfulWhistleBlock.FACING));
+	}
+
+	@Override
+	public <T extends Block> ModelFile getModel(DataGenContext<Block, T> ctx, RegistrateBlockstateProvider prov,
+												BlockState state) {
+		String colorName = color.getSerializedName();
+		String wall = state.getValue(WhistleBlock.WALL) ? "wall" : "floor";
+		String size = state.getValue(WhistleBlock.SIZE)
+				.getSerializedName();
+		boolean powered = state.getValue(WhistleBlock.POWERED);
+		ModelFile model = AssetLookup.partialBaseModel(ctx, prov, size, wall);
+		if (!powered)
+			return model;
+		ResourceLocation parentLocation = model.getLocation();
+		return prov.models()
+				.withExistingParent(parentLocation.getPath() + "_powered", parentLocation)
+				.texture("2", ColorfulPipes.asResource("block/copper_redstone_plate_powered/" + colorName));
+	}
+
+}
+
+

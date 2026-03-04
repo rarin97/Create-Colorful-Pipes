@@ -1,0 +1,11 @@
+{
+
+	 "parent": "colorfulpipes:block/white_fluid_tank/block_single_window_se",
+	"textures": {
+		"0": "colorfulpipes:block/fluid_tank_top/cyan",
+		"1": "colorfulpipes:block/fluid_tank/cyan",
+		"4":"colorfulpipes:block/copper_underside/cyan",
+		"5": "create:block/fluid_tank_window_single",
+		"particle": "colorfulpipes:block/fluid_tank/cyan"
+	  }
+}

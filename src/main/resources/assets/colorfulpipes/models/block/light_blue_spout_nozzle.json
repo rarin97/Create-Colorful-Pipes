@@ -1,0 +1,6 @@
+{
+	"parent": "colorfulpipes:block/white_spout_nozzle",
+	"textures": {
+		"2": "colorfulpipes:block/spout_nozzle/light_blue"
+	}
+}

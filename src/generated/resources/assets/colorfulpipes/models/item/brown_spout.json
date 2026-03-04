@@ -1,0 +1,8 @@
+{
+  "parent": "create:block/spout/item",
+  "textures": {
+    "0": "colorfulpipes:block/spout/brown",
+    "3": "colorfulpipes:block/spout_nozzle/brown",
+    "4": "colorfulpipes:block/encased_pipe/brown"
+  }
+}

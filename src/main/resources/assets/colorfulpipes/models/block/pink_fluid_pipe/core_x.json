@@ -1,0 +1,7 @@
+{
+  "parent": "colorfulpipes:block/white_fluid_pipe/core_x",
+	"textures": {
+		"0": "colorfulpipes:block/fluid_pipe_connected/pink",
+		"particle": "colorfulpipes:block/copper_underside/pink"
+	}
+}

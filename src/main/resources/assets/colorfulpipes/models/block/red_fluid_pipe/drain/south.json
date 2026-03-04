@@ -1,0 +1,6 @@
+{
+  "parent": "colorfulpipes:block/white_fluid_pipe/drain/south",
+  "textures": {
+    "0": "colorfulpipes:block/fluid_pipe/red"
+  }
+}

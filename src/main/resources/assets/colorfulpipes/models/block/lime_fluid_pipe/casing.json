@@ -1,0 +1,7 @@
+{
+  "parent": "colorfulpipes:block/white_fluid_pipe/casing",
+	"textures": {
+		"0": "colorfulpipes:block/fluid_pipe/lime",
+		"particle": "colorfulpipes:block/copper_underside/lime"
+	}
+}

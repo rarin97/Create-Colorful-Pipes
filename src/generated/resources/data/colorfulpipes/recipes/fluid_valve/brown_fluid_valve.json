@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:brown_dyes"
+    },
+    {
+      "item": "create:fluid_valve"
+    }
+  ],
+  "result": {
+    "item": "colorfulpipes:brown_fluid_valve"
+  }
+}

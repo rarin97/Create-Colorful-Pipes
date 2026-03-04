@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "colorfulpipes:white_fluid_pipe",
+    "colorfulpipes:orange_fluid_pipe",
+    "colorfulpipes:magenta_fluid_pipe",
+    "colorfulpipes:light_blue_fluid_pipe",
+    "colorfulpipes:yellow_fluid_pipe",
+    "colorfulpipes:lime_fluid_pipe",
+    "colorfulpipes:pink_fluid_pipe",
+    "colorfulpipes:gray_fluid_pipe",
+    "colorfulpipes:light_gray_fluid_pipe",
+    "colorfulpipes:cyan_fluid_pipe",
+    "colorfulpipes:purple_fluid_pipe",
+    "colorfulpipes:blue_fluid_pipe",
+    "colorfulpipes:brown_fluid_pipe",
+    "colorfulpipes:green_fluid_pipe",
+    "colorfulpipes:red_fluid_pipe",
+    "colorfulpipes:black_fluid_pipe"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "parent": "colorfulpipes:block/white_fluid_tank/block_bottom",
+  "textures": {
+    "0": "colorfulpipes:block/fluid_tank_top/black",
+    "1": "colorfulpipes:block/fluid_tank/black",
+    "4": "colorfulpipes:block/copper_underside/black",
+    "particle": "colorfulpipes:block/fluid_tank/black"
+  }
+}

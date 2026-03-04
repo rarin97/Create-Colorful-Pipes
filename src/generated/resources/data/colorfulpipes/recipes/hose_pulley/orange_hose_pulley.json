@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:orange_dyes"
+    },
+    {
+      "item": "create:hose_pulley"
+    }
+  ],
+  "result": {
+    "item": "colorfulpipes:orange_hose_pulley"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "create:block/steam_whistle/item",
+  "textures": {
+    "1": "colorfulpipes:block/engine/pink",
+    "2": "colorfulpipes:block/copper_redstone_plate/pink"
+  }
+}

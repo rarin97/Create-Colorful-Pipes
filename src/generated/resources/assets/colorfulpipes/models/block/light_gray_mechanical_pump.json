@@ -1,0 +1,7 @@
+{
+  "parent": "create:block/mechanical_pump/block",
+  "textures": {
+    "4": "colorfulpipes:block/pump/light_gray",
+    "particle": "colorfulpipes:block/pump/light_gray"
+  }
+}
