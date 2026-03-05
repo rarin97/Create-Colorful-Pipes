@@ -16,6 +16,10 @@ public class ColorfulFluidTankBlock extends FluidTankBlock {
 		this.color = color;
 	}
 
+	public DyeColor getColor() {
+		return color;
+	}
+
 	public BlockEntityType<? extends FluidTankBlockEntity> getBlockEntityType() {
 		return CCPBlockEntityTypes.COLORFUL_FLUID_TANKS.get();
 	}

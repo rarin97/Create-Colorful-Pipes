@@ -20,10 +20,8 @@ public class ColorfulPipes implements ModInitializer {
 	public static final Logger LOGGER = LoggerFactory.getLogger(ID);
 
 	public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(ID)
-			.setTooltipModifierFactory(item ->
-					new ItemDescription.Modifier(item, FontHelper.Palette.STANDARD_CREATE)
-							.andThen(TooltipModifier.mapNull(KineticStats.create(item)))
-			);
+			.setTooltipModifierFactory(item -> new ItemDescription.Modifier(item, FontHelper.Palette.STANDARD_CREATE)
+							.andThen(TooltipModifier.mapNull(KineticStats.create(item))));
 
 
 	@Override
@@ -32,8 +30,10 @@ public class ColorfulPipes implements ModInitializer {
 		CCPCreativeTabs.register();
 		CCPBlocks.register();
 		CCPBlockEntityTypes.register();
-		CCPItems.register();
 		REGISTRATE.register();
+
+		CCPMountedStorageTypes.register();
+		CCPDisplaySources.register();
 	}
 
 	public static CreateRegistrate getRegistrate() {

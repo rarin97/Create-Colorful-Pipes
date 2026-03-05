@@ -2,6 +2,7 @@ package net.rarin.colorfulpipes.content;
 
 import com.simibubi.create.content.decoration.bracket.BracketedBlockEntityBehaviour;
 import com.simibubi.create.content.fluids.FluidTransportBehaviour;
+import com.simibubi.create.content.fluids.PipeAttachmentModel;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 import net.createmod.catnip.data.Iterate;
 import net.fabricmc.fabric.api.renderer.v1.model.ForwardingBakedModel;
@@ -23,10 +24,20 @@ import java.util.function.Supplier;
 public class ColorfulPipeAttachmentModel extends ForwardingBakedModel {
 
 	protected final DyeColor color;
+	private boolean ao;
+
+	public static ColorfulPipeAttachmentModel withAO(BakedModel template, DyeColor color) {
+		return new ColorfulPipeAttachmentModel(template, color);
+	}
+
+	public static ColorfulPipeAttachmentModel withoutAO(BakedModel template, DyeColor color) {
+		return new ColorfulPipeAttachmentModel(template, color);
+	}
 
 	public ColorfulPipeAttachmentModel(BakedModel template, DyeColor color) {
 		wrapped = template;
 		this.color = color;
+		this.ao = ao;
 	}
 
 	@Override
@@ -74,6 +85,11 @@ public class ColorfulPipeAttachmentModel extends ForwardingBakedModel {
 		if (Data.isEncased())
 			CCPPartialModels.COLORFUL_FLUID_PIPE_CASINGS.get(color).get()
 					.emitBlockQuads(world, state, pos, randomSupplier, context);
+	}
+
+	@Override
+	public boolean useAmbientOcclusion() {
+		return ao;
 	}
 
 	private static class ColorfulPipeModelData {

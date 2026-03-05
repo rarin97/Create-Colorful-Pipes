@@ -15,6 +15,10 @@ public class ColorfulSpoutBlock extends SpoutBlock {
 		this.color = color;
 	}
 
+	public DyeColor getColor() {
+		return color;
+	}
+
 	public BlockEntityType<? extends SpoutBlockEntity> getBlockEntityType() {
 		return CCPBlockEntityTypes.COLORFUL_SPOUTS.get();
 	}

@@ -93,6 +93,7 @@ jar {
 }
 
 loom {
+	accessWidenerPath.set(file("src/main/resources/colorfulpipes.accesswidener"))
 	runs {
 		create("datagen") {
 			client()

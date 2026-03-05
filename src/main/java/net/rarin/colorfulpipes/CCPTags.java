@@ -1,8 +1,5 @@
 package net.rarin.colorfulpipes;
 
-import com.simibubi.create.AllTags;
-import com.simibubi.create.Create;
-
 import net.createmod.catnip.lang.Lang;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
@@ -12,8 +9,6 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 
 import org.jetbrains.annotations.Nullable;
-
-import static com.simibubi.create.AllTags.NameSpace.MOD;
 
 public class CCPTags {
 	public static <T> TagKey<T> optionalTag(Registry<T> registry,

@@ -1,7 +1,5 @@
 package net.rarin.colorfulpipes;
 
-import com.simibubi.create.Create;
-
 import com.simibubi.create.content.fluids.FluidTransportBehaviour;
 
 import dev.engine_room.flywheel.lib.model.baked.PartialModel;
@@ -15,12 +13,6 @@ import java.util.Map;
 
 public class CCPPartialModels {
 
-	public static final PartialModel
-
-			SPOUT_TOP = block("spout/top"),
-			SPOUT_MIDDLE = block("spout/middle"),
-			SPOUT_BOTTOM = block("spout/bottom")
-	;
 	public static final Map<DyeColor,PartialModel>  COLORFUL_BOILER_GAUGE = new EnumMap<>(DyeColor.class);
 	public static final Map<DyeColor,PartialModel> COLORFUL_SPOUT_NOZZLE = new EnumMap<>(DyeColor.class);
 	public static final Map<DyeColor,PartialModel>  COLORFUL_FLUID_PIPE_CASINGS = new EnumMap<>(DyeColor.class);
@@ -46,21 +38,12 @@ public class CCPPartialModels {
 	static {
 		for (DyeColor color : DyeColor.values()) {
 			COLORFUL_BOILER_GAUGE.put(color, block(color.getName() + "_boiler_gauge"));
-		}
-	}
 
-	static {
-		for (DyeColor color : DyeColor.values()) {
 			COLORFUL_SPOUT_NOZZLE.put(color, block(color.getName() + "_spout_nozzle"));
-		}
-	}
 
-	static {
-		for (DyeColor color : DyeColor.values()) {
 			COLORFUL_FLUID_PIPE_CASINGS.put(color, block(color.getName() + "_fluid_pipe/casing"));
 		}
 	}
-
 
 	private static PartialModel block(String path) {
 		return PartialModel.of(ColorfulPipes.asResource("block/" + path));

@@ -1,17 +1,12 @@
 package net.rarin.colorfulpipes;
 
 import com.simibubi.create.AllBlocks;
-import com.simibubi.create.AllDisplaySources;
-import com.simibubi.create.AllMountedStorageTypes;
-import com.simibubi.create.AllSpriteShifts;
 import com.simibubi.create.Create;
 import com.simibubi.create.api.stress.BlockStressValues;
 import com.simibubi.create.content.decoration.encasing.CasingBlock;
-import com.simibubi.create.content.decoration.encasing.EncasedCTBehaviour;
 import com.simibubi.create.content.decoration.encasing.EncasingRegistry;
 import com.simibubi.create.content.decoration.steamWhistle.WhistleBlock;
 import com.simibubi.create.content.decoration.steamWhistle.WhistleExtenderBlock;
-import com.simibubi.create.content.fluids.PipeAttachmentModel;
 import com.simibubi.create.content.fluids.drain.ItemDrainBlock;
 import com.simibubi.create.content.fluids.hosePulley.HosePulleyBlock;
 import com.simibubi.create.content.fluids.pipes.EncasedPipeBlock;
@@ -24,8 +19,6 @@ import com.simibubi.create.content.fluids.pump.PumpBlock;
 import com.simibubi.create.content.fluids.spout.SpoutBlock;
 import com.simibubi.create.content.fluids.tank.FluidTankBlock;
 import com.simibubi.create.content.fluids.tank.FluidTankGenerator;
-import com.simibubi.create.content.fluids.tank.FluidTankItem;
-import com.simibubi.create.content.fluids.tank.FluidTankModel;
 import com.simibubi.create.content.fluids.tank.FluidTankMovementBehavior;
 import com.simibubi.create.content.kinetics.steamEngine.SteamEngineBlock;
 import com.simibubi.create.foundation.block.DyedBlockList;
@@ -36,18 +29,16 @@ import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.data.SharedProperties;
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 
-import com.tterrag.registrate.util.entry.BlockEntry;
-
 import io.github.fabricators_of_create.porting_lib.models.generators.ConfiguredModel;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.Direction;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.material.MapColor;
 import net.rarin.colorfulpipes.config.CStress;
 import net.rarin.colorfulpipes.content.ColorfulEncasedCTBehaviour;
 import net.rarin.colorfulpipes.content.ColorfulPipeAttachmentModel;
@@ -116,9 +107,9 @@ public class CCPBlocks {
 				.initialProperties(SharedProperties::copperMetal)
 				.properties(p -> p.mapColor(color.getMapColor()))
 				.transform(pickaxeOnly())
-				.transform(CStress.setImpact(4.0))
+				.onRegister((block) -> BlockStressValues.IMPACTS.register(block, () -> 4.0))
 				.addLayer(() -> RenderType::cutoutMipped)
-				.onRegister(CCPRegistrate.ColorfulblockModel(() -> ColorfulPipeAttachmentModel::new, color))
+				.onRegister(CCPRegistrate.ColorfulblockModel(() -> ColorfulPipeAttachmentModel::withAO, color))
 				.blockstate((c, p) -> {
 					p.directionalBlock(c.get(),p.models().withExistingParent(c.getName(), Create.asResource("block/mechanical_pump/block"))
 							.texture("4", ColorfulPipes.asResource("block/pump/" + colorName))
@@ -180,7 +171,7 @@ public class CCPBlocks {
 				.addLayer(() -> RenderType::cutoutMipped)
 				.properties(BlockBehaviour.Properties::noOcclusion)
 				.blockstate(BlockStateGen.horizontalBlockProvider(true))
-				.transform(CStress.setImpact(4.0))
+				.onRegister((block) -> BlockStressValues.IMPACTS.register(block, () -> 4.0))
 				.recipe((c, p) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, c.get())
 						.requires(color.getTag())
 						.requires(AllBlocks.HOSE_PULLEY.asItem())
@@ -201,7 +192,7 @@ public class CCPBlocks {
 				.transform(pickaxeOnly())
 				.addLayer(() -> RenderType::cutoutMipped)
 				.blockstate(BlockStateGen.pipe())
-				.onRegister(CCPRegistrate.ColorfulblockModel(() -> ColorfulPipeAttachmentModel::new, color))
+				.onRegister(CCPRegistrate.ColorfulblockModel(() -> ColorfulPipeAttachmentModel::withAO, color))
 				.recipe((c, p) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, c.get())
 						.requires(color.getTag())
 						.requires(AllBlocks.FLUID_PIPE.asItem())
@@ -225,7 +216,7 @@ public class CCPBlocks {
 				.onRegister(CreateRegistrate.connectedTextures(() -> new ColorfulEncasedCTBehaviour(color)))
 				.onRegister(CreateRegistrate.casingConnectivity((block, cc) -> cc.make(block, CCPSpriteShifts.COLORFUL_COPPER_CASING.get(color),
 						(s, f) -> !s.getValue(EncasedPipeBlock.FACING_TO_PROPERTY_MAP.get(f)))))
-				.onRegister(CCPRegistrate.ColorfulblockModel(() -> ColorfulPipeAttachmentModel::new, color))
+				.onRegister(CCPRegistrate.ColorfulblockModel(() -> ColorfulPipeAttachmentModel::withAO, color))
 				.loot((p, b) -> p.dropOther(b, COLORFUL_FLUID_PIPES.get(color).get()))
 				.transform(EncasingRegistry.addVariantTo(COLORFUL_FLUID_PIPES.get(color)))
 				.register();
@@ -252,7 +243,7 @@ public class CCPBlocks {
 										.build();
 							}, BlockStateProperties.WATERLOGGED);
 				})
-				.onRegister(CCPRegistrate.ColorfulblockModel(() -> ColorfulPipeAttachmentModel::new, color))
+				.onRegister(CCPRegistrate.ColorfulblockModel(() -> ColorfulPipeAttachmentModel::withAO, color))
 	            .loot((p, b) -> p.dropOther(b, COLORFUL_FLUID_PIPES.get(color).get()))
 				.register();
 	});
@@ -265,7 +256,7 @@ public class CCPBlocks {
 				.transform(pickaxeOnly())
 				.addLayer(() -> RenderType::cutoutMipped)
 				.blockstate(new SmartFluidPipeGenerator()::generate)
-				.onRegister(CCPRegistrate.ColorfulblockModel(() -> ColorfulPipeAttachmentModel::new, color))
+				.onRegister(CCPRegistrate.ColorfulblockModel(() -> ColorfulPipeAttachmentModel::withAO, color))
 				.recipe((c, p) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, c.get())
 						.requires(color.getTag())
 						.requires(AllBlocks.SMART_FLUID_PIPE.asItem())
@@ -288,7 +279,7 @@ public class CCPBlocks {
 				.blockstate((c, p) -> BlockStateGen.directionalAxisBlock(c, p,
 						(state, vertical) -> AssetLookup.partialBaseModel(c, p, vertical ? "vertical" : "horizontal",
 								state.getValue(FluidValveBlock.ENABLED) ? "open" : "closed")))
-				.onRegister(CCPRegistrate.ColorfulblockModel(() -> ColorfulPipeAttachmentModel::new, color))
+				.onRegister(CCPRegistrate.ColorfulblockModel(() -> ColorfulPipeAttachmentModel::withAO, color))
 				.recipe((c, p) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, c.get())
 						.requires(color.getTag())
 						.requires(AllBlocks.FLUID_VALVE.asItem())
@@ -310,9 +301,9 @@ public class CCPBlocks {
 				.addLayer(() -> RenderType::cutoutMipped)
 				.blockstate(new FluidTankGenerator()::generate)
 				.onRegister(CCPRegistrate.ColorfulblockModel(() -> ColorfulFluidTankModel::standard, color))
-//				.transform(displaySource(AllDisplaySources.BOILER))
-//				.transform(mountedFluidStorage(AllMountedStorageTypes.FLUID_TANK))
-//				.onRegister(movementBehaviour(new FluidTankMovementBehavior()))
+				.transform(displaySource(CCPDisplaySources.BOILER))
+				.transform(mountedFluidStorage(CCPMountedStorageTypes.FLUID_TANK))
+				.onRegister(movementBehaviour(new FluidTankMovementBehavior()))
 				.recipe((c, p) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, c.get())
 						.requires(color.getTag())
 						.requires(AllBlocks.FLUID_TANK.asItem())

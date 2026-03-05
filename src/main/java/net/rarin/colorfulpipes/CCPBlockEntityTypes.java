@@ -1,6 +1,5 @@
 package net.rarin.colorfulpipes;
 
-import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllPartialModels;
 import com.simibubi.create.content.contraptions.pulley.HosePulleyVisual;
 import com.simibubi.create.content.decoration.steamWhistle.WhistleRenderer;
@@ -12,7 +11,6 @@ import com.simibubi.create.content.fluids.pipes.valve.FluidValveRenderer;
 import com.simibubi.create.content.fluids.pipes.valve.FluidValveVisual;
 import com.simibubi.create.content.fluids.pump.PumpRenderer;
 import com.simibubi.create.content.fluids.spout.SpoutRenderer;
-import com.simibubi.create.content.fluids.tank.FluidTankRenderer;
 import com.simibubi.create.content.kinetics.base.SingleAxisRotatingVisual;
 import com.simibubi.create.content.kinetics.steamEngine.SteamEngineRenderer;
 import com.simibubi.create.content.kinetics.steamEngine.SteamEngineVisual;
@@ -27,10 +25,10 @@ import net.rarin.colorfulpipes.content.pipe.ColorfulFluidPipeBlockEntity;
 import net.rarin.colorfulpipes.content.pump.ColorfulPumpBlockEntity;
 import net.rarin.colorfulpipes.content.smartPipe.ColorfulSmartFluidPipeBlockEntity;
 import net.rarin.colorfulpipes.content.spout.ColorfulSpoutBlockEntity;
-import net.rarin.colorfulpipes.content.spout.ColorfulSpoutRenderer;
 import net.rarin.colorfulpipes.content.steamEngine.ColorfulSteamEngineBlockEntity;
 import net.rarin.colorfulpipes.content.steamWhistle.ColorfulWhistleBlockEntity;
 import net.rarin.colorfulpipes.content.tank.ColorfulFluidTankBlockEntity;
+import net.rarin.colorfulpipes.content.tank.ColorfulFluidTankRenderer;
 import net.rarin.colorfulpipes.content.valve.ColorfulFluidValveBlockEntity;
 
 public class CCPBlockEntityTypes {
@@ -88,7 +86,7 @@ public class CCPBlockEntityTypes {
 	public static final BlockEntityEntry<ColorfulFluidTankBlockEntity> COLORFUL_FLUID_TANKS = REGISTRATE
 			.blockEntity("colorful_fluid_tank", ColorfulFluidTankBlockEntity::new)
 			.validBlocks(CCPBlocks.COLORFUL_FLUID_TANKS.toArray())
-			.renderer(() -> FluidTankRenderer::new)
+			.renderer(() -> ColorfulFluidTankRenderer::new)
 			.register();
 
 	public static final BlockEntityEntry<ColorfulHosePulleyBlockEntity> COLORFUL_HOSE_PULLEYS = REGISTRATE

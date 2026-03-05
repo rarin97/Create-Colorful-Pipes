@@ -3,6 +3,9 @@ package net.rarin.colorfulpipes.config;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.DoubleSupplier;
+
+import com.simibubi.create.Create;
+
 import net.rarin.colorfulpipes.ColorfulPipes;
 import org.jetbrains.annotations.Nullable;
 import com.tterrag.registrate.builders.BlockBuilder;
@@ -23,7 +26,7 @@ public class CStress extends ConfigBase {
 
 	// IDs need to be used since configs load before registration
 
-	private static final Object2DoubleMap<ResourceLocation> DEFAULT_IMPACTS = new Object2DoubleOpenHashMap<>();
+	public static final Object2DoubleMap<ResourceLocation> DEFAULT_IMPACTS = new Object2DoubleOpenHashMap<>();
 	private static final Object2DoubleMap<ResourceLocation> DEFAULT_CAPACITIES = new Object2DoubleOpenHashMap<>();
 
 	protected final Map<ResourceLocation, ConfigValue<Double>> capacities = new HashMap<>();
@@ -67,8 +70,7 @@ public class CStress extends ConfigBase {
 
 	public static <B extends Block, P> NonNullUnaryOperator<BlockBuilder<B, P>> setImpact(double value) {
 		return builder -> {
-			assertFromCreate(builder);
-			ResourceLocation id = ColorfulPipes.asResource(builder.getName());
+			ResourceLocation id = new ResourceLocation(ColorfulPipes.ID, builder.getName());
 			DEFAULT_IMPACTS.put(id, value);
 			return builder;
 		};
@@ -76,18 +78,12 @@ public class CStress extends ConfigBase {
 
 	public static <B extends Block, P> NonNullUnaryOperator<BlockBuilder<B, P>> setCapacity(double value) {
 		return builder -> {
-			assertFromCreate(builder);
-			ResourceLocation id = ColorfulPipes.asResource(builder.getName());
+			ResourceLocation id = new ResourceLocation(ColorfulPipes.ID, builder.getName());
 			DEFAULT_CAPACITIES.put(id, value);
 			return builder;
 		};
 	}
 
-	private static void assertFromCreate(BlockBuilder<?, ?> builder) {
-		if (!builder.getOwner().getModid().equals(ColorfulPipes.ID)) {
-			throw new IllegalStateException("Non-ColorfulPipes blocks cannot be added.");
-		}
-	}
 
 	private static class Comments {
 		static String su = "[in Stress Units]";

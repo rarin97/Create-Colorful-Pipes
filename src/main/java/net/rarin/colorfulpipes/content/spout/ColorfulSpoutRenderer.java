@@ -28,14 +28,15 @@ public class ColorfulSpoutRenderer extends SpoutRenderer {
 		super(context);
 	}
 
-	static final PartialModel[] BITS =
-			{ CCPPartialModels.SPOUT_TOP, CCPPartialModels.SPOUT_MIDDLE, CCPPartialModels.SPOUT_BOTTOM };
+//	static final PartialModel[] BITS =
+//			{ CCPPartialModels.SPOUT_TOP, CCPPartialModels.SPOUT_MIDDLE, CCPPartialModels.COLORFUL_SPOUT_NOZZLE.get(color) };
 
 	@Override
 	protected void renderSafe(SpoutBlockEntity be, float partialTicks, PoseStack ms, MultiBufferSource buffer,
 							  int light, int overlay) {
-
 		if (!(be instanceof ColorfulSpoutBlockEntity colorfulspoutBe)) return;
+
+		DyeColor color = ((ColorfulSpoutBlock) colorfulspoutBe.getBlockState().getBlock()).getColor();
 
 		SmartFluidTankBehaviour tank = colorfulspoutBe.Tank();
 		if (tank == null)
@@ -66,7 +67,7 @@ public class ColorfulSpoutRenderer extends SpoutRenderer {
 			ms.popPose();
 		}
 
-		int processingTicks = colorfulspoutBe.processingTicks;
+		int processingTicks = be.processingTicks;
 		float processingPT = processingTicks - partialTicks;
 		float processingProgress = 1 - (processingPT - 5) / 10;
 		processingProgress = Mth.clamp(processingProgress, 0, 1);
@@ -88,12 +89,11 @@ public class ColorfulSpoutRenderer extends SpoutRenderer {
 			squeeze = -1;
 
 		ms.pushPose();
-		for (PartialModel bit : BITS) {
-			CachedBuffers.partial(bit, be.getBlockState())
+
+			CachedBuffers.partial(CCPPartialModels.COLORFUL_SPOUT_NOZZLE.get(color), be.getBlockState())
 					.light(light)
 					.renderInto(ms, buffer.getBuffer(RenderType.solid()));
 			ms.translate(0, -3 * squeeze / 32f, 0);
-		}
 		ms.popPose();
 
 	}

@@ -3,15 +3,15 @@
   "id": "colorfulpipes",
   "version": "${version}",
   "name": "Colorful Pipes",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "description": "added colored pipes to create",
   "authors": [
     "Rarin"
   ],
   "contact": {
-    "sources": "https://github.com/Fabricators-of-Create/create-fabric-addon-template"
+    "sources": "https://github.com/rarin97/Create-Colorful-Pipes"
   },
   "license": "MIT",
-  "icon": "assets/ColorfulPipes/icon.png",
+  "icon": "assets/colorfulpipes/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
