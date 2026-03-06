@@ -4,7 +4,7 @@
     "0": "colorfulpipes:block/fluid_tank_top/blue",
     "1": "colorfulpipes:block/fluid_tank/blue",
     "4": "colorfulpipes:block/copper_underside/blue",
-    "5": "create:block/fluid_tank_window_single",
+    "5":  "colorfulpipes:block/fluid_tank_window_single/blue",
     "particle": "colorfulpipes:block/fluid_tank/blue"
    }
 }

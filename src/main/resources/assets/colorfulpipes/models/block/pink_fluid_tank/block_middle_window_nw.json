@@ -3,7 +3,7 @@
 	 "parent": "colorfulpipes:block/white_fluid_tank/block_middle_window_nw",
 	"textures": {
 		"1": "colorfulpipes:block/fluid_tank/pink",
-		"3": "create:block/fluid_tank_window",
+		"3":  "colorfulpipes:block/fluid_tank_window/pink",
 		"particle": "colorfulpipes:block/fluid_tank/pink"
 	  }
 }

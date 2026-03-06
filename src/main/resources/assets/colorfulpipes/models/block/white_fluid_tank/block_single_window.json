@@ -5,7 +5,7 @@
 		"0": "colorfulpipes:block/fluid_tank_top/white",
 		"1": "colorfulpipes:block/fluid_tank/white",
 		"4": "colorfulpipes:block/copper_underside/white",
-		"5": "create:block/fluid_tank_window_single",
+		"5":  "colorfulpipes:block/fluid_tank_window_single/white",
 		"particle": "colorfulpipes:block/fluid_tank/white"
 	},
 	"elements": [
