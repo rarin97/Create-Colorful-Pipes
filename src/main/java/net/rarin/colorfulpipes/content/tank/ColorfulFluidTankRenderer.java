@@ -51,7 +51,7 @@ protected void renderAsBoiler(FluidTankBlockEntity be, float partialTicks, PoseS
 					.translate(be.getWidth() / 2f - 6 / 16f, 0, 0)
 					.light(light)
 					.renderInto(ms, vb);
-			CachedBuffers.partial(AllPartialModels.BOILER_GAUGE_DIAL, blockState)
+			CachedBuffers.partial(CCPPartialModels.COLORFUL_BOILER_GAUGE_DIAL.get(color), blockState)
 					.rotateYDegrees(yRot)
 					.uncenter()
 					.translate(be.getWidth() / 2f - 6 / 16f, 0, 0)

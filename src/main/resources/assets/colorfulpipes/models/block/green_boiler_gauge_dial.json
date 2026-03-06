@@ -1,0 +1,7 @@
+{
+	"parent": "colorfulpipes:block/white_boiler_gauge_dial",
+	"textures": {
+		"0": "colorfulpipes:block/boiler_gauge/green",
+    "particle": "colorfulpipes:block/boiler_gauge/green"
+	}
+}
