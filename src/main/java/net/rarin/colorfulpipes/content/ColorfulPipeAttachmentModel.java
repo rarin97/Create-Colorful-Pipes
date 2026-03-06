@@ -2,7 +2,6 @@ package net.rarin.colorfulpipes.content;
 
 import com.simibubi.create.content.decoration.bracket.BracketedBlockEntityBehaviour;
 import com.simibubi.create.content.fluids.FluidTransportBehaviour;
-import com.simibubi.create.content.fluids.PipeAttachmentModel;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 import net.createmod.catnip.data.Iterate;
 import net.fabricmc.fabric.api.renderer.v1.model.ForwardingBakedModel;

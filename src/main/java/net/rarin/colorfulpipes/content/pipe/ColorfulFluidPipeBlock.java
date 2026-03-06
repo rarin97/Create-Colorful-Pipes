@@ -1,6 +1,5 @@
 package net.rarin.colorfulpipes.content.pipe;
 
-import com.simibubi.create.AllBlocks;
 import com.simibubi.create.content.fluids.FluidPropagator;
 import com.simibubi.create.content.fluids.FluidTransportBehaviour;
 import com.simibubi.create.content.fluids.pipes.FluidPipeBlock;
@@ -18,6 +17,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.DyeItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.BlockAndTintGetter;
@@ -116,6 +116,21 @@ public class ColorfulFluidPipeBlock extends FluidPipeBlock {
 				return true;
 		}
 		return false;
+	}
+
+	@Override
+	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+		ItemStack stack = player.getItemInHand(hand);
+
+		if (stack.getItem() instanceof DyeItem dye) {
+			DyeColor dyeColor = dye.getDyeColor();
+
+			if (dyeColor != color) {
+				level.setBlock(pos, CCPBlocks.COLORFUL_FLUID_PIPES.get(dyeColor).getDefaultState(), 3);
+			}
+			return InteractionResult.SUCCESS;
+		}
+		return super.use(state, level, pos, player, hand, hit);
 	}
 
 	public BlockEntityType<? extends FluidPipeBlockEntity> getBlockEntityType() {

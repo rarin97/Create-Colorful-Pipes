@@ -30,7 +30,6 @@ import net.rarin.colorfulpipes.content.steamWhistle.ColorfulWhistleBlockEntity;
 import net.rarin.colorfulpipes.content.tank.ColorfulFluidTankBlockEntity;
 import net.rarin.colorfulpipes.content.tank.ColorfulFluidTankRenderer;
 import net.rarin.colorfulpipes.content.valve.ColorfulFluidValveBlockEntity;
-import net.rarin.colorfulpipes.content.valve.ColorfulFluidValveRenderer;
 
 public class CCPBlockEntityTypes {
 	private static final CreateRegistrate REGISTRATE = ColorfulPipes.REGISTRATE;
@@ -81,7 +80,7 @@ public class CCPBlockEntityTypes {
 			.blockEntity("colorful_fluid_valve", ColorfulFluidValveBlockEntity::new)
 			.visual(() -> FluidValveVisual::new)
 			.validBlocks(CCPBlocks.COLORFUL_FLUID_VALVES.toArray())
-			.renderer(() -> ColorfulFluidValveRenderer::new)
+			.renderer(() -> FluidValveRenderer::new)
 			.register();
 
 	public static final BlockEntityEntry<ColorfulFluidTankBlockEntity> COLORFUL_FLUID_TANKS = REGISTRATE

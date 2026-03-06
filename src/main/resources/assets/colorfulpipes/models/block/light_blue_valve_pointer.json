@@ -1,0 +1,7 @@
+{
+	"parent": "colorfulpipes:block/white_valve_pointer",
+	"textures": {
+		"2": "colorfulpipes:block/fluid_valve/light_blue",
+    "particle": "colorfulpipes:block/copper_underside/light_blue"
+	}
+}
