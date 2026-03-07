@@ -40,7 +40,7 @@ public class ColorfulFluidTankBlock extends FluidTankBlock {
 			if (dyeColor != color) {
 				level.setBlock(pos, CCPBlocks.COLORFUL_FLUID_TANKS.get(dyeColor).getDefaultState(), 3);
 			}
-			return InteractionResult.SUCCESS;
+			return InteractionResult.sidedSuccess(level.isClientSide);
 		}
 		return super.use(state, level, pos, player, hand, hit);
 	}

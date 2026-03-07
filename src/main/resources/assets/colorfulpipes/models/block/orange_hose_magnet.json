@@ -1,0 +1,7 @@
+{
+	"parent": "colorfulpipes:block/white_hose_magnet",
+	"textures": {
+		"0": "colorfulpipes:block/hose/orange",
+    "particle": "colorfulpipes:block/copper_underside/orange"
+	}
+}

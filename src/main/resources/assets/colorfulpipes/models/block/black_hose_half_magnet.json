@@ -1,0 +1,7 @@
+{
+	"parent": "colorfulpipes:block/white_hose_half_magnet",
+	"textures": {
+		"0": "colorfulpipes:block/hose/black",
+    "particle": "colorfulpipes:block/copper_underside/black"
+	}
+}

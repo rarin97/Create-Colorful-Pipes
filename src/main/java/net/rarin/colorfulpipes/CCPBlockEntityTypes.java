@@ -21,6 +21,8 @@ import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import net.rarin.colorfulpipes.content.drain.ColorfulDrainBlockEntity;
 import net.rarin.colorfulpipes.content.glassPipe.ColorfulGlassFluidPipeBlockEntity;
 import net.rarin.colorfulpipes.content.hosePulley.ColorfulHosePulleyBlockEntity;
+import net.rarin.colorfulpipes.content.hosePulley.ColorfulHosePulleyRenderer;
+import net.rarin.colorfulpipes.content.hosePulley.ColorfulHosePulleyVisual;
 import net.rarin.colorfulpipes.content.pipe.ColorfulFluidPipeBlockEntity;
 import net.rarin.colorfulpipes.content.pump.ColorfulPumpBlockEntity;
 import net.rarin.colorfulpipes.content.smartPipe.ColorfulSmartFluidPipeBlockEntity;
@@ -91,9 +93,9 @@ public class CCPBlockEntityTypes {
 
 	public static final BlockEntityEntry<ColorfulHosePulleyBlockEntity> COLORFUL_HOSE_PULLEYS = REGISTRATE
 			.blockEntity("colorful_hose_pulley", ColorfulHosePulleyBlockEntity::new)
-			.visual(() -> HosePulleyVisual::new)
+			.visual(() -> ColorfulHosePulleyVisual::new)
 			.validBlocks(CCPBlocks.COLORFUL_HOSE_PULLEYS.toArray())
-			.renderer(() -> HosePulleyRenderer::new)
+			.renderer(() -> ColorfulHosePulleyRenderer::new)
 			.register();
 
 //	public static final BlockEntityEntry<ColorfulPortableFluidInterfaceBlockEntity> COLORFUL_PORTABLE_FLUID_INTERFACE =

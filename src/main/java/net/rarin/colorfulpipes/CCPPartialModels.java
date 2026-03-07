@@ -16,6 +16,8 @@ public class CCPPartialModels {
 	public static final Map<DyeColor,PartialModel>  COLORFUL_BOILER_GAUGE = new EnumMap<>(DyeColor.class);
 	public static final Map<DyeColor,PartialModel>  COLORFUL_BOILER_GAUGE_DIAL = new EnumMap<>(DyeColor.class);
 	public static final Map<DyeColor,PartialModel>  COLORFUL_FLUID_VALVE_POINTER = new EnumMap<>(DyeColor.class);
+	public static final Map<DyeColor,PartialModel>  COLORFUL_HOSE_MAGNET = new EnumMap<>(DyeColor.class);
+	public static final Map<DyeColor,PartialModel>  COLORFUL_HOSE_HALF_MAGNET = new EnumMap<>(DyeColor.class);
 	public static final Map<DyeColor,PartialModel> COLORFUL_SPOUT_NOZZLE = new EnumMap<>(DyeColor.class);
 	public static final Map<DyeColor,PartialModel>  COLORFUL_FLUID_PIPE_CASINGS = new EnumMap<>(DyeColor.class);
 	public static final Map<FluidTransportBehaviour.AttachmentTypes.ComponentPartials, Map<DyeColor,Map<Direction, PartialModel>>> COLORFUL_PIPE_ATTACHMENTS =
@@ -43,6 +45,9 @@ public class CCPPartialModels {
 			COLORFUL_BOILER_GAUGE_DIAL.put(color, block(color.getName() + "_boiler_gauge_dial"));
 
 			COLORFUL_FLUID_VALVE_POINTER.put(color, block(color.getName() + "_valve_pointer"));
+
+			COLORFUL_HOSE_MAGNET.put(color, block(color.getName() + "_hose_magnet"));
+			COLORFUL_HOSE_HALF_MAGNET.put(color, block(color.getName() + "_hose_half_magnet"));
 
 			COLORFUL_SPOUT_NOZZLE.put(color, block(color.getName() + "_spout_nozzle"));
 

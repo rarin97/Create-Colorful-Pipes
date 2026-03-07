@@ -128,7 +128,7 @@ public class ColorfulFluidPipeBlock extends FluidPipeBlock {
 			if (dyeColor != color) {
 				level.setBlock(pos, CCPBlocks.COLORFUL_FLUID_PIPES.get(dyeColor).getDefaultState(), 3);
 			}
-			return InteractionResult.SUCCESS;
+			return InteractionResult.sidedSuccess(level.isClientSide);
 		}
 		return super.use(state, level, pos, player, hand, hit);
 	}
