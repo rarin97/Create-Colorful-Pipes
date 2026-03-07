@@ -10,6 +10,7 @@ import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.DyeItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
@@ -32,8 +33,25 @@ public class ColorfulDrainBlock extends ItemDrainBlock {
 		if (stack.getItem() instanceof DyeItem dye) {
 			DyeColor dyeColor = dye.getDyeColor();
 
-			if (dyeColor != color) {
+			if (dyeColor == this.color)
+				return InteractionResult.PASS;
+
+			if (!level.isClientSide) {
+				level.levelEvent(2001, pos, Block.getId(state));
+
+				ItemDrainBlockEntity oldDrain = (ItemDrainBlockEntity) level.getBlockEntity(pos);
+				net.minecraft.nbt.CompoundTag oldData = null;
+				if (oldDrain != null) {
+					oldData = new net.minecraft.nbt.CompoundTag();
+					oldDrain.saveAdditional(oldData);
+				}
+
 				level.setBlock(pos, CCPBlocks.COLORFUL_DRAINS.get(dyeColor).getDefaultState(), 3);
+
+				ItemDrainBlockEntity newDrain = (ItemDrainBlockEntity) level.getBlockEntity(pos);
+				if (oldData != null && newDrain != null) {
+					newDrain.load(oldData);
+				}
 			}
 			return InteractionResult.SUCCESS;
 		}

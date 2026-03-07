@@ -11,6 +11,7 @@ import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.DyeItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
@@ -37,10 +38,25 @@ public class ColorfulFluidTankBlock extends FluidTankBlock {
 		if (stack.getItem() instanceof DyeItem dye) {
 			DyeColor dyeColor = dye.getDyeColor();
 
-			if (dyeColor != color) {
+			if (dyeColor == this.color)
+				return InteractionResult.PASS;
+
+			if (!level.isClientSide) {
+				level.levelEvent(2001, pos, Block.getId(state));
+
+				FluidTankBlockEntity oldTank = (FluidTankBlockEntity) level.getBlockEntity(pos);
+				if (oldTank == null) return InteractionResult.SUCCESS;
+
+				var oldFluid = oldTank.getTank(0).getFluid();
+
 				level.setBlock(pos, CCPBlocks.COLORFUL_FLUID_TANKS.get(dyeColor).getDefaultState(), 3);
+
+				FluidTankBlockEntity newTank = (FluidTankBlockEntity) level.getBlockEntity(pos);
+				if (newTank != null) {
+					newTank.getTank(0).setFluid(oldFluid);
+				}
 			}
-			return InteractionResult.sidedSuccess(level.isClientSide);
+			return InteractionResult.SUCCESS;
 		}
 		return super.use(state, level, pos, player, hand, hit);
 	}

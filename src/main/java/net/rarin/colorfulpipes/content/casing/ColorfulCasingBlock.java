@@ -36,9 +36,9 @@ public class ColorfulCasingBlock extends CasingBlock {
 		if (stack.getItem() instanceof DyeItem dye) {
 			DyeColor dyeColor = dye.getDyeColor();
 
-			if (dyeColor != color) {
-				level.setBlock(pos, CCPBlocks.COLORFUL_COPPER_CASING.get(dyeColor).getDefaultState(), 3);
-			}
+//			if (dyeColor != color) {
+//				level.setBlock(pos, CCPBlocks.COLORFUL_COPPER_CASING.get(dyeColor).getDefaultState(), 3);
+//			}
 
 			return InteractionResult.SUCCESS;
 		}

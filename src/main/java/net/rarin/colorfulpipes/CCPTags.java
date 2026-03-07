@@ -8,6 +8,8 @@ import net.minecraft.tags.TagKey;
 
 import net.minecraft.world.item.Item;
 
+import net.minecraft.world.level.block.Block;
+
 import org.jetbrains.annotations.Nullable;
 
 public class CCPTags {
@@ -70,4 +72,33 @@ public class CCPTags {
 			this.tag = TagKey.create(Registries.ITEM, namespace.id(this, pathOverride));
 		}
 	}
+
+		public enum ColorfulBlockTags {
+
+			COLORFUL_PIPES,
+			COLORFUL_SMART_PIPES,
+			COLORFUL_FLUID_VALVES,
+			COLORFUL_PUMPS,
+			COLORFUL_FLUID_TANKS,
+			COLORFUL_HOSE_PULLEYS,
+			COLORFUL_DRAINS,
+			COLORFUL_SPOUTS,
+			COLORFUL_STEAM_ENGINES,
+			COLORFUL_STEAM_WHISTLES;
+
+			public final TagKey<Block> tag;
+
+			ColorfulBlockTags() {
+				this(NameSpace.MOD, null);
+			}
+
+			ColorfulBlockTags(NameSpace namespace) {
+				this(namespace, null);
+			}
+
+			ColorfulBlockTags(NameSpace namespace, @Nullable String pathOverride) {
+				this.tag = TagKey.create(Registries.BLOCK, namespace.id(this, pathOverride));
+			}
+		}
+
 }

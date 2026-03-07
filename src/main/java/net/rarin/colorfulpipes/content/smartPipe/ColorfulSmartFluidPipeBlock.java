@@ -11,6 +11,7 @@ import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.DyeItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
@@ -33,8 +34,13 @@ public class ColorfulSmartFluidPipeBlock extends SmartFluidPipeBlock {
 		if (stack.getItem() instanceof DyeItem dye) {
 			DyeColor dyeColor = dye.getDyeColor();
 
-			if (dyeColor != color) {
-				level.setBlock(pos, CCPBlocks.COLORFUL_SMART_FLUID_PIPES.get(dyeColor).getDefaultState().setValue(FACING, state.getValue(FACING)), 3);
+			if (dyeColor == this.color)
+				return InteractionResult.PASS;
+
+			if (!level.isClientSide) {
+				level.levelEvent(2001, pos, Block.getId(state));
+				level.setBlock(pos, CCPBlocks.COLORFUL_SMART_FLUID_PIPES.get(dyeColor).getDefaultState()
+						.setValue(FACING, state.getValue(FACING)), 3);
 			}
 			return InteractionResult.SUCCESS;
 		}

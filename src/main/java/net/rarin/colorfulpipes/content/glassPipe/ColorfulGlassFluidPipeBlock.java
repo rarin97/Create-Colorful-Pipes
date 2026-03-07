@@ -1,6 +1,5 @@
 package net.rarin.colorfulpipes.content.glassPipe;
 
-import com.simibubi.create.AllBlocks;
 import com.simibubi.create.content.fluids.FluidTransportBehaviour;
 import com.simibubi.create.content.fluids.pipes.FluidPipeBlock;
 import com.simibubi.create.content.fluids.pipes.GlassFluidPipeBlock;
@@ -17,6 +16,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -41,12 +41,12 @@ public class ColorfulGlassFluidPipeBlock extends GlassFluidPipeBlock {
 		if (tryRemoveBracket(context))
 			return InteractionResult.SUCCESS;
 		BlockState newState;
-		Level world = context.getLevel();
+		Level level = context.getLevel();
 		BlockPos pos = context.getClickedPos();
-		FluidTransportBehaviour.cacheFlows(world, pos);
-		newState = toColorfulPipe(world, pos, state).setValue(BlockStateProperties.WATERLOGGED, state.getValue(BlockStateProperties.WATERLOGGED));
-		world.setBlock(pos, newState, 3);
-		FluidTransportBehaviour.loadFlows(world, pos);
+		FluidTransportBehaviour.cacheFlows(level, pos);
+		newState = toColorfulPipe(level, pos, state).setValue(BlockStateProperties.WATERLOGGED, state.getValue(BlockStateProperties.WATERLOGGED));
+		level.setBlock(pos, newState, 3);
+		FluidTransportBehaviour.loadFlows(level, pos);
 		return InteractionResult.SUCCESS;
 	}
 
@@ -66,10 +66,20 @@ public class ColorfulGlassFluidPipeBlock extends GlassFluidPipeBlock {
 		if (stack.getItem() instanceof DyeItem dye) {
 			DyeColor dyeColor = dye.getDyeColor();
 
-			if (dyeColor != color) {
-				level.setBlock(pos, CCPBlocks.COLORFUL_GLASS_FLUID_PIPES.get(dyeColor).getDefaultState(), 3);
+			if (dyeColor == this.color)
+				return InteractionResult.PASS;
+
+			if (!level.isClientSide) {
+				level.levelEvent(2001, pos, Block.getId(state));
+
+				FluidTransportBehaviour.cacheFlows(level, pos);
+
+				level.setBlock(pos, CCPBlocks.COLORFUL_GLASS_FLUID_PIPES.get(dyeColor).getDefaultState().setValue(AXIS, state.getValue(AXIS))
+						.setValue(BlockStateProperties.WATERLOGGED, state.getValue(BlockStateProperties.WATERLOGGED)), 3);
+
+				FluidTransportBehaviour.loadFlows(level, pos);
 			}
-			return InteractionResult.sidedSuccess(level.isClientSide);
+			return InteractionResult.SUCCESS;
 		}
 		return super.use(state, level, pos, player, hand, hit);
 	}

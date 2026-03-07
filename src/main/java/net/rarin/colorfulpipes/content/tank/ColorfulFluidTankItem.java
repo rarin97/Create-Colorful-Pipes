@@ -42,17 +42,17 @@ public class ColorfulFluidTankItem extends FluidTankItem {
 				.isVertical())
 			return;
 		ItemStack stack = ctx.getItemInHand();
-		Level world = ctx.getLevel();
+		Level level = ctx.getLevel();
 		BlockPos pos = ctx.getClickedPos();
 		BlockPos placedOnPos = pos.relative(face.getOpposite());
-		BlockState placedOnState = world.getBlockState(placedOnPos);
+		BlockState placedOnState = level.getBlockState(placedOnPos);
 
 		if (!ColorfulFluidTankBlock.isTank(placedOnState))
 			return;
 		if (SymmetryWandItem.presentInHotbar(player))
 			return;
 		FluidTankBlockEntity tankAt = ConnectivityHandler.partAt(
-				CCPBlockEntityTypes.COLORFUL_FLUID_TANKS.get(), world, placedOnPos
+				CCPBlockEntityTypes.COLORFUL_FLUID_TANKS.get(), level, placedOnPos
 		);
 		if (tankAt == null)
 			return;
@@ -76,7 +76,7 @@ public class ColorfulFluidTankItem extends FluidTankItem {
 		for (int xOffset = 0; xOffset < width; xOffset++) {
 			for (int zOffset = 0; zOffset < width; zOffset++) {
 				BlockPos offsetPos = startPos.offset(xOffset, 0, zOffset);
-				BlockState blockState = world.getBlockState(offsetPos);
+				BlockState blockState = level.getBlockState(offsetPos);
 				if (ColorfulFluidTankBlock.isTank(blockState))
 					continue;
 				if (!blockState.canBeReplaced())
@@ -91,7 +91,7 @@ public class ColorfulFluidTankItem extends FluidTankItem {
 		for (int xOffset = 0; xOffset < width; xOffset++) {
 			for (int zOffset = 0; zOffset < width; zOffset++) {
 				BlockPos offsetPos = startPos.offset(xOffset, 0, zOffset);
-				BlockState blockState = world.getBlockState(offsetPos);
+				BlockState blockState = level.getBlockState(offsetPos);
 				if (ColorfulFluidTankBlock.isTank(blockState))
 					continue;
 				BlockPlaceContext context = BlockPlaceContext.at(ctx, offsetPos, face);

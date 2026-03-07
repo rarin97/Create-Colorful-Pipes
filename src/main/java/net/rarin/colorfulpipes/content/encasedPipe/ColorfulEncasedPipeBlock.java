@@ -36,10 +36,10 @@ public class ColorfulEncasedPipeBlock extends EncasedPipeBlock {
 
 	@Override
 	public InteractionResult onWrenched(BlockState state, UseOnContext context) {
-		Level world = context.getLevel();
+		Level level = context.getLevel();
 		BlockPos pos = context.getClickedPos();
 
-		if (world.isClientSide)
+		if (level.isClientSide)
 			return InteractionResult.SUCCESS;
 
 		context.getLevel()
@@ -53,10 +53,10 @@ public class ColorfulEncasedPipeBlock extends EncasedPipeBlock {
 				break;
 			}
 
-		FluidTransportBehaviour.cacheFlows(world, pos);
-		world.setBlockAndUpdate(pos, CCPBlocks.COLORFUL_FLUID_PIPES.get(color).get()
-				.updateBlockState(equivalentPipe, firstFound, null, world, pos));
-		FluidTransportBehaviour.loadFlows(world, pos);
+		FluidTransportBehaviour.cacheFlows(level, pos);
+		level.setBlockAndUpdate(pos, CCPBlocks.COLORFUL_FLUID_PIPES.get(color).get()
+				.updateBlockState(equivalentPipe, firstFound, null, level, pos));
+		FluidTransportBehaviour.loadFlows(level, pos);
 		return InteractionResult.SUCCESS;
 	}
 
@@ -66,20 +66,38 @@ public class ColorfulEncasedPipeBlock extends EncasedPipeBlock {
 		AdvancementBehaviour.setPlacedBy(pLevel, pPos, pPlacer);
 	}
 
-//	@Override
-//	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-//		ItemStack stack = player.getItemInHand(hand);
-//
-//		if (stack.getItem() instanceof DyeItem dye) {
-//			DyeColor dyeColor = dye.getDyeColor();
-//
-//			if (dyeColor != color) {
-//				level.setBlock(pos, CCPBlocks.COLORFUL_ENCASED_FLUID_PIPES.get(dyeColor).getDefaultState(), 3);
-//			}
-//			return InteractionResult.SUCCESS;
-//		}
-//		return super.use(state, level, pos, player, hand, hit);
-//	}
+	@Override
+	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+		ItemStack stack = player.getItemInHand(hand);
+
+		if (stack.getItem() instanceof DyeItem dye) {
+			DyeColor dyeColor = dye.getDyeColor();
+
+			if (dyeColor == this.color)
+				return InteractionResult.PASS;
+
+			if (!level.isClientSide) {
+				level.levelEvent(2001, pos, Block.getId(state));
+
+				Direction firstFound = Direction.UP;
+				for (Direction d : Iterate.directions)
+					if (state.getValue(FACING_TO_PROPERTY_MAP.get(d))) {
+						firstFound = d;
+						break;
+					}
+
+				FluidTransportBehaviour.cacheFlows(level, pos);
+
+				level.setBlockAndUpdate(pos,transferSixWayProperties
+						(state, CCPBlocks.COLORFUL_ENCASED_FLUID_PIPES.get(dyeColor).getDefaultState()));
+
+				FluidTransportBehaviour.loadFlows(level, pos);
+			}
+			return InteractionResult.SUCCESS;
+		}
+		return super.use(state, level, pos, player, hand, hit);
+	}
+
 
 	public BlockEntityType<? extends FluidPipeBlockEntity> getBlockEntityType() {
 		return CCPBlockEntityTypes.COLORFUL_ENCASED_FLUID_PIPES.get();
