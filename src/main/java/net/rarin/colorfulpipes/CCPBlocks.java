@@ -148,7 +148,7 @@ public class CCPBlocks {
 						.save(p, ColorfulPipes.asResource("spout/" + c.getName()))
 				)
 				.item()
-				.tag(CCPTags.ColorfulItemTags.COLORFUL_SPOUT.tag)
+				.tag(CCPTags.ColorfulItemTags.COLORFUL_SPOUTS.tag)
 				.model((c, p) ->
 						p.withExistingParent(c.getName(), Create.asResource("block/spout/item"))
 								.texture("0", ColorfulPipes.asResource("block/spout/" + colorName))
