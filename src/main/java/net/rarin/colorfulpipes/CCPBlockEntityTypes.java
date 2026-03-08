@@ -27,6 +27,7 @@ import net.rarin.colorfulpipes.content.pipe.ColorfulFluidPipeBlockEntity;
 import net.rarin.colorfulpipes.content.pump.ColorfulPumpBlockEntity;
 import net.rarin.colorfulpipes.content.smartPipe.ColorfulSmartFluidPipeBlockEntity;
 import net.rarin.colorfulpipes.content.spout.ColorfulSpoutBlockEntity;
+import net.rarin.colorfulpipes.content.spout.ColorfulSpoutRenderer;
 import net.rarin.colorfulpipes.content.steamEngine.ColorfulSteamEngineBlockEntity;
 import net.rarin.colorfulpipes.content.steamWhistle.ColorfulWhistleBlockEntity;
 import net.rarin.colorfulpipes.content.tank.ColorfulFluidTankBlockEntity;
@@ -52,7 +53,7 @@ public class CCPBlockEntityTypes {
 	public static final BlockEntityEntry<ColorfulSpoutBlockEntity> COLORFUL_SPOUTS = REGISTRATE
 			.blockEntity("colorful_spout", ColorfulSpoutBlockEntity::new)
 			.validBlocks(CCPBlocks.COLORFUL_SPOUTS.toArray())
-			.renderer(() -> SpoutRenderer::new)
+			.renderer(() -> ColorfulSpoutRenderer::new)
 			.register();
 
 	public static final BlockEntityEntry<ColorfulSmartFluidPipeBlockEntity> COLORFUL_SMART_FLUID_PIPES = REGISTRATE

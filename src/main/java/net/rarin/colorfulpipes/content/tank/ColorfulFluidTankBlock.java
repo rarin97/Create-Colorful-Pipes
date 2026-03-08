@@ -2,7 +2,6 @@ package net.rarin.colorfulpipes.content.tank;
 
 import com.simibubi.create.content.fluids.tank.FluidTankBlock;
 import com.simibubi.create.content.fluids.tank.FluidTankBlockEntity;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -47,7 +46,7 @@ public class ColorfulFluidTankBlock extends FluidTankBlock {
 				FluidTankBlockEntity oldTank = (FluidTankBlockEntity) level.getBlockEntity(pos);
 				if (oldTank == null) return InteractionResult.SUCCESS;
 
-				var oldFluid = oldTank.getTank(0).getFluid();
+				var oldFluid = oldTank.getTank(0).getFluid().copy();
 
 				level.setBlock(pos, CCPBlocks.COLORFUL_FLUID_TANKS.get(dyeColor).getDefaultState(), 3);
 

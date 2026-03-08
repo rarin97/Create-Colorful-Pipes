@@ -13,7 +13,7 @@ public class ColorfulSpoutBlockEntity extends SpoutBlockEntity {
 		super(type, pos, state);
 	}
 
-	public SmartFluidTankBehaviour Tank() {
-		return this.tank;
+	public SmartFluidTankBehaviour getTank() {
+		return getBehaviour(SmartFluidTankBehaviour.TYPE);
 	}
 }

@@ -1,9 +1,12 @@
 package net.rarin.colorfulpipes.content.spout;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.simibubi.create.AllPartialModels;
 import com.simibubi.create.content.fluids.spout.SpoutBlockEntity;
 import com.simibubi.create.content.fluids.spout.SpoutRenderer;
 import com.simibubi.create.foundation.blockEntity.behaviour.fluid.SmartFluidTankBehaviour;
+
+import dev.engine_room.flywheel.lib.model.baked.PartialModel;
 import io.github.fabricators_of_create.porting_lib.fluids.FluidStack;
 import net.createmod.catnip.platform.FabricCatnipServices;
 import net.createmod.catnip.render.CachedBuffers;
@@ -22,17 +25,17 @@ public class ColorfulSpoutRenderer extends SpoutRenderer {
 		super(context);
 	}
 
-//	static final PartialModel[] BITS =
-//			{ CCPPartialModels.SPOUT_TOP, CCPPartialModels.SPOUT_MIDDLE, CCPPartialModels.COLORFUL_SPOUT_NOZZLE.get(color) };
-
 	@Override
 	protected void renderSafe(SpoutBlockEntity be, float partialTicks, PoseStack ms, MultiBufferSource buffer,
 							  int light, int overlay) {
 		if (!(be instanceof ColorfulSpoutBlockEntity colorfulspoutBe)) return;
 
-		DyeColor color = ((ColorfulSpoutBlock) colorfulspoutBe.getBlockState().getBlock()).getColor();
+		if (!(colorfulspoutBe.getBlockState().getBlock() instanceof ColorfulSpoutBlock block))
+			return;
 
-		SmartFluidTankBehaviour tank = colorfulspoutBe.Tank();
+		DyeColor color = block.getColor();
+
+		SmartFluidTankBehaviour tank = colorfulspoutBe.getTank();
 		if (tank == null)
 			return;
 
@@ -84,10 +87,16 @@ public class ColorfulSpoutRenderer extends SpoutRenderer {
 
 		ms.pushPose();
 
-			CachedBuffers.partial(CCPPartialModels.COLORFUL_SPOUT_NOZZLE.get(color), be.getBlockState())
+		PartialModel[] bits =
+				{AllPartialModels.SPOUT_TOP, AllPartialModels.SPOUT_MIDDLE, CCPPartialModels.COLORFUL_SPOUT_NOZZLE.get(color)
+		};
+
+		for (PartialModel bit : bits) {
+			CachedBuffers.partial(bit, be.getBlockState())
 					.light(light)
 					.renderInto(ms, buffer.getBuffer(RenderType.solid()));
 			ms.translate(0, -3 * squeeze / 32f, 0);
+		}
 		ms.popPose();
 
 	}

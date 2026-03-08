@@ -11,7 +11,6 @@ public class ColorfulFluidTankBlockEntity extends FluidTankBlockEntity {
 		super(type, pos, state);
 	}
 
-	@Override
 	protected void updateConnectivity() {
 		updateConnectivity = false;
 		if (level.isClientSide)
