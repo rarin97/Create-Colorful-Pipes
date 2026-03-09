@@ -4,6 +4,7 @@
   "package": "net.rarin.colorfulpipes.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "BoilerDataMixin",
     "SteamEngineBlockEntityMixin"
   ],
   "client": [

@@ -16,12 +16,5 @@ public class ColorfulPumpBlockEntity extends PumpBlockEntity implements PipeAtta
 	public ColorfulPumpBlockEntity(BlockEntityType<?> typeIn, BlockPos pos, BlockState state) {
 		super(typeIn, pos, state);
 	}
-
-	@Override
-	public void addBehaviours(List<BlockEntityBehaviour> behaviours) {
-		super.addBehaviours(behaviours);
-		registerAwardables(behaviours, FluidPropagator.getSharedTriggers());
-		registerAwardables(behaviours, AllAdvancements.PUMP);
-	}
 }
 

@@ -26,14 +26,14 @@ public class ColorfulPipeAttachmentModel extends ForwardingBakedModel {
 	private boolean ao;
 
 	public static ColorfulPipeAttachmentModel withAO(BakedModel template, DyeColor color) {
-		return new ColorfulPipeAttachmentModel(template, color);
+		return new ColorfulPipeAttachmentModel(template, color, true);
 	}
 
 	public static ColorfulPipeAttachmentModel withoutAO(BakedModel template, DyeColor color) {
-		return new ColorfulPipeAttachmentModel(template, color);
+		return new ColorfulPipeAttachmentModel(template, color, false);
 	}
 
-	public ColorfulPipeAttachmentModel(BakedModel template, DyeColor color) {
+	public ColorfulPipeAttachmentModel(BakedModel template, DyeColor color, boolean ao) {
 		wrapped = template;
 		this.color = color;
 		this.ao = ao;

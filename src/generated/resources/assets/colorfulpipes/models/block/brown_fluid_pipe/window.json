@@ -1,6 +1,7 @@
 {
   "parent": "create:block/fluid_pipe/window",
   "textures": {
-    "0": "colorfulpipes:block/glass_fluid_pipe/brown"
+    "0": "colorfulpipes:block/glass_fluid_pipe/brown",
+    "particle": "colorfulpipes:block/copper_underside/brown"
   }
 }

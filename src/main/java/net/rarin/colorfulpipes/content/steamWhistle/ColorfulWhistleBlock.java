@@ -1,7 +1,9 @@
 package net.rarin.colorfulpipes.content.steamWhistle;
 
 import com.simibubi.create.content.decoration.steamWhistle.WhistleBlock;
+
 import com.simibubi.create.content.decoration.steamWhistle.WhistleBlockEntity;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -16,6 +18,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.rarin.colorfulpipes.CCPBlockEntityTypes;
 import net.rarin.colorfulpipes.CCPBlocks;
+import net.rarin.colorfulpipes.CCPTags;
 
 public class ColorfulWhistleBlock extends WhistleBlock {
 
@@ -29,6 +32,11 @@ public class ColorfulWhistleBlock extends WhistleBlock {
 		@Override
 	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
 		ItemStack stack = player.getItemInHand(hand);
+
+		if (stack.is(CCPTags.ColorfulItemTags.COLORFUL_STEAM_WHISTLES.tag)) {
+			incrementSize(level, pos);
+			return InteractionResult.SUCCESS;
+		}
 
 		if (stack.getItem() instanceof DyeItem dye) {
 			DyeColor dyeColor = dye.getDyeColor();

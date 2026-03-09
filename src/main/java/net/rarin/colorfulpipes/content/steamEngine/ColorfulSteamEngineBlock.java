@@ -38,7 +38,7 @@ public class ColorfulSteamEngineBlock extends SteamEngineBlock {
 
 			if (!level.isClientSide) {
 				level.levelEvent(2001, pos, Block.getId(state));
-				level.setBlock(pos, CCPBlocks.COLORFUL_STEAM_ENGINES.get(dyeColor).getDefaultState(), 3);
+				level.setBlockAndUpdate(pos, CCPBlocks.COLORFUL_STEAM_ENGINES.get(dyeColor).getDefaultState());
 			}
 			return InteractionResult.SUCCESS;
 		}

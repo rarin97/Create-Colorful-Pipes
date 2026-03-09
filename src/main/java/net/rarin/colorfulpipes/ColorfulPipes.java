@@ -1,14 +1,11 @@
 package net.rarin.colorfulpipes;
 
 import com.simibubi.create.foundation.data.CreateRegistrate;
-
 import com.simibubi.create.foundation.item.ItemDescription;
 import com.simibubi.create.foundation.item.KineticStats;
 import com.simibubi.create.foundation.item.TooltipModifier;
-
 import net.createmod.catnip.lang.FontHelper;
 import net.fabricmc.api.ModInitializer;
-
 import net.minecraft.resources.ResourceLocation;
 
 import org.slf4j.Logger;
