@@ -4,6 +4,7 @@ import com.simibubi.create.content.fluids.hosePulley.HosePulleyBlock;
 import com.simibubi.create.content.fluids.hosePulley.HosePulleyBlockEntity;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -46,9 +47,9 @@ public class ColorfulHosePulleyBlock extends HosePulleyBlock {
 				level.levelEvent(2001, pos, Block.getId(state));
 
 				HosePulleyBlockEntity oldPulley = (HosePulleyBlockEntity) level.getBlockEntity(pos);
-				net.minecraft.nbt.CompoundTag oldData = null;
+				CompoundTag oldData = null;
 				if (oldPulley != null) {
-					oldData = new net.minecraft.nbt.CompoundTag();
+					oldData = new CompoundTag();
 					oldPulley.saveAdditional(oldData);
 				}
 

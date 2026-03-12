@@ -2,9 +2,13 @@ package net.rarin.colorfulpipes;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.simibubi.create.Create;
 import com.simibubi.create.foundation.utility.FilesHelper;
 
+import com.tterrag.registrate.providers.ProviderType;
+
 import io.github.fabricators_of_create.porting_lib.data.ExistingFileHelper;
+import net.createmod.ponder.foundation.PonderIndex;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 
@@ -30,6 +34,11 @@ public class ColorfulPipesDatagen implements DataGeneratorEntrypoint {
 
 	private static void addExtraRegistrateData() {
 
+		REGISTRATE.addDataGenerator(ProviderType.LANG, provider -> {
+			BiConsumer<String, String> langConsumer = provider::add;
+
+			provideDefaultLang("interface", langConsumer);
+		});
 	}
 
 	private static void provideDefaultLang(String fileName, BiConsumer<String, String> consumer) {

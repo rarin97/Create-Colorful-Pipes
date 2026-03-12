@@ -207,6 +207,6 @@
   "block.colorfulpipes.yellow_steam_engine": "Yellow Steam Engine",
   "block.colorfulpipes.yellow_steam_whistle": "Yellow Steam Whistle",
   "block.colorfulpipes.yellow_steam_whistle_extension": "Yellow Steam Whistle Extension",
-  "colorfulpipes.display_source.boiler_status": "Boiler Status",
-  "itemGroup.colorfulpipes.main": "Colorful Pipes"
+  "itemGroup.colorfulpipes.main": "Colorful Pipes",
+  "colorfulpipes.display_source.boiler_status": "Boiler Status"
 }

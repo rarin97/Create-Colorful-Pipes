@@ -3,6 +3,7 @@ package net.rarin.colorfulpipes.content.drain;
 import com.simibubi.create.content.fluids.drain.ItemDrainBlock;
 import com.simibubi.create.content.fluids.drain.ItemDrainBlockEntity;
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -40,9 +41,9 @@ public class ColorfulDrainBlock extends ItemDrainBlock {
 				level.levelEvent(2001, pos, Block.getId(state));
 
 				ItemDrainBlockEntity oldDrain = (ItemDrainBlockEntity) level.getBlockEntity(pos);
-				net.minecraft.nbt.CompoundTag oldData = null;
+				CompoundTag oldData = null;
 				if (oldDrain != null) {
-					oldData = new net.minecraft.nbt.CompoundTag();
+					oldData = new CompoundTag();
 					oldDrain.saveAdditional(oldData);
 				}
 

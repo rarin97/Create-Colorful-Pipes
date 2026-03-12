@@ -19,7 +19,7 @@ public class CCPCreativeTabs {
 
 	public static final TabInfo MAIN = register("main", () -> FabricItemGroup.builder()
 			.title(Component.translatable("itemGroup.colorfulpipes.main"))
-			.icon(() -> CCPBlocks.COLORFUL_DRAINS.get(DyeColor.RED).asStack())
+			.icon(() -> CCPBlocks.COLORFUL_SMART_FLUID_PIPES.get(DyeColor.ORANGE).asStack())
 			.displayItems(new ItemDisplay())
 			.build());
 

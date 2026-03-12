@@ -6,6 +6,7 @@ import com.simibubi.create.content.fluids.spout.SpoutBlockEntity;
 import com.simibubi.create.content.fluids.tank.FluidTankBlockEntity;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -47,9 +48,9 @@ public class ColorfulSpoutBlock extends SpoutBlock {
 				level.levelEvent(2001, pos, Block.getId(state));
 
 				SpoutBlockEntity oldSpout = (SpoutBlockEntity) level.getBlockEntity(pos);
-				net.minecraft.nbt.CompoundTag oldData = null;
+				CompoundTag oldData = null;
 				if (oldSpout != null) {
-					oldData = new net.minecraft.nbt.CompoundTag();
+					oldData = new CompoundTag();
 					oldSpout.saveAdditional(oldData);
 				}
 
