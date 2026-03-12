@@ -20,16 +20,7 @@ public class CCPTags {
 
 	public enum NameSpace {
 
-		MOD(ColorfulPipes.ID),
-		CREATE("create"),
-		FORGE("c"),
-		TIC("tconstruct"),
-		QUARK("quark"),
-		GS("galosphere"),
-		// fabric: Trinkets compat is used instead
-		CURIOS("curios"),
-		TRINKETS("trinkets");
-
+		MOD(ColorfulPipes.ID);
 
 		public final String id;
 
