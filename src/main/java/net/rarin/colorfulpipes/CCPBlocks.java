@@ -83,6 +83,7 @@ public class CCPBlocks {
 						.unlockedBy("has_item_drain", RegistrateRecipeProvider.has(AllBlocks.ITEM_DRAIN.asItem()))
 						.save(p, ColorfulPipes.asResource("item_drain/" + c.getName()))
 				)
+				.tag(CCPTags.ColorfulBlockTags.COLORFUL_DRAINS.tag)
 				.simpleItem()
 				.item()
 				.tag(CCPTags.ColorfulItemTags.COLORFUL_DRAINS.tag)
@@ -110,6 +111,7 @@ public class CCPBlocks {
 						.unlockedBy("has_pump", RegistrateRecipeProvider.has(AllBlocks.MECHANICAL_PUMP.asItem()))
 						.save(p, ColorfulPipes.asResource("mechanical_pump/" + c.getName()))
 				)
+				.tag(CCPTags.ColorfulBlockTags.COLORFUL_PUMPS.tag)
 				.item()
 				.tag(CCPTags.ColorfulItemTags.COLORFUL_PUMPS.tag)
 				.model((c, p) ->
@@ -139,6 +141,7 @@ public class CCPBlocks {
 						.unlockedBy("has_spout", RegistrateRecipeProvider.has(AllBlocks.SPOUT.asItem()))
 						.save(p, ColorfulPipes.asResource("spout/" + c.getName()))
 				)
+				.tag(CCPTags.ColorfulBlockTags.COLORFUL_SPOUTS.tag)
 				.item()
 				.tag(CCPTags.ColorfulItemTags.COLORFUL_SPOUTS.tag)
 				.model((c, p) ->
@@ -152,7 +155,7 @@ public class CCPBlocks {
 	});
 
 	public static final DyedBlockList<HosePulleyBlock> COLORFUL_HOSE_PULLEYS = new DyedBlockList<>(color -> {
-	String colorName = color.getSerializedName();
+		String colorName = color.getSerializedName();
 		return REGISTRATE.block(colorName + "_hose_pulley", p -> new ColorfulHosePulleyBlock(p, color))
 				.initialProperties(SharedProperties::copperMetal)
 				.properties(p -> p.mapColor(color.getMapColor()))
@@ -167,6 +170,7 @@ public class CCPBlocks {
 						.unlockedBy("has_hose_pulley", RegistrateRecipeProvider.has(AllBlocks.HOSE_PULLEY.asItem()))
 						.save(p, ColorfulPipes.asResource("hose_pulley/" + c.getName()))
 				)
+				.tag(CCPTags.ColorfulBlockTags.COLORFUL_HOSE_PULLEYS.tag)
 				.item()
 				.tag(CCPTags.ColorfulItemTags.COLORFUL_HOSE_PULLEYS.tag)
 				.transform(customItemModel())
@@ -188,6 +192,7 @@ public class CCPBlocks {
 						.unlockedBy("has_fluid_pipe", RegistrateRecipeProvider.has(AllBlocks.FLUID_PIPE.asItem()))
 						.save(p, ColorfulPipes.asResource("fluid_pipe/" + c.getName()))
 				)
+				.tag(CCPTags.ColorfulBlockTags.COLORFUL_PIPES.tag)
 				.item()
 				.tag(CCPTags.ColorfulItemTags.COLORFUL_PIPES.tag)
 				.transform(customItemModel())
@@ -234,7 +239,7 @@ public class CCPBlocks {
 							}, BlockStateProperties.WATERLOGGED);
 				})
 				.onRegister(CCPRegistrate.ColorfulblockModel(() -> ColorfulPipeAttachmentModel::withAO, color))
-	            .loot((p, b) -> p.dropOther(b, COLORFUL_FLUID_PIPES.get(color).get()))
+				.loot((p, b) -> p.dropOther(b, COLORFUL_FLUID_PIPES.get(color).get()))
 				.register();
 	});
 
@@ -253,6 +258,7 @@ public class CCPBlocks {
 						.unlockedBy("has_smart_fluid_pipe", RegistrateRecipeProvider.has(AllBlocks.SMART_FLUID_PIPE.asItem()))
 						.save(p, ColorfulPipes.asResource("smart_fluid_pipe/" + c.getName()))
 				)
+				.tag(CCPTags.ColorfulBlockTags.COLORFUL_SMART_PIPES.tag)
 				.item()
 				.tag(CCPTags.ColorfulItemTags.COLORFUL_SMART_PIPES.tag)
 				.transform(customItemModel())
@@ -276,6 +282,7 @@ public class CCPBlocks {
 						.unlockedBy("has_fluid_valve", RegistrateRecipeProvider.has(AllBlocks.FLUID_VALVE.asItem()))
 						.save(p, ColorfulPipes.asResource("fluid_valve/" + c.getName()))
 				)
+				.tag(CCPTags.ColorfulBlockTags.COLORFUL_FLUID_VALVES.tag)
 				.item()
 				.tag(CCPTags.ColorfulItemTags.COLORFUL_FLUID_VALVES.tag)
 				.transform(customItemModel())
@@ -300,6 +307,7 @@ public class CCPBlocks {
 						.unlockedBy("has_fluid_tank", RegistrateRecipeProvider.has(AllBlocks.FLUID_TANK.asItem()))
 						.save(p, ColorfulPipes.asResource("fluid_tank/" + c.getName()))
 				)
+				.tag(CCPTags.ColorfulBlockTags.COLORFUL_FLUID_TANKS.tag)
 				.item(ColorfulFluidTankItem::new)
 				.tag(CCPTags.ColorfulItemTags.COLORFUL_FLUID_TANKS.tag)
 				.model(AssetLookup.customBlockItemModel("_", "block_single_window"))
@@ -323,6 +331,7 @@ public class CCPBlocks {
 						.unlockedBy("has_steam_engine", RegistrateRecipeProvider.has(AllBlocks.STEAM_ENGINE.asItem()))
 						.save(p, ColorfulPipes.asResource("steam_engine/" + c.getName()))
 				)
+				.tag(CCPTags.ColorfulBlockTags.COLORFUL_STEAM_ENGINES.tag)
 				.item()
 				.tag(CCPTags.ColorfulItemTags.COLORFUL_STEAM_ENGINES.tag)
 				.model((c, p) ->
@@ -347,6 +356,7 @@ public class CCPBlocks {
 						.unlockedBy("has_steam_whistle", RegistrateRecipeProvider.has(AllBlocks.STEAM_WHISTLE.asItem()))
 						.save(p, ColorfulPipes.asResource("steam_whistle/" + c.getName()))
 				)
+				.tag(CCPTags.ColorfulBlockTags.COLORFUL_STEAM_WHISTLES.tag)
 				.item()
 				.tag(CCPTags.ColorfulItemTags.COLORFUL_STEAM_WHISTLES.tag)
 				.model((c, p) ->

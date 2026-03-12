@@ -10,7 +10,7 @@ displayName = "${mod_name}" #mandatory
 authors = "Rarin"
 
 
-description = "pipes"
+description = "added colored pipes to create"
 
 [[dependencies."${mod_id}"]] #optional
 modId = "neoforge" #mandatory
