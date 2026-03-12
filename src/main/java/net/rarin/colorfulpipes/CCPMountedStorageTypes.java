@@ -10,9 +10,9 @@ import java.util.function.Supplier;
 public class CCPMountedStorageTypes {
 	private static final CreateRegistrate REGISTRATE = ColorfulPipes.REGISTRATE;
 
-	public static final RegistryEntry<FluidTankMountedStorageType> FLUID_TANK = simpleFluid("fluid_tank", FluidTankMountedStorageType::new);
+	public static final RegistryEntry<MountedFluidStorageType<?>, FluidTankMountedStorageType> FLUID_TANK = simpleFluid("fluid_tank", FluidTankMountedStorageType::new);
 
-	private static <T extends MountedFluidStorageType<?>> RegistryEntry<T> simpleFluid(String name, Supplier<T> supplier) {
+	private static <T extends MountedFluidStorageType<?>> RegistryEntry<MountedFluidStorageType<?>, T> simpleFluid(String name, Supplier<T> supplier) {
 		return REGISTRATE.mountedFluidStorage(name, supplier).register();
 	}
 

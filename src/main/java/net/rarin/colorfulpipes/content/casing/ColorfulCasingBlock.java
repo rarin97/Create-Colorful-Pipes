@@ -4,6 +4,7 @@ import com.simibubi.create.content.decoration.encasing.CasingBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.DyeItem;
@@ -12,7 +13,6 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
-import net.rarin.colorfulpipes.CCPBlocks;
 
 public class ColorfulCasingBlock extends CasingBlock {
 
@@ -29,9 +29,7 @@ public class ColorfulCasingBlock extends CasingBlock {
 	}
 
 	@Override
-	public InteractionResult use(BlockState state, Level level, BlockPos pos,
-								 Player player, InteractionHand hand, BlockHitResult hit) {
-		ItemStack stack = player.getItemInHand(hand);
+	public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
 
 		if (stack.getItem() instanceof DyeItem dye) {
 			DyeColor dyeColor = dye.getDyeColor();
@@ -40,9 +38,9 @@ public class ColorfulCasingBlock extends CasingBlock {
 //				level.setBlock(pos, CCPBlocks.COLORFUL_COPPER_CASING.get(dyeColor).getDefaultState(), 3);
 //			}
 
-			return InteractionResult.SUCCESS;
+			return ItemInteractionResult.SUCCESS;
 		}
 
-		return super.use(state, level, pos, player, hand, hit);
+		return super.useItemOn(stack, state, level, pos, player, hand, hit);
 	}
 }

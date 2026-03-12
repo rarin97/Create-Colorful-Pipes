@@ -4,9 +4,9 @@ import com.simibubi.create.content.fluids.FluidPropagator;
 import com.simibubi.create.content.fluids.pump.PumpBlock;
 import com.simibubi.create.content.fluids.pump.PumpBlockEntity;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.protocol.game.DebugPackets;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.DyeItem;
@@ -16,7 +16,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.ticks.TickPriority;
 import net.rarin.colorfulpipes.CCPBlockEntityTypes;
 import net.rarin.colorfulpipes.CCPBlocks;
 
@@ -30,14 +29,13 @@ public class ColorfulPumpBlock extends PumpBlock {
 	}
 
 	@Override
-	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-		ItemStack stack = player.getItemInHand(hand);
+	public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
 
 		if (stack.getItem() instanceof DyeItem dye) {
 			DyeColor dyeColor = dye.getDyeColor();
 
 			if (dyeColor == this.color)
-				return InteractionResult.PASS;
+				return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
 
 			if (!level.isClientSide) {
 				level.levelEvent(2001, pos, Block.getId(state));
@@ -48,9 +46,9 @@ public class ColorfulPumpBlock extends PumpBlock {
 				level.setBlock(pos, newState, Block.UPDATE_ALL);
 				FluidPropagator.propagateChangedPipe(level, pos, newState);
 			}
-			return InteractionResult.SUCCESS;
+			return ItemInteractionResult.SUCCESS;
 		}
-		return super.use(state, level, pos, player, hand, hit);
+		 return super.useItemOn(stack, state, level, pos, player, hand, hit);
 	}
 
 	@Override

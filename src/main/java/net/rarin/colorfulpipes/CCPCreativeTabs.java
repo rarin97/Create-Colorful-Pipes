@@ -1,37 +1,28 @@
 package net.rarin.colorfulpipes;
 
-import com.simibubi.create.AllCreativeModeTabs.TabInfo;
-
-import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
-import net.minecraft.core.Registry;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.DyeColor;
-
-import java.util.function.Supplier;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class CCPCreativeTabs {
+	private static final DeferredRegister<CreativeModeTab> REGISTER =
+			DeferredRegister.create(Registries.CREATIVE_MODE_TAB, ColorfulPipes.ID);
+
+	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> MAIN = REGISTER.register("base",
+			() -> CreativeModeTab.builder()
+					.title(Component.translatable("itemGroup.colorfulpipes.main"))
+					.withTabsBefore(com.simibubi.create.AllCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
+					.icon(() -> CCPBlocks.COLORFUL_SMART_FLUID_PIPES.get(DyeColor.ORANGE).asStack())
+					.displayItems(new ItemDisplay())
+					.build());
 
 
-	public static final TabInfo MAIN = register("main", () -> FabricItemGroup.builder()
-			.title(Component.translatable("itemGroup.colorfulpipes.main"))
-			.icon(() -> CCPBlocks.COLORFUL_DRAINS.get(DyeColor.RED).asStack())
-			.displayItems(new ItemDisplay())
-			.build());
-
-	private static TabInfo register(String name, Supplier<CreativeModeTab> supplier) {
-		ResourceLocation id = ColorfulPipes.asResource(name);
-		ResourceKey<CreativeModeTab> key = ResourceKey.create(Registries.CREATIVE_MODE_TAB, id);
-		CreativeModeTab tab = supplier.get();
-		Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, key, tab);
-		return new TabInfo(key, tab);
-	}
-
-	public static void register() {
+	public static void register(IEventBus modEventBus) {
+		REGISTER.register(modEventBus);
 	}
 
 	public static class ItemDisplay implements CreativeModeTab.DisplayItemsGenerator {

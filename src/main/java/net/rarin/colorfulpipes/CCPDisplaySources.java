@@ -10,9 +10,9 @@ import java.util.function.Supplier;
 public class CCPDisplaySources {
 	private static final CreateRegistrate REGISTRATE = ColorfulPipes.REGISTRATE;
 
-	public static final RegistryEntry<BoilerDisplaySource> BOILER = simple("boiler", BoilerDisplaySource::new);
+	public static final RegistryEntry<DisplaySource, BoilerDisplaySource> BOILER = simple("boiler", BoilerDisplaySource::new);
 
-	private static <T extends DisplaySource> RegistryEntry<T> simple(String name, Supplier<T> supplier) {
+	private static <T extends DisplaySource> RegistryEntry<DisplaySource, T> simple(String name, Supplier<T> supplier) {
 		return REGISTRATE.displaySource(name, supplier).register();
 	}
 

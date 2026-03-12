@@ -20,11 +20,11 @@ public class ColorfulFluidTankRenderer extends FluidTankRenderer {
 		super(context);
 	}
 
-@Override
-protected void renderAsBoiler(FluidTankBlockEntity be, float partialTicks, PoseStack ms, MultiBufferSource buffer,
+	@Override
+	protected void renderAsBoiler(FluidTankBlockEntity be, float partialTicks, PoseStack ms, MultiBufferSource buffer,
 								  int light, int overlay) {
-	ColorfulFluidTankBlock block = (ColorfulFluidTankBlock) be.getBlockState().getBlock();
-	DyeColor color = block.getColor();
+		ColorfulFluidTankBlock block = (ColorfulFluidTankBlock) be.getBlockState().getBlock();
+		DyeColor color = block.getColor();
 
 		BlockState blockState = be.getBlockState();
 		VertexConsumer vb = buffer.getBuffer(RenderType.cutout());

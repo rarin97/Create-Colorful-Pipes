@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:dyes/pink"
+    },
+    {
+      "item": "create:item_drain"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "colorfulpipes:pink_item_drain"
+  }
+}

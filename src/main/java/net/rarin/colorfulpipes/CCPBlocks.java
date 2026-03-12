@@ -8,11 +8,7 @@ import com.simibubi.create.content.decoration.steamWhistle.WhistleBlock;
 import com.simibubi.create.content.decoration.steamWhistle.WhistleExtenderBlock;
 import com.simibubi.create.content.fluids.drain.ItemDrainBlock;
 import com.simibubi.create.content.fluids.hosePulley.HosePulleyBlock;
-import com.simibubi.create.content.fluids.pipes.EncasedPipeBlock;
-import com.simibubi.create.content.fluids.pipes.FluidPipeBlock;
-import com.simibubi.create.content.fluids.pipes.GlassFluidPipeBlock;
-import com.simibubi.create.content.fluids.pipes.SmartFluidPipeBlock;
-import com.simibubi.create.content.fluids.pipes.SmartFluidPipeGenerator;
+import com.simibubi.create.content.fluids.pipes.*;
 import com.simibubi.create.content.fluids.pipes.valve.FluidValveBlock;
 import com.simibubi.create.content.fluids.pump.PumpBlock;
 import com.simibubi.create.content.fluids.spout.SpoutBlock;
@@ -26,13 +22,13 @@ import com.simibubi.create.foundation.data.BlockStateGen;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.data.SharedProperties;
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
-import io.github.fabricators_of_create.porting_lib.models.generators.ConfiguredModel;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.Direction;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.rarin.colorfulpipes.config.CStress;
 import net.rarin.colorfulpipes.content.ColorfulEncasedCTBehaviour;
 import net.rarin.colorfulpipes.content.ColorfulPipeAttachmentModel;
@@ -64,7 +60,7 @@ public class CCPBlocks {
 	private static final CreateRegistrate REGISTRATE = ColorfulPipes.REGISTRATE;
 
 	static {
-		ColorfulPipes.REGISTRATE.setCreativeTab(CCPCreativeTabs.MAIN.key());
+		REGISTRATE.setCreativeTab(CCPCreativeTabs.MAIN);
 	}
 
 	public static final DyedBlockList<ItemDrainBlock> COLORFUL_DRAINS = new DyedBlockList<>(color -> {
@@ -288,7 +284,7 @@ public class CCPBlocks {
 
 	public static final DyedBlockList<FluidTankBlock> COLORFUL_FLUID_TANKS = new DyedBlockList<>(color -> {
 		String colorName = color.getSerializedName();
-		return REGISTRATE.block(colorName + "_fluid_tank", p -> new ColorfulFluidTankBlock(p, color, false))
+		return REGISTRATE.block(colorName + "_fluid_tank", p -> new ColorfulFluidTankBlock(p, color))
 				.initialProperties(SharedProperties::copperMetal)
 				.properties(p -> p.noOcclusion().isRedstoneConductor((p1, p2, p3) -> true).mapColor(color.getMapColor()))
 				.transform(pickaxeOnly())

@@ -2,10 +2,9 @@ package net.rarin.colorfulpipes.content.hosePulley;
 
 import com.simibubi.create.content.fluids.hosePulley.HosePulleyBlock;
 import com.simibubi.create.content.fluids.hosePulley.HosePulleyBlockEntity;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.DyeItem;
@@ -33,14 +32,14 @@ public class ColorfulHosePulleyBlock extends HosePulleyBlock {
 	}
 
 	@Override
-	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-		ItemStack stack = player.getItemInHand(hand);
+	public 	ItemInteractionResult useItemOn(ItemStack stack,BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+
 
 		if (stack.getItem() instanceof DyeItem dye) {
 			DyeColor dyeColor = dye.getDyeColor();
 
 			if (dyeColor == this.color)
-				return InteractionResult.PASS;
+				return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
 
 			if (!level.isClientSide) {
 				level.levelEvent(2001, pos, Block.getId(state));
@@ -49,7 +48,7 @@ public class ColorfulHosePulleyBlock extends HosePulleyBlock {
 				net.minecraft.nbt.CompoundTag oldData = null;
 				if (oldPulley != null) {
 					oldData = new net.minecraft.nbt.CompoundTag();
-					oldPulley.saveAdditional(oldData);
+					oldPulley.saveAdditional(oldData, level.registryAccess());
 				}
 
 				level.setBlock(pos, CCPBlocks.COLORFUL_HOSE_PULLEYS.get(dyeColor).getDefaultState()
@@ -57,12 +56,12 @@ public class ColorfulHosePulleyBlock extends HosePulleyBlock {
 
 				HosePulleyBlockEntity newPulley = (HosePulleyBlockEntity) level.getBlockEntity(pos);
 				if (oldData != null && newPulley != null) {
-					newPulley.load(oldData);
+					newPulley.loadWithComponents(oldData, level.registryAccess());
 					}
 			}
-			return InteractionResult.SUCCESS;
+			return ItemInteractionResult.SUCCESS;
 		}
-		return super.use(state, level, pos, player, hand, hit);
+		 return super.useItemOn(stack, state, level, pos, player, hand, hit);
 	}
 
 	@Override

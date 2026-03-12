@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:dyes/orange"
+    },
+    {
+      "item": "create:mechanical_pump"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "colorfulpipes:orange_mechanical_pump"
+  }
+}

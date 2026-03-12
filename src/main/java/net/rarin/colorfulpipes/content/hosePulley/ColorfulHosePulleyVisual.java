@@ -1,6 +1,5 @@
 package net.rarin.colorfulpipes.content.hosePulley;
 
-import com.simibubi.create.AllPartialModels;
 import com.simibubi.create.content.contraptions.pulley.HosePulleyVisual;
 import com.simibubi.create.content.fluids.hosePulley.HosePulleyBlockEntity;
 import dev.engine_room.flywheel.api.instance.Instancer;

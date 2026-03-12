@@ -5,11 +5,8 @@ import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
-
 import net.minecraft.world.item.Item;
-
 import net.minecraft.world.level.block.Block;
-
 import org.jetbrains.annotations.Nullable;
 
 public class CCPTags {
@@ -38,7 +35,7 @@ public class CCPTags {
 		}
 
 		public ResourceLocation id(String path) {
-			return new ResourceLocation(this.id, path);
+			return ResourceLocation.fromNamespaceAndPath(this.id, path);
 		}
 
 		public ResourceLocation id(Enum<?> entry, @Nullable String pathOverride) {

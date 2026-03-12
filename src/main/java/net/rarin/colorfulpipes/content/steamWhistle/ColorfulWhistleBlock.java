@@ -1,12 +1,11 @@
 package net.rarin.colorfulpipes.content.steamWhistle;
 
 import com.simibubi.create.content.decoration.steamWhistle.WhistleBlock;
-
 import com.simibubi.create.content.decoration.steamWhistle.WhistleBlockEntity;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.DyeItem;
@@ -30,28 +29,27 @@ public class ColorfulWhistleBlock extends WhistleBlock {
 	}
 
 		@Override
-	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-		ItemStack stack = player.getItemInHand(hand);
+		public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
 
 		if (stack.is(CCPTags.ColorfulItemTags.COLORFUL_STEAM_WHISTLES.tag)) {
 			incrementSize(level, pos);
-			return InteractionResult.SUCCESS;
+			return ItemInteractionResult.SUCCESS;
 		}
 
 		if (stack.getItem() instanceof DyeItem dye) {
 			DyeColor dyeColor = dye.getDyeColor();
 
 			if (dyeColor == this.color)
-				return InteractionResult.PASS;
+				return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
 
 			if (!level.isClientSide) {
 				level.levelEvent(2001, pos, Block.getId(state));
 				level.setBlock(pos, CCPBlocks.COLORFUL_STEAM_WHISTLES.get(dyeColor).getDefaultState()
 						.setValue(FACING, state.getValue(FACING)).setValue(SIZE, state.getValue(SIZE)), 3);
 			}
-			return InteractionResult.SUCCESS;
+			return ItemInteractionResult.SUCCESS;
 		}
-		return super.use(state, level, pos, player, hand, hit);
+			return super.useItemOn(stack, state, level, pos, player, hand, hit);
 	}
 
 	@Override

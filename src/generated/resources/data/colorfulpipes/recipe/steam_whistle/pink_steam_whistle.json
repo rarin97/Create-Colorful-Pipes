@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:dyes/pink"
+    },
+    {
+      "item": "create:steam_whistle"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "colorfulpipes:pink_steam_whistle"
+  }
+}

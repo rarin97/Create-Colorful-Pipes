@@ -1,14 +1,12 @@
 package net.rarin.colorfulpipes.content.tank;
 
-import java.util.Arrays;
-import java.util.function.Supplier;
-
 import com.simibubi.create.api.connectivity.ConnectivityHandler;
 import com.simibubi.create.content.fluids.tank.FluidTankCTBehaviour;
 import com.simibubi.create.foundation.block.connected.CTModel;
 import com.simibubi.create.foundation.block.connected.CTSpriteShiftEntry;
 import net.createmod.catnip.data.Iterate;
-import net.fabricmc.fabric.api.renderer.v1.render.RenderContext;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -16,9 +14,19 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.BlockAndTintGetter;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.client.model.data.ModelData;
+import net.neoforged.neoforge.client.model.data.ModelProperty;
 import net.rarin.colorfulpipes.CCPSpriteShifts;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.function.Supplier;
+
 public class ColorfulFluidTankModel extends CTModel {
+
+	private static final ModelProperty<CullData> CULL_PROPERTY = new ModelProperty<>();
 
 	public static ColorfulFluidTankModel standard(BakedModel originalModel, DyeColor color) {
 		return new ColorfulFluidTankModel(originalModel,
@@ -34,21 +42,28 @@ public class ColorfulFluidTankModel extends CTModel {
 	}
 
 	@Override
-	public void emitBlockQuads(BlockAndTintGetter blockView, BlockState state, BlockPos pos, Supplier<RandomSource> randomSupplier, RenderContext context) {
+	protected ModelData.Builder gatherModelData(ModelData.Builder builder, BlockAndTintGetter world, BlockPos pos, BlockState state, ModelData blockEntityData) {
+		super.gatherModelData(builder, world, pos, state, blockEntityData);
 		CullData cullData = new CullData();
-		for (Direction d : Iterate.horizontalDirections)
-			cullData.setCulled(d, ConnectivityHandler.isConnected(blockView, pos, pos.relative(d)));
+		for (Direction d : Iterate.horizontalDirections){
+			cullData.setCulled(d, ConnectivityHandler.isConnected(world, pos, pos.relative(d)));
+		}
+		return builder.with(CULL_PROPERTY, cullData);
+	}
 
-		context.pushTransform(quad -> {
-			Direction cullFace = quad.cullFace();
-			if (cullFace != null && cullData.isCulled(cullFace)) {
-				return false;
-			}
-			quad.cullFace(null);
-			return true;
-		});
-		super.emitBlockQuads(blockView, state, pos, randomSupplier, context);
-		context.popTransform();
+	@Override
+	public List<BakedQuad> getQuads(BlockState state, Direction side, RandomSource rand, ModelData extraData, RenderType renderType) {
+		if(side != null)
+			return Collections.emptyList();
+
+		List<BakedQuad> quads = new ArrayList<>();
+		for (Direction d : Iterate.directions){
+			if(extraData.has(CULL_PROPERTY) && extraData.get(CULL_PROPERTY).isCulled(d))
+				continue;
+			quads.addAll(super.getQuads(state, d, rand, extraData, renderType));
+		}
+		quads.addAll(super.getQuads(state, null, rand, extraData, renderType));
+		return quads;
 	}
 
 	private static class CullData {

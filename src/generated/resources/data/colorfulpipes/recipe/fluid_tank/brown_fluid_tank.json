@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:dyes/brown"
+    },
+    {
+      "item": "create:fluid_tank"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "colorfulpipes:brown_fluid_tank"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_steam_engine": {
+      "conditions": {
+        "items": [
+          {
+            "items": "create:steam_engine"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "colorfulpipes:steam_engine/brown_steam_engine"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_steam_engine"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "colorfulpipes:steam_engine/brown_steam_engine"
+    ]
+  }
+}

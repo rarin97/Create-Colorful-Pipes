@@ -2,10 +2,9 @@ package net.rarin.colorfulpipes.content.valve;
 
 import com.simibubi.create.content.fluids.pipes.valve.FluidValveBlock;
 import com.simibubi.create.content.fluids.pipes.valve.FluidValveBlockEntity;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.DyeItem;
@@ -32,23 +31,24 @@ public class ColorfulFluidValveBlock extends FluidValveBlock {
 	}
 
 	@Override
-	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-		ItemStack stack = player.getItemInHand(hand);
+	protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
 
 		if (stack.getItem() instanceof DyeItem dye) {
 			DyeColor dyeColor = dye.getDyeColor();
 
 			if (dyeColor == this.color)
-				return InteractionResult.PASS;
+				return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
 
 			if (!level.isClientSide) {
 				level.levelEvent(2001, pos, Block.getId(state));
+
 				level.setBlock(pos, CCPBlocks.COLORFUL_FLUID_VALVES.get(dyeColor).getDefaultState()
 						.setValue(FACING, state.getValue(FACING)), 3);
 			}
-			return InteractionResult.SUCCESS;
-		}
-		return super.use(state, level, pos, player, hand, hit);
+		return ItemInteractionResult.SUCCESS;
+	}
+
+    return super.useItemOn(stack, state, level, pos, player, hand, hit);
 	}
 
 	@Override

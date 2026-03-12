@@ -3,33 +3,22 @@ package net.rarin.colorfulpipes;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.simibubi.create.foundation.utility.FilesHelper;
-
-import io.github.fabricators_of_create.porting_lib.data.ExistingFileHelper;
-import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
+import com.tterrag.registrate.providers.ProviderType;
 
 import java.util.Map;
 import java.util.function.BiConsumer;
 
 import static net.rarin.colorfulpipes.ColorfulPipes.REGISTRATE;
 
-public class ColorfulPipesDatagen implements DataGeneratorEntrypoint {
-	@Override
-	public void onInitializeDataGenerator(FabricDataGenerator datagen) {
-		ExistingFileHelper helper = ExistingFileHelper.withResourcesFromArg();
-		FabricDataGenerator.Pack pack = datagen.createPack();
-		REGISTRATE.setupDatagen(pack, helper);
-		gatherData(pack, helper);
-	}
+public class ColorfulPipesDatagen {
 
-	public static void gatherData(FabricDataGenerator.Pack pack, ExistingFileHelper existingFileHelper) {
-		addExtraRegistrateData();
+	public static void register() {
 
-		ColorfulPipes.REGISTRATE.addLang("itemGroup", ColorfulPipes.asResource("main"), "Colorful Pipes");
-	}
+		REGISTRATE.addDataGenerator(ProviderType.LANG, provider -> {
+			BiConsumer<String, String> langConsumer = provider::add;
 
-	private static void addExtraRegistrateData() {
-
+			provideDefaultLang("interface", langConsumer);
+		});
 	}
 
 	private static void provideDefaultLang(String fileName, BiConsumer<String, String> consumer) {

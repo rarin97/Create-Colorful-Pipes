@@ -6,11 +6,11 @@ import com.simibubi.create.foundation.data.AssetLookup;
 import com.simibubi.create.foundation.data.SpecialBlockStateGen;
 import com.tterrag.registrate.providers.DataGenContext;
 import com.tterrag.registrate.providers.RegistrateBlockstateProvider;
-import io.github.fabricators_of_create.porting_lib.models.generators.ModelFile;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.rarin.colorfulpipes.ColorfulPipes;
 
 public class ColorfulWhistleGenerator extends SpecialBlockStateGen {

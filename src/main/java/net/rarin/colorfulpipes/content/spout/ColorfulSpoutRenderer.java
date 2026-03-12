@@ -5,18 +5,17 @@ import com.simibubi.create.AllPartialModels;
 import com.simibubi.create.content.fluids.spout.SpoutBlockEntity;
 import com.simibubi.create.content.fluids.spout.SpoutRenderer;
 import com.simibubi.create.foundation.blockEntity.behaviour.fluid.SmartFluidTankBehaviour;
-
 import dev.engine_room.flywheel.lib.model.baked.PartialModel;
-import io.github.fabricators_of_create.porting_lib.fluids.FluidStack;
-import net.createmod.catnip.platform.FabricCatnipServices;
+
+import net.createmod.catnip.platform.NeoForgeCatnipServices;
 import net.createmod.catnip.render.CachedBuffers;
-import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariantAttributes;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.phys.AABB;
+import net.neoforged.neoforge.fluids.FluidStack;
 import net.rarin.colorfulpipes.CCPPartialModels;
 
 public class ColorfulSpoutRenderer extends SpoutRenderer {
@@ -45,7 +44,7 @@ public class ColorfulSpoutRenderer extends SpoutRenderer {
 				.getValue(partialTicks);
 
 		if (!fluidStack.isEmpty() && level != 0) {
-			boolean top = FluidVariantAttributes.isLighterThanAir(fluidStack.getType());
+			boolean top = fluidStack.getFluid().getFluidType().isLighterThanAir();
 
 			level = Math.max(level, 0.175f);
 			float min = 2.5f / 16f;
@@ -56,7 +55,7 @@ public class ColorfulSpoutRenderer extends SpoutRenderer {
 			if (!top) ms.translate(0, yOffset, 0);
 			else ms.translate(0, max - min, 0);
 
-			FabricCatnipServices.FLUID_RENDERER.renderFluidBox(fluidStack,
+			NeoForgeCatnipServices.FLUID_RENDERER.renderFluidBox(fluidStack,
 					min, min - yOffset, min,
 					max, min, max,
 					buffer, ms, light, false, true);
@@ -73,7 +72,7 @@ public class ColorfulSpoutRenderer extends SpoutRenderer {
 		if (!fluidStack.isEmpty() && processingTicks != -1) {
 			radius = (float) (Math.pow(((2 * processingProgress) - 1), 2) - 1);
 			AABB bb = new AABB(0.5, 0.0, 0.5, 0.5, -1.2, 0.5).inflate(radius / 32f);
-			FabricCatnipServices.FLUID_RENDERER.renderFluidBox(fluidStack, (float) bb.minX, (float) bb.minY, (float) bb.minZ,
+			NeoForgeCatnipServices.FLUID_RENDERER.renderFluidBox(fluidStack, (float) bb.minX, (float) bb.minY, (float) bb.minZ,
 					(float) bb.maxX, (float) bb.maxY, (float) bb.maxZ, buffer, ms, light, true, true);
 		}
 

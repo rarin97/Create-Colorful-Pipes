@@ -9,6 +9,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.DyeItem;
@@ -60,14 +61,13 @@ public class ColorfulGlassFluidPipeBlock extends GlassFluidPipeBlock {
 	}
 
 	@Override
-	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-		ItemStack stack = player.getItemInHand(hand);
+	public ItemInteractionResult useItemOn(ItemStack stack,BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
 
 		if (stack.getItem() instanceof DyeItem dye) {
 			DyeColor dyeColor = dye.getDyeColor();
 
 			if (dyeColor == this.color)
-				return InteractionResult.PASS;
+				return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
 
 			if (!level.isClientSide) {
 				level.levelEvent(2001, pos, Block.getId(state));
@@ -79,9 +79,9 @@ public class ColorfulGlassFluidPipeBlock extends GlassFluidPipeBlock {
 
 				FluidTransportBehaviour.loadFlows(level, pos);
 			}
-			return InteractionResult.SUCCESS;
+			return ItemInteractionResult.SUCCESS;
 		}
-		return super.use(state, level, pos, player, hand, hit);
+		return super.useItemOn(stack, state, level, pos, player, hand, hit);
 	}
 
 	public BlockEntityType<? extends StraightPipeBlockEntity> getBlockEntityType() {

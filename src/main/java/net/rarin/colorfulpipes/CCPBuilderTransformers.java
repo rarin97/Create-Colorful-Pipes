@@ -7,7 +7,6 @@ import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.data.SharedProperties;
 import com.tterrag.registrate.builders.BlockBuilder;
 import com.tterrag.registrate.util.nullness.NonNullUnaryOperator;
-
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.SoundType;
 

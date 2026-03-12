@@ -1,7 +1,6 @@
 package net.rarin.colorfulpipes;
 
 import com.simibubi.create.Create;
-
 import net.createmod.ponder.api.registration.PonderPlugin;
 import net.createmod.ponder.api.registration.PonderSceneRegistrationHelper;
 import net.minecraft.resources.ResourceLocation;

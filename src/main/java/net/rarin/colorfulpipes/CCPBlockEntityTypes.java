@@ -33,7 +33,7 @@ import net.rarin.colorfulpipes.content.valve.ColorfulFluidValveBlockEntity;
 public class CCPBlockEntityTypes {
 	private static final CreateRegistrate REGISTRATE = ColorfulPipes.REGISTRATE;
 
-		public static final BlockEntityEntry<ColorfulDrainBlockEntity> COLORFUL_DRAINS = REGISTRATE
+	public static final BlockEntityEntry<ColorfulDrainBlockEntity> COLORFUL_DRAINS = REGISTRATE
 			.blockEntity("colorful_item_drain", ColorfulDrainBlockEntity::new)
 			.validBlocks(CCPBlocks.COLORFUL_DRAINS.toArray())
 			.renderer(() -> ItemDrainRenderer::new)
@@ -55,7 +55,7 @@ public class CCPBlockEntityTypes {
 	public static final BlockEntityEntry<ColorfulSmartFluidPipeBlockEntity> COLORFUL_SMART_FLUID_PIPES = REGISTRATE
 			.blockEntity("colorful_smart_fluid_pipe", ColorfulSmartFluidPipeBlockEntity::new)
 			.validBlocks(CCPBlocks.COLORFUL_SMART_FLUID_PIPES.toArray())
-			 .renderer(() -> SmartBlockEntityRenderer::new)
+			.renderer(() -> SmartBlockEntityRenderer::new)
 			.register();
 
 	public static final BlockEntityEntry<ColorfulFluidPipeBlockEntity> COLORFUL_FLUID_PIPES = REGISTRATE

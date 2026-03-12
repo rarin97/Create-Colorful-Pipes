@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:dyes/pink"
+    },
+    {
+      "item": "create:mechanical_pump"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "colorfulpipes:pink_mechanical_pump"
+  }
+}
