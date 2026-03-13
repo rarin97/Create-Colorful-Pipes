@@ -1,8 +1,6 @@
 package net.rarin.colorfulpipes.content.drain;
 
-import com.simibubi.create.AllBlockEntityTypes;
 import com.simibubi.create.content.fluids.drain.ItemDrainBlockEntity;
-import com.simibubi.create.content.logistics.depot.DepotBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.fluid.SmartFluidTankBehaviour;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -22,15 +20,15 @@ public class ColorfulDrainBlockEntity extends ItemDrainBlockEntity {
 	}
 
 	public static void registerCapabilities(RegisterCapabilitiesEvent event) {
-//		event.registerBlockEntity(
-//				Capabilities.ItemHandler.BLOCK,
-//				CCPBlockEntityTypes.COLORFUL_DRAINS.get(),
-//				(be, context) -> {
-//					if (context != null && context.getAxis().isHorizontal())
-//						return be.itemHandlers.get(context);
-//					return null;
-//				}
-//		);
+		event.registerBlockEntity(
+				Capabilities.ItemHandler.BLOCK,
+				CCPBlockEntityTypes.COLORFUL_DRAINS.get(),
+				(be, context) -> {
+					if (context != null && context.getAxis().isHorizontal())
+						return new ColorfulDrainItemHandler(be, context);
+					return null;
+				}
+		);
 
 		event.registerBlockEntity(
 				Capabilities.FluidHandler.BLOCK,
