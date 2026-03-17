@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_copper_casing": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "create:steam_whistle"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "colorfulpipes:copper_casing/white_copper_casing"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_copper_casing",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "colorfulpipes:copper_casing/white_copper_casing"
+    ]
+  },
+  "sends_telemetry_event": false
+}
