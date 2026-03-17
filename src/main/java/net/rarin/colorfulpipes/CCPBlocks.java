@@ -295,7 +295,7 @@ public class CCPBlocks {
 
 	public static final DyedBlockList<FluidTankBlock> COLORFUL_FLUID_TANKS = new DyedBlockList<>(color -> {
 		String colorName = color.getSerializedName();
-		return REGISTRATE.block(colorName + "_fluid_tank", p -> new ColorfulFluidTankBlock(p, color, false))
+		return REGISTRATE.block(colorName + "_fluid_tank", p -> new ColorfulFluidTankBlock(p, color))
 				.initialProperties(SharedProperties::copperMetal)
 				.properties(p -> p.noOcclusion().isRedstoneConductor((p1, p2, p3) -> true).mapColor(color.getMapColor()))
 				.transform(pickaxeOnly())

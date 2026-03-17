@@ -33,14 +33,4 @@ public abstract class SteamEngineBlockEntityMixin {
 			cir.cancel();
 		}
 	}
-
-	@Redirect(method = {"tick", "getTargetAngle"}, at = @At(value = "INVOKE",
-			target = "Lcom/tterrag/registrate/util/entry/BlockEntry;has(Lnet/minecraft/world/level/block/state/BlockState;)Z"))
-	private boolean getCamLinkage(com.tterrag.registrate.util.entry.BlockEntry<?> entry, BlockState state) {
-
-		if (state.getBlock() instanceof ColorfulSteamEngineBlock)
-			return true;
-
-		return entry.has(state);
-	}
 }

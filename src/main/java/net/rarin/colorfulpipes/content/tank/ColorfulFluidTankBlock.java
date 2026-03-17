@@ -21,8 +21,8 @@ public class ColorfulFluidTankBlock extends FluidTankBlock {
 
 	protected final DyeColor color;
 
-	public ColorfulFluidTankBlock(Properties properties, DyeColor color, boolean creative) {
-		super(properties, creative);
+	public ColorfulFluidTankBlock(Properties properties, DyeColor color) {
+		super(properties, false);
 		this.color = color;
 	}
 
