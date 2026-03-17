@@ -6,11 +6,12 @@ license = "${mod_license}"
 modId = "${mod_id}" #mandatory
 version = "${mod_version}" #mandatory
 displayName = "${mod_name}" #mandatory
-
+logoFile="icon.png"
 authors = "Rarin"
-
-
 description = "added colored pipes to create"
+
+[[mixins]]
+config="ColorfulPipes.mixins.json"
 
 [[dependencies."${mod_id}"]] #optional
 modId = "neoforge" #mandatory

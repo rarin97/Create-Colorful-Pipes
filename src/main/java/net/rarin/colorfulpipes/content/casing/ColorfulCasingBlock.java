@@ -11,8 +11,10 @@ import net.minecraft.world.item.DyeItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import net.rarin.colorfulpipes.CCPBlocks;
 
 public class ColorfulCasingBlock extends CasingBlock {
 
@@ -34,10 +36,14 @@ public class ColorfulCasingBlock extends CasingBlock {
 		if (stack.getItem() instanceof DyeItem dye) {
 			DyeColor dyeColor = dye.getDyeColor();
 
-//			if (dyeColor != color) {
-//				level.setBlock(pos, CCPBlocks.COLORFUL_COPPER_CASING.get(dyeColor).getDefaultState(), 3);
-//			}
+			if (dyeColor == this.color)
+				return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
 
+			if (!level.isClientSide) {
+				level.levelEvent(2001, pos, Block.getId(state));
+
+				level.setBlock(pos, CCPBlocks.COLORFUL_COPPER_CASING.get(dyeColor).getDefaultState(), 3);
+			}
 			return ItemInteractionResult.SUCCESS;
 		}
 

@@ -18,8 +18,8 @@ public class CCPPonderScenes {
 				.addStoryBoard("fluid_pipe/flow", PipeScenes::flow, AllCreatePonderTags.FLUIDS)
 				.addStoryBoard("fluid_pipe/interaction", PipeScenes::interaction)
 				.addStoryBoard("fluid_pipe/encasing", PipeScenes::encasing);
-//		HELPER.forComponents(AllBlocks.COPPER_CASING)
-//				.addStoryBoard("fluid_pipe/encasing", PipeScenes::encasing);
+		HELPER.forComponents(CCPBlocks.COLORFUL_COPPER_CASING)
+				.addStoryBoard("fluid_pipe/encasing", PipeScenes::encasing);
 		HELPER.forComponents(CCPBlocks.COLORFUL_PUMPS)
 				.addStoryBoard("mechanical_pump/flow", PumpScenes::flow, AllCreatePonderTags.FLUIDS, AllCreatePonderTags.KINETIC_APPLIANCES)
 				.addStoryBoard("mechanical_pump/speed", PumpScenes::speed);
@@ -30,10 +30,10 @@ public class CCPPonderScenes {
 		HELPER.forComponents(CCPBlocks.COLORFUL_FLUID_TANKS)
 				.addStoryBoard("fluid_tank/storage", FluidTankScenes::storage, AllCreatePonderTags.FLUIDS)
 				.addStoryBoard("fluid_tank/sizes", FluidTankScenes::sizes);
-		HELPER.forComponents(CCPBlocks.COLORFUL_HOSE_PULLEYS)
-				.addStoryBoard("hose_pulley/intro", HosePulleyScenes::intro, AllCreatePonderTags.FLUIDS, AllCreatePonderTags.KINETIC_APPLIANCES)
-				.addStoryBoard("hose_pulley/level", HosePulleyScenes::level)
-				.addStoryBoard("hose_pulley/infinite", HosePulleyScenes::infinite);
+//		HELPER.forComponents(CCPBlocks.COLORFUL_HOSE_PULLEYS)
+//				.addStoryBoard("hose_pulley/intro", HosePulleyScenes::intro, AllCreatePonderTags.FLUIDS, AllCreatePonderTags.KINETIC_APPLIANCES)
+//				.addStoryBoard("hose_pulley/level", HosePulleyScenes::level)
+//				.addStoryBoard("hose_pulley/infinite", HosePulleyScenes::infinite);
 		HELPER.forComponents(CCPBlocks.COLORFUL_SPOUTS)
 				.addStoryBoard("spout", SpoutScenes::filling, AllCreatePonderTags.FLUIDS);
 		HELPER.forComponents(CCPBlocks.COLORFUL_DRAINS.toArray())

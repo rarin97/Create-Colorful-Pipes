@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:dyes/pink"
+    },
+    {
+      "item": "create:copper_casing"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "colorfulpipes:pink_copper_casing"
+  }
+}

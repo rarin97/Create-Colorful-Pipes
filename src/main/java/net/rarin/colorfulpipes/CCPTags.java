@@ -35,6 +35,7 @@ public class CCPTags {
 	}
 
 	public enum ColorfulItemTags {
+		COLORFUL_COPPER_CASINGS,
 		COLORFUL_PIPES,
 		COLORFUL_SMART_PIPES,
 		COLORFUL_FLUID_VALVES,
@@ -45,6 +46,7 @@ public class CCPTags {
 		COLORFUL_SPOUTS,
 		COLORFUL_STEAM_ENGINES,
 		COLORFUL_STEAM_WHISTLES;
+
 
 		public final TagKey<Item> tag;
 
@@ -62,7 +64,7 @@ public class CCPTags {
 	}
 
 		public enum ColorfulBlockTags {
-
+			COLORFUL_COPPER_CASINGS,
 			COLORFUL_PIPES,
 			COLORFUL_SMART_PIPES,
 			COLORFUL_FLUID_VALVES,

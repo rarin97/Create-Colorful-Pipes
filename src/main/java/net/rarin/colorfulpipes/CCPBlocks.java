@@ -3,6 +3,8 @@ package net.rarin.colorfulpipes;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.Create;
 import com.simibubi.create.api.stress.BlockStressValues;
+import com.simibubi.create.content.decoration.encasing.CasingBlock;
+import com.simibubi.create.content.decoration.encasing.EncasedCTBehaviour;
 import com.simibubi.create.content.decoration.encasing.EncasingRegistry;
 import com.simibubi.create.content.decoration.steamWhistle.WhistleBlock;
 import com.simibubi.create.content.decoration.steamWhistle.WhistleExtenderBlock;
@@ -19,6 +21,7 @@ import com.simibubi.create.content.kinetics.steamEngine.SteamEngineBlock;
 import com.simibubi.create.foundation.block.DyedBlockList;
 import com.simibubi.create.foundation.data.AssetLookup;
 import com.simibubi.create.foundation.data.BlockStateGen;
+import com.simibubi.create.foundation.data.BuilderTransformers;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.data.SharedProperties;
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
@@ -26,12 +29,14 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.Direction;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.rarin.colorfulpipes.config.CStress;
 import net.rarin.colorfulpipes.content.ColorfulEncasedCTBehaviour;
 import net.rarin.colorfulpipes.content.ColorfulPipeAttachmentModel;
+import net.rarin.colorfulpipes.content.casing.ColorfulCasingBlock;
 import net.rarin.colorfulpipes.content.drain.ColorfulDrainBlock;
 import net.rarin.colorfulpipes.content.encasedPipe.ColorfulEncasedPipeBlock;
 import net.rarin.colorfulpipes.content.glassPipe.ColorfulGlassFluidPipeBlock;
@@ -201,7 +206,7 @@ public class CCPBlocks {
 
 	public static final DyedBlockList<EncasedPipeBlock> COLORFUL_ENCASED_FLUID_PIPES = new DyedBlockList<>(color -> {
 		String colorName = color.getSerializedName();
-		return REGISTRATE.block(colorName + "_encased_fluid_pipe", p -> new ColorfulEncasedPipeBlock(p, color, AllBlocks.COPPER_CASING::get))
+		return REGISTRATE.block(colorName + "_encased_fluid_pipe", p -> new ColorfulEncasedPipeBlock(p, color, () -> CCPBlocks.COLORFUL_COPPER_CASING.get(color).get()))
 				.initialProperties(SharedProperties::copperMetal)
 				.properties(p -> p.noOcclusion().mapColor(color.getMapColor()))
 				.transform(axeOrPickaxe())
@@ -224,8 +229,7 @@ public class CCPBlocks {
 				.transform(pickaxeOnly())
 				.addLayer(() -> RenderType::cutoutMipped)
 				.blockstate((c, p) -> {
-					p.getVariantBuilder(c.getEntry())
-							.forAllStatesExcept(state -> {
+					p.getVariantBuilder(c.getEntry()).forAllStatesExcept(state -> {
 								Direction.Axis axis = state.getValue(BlockStateProperties.AXIS);
 								return ConfiguredModel.builder()
 										.modelFile(p.models()
@@ -379,13 +383,23 @@ public class CCPBlocks {
 				.register();
 	});
 
-//	public static final DyedBlockList<CasingBlock> COLORFUL_COPPER_CASING = new DyedBlockList<>(color -> {
-//		String colorName = color.getSerializedName();
-//		return REGISTRATE.block(colorName + "_copper_casing", p -> new ColorfulCasingBlock(p, color))
-//				.properties(p -> p.mapColor(color.getMapColor()).sound(SoundType.COPPER))
-//				.transform(BuilderTransformers.casing(() -> CCPSpriteShifts.COLORFUL_COPPER_CASING.get(color)))
-//				.register();
-//	});
+	public static final DyedBlockList<CasingBlock> COLORFUL_COPPER_CASING = new DyedBlockList<>(color -> {
+		String colorName = color.getSerializedName();
+		return REGISTRATE.block(colorName + "_copper_casing", p -> new ColorfulCasingBlock(p, color))
+				.properties(p -> p.mapColor(color.getMapColor()).sound(SoundType.COPPER))
+				.transform(CCPBuilderTransformers.colorfulCasing(color))
+				.recipe((c, p) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, c.get())
+						.requires(color.getTag())
+						.requires(AllBlocks.COPPER_CASING.asItem())
+						.unlockedBy("has_copper_casing", RegistrateRecipeProvider.has(AllBlocks.STEAM_WHISTLE.asItem()))
+						.save(p, ColorfulPipes.asResource("copper_casing/" + c.getName()))
+				)
+				.tag(CCPTags.ColorfulBlockTags.COLORFUL_COPPER_CASINGS.tag)
+				.item()
+				.tag(CCPTags.ColorfulItemTags.COLORFUL_COPPER_CASINGS.tag)
+				.build()
+				.register();
+	});
 
 	public static void register() {
 	}
