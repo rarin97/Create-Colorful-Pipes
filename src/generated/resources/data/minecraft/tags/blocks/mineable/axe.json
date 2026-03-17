@@ -32,6 +32,22 @@
     "colorfulpipes:brown_copper_casing",
     "colorfulpipes:green_copper_casing",
     "colorfulpipes:red_copper_casing",
-    "colorfulpipes:black_copper_casing"
+    "colorfulpipes:black_copper_casing",
+    "colorfulpipes:white_portable_fluid_interface",
+    "colorfulpipes:orange_portable_fluid_interface",
+    "colorfulpipes:magenta_portable_fluid_interface",
+    "colorfulpipes:light_blue_portable_fluid_interface",
+    "colorfulpipes:yellow_portable_fluid_interface",
+    "colorfulpipes:lime_portable_fluid_interface",
+    "colorfulpipes:pink_portable_fluid_interface",
+    "colorfulpipes:gray_portable_fluid_interface",
+    "colorfulpipes:light_gray_portable_fluid_interface",
+    "colorfulpipes:cyan_portable_fluid_interface",
+    "colorfulpipes:purple_portable_fluid_interface",
+    "colorfulpipes:blue_portable_fluid_interface",
+    "colorfulpipes:brown_portable_fluid_interface",
+    "colorfulpipes:green_portable_fluid_interface",
+    "colorfulpipes:red_portable_fluid_interface",
+    "colorfulpipes:black_portable_fluid_interface"
   ]
 }

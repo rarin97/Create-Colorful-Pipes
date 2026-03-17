@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:magenta_dyes"
+    },
+    {
+      "item": "create:portable_fluid_interface"
+    }
+  ],
+  "result": {
+    "item": "colorfulpipes:magenta_portable_fluid_interface"
+  }
+}
