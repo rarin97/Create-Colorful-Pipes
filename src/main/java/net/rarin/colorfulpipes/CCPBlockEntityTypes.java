@@ -1,6 +1,8 @@
 package net.rarin.colorfulpipes;
 
 import com.simibubi.create.AllPartialModels;
+import com.simibubi.create.content.contraptions.actors.psi.PSIVisual;
+import com.simibubi.create.content.contraptions.actors.psi.PortableStorageInterfaceRenderer;
 import com.simibubi.create.content.decoration.steamWhistle.WhistleRenderer;
 import com.simibubi.create.content.fluids.drain.ItemDrainRenderer;
 import com.simibubi.create.content.fluids.pipes.GlassPipeVisual;
@@ -20,6 +22,7 @@ import net.rarin.colorfulpipes.content.hosePulley.ColorfulHosePulleyBlockEntity;
 import net.rarin.colorfulpipes.content.hosePulley.ColorfulHosePulleyRenderer;
 import net.rarin.colorfulpipes.content.hosePulley.ColorfulHosePulleyVisual;
 import net.rarin.colorfulpipes.content.pipe.ColorfulFluidPipeBlockEntity;
+import net.rarin.colorfulpipes.content.portableFluidInterface.ColorfulPortableFluidInterfaceBlockEntity;
 import net.rarin.colorfulpipes.content.pump.ColorfulPumpBlockEntity;
 import net.rarin.colorfulpipes.content.smartPipe.ColorfulSmartFluidPipeBlockEntity;
 import net.rarin.colorfulpipes.content.spout.ColorfulSpoutBlockEntity;
@@ -95,13 +98,12 @@ public class CCPBlockEntityTypes {
 			.renderer(() -> ColorfulHosePulleyRenderer::new)
 			.register();
 
-//	public static final BlockEntityEntry<ColorfulPortableFluidInterfaceBlockEntity> COLORFUL_PORTABLE_FLUID_INTERFACE =
-//			REGISTRATE
-//					.blockEntity("portable_fluid_interface", PortableFluidInterfaceBlockEntity::new)
-//					.visual(() -> PSIVisual::new)
-//					.validBlocks(AllBlocks.PORTABLE_FLUID_INTERFACE)
-//					.renderer(() -> PortableStorageInterfaceRenderer::new)
-//					.register();
+	public static final BlockEntityEntry<ColorfulPortableFluidInterfaceBlockEntity> COLORFUL_PORTABLE_FLUID_INTERFACE = REGISTRATE
+			.blockEntity("portable_fluid_interface", ColorfulPortableFluidInterfaceBlockEntity::new)
+			.visual(() -> PSIVisual::new)
+			.validBlocks(CCPBlocks.COLORFUL_FLUID_INTERFACES.toArray())
+			.renderer(() -> PortableStorageInterfaceRenderer::new)
+			.register();
 
 	public static final BlockEntityEntry<ColorfulSteamEngineBlockEntity> COLORFUL_STEAM_ENGINES = REGISTRATE
 			.blockEntity("colorful_steam_engine", ColorfulSteamEngineBlockEntity::new)

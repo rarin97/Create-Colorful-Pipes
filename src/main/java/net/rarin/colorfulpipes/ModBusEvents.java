@@ -5,6 +5,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.rarin.colorfulpipes.content.drain.ColorfulDrainBlockEntity;
 import net.rarin.colorfulpipes.content.hosePulley.ColorfulHosePulleyBlockEntity;
+import net.rarin.colorfulpipes.content.portableFluidInterface.ColorfulPortableFluidInterfaceBlockEntity;
 import net.rarin.colorfulpipes.content.spout.ColorfulSpoutBlockEntity;
 import net.rarin.colorfulpipes.content.tank.ColorfulFluidTankBlockEntity;
 
@@ -17,5 +18,6 @@ public class ModBusEvents {
         ColorfulDrainBlockEntity.registerCapabilities(event);
         ColorfulHosePulleyBlockEntity.registerCapabilities(event);
         ColorfulSpoutBlockEntity.registerCapabilities(event);
+		ColorfulPortableFluidInterfaceBlockEntity.registerCapabilities(event);
     }
 }

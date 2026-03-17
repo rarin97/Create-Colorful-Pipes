@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:dyes/white"
+    },
+    {
+      "item": "create:portable_fluid_interface"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "colorfulpipes:white_portable_fluid_interface"
+  }
+}

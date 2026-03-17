@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_portable_fluid_interface": {
+      "conditions": {
+        "items": [
+          {
+            "items": "create:portable_fluid_interface"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "colorfulpipes:portable_fluid_interface/light_blue_portable_fluid_interface"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_portable_fluid_interface"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "colorfulpipes:portable_fluid_interface/light_blue_portable_fluid_interface"
+    ]
+  }
+}

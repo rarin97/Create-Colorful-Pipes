@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:dyes/pink"
+    },
+    {
+      "item": "create:portable_fluid_interface"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "colorfulpipes:pink_portable_fluid_interface"
+  }
+}

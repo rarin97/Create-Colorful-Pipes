@@ -1,8 +1,10 @@
 package net.rarin.colorfulpipes;
 
 import com.simibubi.create.AllBlocks;
+import com.simibubi.create.AllTags;
 import com.simibubi.create.Create;
 import com.simibubi.create.api.stress.BlockStressValues;
+import com.simibubi.create.content.contraptions.actors.psi.PortableStorageInterfaceMovement;
 import com.simibubi.create.content.decoration.encasing.CasingBlock;
 import com.simibubi.create.content.decoration.encasing.EncasedCTBehaviour;
 import com.simibubi.create.content.decoration.encasing.EncasingRegistry;
@@ -42,6 +44,7 @@ import net.rarin.colorfulpipes.content.encasedPipe.ColorfulEncasedPipeBlock;
 import net.rarin.colorfulpipes.content.glassPipe.ColorfulGlassFluidPipeBlock;
 import net.rarin.colorfulpipes.content.hosePulley.ColorfulHosePulleyBlock;
 import net.rarin.colorfulpipes.content.pipe.ColorfulFluidPipeBlock;
+import net.rarin.colorfulpipes.content.portableFluidInterface.ColorfulPortableFluidInterfaceBlock;
 import net.rarin.colorfulpipes.content.pump.ColorfulPumpBlock;
 import net.rarin.colorfulpipes.content.smartPipe.ColorfulSmartFluidPipeBlock;
 import net.rarin.colorfulpipes.content.spout.ColorfulSpoutBlock;
@@ -401,29 +404,26 @@ public class CCPBlocks {
 				.register();
 	});
 
+	public static final DyedBlockList<ColorfulPortableFluidInterfaceBlock> COLORFUL_FLUID_INTERFACES = new DyedBlockList<>(color -> {
+		String colorName = color.getSerializedName();
+		return REGISTRATE.block(colorName + "_portable_fluid_interface", p -> new ColorfulPortableFluidInterfaceBlock(p, color))
+				.initialProperties(SharedProperties::copperMetal)
+				.properties(p -> p.mapColor(color.getMapColor()))
+				.transform(axeOrPickaxe())
+				.blockstate((c, p) -> p.directionalBlock(c.get(), AssetLookup.partialBaseModel(c, p)))
+				.recipe((c, p) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, c.get())
+						.requires(color.getTag())
+						.requires(AllBlocks.PORTABLE_FLUID_INTERFACE.asItem())
+						.unlockedBy("has_portable_fluid_interface", RegistrateRecipeProvider.has(AllBlocks.PORTABLE_FLUID_INTERFACE.asItem()))
+						.save(p, ColorfulPipes.asResource("portable_fluid_interface/" + c.getName()))
+				)
+				.onRegister(movementBehaviour(new PortableStorageInterfaceMovement()))
+				.item()
+				.tag(AllTags.AllItemTags.CONTRAPTION_CONTROLLED.tag)
+				.transform(customItemModel())
+				.register();
+	});
+
 	public static void register() {
 	}
 }
-
-//	public static final DyedBlockList<PortableStorageInterfaceBlock> COLORFUL_FLUID_INTERFACES = new DyedBlockList<>(color -> {
-//		String colorName = color.getSerializedName();
-//		return REGISTRATE.block(colorName + "_portable_fluid_interface", p -> new ColorfulPortableStorageInterfaceBlock(p, color))
-//				.initialProperties(SharedProperties::copperMetal)
-//				.properties(p -> p.mapColor(color.getMapColor()))
-//				.transform(axeOrPickaxe())
-//				.blockstate((c, p) -> {
-//					p.directionalBlock(c.get(), p.models().withExistingParent(c.getName(), Create.asResource("block/portable_fluid_interface/block")));
-//				})
-//				.recipe((c, p) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, c.get())
-//						.requires(color.getTag())
-//						.requires(AllBlocks.PORTABLE_FLUID_INTERFACE.asItem())
-//						.unlockedBy("has_portable_fluid_interface", RegistrateRecipeProvider.has(AllBlocks.PORTABLE_FLUID_INTERFACE.asItem()))
-//						.save(p, ColorfulPipes.asResource("portable_fluid_interface/" + c.getName()))
-//				)
-//				.simpleItem()
-//				.register();
-//	});
-
-
-
-
