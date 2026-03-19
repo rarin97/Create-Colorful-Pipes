@@ -3,8 +3,8 @@
   "textures": {
     "0": "colorfulpipes:block/fluid_tank_top/cyan",
     "1": "colorfulpipes:block/fluid_tank/cyan",
-    "3":  "colorfulpipes:block/fluid_tank_window/cyan",
-    "4": "colorfulpipes:block/copper_underside/cyan",
+    "3": "colorfulpipes:block/fluid_tank_window/cyan",
+    "4": "colorfulpipes:block/fluid_tank_inner/cyan",
     "particle": "colorfulpipes:block/fluid_tank/cyan"
   }
 }

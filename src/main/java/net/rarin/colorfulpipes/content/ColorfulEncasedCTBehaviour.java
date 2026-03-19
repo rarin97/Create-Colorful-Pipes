@@ -21,9 +21,6 @@ public class ColorfulEncasedCTBehaviour extends EncasedCTBehaviour {
 
 	@Override
 	public CTSpriteShiftEntry getShift(BlockState state, Direction direction, @Nullable TextureAtlasSprite sprite) {
-		if (state.getBlock() instanceof ColorfulEncasedPipeBlock block) {
 			return CCPSpriteShifts.COLORFUL_COPPER_CASING.get(color);
-		}
-		return null;
 	}
 }

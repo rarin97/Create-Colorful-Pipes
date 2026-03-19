@@ -4,8 +4,8 @@
 	"textures": {
 		"0": "colorfulpipes:block/fluid_tank_top/purple",
 		"1": "colorfulpipes:block/fluid_tank/purple",
-		"3":  "colorfulpipes:block/fluid_tank_window/purple",
-		"4":"colorfulpipes:block/copper_underside/purple",
+		"3": "colorfulpipes:block/fluid_tank_window/purple",
+		"4": "colorfulpipes:block/fluid_tank_inner/purple",
 		"particle": "colorfulpipes:block/fluid_tank/purple"
 	  }
 }
