@@ -3,7 +3,7 @@
   "textures": {
     "0": "colorfulpipes:block/fluid_tank_top/gray",
     "1": "colorfulpipes:block/fluid_tank/gray",
-    "4": "colorfulpipes:block/copper_underside/gray",
+    "4": "colorfulpipes:block/fluid_tank_inner/gray",
     "particle": "colorfulpipes:block/fluid_tank/gray"
   }
 }

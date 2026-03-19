@@ -7,7 +7,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.rarin.colorfulpipes.CCPSpriteShifts;
-import net.rarin.colorfulpipes.content.encasedPipe.ColorfulEncasedPipeBlock;
 import org.jetbrains.annotations.Nullable;
 
 public class ColorfulEncasedCTBehaviour extends EncasedCTBehaviour {
@@ -21,9 +20,6 @@ public class ColorfulEncasedCTBehaviour extends EncasedCTBehaviour {
 
 	@Override
 	public CTSpriteShiftEntry getShift(BlockState state, Direction direction, @Nullable TextureAtlasSprite sprite) {
-		if (state.getBlock() instanceof ColorfulEncasedPipeBlock block) {
 			return CCPSpriteShifts.COLORFUL_COPPER_CASING.get(color);
-		}
-		return null;
 	}
 }

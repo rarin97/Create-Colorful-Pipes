@@ -4,7 +4,7 @@
 	"textures": {
 		"0": "colorfulpipes:block/fluid_tank_top/orange",
 		"1": "colorfulpipes:block/fluid_tank/orange",
-		"4":"colorfulpipes:block/copper_underside/orange",
+		"4": "colorfulpipes:block/fluid_tank_inner/orange",
 		"5":  "colorfulpipes:block/fluid_tank_window_single/orange",
 		"particle": "colorfulpipes:block/fluid_tank/orange"
 	  }

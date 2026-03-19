@@ -4,7 +4,7 @@
 	"textures": {
 		"0": "colorfulpipes:block/fluid_tank_top/lime",
 		"1": "colorfulpipes:block/fluid_tank/lime",
-		"4":"colorfulpipes:block/copper_underside/lime",
+		"4": "colorfulpipes:block/fluid_tank_inner/lime",
 		"particle": "colorfulpipes:block/fluid_tank/lime"
 	  }
 }
