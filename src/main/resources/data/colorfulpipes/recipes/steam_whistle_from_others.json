@@ -3,13 +3,10 @@
   "category": "misc",
   "ingredients": [
     {
-      "tag": "c:red_dyes"
-    },
-    {
-      "item": "create:spout"
+      "tag": "colorfulpipes:colorful_steam_whistles"
     }
   ],
   "result": {
-    "item": "colorfulpipes:red_spout"
+    "item": "create:steam_whistle"
   }
 }

@@ -2,7 +2,6 @@ package net.rarin.colorfulpipes;
 
 import com.simibubi.create.AllPartialModels;
 import com.simibubi.create.content.contraptions.actors.psi.PSIVisual;
-import com.simibubi.create.content.contraptions.actors.psi.PortableFluidInterfaceBlockEntity;
 import com.simibubi.create.content.contraptions.actors.psi.PortableStorageInterfaceRenderer;
 import com.simibubi.create.content.decoration.steamWhistle.WhistleRenderer;
 import com.simibubi.create.content.fluids.drain.ItemDrainRenderer;
@@ -12,8 +11,6 @@ import com.simibubi.create.content.fluids.pipes.valve.FluidValveRenderer;
 import com.simibubi.create.content.fluids.pipes.valve.FluidValveVisual;
 import com.simibubi.create.content.fluids.pump.PumpRenderer;
 import com.simibubi.create.content.kinetics.base.SingleAxisRotatingVisual;
-import com.simibubi.create.content.kinetics.steamEngine.SteamEngineRenderer;
-import com.simibubi.create.content.kinetics.steamEngine.SteamEngineVisual;
 import com.simibubi.create.foundation.blockEntity.renderer.SmartBlockEntityRenderer;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
@@ -28,7 +25,6 @@ import net.rarin.colorfulpipes.content.pump.ColorfulPumpBlockEntity;
 import net.rarin.colorfulpipes.content.smartPipe.ColorfulSmartFluidPipeBlockEntity;
 import net.rarin.colorfulpipes.content.spout.ColorfulSpoutBlockEntity;
 import net.rarin.colorfulpipes.content.spout.ColorfulSpoutRenderer;
-import net.rarin.colorfulpipes.content.steamEngine.ColorfulSteamEngineBlockEntity;
 import net.rarin.colorfulpipes.content.steamWhistle.ColorfulWhistleBlockEntity;
 import net.rarin.colorfulpipes.content.tank.ColorfulFluidTankBlockEntity;
 import net.rarin.colorfulpipes.content.tank.ColorfulFluidTankRenderer;
@@ -106,12 +102,12 @@ public class CCPBlockEntityTypes {
 			.renderer(() -> PortableStorageInterfaceRenderer::new)
 			.register();
 
-	public static final BlockEntityEntry<ColorfulSteamEngineBlockEntity> COLORFUL_STEAM_ENGINES = REGISTRATE
-			.blockEntity("colorful_steam_engine", ColorfulSteamEngineBlockEntity::new)
-			.visual(() -> SteamEngineVisual::new)
-			.validBlocks(CCPBlocks.COLORFUL_STEAM_ENGINES.toArray())
-			.renderer(() -> SteamEngineRenderer::new)
-			.register();
+//	public static final BlockEntityEntry<ColorfulSteamEngineBlockEntity> COLORFUL_STEAM_ENGINES = REGISTRATE
+//			.blockEntity("colorful_steam_engine", ColorfulSteamEngineBlockEntity::new)
+//			.visual(() -> SteamEngineVisual::new)
+//			.validBlocks(CCPBlocks.COLORFUL_STEAM_ENGINES.toArray())
+//			.renderer(() -> SteamEngineRenderer::new)
+//			.register();
 
 	public static final BlockEntityEntry<ColorfulWhistleBlockEntity> COLORFUL_STEAM_WHISTLES = REGISTRATE
 			.blockEntity("colorful_steam_whistle", ColorfulWhistleBlockEntity::new)

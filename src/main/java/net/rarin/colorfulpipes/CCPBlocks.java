@@ -8,7 +8,6 @@ import com.simibubi.create.content.contraptions.actors.psi.PortableStorageInterf
 import com.simibubi.create.content.decoration.encasing.CasingBlock;
 import com.simibubi.create.content.decoration.encasing.EncasingRegistry;
 import com.simibubi.create.content.decoration.steamWhistle.WhistleBlock;
-import com.simibubi.create.content.decoration.steamWhistle.WhistleExtenderBlock;
 import com.simibubi.create.content.fluids.drain.ItemDrainBlock;
 import com.simibubi.create.content.fluids.hosePulley.HosePulleyBlock;
 import com.simibubi.create.content.fluids.pipes.EncasedPipeBlock;
@@ -22,13 +21,13 @@ import com.simibubi.create.content.fluids.spout.SpoutBlock;
 import com.simibubi.create.content.fluids.tank.FluidTankBlock;
 import com.simibubi.create.content.fluids.tank.FluidTankGenerator;
 import com.simibubi.create.content.fluids.tank.FluidTankMovementBehavior;
-import com.simibubi.create.content.kinetics.steamEngine.SteamEngineBlock;
 import com.simibubi.create.foundation.block.DyedBlockList;
 import com.simibubi.create.foundation.data.AssetLookup;
 import com.simibubi.create.foundation.data.BlockStateGen;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.data.SharedProperties;
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
+import com.tterrag.registrate.util.entry.BlockEntry;
 import io.github.fabricators_of_create.porting_lib.models.generators.ConfiguredModel;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.Direction;
@@ -37,7 +36,7 @@ import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.rarin.colorfulpipes.config.CStress;
+import net.minecraft.world.level.material.MapColor;
 import net.rarin.colorfulpipes.content.ColorfulEncasedCTBehaviour;
 import net.rarin.colorfulpipes.content.ColorfulPipeAttachmentModel;
 import net.rarin.colorfulpipes.content.casing.ColorfulCasingBlock;
@@ -50,7 +49,6 @@ import net.rarin.colorfulpipes.content.portableFluidInterface.ColorfulPortableFl
 import net.rarin.colorfulpipes.content.pump.ColorfulPumpBlock;
 import net.rarin.colorfulpipes.content.smartPipe.ColorfulSmartFluidPipeBlock;
 import net.rarin.colorfulpipes.content.spout.ColorfulSpoutBlock;
-import net.rarin.colorfulpipes.content.steamEngine.ColorfulSteamEngineBlock;
 import net.rarin.colorfulpipes.content.steamWhistle.ColorfulWhistleBlock;
 import net.rarin.colorfulpipes.content.steamWhistle.ColorfulWhistleExtenderBlock;
 import net.rarin.colorfulpipes.content.steamWhistle.ColorfulWhistleGenerator;
@@ -108,7 +106,6 @@ public class CCPBlocks {
 				.properties(p -> p.mapColor(color.getMapColor()))
 				.transform(pickaxeOnly())
 				.onRegister((block) -> BlockStressValues.IMPACTS.register(block, () -> 4.0))
-				.addLayer(() -> RenderType::cutoutMipped)
 				.onRegister(CCPRegistrate.ColorfulblockModel(() -> ColorfulPipeAttachmentModel::withAO, color))
 				.blockstate((c, p) -> {
 					p.directionalBlock(c.get(),p.models().withExistingParent(c.getName(), Create.asResource("block/mechanical_pump/block"))
@@ -193,7 +190,6 @@ public class CCPBlocks {
 				.initialProperties(SharedProperties::copperMetal)
 				.properties(p -> p.mapColor(color.getMapColor()))
 				.transform(pickaxeOnly())
-				.addLayer(() -> RenderType::cutoutMipped)
 				.blockstate(BlockStateGen.pipe())
 				.onRegister(CCPRegistrate.ColorfulblockModel(() -> ColorfulPipeAttachmentModel::withAO, color))
 				.recipe((c, p) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, c.get())
@@ -215,7 +211,6 @@ public class CCPBlocks {
 				.initialProperties(SharedProperties::copperMetal)
 				.properties(p -> p.noOcclusion().mapColor(color.getMapColor()))
 				.transform(axeOrPickaxe())
-				.addLayer(() -> RenderType::cutoutMipped)
 				.blockstate(BlockStateGen.encasedPipe())
 				.onRegister(CreateRegistrate.connectedTextures(() -> new ColorfulEncasedCTBehaviour(color)))
 				.onRegister(CreateRegistrate.casingConnectivity((block, cc) -> cc.make(block, CCPSpriteShifts.COLORFUL_COPPER_CASING.get(color),
@@ -259,7 +254,6 @@ public class CCPBlocks {
 				.initialProperties(SharedProperties::copperMetal)
 				.properties(p -> p.mapColor(color.getMapColor()))
 				.transform(pickaxeOnly())
-				.addLayer(() -> RenderType::cutoutMipped)
 				.blockstate(new SmartFluidPipeGenerator()::generate)
 				.onRegister(CCPRegistrate.ColorfulblockModel(() -> ColorfulPipeAttachmentModel::withAO, color))
 				.recipe((c, p) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, c.get())
@@ -325,32 +319,31 @@ public class CCPBlocks {
 				.register();
 	});
 
-	public static final DyedBlockList<SteamEngineBlock> COLORFUL_STEAM_ENGINES = new DyedBlockList<>(color -> {
-		String colorName = color.getSerializedName();
-		return REGISTRATE.block(colorName + "_steam_engine", p -> new ColorfulSteamEngineBlock(p, color))
-				.initialProperties(SharedProperties::copperMetal)
-				.properties(p -> p.mapColor(color.getMapColor()))
-				.transform(pickaxeOnly())
-				.addLayer(() -> RenderType::cutoutMipped)
-				.blockstate((c, p) -> p.horizontalFaceBlock(c.get(), AssetLookup.partialBaseModel(c, p)))
-				.transform(CStress.setCapacity(1024.0))
-				.onRegister(BlockStressValues.setGeneratorSpeed(64, true))
-				.recipe((c, p) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, c.get())
-						.requires(color.getTag())
-						.requires(AllBlocks.STEAM_ENGINE.asItem())
-						.unlockedBy("has_steam_engine", RegistrateRecipeProvider.has(AllBlocks.STEAM_ENGINE.asItem()))
-						.save(p, ColorfulPipes.asResource("steam_engine/" + c.getName()))
-				)
-				.tag(CCPTags.ColorfulBlockTags.COLORFUL_STEAM_ENGINES.tag)
-				.item()
-				.tag(CCPTags.ColorfulItemTags.COLORFUL_STEAM_ENGINES.tag)
-				.model((c, p) ->
-						p.withExistingParent(c.getName(), Create.asResource("block/steam_engine/item"))
-								.texture("1", ColorfulPipes.asResource("block/engine/" + colorName))
-				)
-				.build()
-				.register();
-	});
+//	public static final DyedBlockList<SteamEngineBlock> COLORFUL_STEAM_ENGINES = new DyedBlockList<>(color -> {
+//		String colorName = color.getSerializedName();
+//		return REGISTRATE.block(colorName + "_steam_engine", p -> new ColorfulSteamEngineBlock(p, color))
+//				.initialProperties(SharedProperties::copperMetal)
+//				.properties(p -> p.mapColor(color.getMapColor()))
+//				.transform(pickaxeOnly())
+//				.blockstate((c, p) -> p.horizontalFaceBlock(c.get(), AssetLookup.partialBaseModel(c, p)))
+//				.transform(CStress.setCapacity(1024.0))
+//				.onRegister(BlockStressValues.setGeneratorSpeed(64, true))
+//				.recipe((c, p) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, c.get())
+//						.requires(color.getTag())
+//						.requires(AllBlocks.STEAM_ENGINE.asItem())
+//						.unlockedBy("has_steam_engine", RegistrateRecipeProvider.has(AllBlocks.STEAM_ENGINE.asItem()))
+//						.save(p, ColorfulPipes.asResource("steam_engine/" + c.getName()))
+//				)
+//				.tag(CCPTags.ColorfulBlockTags.COLORFUL_STEAM_ENGINES.tag)
+//				.item()
+//				.tag(CCPTags.ColorfulItemTags.COLORFUL_STEAM_ENGINES.tag)
+//				.model((c, p) ->
+//						p.withExistingParent(c.getName(), Create.asResource("block/steam_engine/item"))
+//								.texture("1", ColorfulPipes.asResource("block/engine/" + colorName))
+//				)
+//				.build()
+//				.register();
+//	});
 
 	public static final DyedBlockList<WhistleBlock> COLORFUL_STEAM_WHISTLES = new DyedBlockList<>(color -> {
 		String colorName = color.getSerializedName();
@@ -358,7 +351,6 @@ public class CCPBlocks {
 				.initialProperties(SharedProperties::copperMetal)
 				.properties(p -> p.mapColor(color.getMapColor()))
 				.transform(pickaxeOnly())
-				.addLayer(() -> RenderType::cutoutMipped)
 				.blockstate(new ColorfulWhistleGenerator(color)::generate)
 				.recipe((c, p) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, c.get())
 						.requires(color.getTag())
@@ -378,16 +370,13 @@ public class CCPBlocks {
 				.register();
 	});
 
-	public static final DyedBlockList<WhistleExtenderBlock> COLORFUL_STEAM_WHISTLE_EXTENSION = new DyedBlockList<>(color -> {
-		String colorName = color.getSerializedName();
-		return REGISTRATE.block(colorName + "_steam_whistle_extension", p -> new ColorfulWhistleExtenderBlock(p, color))
-				.initialProperties(SharedProperties::copperMetal)
-				.properties(p -> p.mapColor(color.getMapColor()))
-				.transform(pickaxeOnly())
-				.blockstate(BlockStateGen.whistleExtender())
-				.addLayer(() -> RenderType::cutoutMipped)
-				.register();
-	});
+	public static final BlockEntry<ColorfulWhistleExtenderBlock> COLORFUL_STEAM_WHISTLE_EXTENSION =
+			REGISTRATE.block("steam_whistle_extension", ColorfulWhistleExtenderBlock::new)
+					.initialProperties(SharedProperties::copperMetal)
+					.properties(p -> p.mapColor(MapColor.GOLD).forceSolidOn())
+					.blockstate(BlockStateGen.whistleExtender())
+					.transform(pickaxeOnly())
+					.register();
 
 	public static final DyedBlockList<CasingBlock> COLORFUL_COPPER_CASING = new DyedBlockList<>(color -> {
 		String colorName = color.getSerializedName();
@@ -420,8 +409,10 @@ public class CCPBlocks {
 						.unlockedBy("has_portable_fluid_interface", RegistrateRecipeProvider.has(AllBlocks.PORTABLE_FLUID_INTERFACE.asItem()))
 						.save(p, ColorfulPipes.asResource("portable_fluid_interface/" + c.getName()))
 				)
+				.tag(CCPTags.ColorfulBlockTags.COLORFUL_PORTABLE_FLUID_INTERFACES.tag)
 				.onRegister(movementBehaviour(new PortableStorageInterfaceMovement()))
 				.item()
+				.tag(CCPTags.ColorfulItemTags.COLORFUL_PORTABLE_FLUID_INTERFACES.tag)
 				.tag(AllTags.AllItemTags.CONTRAPTION_CONTROLLED.tag)
 				.transform(customItemModel())
 				.register();
