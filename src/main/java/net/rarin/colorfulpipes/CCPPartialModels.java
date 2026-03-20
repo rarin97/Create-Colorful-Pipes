@@ -20,6 +20,7 @@ public class CCPPartialModels {
 	public static final Map<DyeColor,PartialModel>  COLORFUL_HOSE_HALF_MAGNET = new EnumMap<>(DyeColor.class);
 	public static final Map<DyeColor,PartialModel> COLORFUL_SPOUT_NOZZLE = new EnumMap<>(DyeColor.class);
 	public static final Map<DyeColor,PartialModel>  COLORFUL_FLUID_PIPE_CASINGS = new EnumMap<>(DyeColor.class);
+	public static final Map<DyeColor,PartialModel>  COLORFUL_PORTABLE_FLUID_INTERFACE_TOP = new EnumMap<>(DyeColor.class);
 	public static final Map<FluidTransportBehaviour.AttachmentTypes.ComponentPartials, Map<DyeColor,Map<Direction, PartialModel>>> COLORFUL_PIPE_ATTACHMENTS =
 			new EnumMap<>(FluidTransportBehaviour.AttachmentTypes.ComponentPartials.class);
 
@@ -52,6 +53,8 @@ public class CCPPartialModels {
 			COLORFUL_SPOUT_NOZZLE.put(color, block(color.getName() + "_spout_nozzle"));
 
 			COLORFUL_FLUID_PIPE_CASINGS.put(color, block(color.getName() + "_fluid_pipe/casing"));
+
+			COLORFUL_PORTABLE_FLUID_INTERFACE_TOP.put(color, block(color.getName() + "_portable_fluid_interface/block_top"));
 		}
 	}
 

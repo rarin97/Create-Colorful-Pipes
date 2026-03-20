@@ -29,6 +29,10 @@ public class ColorfulPortableFluidInterfaceBlock extends WrenchableDirectionalBl
 		this.color = color;
 	}
 
+	public DyeColor getColor() {
+		return color;
+	}
+
 	@Override
 	public void neighborChanged(BlockState state, Level world, BlockPos pos, Block block, BlockPos blockPos,
 								boolean isMoving) {

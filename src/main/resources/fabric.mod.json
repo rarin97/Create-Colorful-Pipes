@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "id": "colorfulpipes",
   "version": "${version}",
-  "name": "Colorful Pipes",
-  "description": "added colored pipes to create",
+  "name": "Create: Colorful Pipes",
+  "description": "adds colored variants of pipes & tanks for Create",
   "authors": [
     "Rarin"
   ],

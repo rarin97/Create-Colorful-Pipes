@@ -3,7 +3,7 @@
 	"textures": {
 		"2": "colorfulpipes:block/smart_pipe_1/black",
 		"3": "colorfulpipes:block/smart_pipe_2/black",
-		"4": "colorfulpipes:block/fluid_tank_inner/black",
+		"4": "colorfulpipes:block/fluid_pipe/black",
     "5": "create:block/smart_pipe_3",
 		"particle": "colorfulpipes:block/copper_underside/black"
   }
