@@ -2,14 +2,13 @@ package net.rarin.colorfulpipes;
 
 import com.simibubi.create.AllTags;
 import com.simibubi.create.content.decoration.encasing.CasingBlock;
-import com.simibubi.create.foundation.block.connected.SimpleCTBehaviour;
-import com.simibubi.create.foundation.data.BuilderTransformers;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.data.SharedProperties;
 import com.tterrag.registrate.builders.BlockBuilder;
 import com.tterrag.registrate.util.nullness.NonNullUnaryOperator;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.SoundType;
+import net.rarin.colorfulpipes.content.ColorfulEncasedCTBehaviour;
 
 import static com.simibubi.create.foundation.data.TagGen.axeOrPickaxe;
 import static com.simibubi.create.foundation.data.CreateRegistrate.casingConnectivity;
@@ -23,8 +22,8 @@ public class CCPBuilderTransformers {
 				.transform(axeOrPickaxe())
 				.blockstate((c, p) -> p.simpleBlock(c.get(), p.models().cubeAll(c.getName(),
 								ColorfulPipes.asResource("block/copper_casing/" + color.getSerializedName()))))
-				.onRegister(connectedTextures(() -> new SimpleCTBehaviour(CCPSpriteShifts.COLORFUL_COPPER_CASING.get(color))))
-				.onRegister(casingConnectivity((block, cc) -> cc.makeCasing(block, CCPSpriteShifts.COLORFUL_COPPER_CASING.get(color))))
+				.onRegister(connectedTextures(() ->new ColorfulEncasedCTBehaviour(color)))
+				.onRegister(casingConnectivity((block, cc) -> cc.make(block, CCPSpriteShifts.COLORFUL_COPPER_CASING.get(color))))
 				.tag(AllTags.AllBlockTags.CASING.tag)
 				.item()
 				.tag(AllTags.AllItemTags.CASING.tag)

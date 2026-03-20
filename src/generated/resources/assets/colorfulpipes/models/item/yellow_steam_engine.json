@@ -1,6 +1,0 @@
-{
-  "parent": "create:block/steam_engine/item",
-  "textures": {
-    "1": "colorfulpipes:block/engine/yellow"
-  }
-}

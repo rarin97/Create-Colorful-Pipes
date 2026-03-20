@@ -1,10 +1,8 @@
 package net.rarin.colorfulpipes.content.steamEngine;
 
 import com.simibubi.create.content.kinetics.steamEngine.SteamEngineBlock;
-import com.simibubi.create.content.kinetics.steamEngine.SteamEngineBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.DyeColor;
@@ -12,11 +10,8 @@ import net.minecraft.world.item.DyeItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
-import net.rarin.colorfulpipes.CCPBlockEntityTypes;
-import net.rarin.colorfulpipes.CCPBlocks;
 
 public class ColorfulSteamEngineBlock extends SteamEngineBlock {
 
@@ -38,14 +33,14 @@ public class ColorfulSteamEngineBlock extends SteamEngineBlock {
 
 			if (!level.isClientSide) {
 				level.levelEvent(2001, pos, Block.getId(state));
-				level.setBlockAndUpdate(pos, CCPBlocks.COLORFUL_STEAM_ENGINES.get(dyeColor).getDefaultState());
+				//level.setBlockAndUpdate(pos, CCPBlocks.COLORFUL_STEAM_ENGINES.get(dyeColor).getDefaultState());
 			}
 			return ItemInteractionResult.SUCCESS;
 		}
 		return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
 	}
 
-	public BlockEntityType<? extends SteamEngineBlockEntity> getBlockEntityType() {
-		return CCPBlockEntityTypes.COLORFUL_STEAM_ENGINES.get();
-	}
+//	public BlockEntityType<? extends SteamEngineBlockEntity> getBlockEntityType() {
+//		return CCPBlockEntityTypes.COLORFUL_STEAM_ENGINES.get();
+//	}
 }

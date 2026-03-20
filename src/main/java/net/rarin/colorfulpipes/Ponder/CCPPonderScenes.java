@@ -1,6 +1,7 @@
 package net.rarin.colorfulpipes.Ponder;
 
 import com.simibubi.create.infrastructure.ponder.AllCreatePonderTags;
+import com.simibubi.create.infrastructure.ponder.scenes.MovementActorScenes;
 import com.simibubi.create.infrastructure.ponder.scenes.SteamScenes;
 import com.simibubi.create.infrastructure.ponder.scenes.fluid.*;
 import com.tterrag.registrate.util.entry.ItemProviderEntry;
@@ -42,9 +43,9 @@ public class CCPPonderScenes {
 				.addStoryBoard("steam_whistle", SteamScenes::whistle);
 //		HELPER.forComponents(CCPBlocks.COLORFUL_STEAM_ENGINES)
 //				.addStoryBoard("steam_engine", SteamScenes::engine);
-//		HELPER.forComponents(AllBlocks.PORTABLE_FLUID_INTERFACE)
-//				.addStoryBoard("portable_interface/transfer_fluid", FluidMovementActorScenes::transfer, AllCreatePonderTags.FLUIDS,
-
-
+		HELPER.forComponents(CCPBlocks.COLORFUL_FLUID_INTERFACES)
+				.addStoryBoard("portable_interface/transfer_fluid", FluidMovementActorScenes::transfer, AllCreatePonderTags.FLUIDS,
+						AllCreatePonderTags.CONTRAPTION_ACTOR)
+				.addStoryBoard("portable_interface/redstone_fluid", MovementActorScenes::psiRedstone);
 	}
 }
