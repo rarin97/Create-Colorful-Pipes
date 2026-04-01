@@ -12,8 +12,6 @@ import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @Mod(ColorfulPipes.ID)
 public class ColorfulPipes {
@@ -39,17 +37,18 @@ public class ColorfulPipes {
         CCPMountedStorageTypes.register();
         CCPDisplaySources.register();
 
-        ColorfulPipesDatagen.register();
+		modEventBus.addListener(EventPriority.HIGHEST, ColorfulPipesDatagen::gatherDataHighPriority);
+		modEventBus.addListener(EventPriority.LOWEST, ColorfulPipesDatagen::gatherData);
 
-    }
-
-    public static CreateRegistrate getRegistrate() {
-        return ColorfulPipes.REGISTRATE;
     }
 
     public static ResourceLocation asResource(String path) {
         return ResourceLocation.fromNamespaceAndPath(ID, path);
     }
+
+	public static CreateRegistrate registrate() {
+		return REGISTRATE;
+	}
 }
 
 

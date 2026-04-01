@@ -1,0 +1,13 @@
+{
+  "type": "create:splashing",
+  "ingredients": [
+    {
+      "tag": "colorfulpipes:colorful_smart_pipes"
+    }
+  ],
+  "results": [
+    {
+      "id": "create:smart_fluid_pipe"
+    }
+  ]
+}

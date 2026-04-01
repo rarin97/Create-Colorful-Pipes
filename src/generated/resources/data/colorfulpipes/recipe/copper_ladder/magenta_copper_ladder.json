@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:dyes/magenta"
+    },
+    {
+      "tag": "create:copper_ladders"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "colorfulpipes:magenta_copper_ladder"
+  }
+}

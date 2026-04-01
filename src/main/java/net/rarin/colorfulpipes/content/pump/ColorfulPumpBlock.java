@@ -5,7 +5,6 @@ import com.simibubi.create.content.fluids.pump.PumpBlock;
 import com.simibubi.create.content.fluids.pump.PumpBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.DyeColor;
@@ -15,6 +14,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.BlockHitResult;
 import net.rarin.colorfulpipes.CCPBlockEntityTypes;
 import net.rarin.colorfulpipes.CCPBlocks;
@@ -41,7 +41,8 @@ public class ColorfulPumpBlock extends PumpBlock {
 				level.levelEvent(2001, pos, Block.getId(state));
 
 				BlockState newState = CCPBlocks.COLORFUL_PUMPS.get(dyeColor).getDefaultState()
-						.setValue(FACING, state.getValue(FACING));
+						.setValue(FACING, state.getValue(FACING))
+						.setValue(BlockStateProperties.WATERLOGGED, state.getValue(BlockStateProperties.WATERLOGGED));
 
 				level.setBlock(pos, newState, Block.UPDATE_ALL);
 				FluidPropagator.propagateChangedPipe(level, pos, newState);

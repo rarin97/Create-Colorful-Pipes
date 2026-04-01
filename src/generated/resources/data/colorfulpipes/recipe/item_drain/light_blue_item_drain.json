@@ -6,7 +6,7 @@
       "tag": "c:dyes/light_blue"
     },
     {
-      "item": "create:item_drain"
+      "tag": "create:item_drains"
     }
   ],
   "result": {

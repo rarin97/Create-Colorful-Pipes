@@ -1,0 +1,13 @@
+{
+  "type": "create:splashing",
+  "ingredients": [
+    {
+      "tag": "colorfulpipes:colorful_fluid_tanks"
+    }
+  ],
+  "results": [
+    {
+      "id": "create:fluid_tank"
+    }
+  ]
+}

@@ -6,7 +6,7 @@
       "tag": "c:dyes/brown"
     },
     {
-      "item": "create:portable_fluid_interface"
+      "tag": "create:portable_fluid_interfaces"
     }
   ],
   "result": {

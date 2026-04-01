@@ -4,7 +4,6 @@ import com.simibubi.create.content.fluids.pipes.SmartFluidPipeBlock;
 import com.simibubi.create.content.fluids.pipes.SmartFluidPipeBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.DyeColor;
@@ -39,7 +38,8 @@ public class ColorfulSmartFluidPipeBlock extends SmartFluidPipeBlock {
 			if (!level.isClientSide) {
 				level.levelEvent(2001, pos, Block.getId(state));
 				level.setBlock(pos, CCPBlocks.COLORFUL_SMART_FLUID_PIPES.get(dyeColor).getDefaultState()
-						.setValue(FACING, state.getValue(FACING)), 3);
+						.setValue(FACING, state.getValue(FACING))
+						.setValue(WATERLOGGED, state.getValue(WATERLOGGED)), 3);
 			}
 			return ItemInteractionResult.SUCCESS;
 		}

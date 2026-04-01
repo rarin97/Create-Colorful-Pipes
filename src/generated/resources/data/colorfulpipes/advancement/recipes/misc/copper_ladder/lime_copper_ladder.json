@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_copper_ladder": {
+      "conditions": {
+        "items": [
+          {
+            "items": "create:copper_ladder"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "colorfulpipes:copper_ladder/lime_copper_ladder"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_copper_ladder"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "colorfulpipes:copper_ladder/lime_copper_ladder"
+    ]
+  }
+}

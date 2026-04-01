@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "bottom=false": {
+      "model": "colorfulpipes:block/light_gray_copper_scaffolding"
+    },
+    "bottom=true": {
+      "model": "colorfulpipes:block/light_gray_copper_scaffolding_horizontal"
+    }
+  }
+}

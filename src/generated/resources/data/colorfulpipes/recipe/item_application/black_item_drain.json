@@ -1,0 +1,16 @@
+{
+  "type": "create:item_application",
+  "ingredients": [
+    {
+      "item": "create:item_drain"
+    },
+    {
+      "tag": "c:dyes/black"
+    }
+  ],
+  "results": [
+    {
+      "id": "colorfulpipes:black_item_drain"
+    }
+  ]
+}

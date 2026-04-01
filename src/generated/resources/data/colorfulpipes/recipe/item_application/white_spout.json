@@ -1,0 +1,16 @@
+{
+  "type": "create:item_application",
+  "ingredients": [
+    {
+      "item": "create:spout"
+    },
+    {
+      "tag": "c:dyes/white"
+    }
+  ],
+  "results": [
+    {
+      "id": "colorfulpipes:white_spout"
+    }
+  ]
+}

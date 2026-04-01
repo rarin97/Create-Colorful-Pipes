@@ -1,0 +1,13 @@
+{
+  "type": "create:splashing",
+  "ingredients": [
+    {
+      "tag": "colorfulpipes:colorful_drains"
+    }
+  ],
+  "results": [
+    {
+      "id": "create:item_drain"
+    }
+  ]
+}

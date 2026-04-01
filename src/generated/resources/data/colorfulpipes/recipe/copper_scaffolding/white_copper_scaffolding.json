@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:dyes/white"
+    },
+    {
+      "tag": "create:copper_scaffolds"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "colorfulpipes:white_copper_scaffolding"
+  }
+}

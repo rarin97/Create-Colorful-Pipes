@@ -1,0 +1,16 @@
+{
+  "type": "create:item_application",
+  "ingredients": [
+    {
+      "item": "create:item_drain"
+    },
+    {
+      "tag": "c:dyes/blue"
+    }
+  ],
+  "results": [
+    {
+      "id": "colorfulpipes:blue_item_drain"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "values": [
+    "create:fluid_tank",
+    "colorfulpipes:white_fluid_tank",
+    "colorfulpipes:light_gray_fluid_tank",
+    "colorfulpipes:gray_fluid_tank",
+    "colorfulpipes:black_fluid_tank",
+    "colorfulpipes:brown_fluid_tank",
+    "colorfulpipes:red_fluid_tank",
+    "colorfulpipes:orange_fluid_tank",
+    "colorfulpipes:yellow_fluid_tank",
+    "colorfulpipes:lime_fluid_tank",
+    "colorfulpipes:green_fluid_tank",
+    "colorfulpipes:cyan_fluid_tank",
+    "colorfulpipes:light_blue_fluid_tank",
+    "colorfulpipes:blue_fluid_tank",
+    "colorfulpipes:purple_fluid_tank",
+    "colorfulpipes:magenta_fluid_tank",
+    "colorfulpipes:pink_fluid_tank"
+  ]
+}

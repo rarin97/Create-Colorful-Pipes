@@ -1,0 +1,13 @@
+{
+  "type": "create:splashing",
+  "ingredients": [
+    {
+      "tag": "colorfulpipes:colorful_fluid_valves"
+    }
+  ],
+  "results": [
+    {
+      "id": "create:fluid_valve"
+    }
+  ]
+}

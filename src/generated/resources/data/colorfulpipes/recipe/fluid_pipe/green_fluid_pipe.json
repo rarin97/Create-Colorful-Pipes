@@ -6,7 +6,7 @@
       "tag": "c:dyes/green"
     },
     {
-      "item": "create:fluid_pipe"
+      "tag": "create:fluid_pipes"
     }
   ],
   "result": {

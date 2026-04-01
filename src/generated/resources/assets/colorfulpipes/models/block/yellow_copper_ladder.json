@@ -1,0 +1,8 @@
+{
+  "parent": "create:block/ladder",
+  "textures": {
+    "0": "colorfulpipes:block/ladder_hoop/yellow",
+    "1": "colorfulpipes:block/ladder/yellow",
+    "particle": "colorfulpipes:block/ladder/yellow"
+  }
+}

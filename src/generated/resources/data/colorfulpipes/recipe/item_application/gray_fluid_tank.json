@@ -1,0 +1,16 @@
+{
+  "type": "create:item_application",
+  "ingredients": [
+    {
+      "item": "create:fluid_tank"
+    },
+    {
+      "tag": "c:dyes/gray"
+    }
+  ],
+  "results": [
+    {
+      "id": "colorfulpipes:gray_fluid_tank"
+    }
+  ]
+}

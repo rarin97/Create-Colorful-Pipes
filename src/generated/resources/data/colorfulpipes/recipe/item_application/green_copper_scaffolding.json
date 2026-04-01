@@ -1,0 +1,16 @@
+{
+  "type": "create:item_application",
+  "ingredients": [
+    {
+      "item": "create:copper_scaffolding"
+    },
+    {
+      "tag": "c:dyes/green"
+    }
+  ],
+  "results": [
+    {
+      "id": "colorfulpipes:green_copper_scaffolding"
+    }
+  ]
+}
