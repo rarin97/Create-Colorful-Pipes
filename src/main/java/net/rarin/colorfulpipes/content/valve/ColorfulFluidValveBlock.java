@@ -44,7 +44,9 @@ public class ColorfulFluidValveBlock extends FluidValveBlock {
 			if (!level.isClientSide) {
 				level.levelEvent(2001, pos, Block.getId(state));
 				level.setBlock(pos, CCPBlocks.COLORFUL_FLUID_VALVES.get(dyeColor).getDefaultState()
-						.setValue(FACING, state.getValue(FACING)), 3);
+						.setValue(FACING, state.getValue(FACING)).setValue(ENABLED, state.getValue(ENABLED))
+						.setValue(WATERLOGGED, state.getValue(WATERLOGGED))
+						.setValue(AXIS_ALONG_FIRST_COORDINATE, state.getValue(AXIS_ALONG_FIRST_COORDINATE)), 3);
 			}
 			return InteractionResult.SUCCESS;
 		}

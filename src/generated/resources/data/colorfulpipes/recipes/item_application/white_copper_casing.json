@@ -1,0 +1,16 @@
+{
+  "type": "create:item_application",
+  "ingredients": [
+    {
+      "item": "create:copper_casing"
+    },
+    {
+      "tag": "c:white_dyes"
+    }
+  ],
+  "results": [
+    {
+      "item": "colorfulpipes:white_copper_casing"
+    }
+  ]
+}

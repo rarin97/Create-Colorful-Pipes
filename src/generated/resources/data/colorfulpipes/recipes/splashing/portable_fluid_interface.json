@@ -1,0 +1,13 @@
+{
+  "type": "create:splashing",
+  "ingredients": [
+    {
+      "tag": "colorfulpipes:colorful_portable_fluid_interfaces"
+    }
+  ],
+  "results": [
+    {
+      "item": "create:portable_fluid_interface"
+    }
+  ]
+}

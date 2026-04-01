@@ -132,25 +132,16 @@ public class ColorfulFluidPipeBlock extends FluidPipeBlock {
 			if (!level.isClientSide) {
 				level.levelEvent(2001, pos, Block.getId(state));
 
-				BlockState newState  = CCPBlocks.COLORFUL_FLUID_PIPES.get(dyeColor).getDefaultState();
+				BlockState newState  = CCPBlocks.COLORFUL_FLUID_PIPES.get(dyeColor).getDefaultState()
+						.setValue(BlockStateProperties.WATERLOGGED, state.getValue(BlockStateProperties.WATERLOGGED));
 
 				for (Direction dir : Iterate.directions)
 					newState = newState.setValue(FluidPipeBlock.PROPERTY_BY_DIRECTION.get(dir),
 							state.getValue(FluidPipeBlock.PROPERTY_BY_DIRECTION.get(dir)));
 
-				Direction firstFound = Direction.UP;
-				for (Direction d : Iterate.directions)
-					if (state.getValue(FluidPipeBlock.PROPERTY_BY_DIRECTION.get(d))) {
-						firstFound = d;
-						break;
-					}
+				level.setBlock(pos, newState, Block.UPDATE_ALL);
 
-				FluidTransportBehaviour.cacheFlows(level, pos);
-
-				level.setBlockAndUpdate(pos, CCPBlocks.COLORFUL_FLUID_PIPES.get(dyeColor).get()
-								.updateBlockState(newState , firstFound, null, level, pos));
-
-				FluidTransportBehaviour.loadFlows(level, pos);
+				level.scheduleTick(pos, newState.getBlock(), 1);
 			}
 			return InteractionResult.SUCCESS;
 		}

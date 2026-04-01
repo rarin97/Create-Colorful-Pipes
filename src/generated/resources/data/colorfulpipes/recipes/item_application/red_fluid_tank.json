@@ -1,0 +1,16 @@
+{
+  "type": "create:item_application",
+  "ingredients": [
+    {
+      "item": "create:fluid_tank"
+    },
+    {
+      "tag": "c:red_dyes"
+    }
+  ],
+  "results": [
+    {
+      "item": "colorfulpipes:red_fluid_tank"
+    }
+  ]
+}

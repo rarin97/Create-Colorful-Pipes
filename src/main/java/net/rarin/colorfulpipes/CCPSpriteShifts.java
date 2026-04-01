@@ -14,7 +14,9 @@ public class CCPSpriteShifts {
 			COLORFUL_FLUID_TANK = new EnumMap<>(DyeColor.class),
 			COLORFUL_FLUID_TANK_TOP = new EnumMap<>(DyeColor.class),
 			COLORFUL_FLUID_TANK_INNER = new EnumMap<>(DyeColor.class),
-			COLORFUL_COPPER_CASING = new EnumMap<>(DyeColor.class);
+			COLORFUL_COPPER_CASING = new EnumMap<>(DyeColor.class),
+			COLORFUL_COPPER_SCAFFOLD = new EnumMap<>(DyeColor.class),
+			COLORFUL_COPPER_SCAFFOLD_INSIDE = new EnumMap<>(DyeColor.class);
 
 
 	static {
@@ -23,6 +25,8 @@ public class CCPSpriteShifts {
 			COLORFUL_FLUID_TANK_TOP.put(color, getColorfulCT(AllCTTypes.RECTANGLE, "fluid_tank_top", color));
 			COLORFUL_FLUID_TANK_INNER.put(color, getColorfulCT(AllCTTypes.RECTANGLE, "fluid_tank_inner", color));
 			COLORFUL_COPPER_CASING.put(color,getColorfulCT(AllCTTypes.OMNIDIRECTIONAL, "copper_casing", color));
+			COLORFUL_COPPER_SCAFFOLD.put(color,getColorfulCT(AllCTTypes.HORIZONTAL,"copper_scaffold", color));
+			COLORFUL_COPPER_SCAFFOLD_INSIDE.put(color,getColorfulCT(AllCTTypes.HORIZONTAL,"copper_scaffold_inside", color));
 		}
 	}
 

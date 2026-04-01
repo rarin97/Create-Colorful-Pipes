@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:light_blue_dyes"
+    },
+    {
+      "tag": "create:copper_table_cloths"
+    }
+  ],
+  "result": {
+    "item": "colorfulpipes:light_blue_copper_table_cloth"
+  }
+}

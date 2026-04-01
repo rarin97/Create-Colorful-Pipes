@@ -1,0 +1,16 @@
+{
+  "type": "create:item_application",
+  "ingredients": [
+    {
+      "item": "create:spout"
+    },
+    {
+      "tag": "c:cyan_dyes"
+    }
+  ],
+  "results": [
+    {
+      "item": "colorfulpipes:cyan_spout"
+    }
+  ]
+}

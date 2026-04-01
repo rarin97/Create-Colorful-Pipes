@@ -6,7 +6,7 @@
       "tag": "c:purple_dyes"
     },
     {
-      "item": "create:fluid_tank"
+      "tag": "create:fluid_tanks"
     }
   ],
   "result": {

@@ -1,0 +1,16 @@
+{
+  "type": "create:item_application",
+  "ingredients": [
+    {
+      "item": "create:copper_scaffolding"
+    },
+    {
+      "tag": "c:light_blue_dyes"
+    }
+  ],
+  "results": [
+    {
+      "item": "colorfulpipes:light_blue_copper_scaffolding"
+    }
+  ]
+}

@@ -27,8 +27,8 @@ public class CCPPonderScenes {
 				.addStoryBoard("fluid_pipe/interaction", PipeScenes::interaction)
 				.addStoryBoard("fluid_pipe/encasing", PipeScenes::encasing);
 		HELPER.forComponents(CCPBlocks.COLORFUL_COPPER_CASING)
-				.addStoryBoard("fluid_pipe/encasing", PipeScenes::encasing);
-		HELPER.forComponents(CCPBlocks.COLORFUL_PUMPS)
+//				.addStoryBoard("fluid_pipe/encasing", PipeScenes::encasing);
+//		HELPER.forComponents(CCPBlocks.COLORFUL_PUMPS)
 				.addStoryBoard("mechanical_pump/flow", PumpScenes::flow, AllCreatePonderTags.FLUIDS, AllCreatePonderTags.KINETIC_APPLIANCES)
 				.addStoryBoard("mechanical_pump/speed", PumpScenes::speed);
 		HELPER.forComponents(CCPBlocks.COLORFUL_FLUID_VALVES)

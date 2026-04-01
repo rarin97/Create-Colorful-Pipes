@@ -2,15 +2,14 @@ package net.rarin.colorfulpipes;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.simibubi.create.Create;
 import com.simibubi.create.foundation.utility.FilesHelper;
-
 import com.tterrag.registrate.providers.ProviderType;
-
 import io.github.fabricators_of_create.porting_lib.data.ExistingFileHelper;
 import net.createmod.ponder.foundation.PonderIndex;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
+import net.rarin.colorfulpipes.Datagen.CCPRecipeProvider;
+import net.rarin.colorfulpipes.Datagen.CCPTagGen;
 
 import java.util.Map;
 import java.util.function.BiConsumer;
@@ -30,14 +29,18 @@ public class ColorfulPipesDatagen implements DataGeneratorEntrypoint {
 		addExtraRegistrateData();
 
 		ColorfulPipes.REGISTRATE.addLang("itemGroup", ColorfulPipes.asResource("main"), "Colorful Pipes");
+
+		pack.addProvider(CCPRecipeProvider::registerAllProcessing);
 	}
 
 	private static void addExtraRegistrateData() {
+		CCPTagGen.addGenerators();
 
 		REGISTRATE.addDataGenerator(ProviderType.LANG, provider -> {
 			BiConsumer<String, String> langConsumer = provider::add;
 
 			provideDefaultLang("interface", langConsumer);
+			providePonderLang(langConsumer);
 		});
 	}
 
@@ -56,5 +59,8 @@ public class ColorfulPipesDatagen implements DataGeneratorEntrypoint {
 	}
 
 	private static void providePonderLang(BiConsumer<String, String> consumer) {
+		PonderIndex.addPlugin(new CCPPonderPlugin());
+
+		PonderIndex.getLangAccess().provideLang(ColorfulPipes.ID, consumer);
 	}
 }

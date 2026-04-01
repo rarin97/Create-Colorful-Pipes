@@ -1,0 +1,16 @@
+{
+  "type": "create:item_application",
+  "ingredients": [
+    {
+      "item": "create:item_drain"
+    },
+    {
+      "tag": "c:light_gray_dyes"
+    }
+  ],
+  "results": [
+    {
+      "item": "colorfulpipes:light_gray_item_drain"
+    }
+  ]
+}

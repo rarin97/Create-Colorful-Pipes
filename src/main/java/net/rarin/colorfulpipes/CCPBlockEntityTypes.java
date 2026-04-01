@@ -11,6 +11,7 @@ import com.simibubi.create.content.fluids.pipes.valve.FluidValveRenderer;
 import com.simibubi.create.content.fluids.pipes.valve.FluidValveVisual;
 import com.simibubi.create.content.fluids.pump.PumpRenderer;
 import com.simibubi.create.content.kinetics.base.SingleAxisRotatingVisual;
+import com.simibubi.create.content.logistics.tableCloth.TableClothRenderer;
 import com.simibubi.create.foundation.blockEntity.renderer.SmartBlockEntityRenderer;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
@@ -26,6 +27,7 @@ import net.rarin.colorfulpipes.content.smartPipe.ColorfulSmartFluidPipeBlockEnti
 import net.rarin.colorfulpipes.content.spout.ColorfulSpoutBlockEntity;
 import net.rarin.colorfulpipes.content.spout.ColorfulSpoutRenderer;
 import net.rarin.colorfulpipes.content.steamWhistle.ColorfulWhistleBlockEntity;
+import net.rarin.colorfulpipes.content.table_cloth.ColorfulTableClothBlockEntity;
 import net.rarin.colorfulpipes.content.tank.ColorfulFluidTankBlockEntity;
 import net.rarin.colorfulpipes.content.tank.ColorfulFluidTankRenderer;
 import net.rarin.colorfulpipes.content.valve.ColorfulFluidValveBlockEntity;
@@ -113,6 +115,12 @@ public class CCPBlockEntityTypes {
 			.blockEntity("colorful_steam_whistle", ColorfulWhistleBlockEntity::new)
 			.validBlocks(CCPBlocks.COLORFUL_STEAM_WHISTLES.toArray())
 			.renderer(() -> WhistleRenderer::new)
+			.register();
+
+	public static final BlockEntityEntry<ColorfulTableClothBlockEntity> COLORFUL_TABLE_CLOTH = REGISTRATE
+			.blockEntity("colorful_table_cloth", ColorfulTableClothBlockEntity::new)
+			.validBlocks(CCPBlocks.COLORFUL_TABLE_CLOTHS.toArray())
+			.renderer(() -> TableClothRenderer::new)
 			.register();
 
 	public static void register() {

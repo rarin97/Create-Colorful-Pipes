@@ -1,0 +1,13 @@
+{
+  "type": "create:splashing",
+  "ingredients": [
+    {
+      "tag": "colorfulpipes:colorful_spouts"
+    }
+  ],
+  "results": [
+    {
+      "item": "create:spout"
+    }
+  ]
+}

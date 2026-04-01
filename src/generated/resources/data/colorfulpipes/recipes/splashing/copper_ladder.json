@@ -1,0 +1,13 @@
+{
+  "type": "create:splashing",
+  "ingredients": [
+    {
+      "tag": "colorfulpipes:colorful_copper_ladders"
+    }
+  ],
+  "results": [
+    {
+      "item": "create:copper_ladder"
+    }
+  ]
+}

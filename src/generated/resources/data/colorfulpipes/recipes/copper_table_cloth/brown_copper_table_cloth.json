@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:brown_dyes"
+    },
+    {
+      "tag": "create:copper_table_cloths"
+    }
+  ],
+  "result": {
+    "item": "colorfulpipes:brown_copper_table_cloth"
+  }
+}

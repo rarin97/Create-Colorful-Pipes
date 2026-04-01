@@ -1,0 +1,16 @@
+{
+  "type": "create:item_application",
+  "ingredients": [
+    {
+      "item": "create:item_drain"
+    },
+    {
+      "tag": "c:lime_dyes"
+    }
+  ],
+  "results": [
+    {
+      "item": "colorfulpipes:lime_item_drain"
+    }
+  ]
+}

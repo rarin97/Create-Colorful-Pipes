@@ -6,7 +6,7 @@
       "tag": "c:cyan_dyes"
     },
     {
-      "item": "create:fluid_pipe"
+      "tag": "create:fluid_pipes"
     }
   ],
   "result": {

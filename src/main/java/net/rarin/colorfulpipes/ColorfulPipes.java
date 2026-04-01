@@ -33,7 +33,7 @@ public class ColorfulPipes implements ModInitializer {
 		CCPDisplaySources.register();
 	}
 
-	public static CreateRegistrate getRegistrate() {
+	public static CreateRegistrate registrate() {
 		return REGISTRATE;
 	}
 

@@ -1,0 +1,10 @@
+{
+  "parent": "create:block/scaffold/block",
+  "textures": {
+    "casing": "colorfulpipes:block/copper_casing/purple",
+    "inside": "colorfulpipes:block/copper_scaffold_inside/purple",
+    "particle": "colorfulpipes:block/copper_scaffold/purple",
+    "side": "colorfulpipes:block/copper_scaffold/purple",
+    "top": "colorfulpipes:block/copper_funnel_frame/purple"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:black_dyes"
+    },
+    {
+      "tag": "create:copper_ladders"
+    }
+  ],
+  "result": {
+    "item": "colorfulpipes:black_copper_ladder"
+  }
+}

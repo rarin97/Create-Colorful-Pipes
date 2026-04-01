@@ -6,7 +6,7 @@
       "tag": "c:light_gray_dyes"
     },
     {
-      "item": "create:fluid_tank"
+      "tag": "create:fluid_tanks"
     }
   ],
   "result": {

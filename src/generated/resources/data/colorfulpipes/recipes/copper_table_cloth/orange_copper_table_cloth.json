@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:orange_dyes"
+    },
+    {
+      "tag": "create:copper_table_cloths"
+    }
+  ],
+  "result": {
+    "item": "colorfulpipes:orange_copper_table_cloth"
+  }
+}

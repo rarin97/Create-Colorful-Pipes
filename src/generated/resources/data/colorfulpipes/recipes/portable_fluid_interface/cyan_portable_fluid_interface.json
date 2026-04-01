@@ -6,7 +6,7 @@
       "tag": "c:cyan_dyes"
     },
     {
-      "item": "create:portable_fluid_interface"
+      "tag": "create:portable_fluid_interfaces"
     }
   ],
   "result": {

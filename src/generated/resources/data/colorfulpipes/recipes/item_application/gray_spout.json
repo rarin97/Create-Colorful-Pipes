@@ -1,0 +1,16 @@
+{
+  "type": "create:item_application",
+  "ingredients": [
+    {
+      "item": "create:spout"
+    },
+    {
+      "tag": "c:gray_dyes"
+    }
+  ],
+  "results": [
+    {
+      "item": "colorfulpipes:gray_spout"
+    }
+  ]
+}

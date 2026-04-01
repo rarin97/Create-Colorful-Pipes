@@ -40,7 +40,8 @@ public class ColorfulSmartFluidPipeBlock extends SmartFluidPipeBlock {
 			if (!level.isClientSide) {
 				level.levelEvent(2001, pos, Block.getId(state));
 				level.setBlock(pos, CCPBlocks.COLORFUL_SMART_FLUID_PIPES.get(dyeColor).getDefaultState()
-						.setValue(FACING, state.getValue(FACING)), 3);
+						.setValue(FACING, state.getValue(FACING))
+						.setValue(WATERLOGGED, state.getValue(WATERLOGGED)), 3);
 			}
 			return InteractionResult.SUCCESS;
 		}
