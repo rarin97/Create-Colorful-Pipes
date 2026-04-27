@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:light_blue_dyes"
+    },
+    {
+      "tag": "colorfulpipes:copper_tinted_glass_casings"
+    }
+  ],
+  "result": {
+    "item": "colorfulpipes:light_blue_copper_tinted_glass_casing"
+  }
+}

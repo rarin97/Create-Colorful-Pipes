@@ -1,0 +1,16 @@
+{
+  "type": "create:item_application",
+  "ingredients": [
+    {
+      "item": "colorfulpipes:magenta_copper_casing"
+    },
+    {
+      "tag": "c:colorless_glass"
+    }
+  ],
+  "results": [
+    {
+      "item": "colorfulpipes:magenta_copper_glass_casing"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "colorfulpipes:white_fluid_pipe"
+    },
+    {
+      "item": "create:cogwheel"
+    }
+  ],
+  "result": {
+    "item": "colorfulpipes:white_mechanical_pump"
+  }
+}

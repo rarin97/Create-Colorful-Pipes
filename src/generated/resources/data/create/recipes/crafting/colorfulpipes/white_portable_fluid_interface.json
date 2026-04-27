@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "colorfulpipes:white_copper_casing"
+    },
+    {
+      "item": "create:chute"
+    }
+  ],
+  "result": {
+    "item": "colorfulpipes:white_portable_fluid_interface"
+  }
+}

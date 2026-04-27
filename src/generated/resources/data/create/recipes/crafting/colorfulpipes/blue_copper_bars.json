@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "create:copper_bars"
+    },
+    {
+      "tag": "c:blue_dyes"
+    }
+  ],
+  "result": {
+    "item": "colorfulpipes:blue_copper_bars"
+  }
+}

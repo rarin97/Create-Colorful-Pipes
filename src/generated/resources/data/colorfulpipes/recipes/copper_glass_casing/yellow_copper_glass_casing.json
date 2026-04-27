@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:yellow_dyes"
+    },
+    {
+      "tag": "colorfulpipes:copper_glass_casings"
+    }
+  ],
+  "result": {
+    "item": "colorfulpipes:yellow_copper_glass_casing"
+  }
+}

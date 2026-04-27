@@ -1,0 +1,7 @@
+{
+  "parent": "create:block/encased_shaft/block",
+  "textures": {
+    "casing": "colorfulpipes:block/copper_casing/brown",
+    "opening": "colorfulpipes:block/copper_gearbox/brown"
+  }
+}

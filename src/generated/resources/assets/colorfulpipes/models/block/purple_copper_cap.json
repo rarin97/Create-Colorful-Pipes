@@ -1,0 +1,8 @@
+{
+  "parent": "create:block/bars/cap",
+  "textures": {
+    "bars": "colorfulpipes:block/bars/purple_copper_bars",
+    "edge": "colorfulpipes:block/bars/purple_copper_bars_edge",
+    "particle": "colorfulpipes:block/bars/purple_copper_bars"
+  }
+}

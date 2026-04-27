@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "create:brass_sheet"
+    },
+    "E": {
+      "item": "create:electron_tube"
+    },
+    "F": {
+      "item": "colorfulpipes:cyan_fluid_pipe"
+    }
+  },
+  "pattern": [
+    "E",
+    "F",
+    "B"
+  ],
+  "result": {
+    "item": "colorfulpipes:cyan_smart_fluid_pipe"
+  },
+  "show_notification": true
+}

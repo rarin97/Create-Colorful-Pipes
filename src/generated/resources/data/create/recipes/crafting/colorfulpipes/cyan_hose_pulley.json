@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "colorfulpipes:cyan_copper_casing"
+    },
+    "C": {
+      "item": "minecraft:dried_kelp_block"
+    },
+    "I": {
+      "item": "create:copper_sheet"
+    }
+  },
+  "pattern": [
+    "B",
+    "C",
+    "I"
+  ],
+  "result": {
+    "item": "colorfulpipes:cyan_hose_pulley"
+  },
+  "show_notification": true
+}

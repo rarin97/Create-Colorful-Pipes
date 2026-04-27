@@ -1,0 +1,10 @@
+{
+  "parent": "create:block/encased_cogwheel/block",
+  "textures": {
+    "1": "colorfulpipes:block/copper_shaft",
+    "4": "colorfulpipes:block/copper_gearbox/cyan",
+    "casing": "colorfulpipes:block/copper_casing/cyan",
+    "particle": "colorfulpipes:block/copper_casing/cyan",
+    "side": "colorfulpipes:block/copper_encased_cogwheel_side/cyan"
+  }
+}

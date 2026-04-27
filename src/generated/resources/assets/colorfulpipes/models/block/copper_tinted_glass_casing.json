@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "colorfulpipes:block/copper_tinted_glass_casing/copper_tinted_glass_casing"
+  }
+}

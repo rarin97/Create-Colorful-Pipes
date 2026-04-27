@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_copper_tinted_glass_casing": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "create:copper_casing"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "colorfulpipes:copper_tinted_glass_casing/lime_copper_tinted_glass_casing"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_copper_tinted_glass_casing",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "colorfulpipes:copper_tinted_glass_casing/lime_copper_tinted_glass_casing"
+    ]
+  },
+  "sends_telemetry_event": false
+}
