@@ -23,7 +23,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.rarin.colorfulpipes.CCPBlockEntityTypes;
-import net.rarin.colorfulpipes.CCPBlocks;
+import net.rarin.colorfulpipes.CCPPaletteBlocks;
 
 public class ColorfulWhistleBlock extends WhistleBlock {
 
@@ -55,7 +55,7 @@ public class ColorfulWhistleBlock extends WhistleBlock {
 
 			if (!level.isClientSide) {
 				level.levelEvent(2001, pos, Block.getId(state));
-				level.setBlock(pos, CCPBlocks.COLORFUL_STEAM_WHISTLES.get(dyeColor).getDefaultState()
+				level.setBlock(pos, CCPPaletteBlocks.COLORFUL_STEAM_WHISTLES.get(dyeColor).getDefaultState()
 						.setValue(FACING, state.getValue(FACING)).setValue(SIZE, state.getValue(SIZE))
 						.setValue(POWERED, state.getValue(POWERED)).setValue(WALL, state.getValue(WALL)), 3);
 			}
@@ -96,7 +96,7 @@ public class ColorfulWhistleBlock extends WhistleBlock {
 			if (!blockState.canBeReplaced())
 				return;
 
-			pLevel.setBlock(currentPos, CCPBlocks.COLORFUL_STEAM_WHISTLE_EXTENSION.getDefaultState()
+			pLevel.setBlock(currentPos, CCPPaletteBlocks.COLORFUL_STEAM_WHISTLE_EXTENSION.getDefaultState()
 					.setValue(WhistleExtenderBlock.SIZE, size), 3);
 			if (soundtype != null) {
 				float pPitch = (float) Math.pow(2, -(i * 2 - 1) / 12.0);

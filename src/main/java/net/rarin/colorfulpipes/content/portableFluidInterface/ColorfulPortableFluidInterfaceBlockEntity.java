@@ -53,6 +53,10 @@ public class ColorfulPortableFluidInterfaceBlockEntity extends PortableStorageIn
 		return transferTimer >= ANIMATION && transferTimer <= timeUnit + ANIMATION;
 	}
 
+	float getExtensionDistance(float partialTicks) {
+		return (float) (Math.pow(connectionAnimation.getValue(partialTicks), 2) * distance / 2);
+	}
+
 	private IFluidHandler createEmptyHandler() {
 		return new InterfaceFluidHandler(new FluidTank(0));
 	}

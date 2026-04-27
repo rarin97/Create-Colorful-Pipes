@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "G": {
+      "item": "colorfulpipes:brown_copper_glass_casing"
+    }
+  },
+  "pattern": [
+    " A ",
+    "AGA",
+    " A "
+  ],
+  "result": {
+    "count": 2,
+    "id": "colorfulpipes:brown_copper_tinted_glass_casing"
+  }
+}

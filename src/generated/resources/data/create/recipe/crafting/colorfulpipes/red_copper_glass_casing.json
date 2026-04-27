@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:glass_blocks/colorless"
+    },
+    {
+      "item": "colorfulpipes:red_copper_casing"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "colorfulpipes:red_copper_glass_casing"
+  }
+}

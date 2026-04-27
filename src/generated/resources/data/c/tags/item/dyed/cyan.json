@@ -1,0 +1,22 @@
+{
+  "values": [
+    "colorfulpipes:cyan_fluid_pipe",
+    "colorfulpipes:cyan_smart_fluid_pipe",
+    "colorfulpipes:cyan_mechanical_pump",
+    "colorfulpipes:cyan_fluid_valve",
+    "colorfulpipes:cyan_fluid_tank",
+    "colorfulpipes:cyan_spout",
+    "colorfulpipes:cyan_item_drain",
+    "colorfulpipes:cyan_portable_fluid_interface",
+    "colorfulpipes:cyan_hose_pulley",
+    "colorfulpipes:cyan_steam_whistle",
+    "colorfulpipes:cyan_copper_table_cloth",
+    "colorfulpipes:cyan_copper_casing",
+    "colorfulpipes:cyan_copper_glass_casing",
+    "colorfulpipes:cyan_copper_tinted_glass_casing",
+    "colorfulpipes:cyan_copper_scaffolding",
+    "colorfulpipes:cyan_copper_ladder",
+    "colorfulpipes:cyan_copper_door",
+    "colorfulpipes:cyan_copper_bars"
+  ]
+}

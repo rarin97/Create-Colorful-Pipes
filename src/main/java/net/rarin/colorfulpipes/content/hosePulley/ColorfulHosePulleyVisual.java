@@ -1,42 +1,65 @@
 package net.rarin.colorfulpipes.content.hosePulley;
 
-import com.simibubi.create.content.contraptions.pulley.HosePulleyVisual;
-import com.simibubi.create.content.fluids.hosePulley.HosePulleyBlockEntity;
+import com.simibubi.create.AllPartialModels;
+import com.simibubi.create.AllSpriteShifts;
+import com.simibubi.create.content.contraptions.pulley.AbstractPulleyVisual;
+import com.simibubi.create.content.processing.burner.ScrollInstance;
+import com.simibubi.create.foundation.render.AllInstanceTypes;
 import dev.engine_room.flywheel.api.instance.Instancer;
 import dev.engine_room.flywheel.api.visualization.VisualizationContext;
 import dev.engine_room.flywheel.lib.instance.InstanceTypes;
 import dev.engine_room.flywheel.lib.instance.TransformedInstance;
 import dev.engine_room.flywheel.lib.model.Models;
+import net.createmod.catnip.render.SpriteShiftEntry;
 import net.minecraft.world.item.DyeColor;
 import net.rarin.colorfulpipes.CCPPartialModels;
 
-public class ColorfulHosePulleyVisual extends HosePulleyVisual {
-	public ColorfulHosePulleyVisual(VisualizationContext dispatcher, HosePulleyBlockEntity blockEntity, float partialTick) {
+public class ColorfulHosePulleyVisual extends AbstractPulleyVisual<ColorfulHosePulleyBlockEntity> {
+	public ColorfulHosePulleyVisual(VisualizationContext dispatcher, ColorfulHosePulleyBlockEntity blockEntity, float partialTick) {
 		super(dispatcher, blockEntity, partialTick);
 	}
 
 	@Override
+	protected Instancer<TransformedInstance> getRopeModel() {
+		return instancerProvider().instancer(InstanceTypes.TRANSFORMED, Models.partial(AllPartialModels.HOSE));
+	}
+
+	@Override
 	protected Instancer<TransformedInstance> getMagnetModel() {
-
-		if (!(blockEntity.getBlockState().getBlock() instanceof ColorfulHosePulleyBlock block))
-			return super.getMagnetModel();
-
-		DyeColor color = block.getColor();
-
-		return instancerProvider().instancer(InstanceTypes.TRANSFORMED,
-				Models.partial(CCPPartialModels.COLORFUL_HOSE_MAGNET.get(color)));
+		DyeColor color = ((ColorfulHosePulleyBlock) blockState.getBlock()).color;
+		return instancerProvider().instancer(InstanceTypes.TRANSFORMED, Models.partial(CCPPartialModels.COLORFUL_HOSE_MAGNET.get(color)));
 	}
 
 	@Override
 	protected Instancer<TransformedInstance> getHalfMagnetModel() {
+		DyeColor color = ((ColorfulHosePulleyBlock) blockState.getBlock()).color;
+		return instancerProvider().instancer(InstanceTypes.TRANSFORMED, Models.partial(CCPPartialModels.COLORFUL_HOSE_HALF_MAGNET.get(color)));
+	}
 
-		if (!(blockEntity.getBlockState().getBlock() instanceof ColorfulHosePulleyBlock block))
-			return super.getHalfMagnetModel();
+	@Override
+	protected Instancer<ScrollInstance> getCoilModel() {
+		return instancerProvider().instancer(AllInstanceTypes.SCROLLING, Models.partial(AllPartialModels.HOSE_COIL));
+	}
 
-		DyeColor color = block.getColor();
+	@Override
+	protected Instancer<TransformedInstance> getHalfRopeModel() {
+		return instancerProvider().instancer(InstanceTypes.TRANSFORMED, Models.partial(AllPartialModels.HOSE_HALF));
+	}
 
-		return instancerProvider().instancer(InstanceTypes.TRANSFORMED,
-				Models.partial(CCPPartialModels.COLORFUL_HOSE_HALF_MAGNET.get(color)));
+	@Override
+	protected float getOffset(float pt) {
+		return blockEntity.getInterpolatedOffset(pt);
+	}
+
+	@Override
+	protected boolean isRunning() {
+		return true;
+	}
+
+	@Override
+	protected SpriteShiftEntry getCoilAnimation() {
+		return AllSpriteShifts.HOSE_PULLEY_COIL;
 	}
 
 }
+

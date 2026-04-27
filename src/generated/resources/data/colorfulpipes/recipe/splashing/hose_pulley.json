@@ -1,0 +1,13 @@
+{
+  "type": "create:splashing",
+  "ingredients": [
+    {
+      "tag": "colorfulpipes:colorful_hose_pulleys"
+    }
+  ],
+  "results": [
+    {
+      "id": "create:hose_pulley"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "type": "create:item_application",
+  "ingredients": [
+    {
+      "item": "colorfulpipes:green_copper_casing"
+    },
+    {
+      "tag": "c:glass_blocks/colorless"
+    }
+  ],
+  "results": [
+    {
+      "id": "colorfulpipes:green_copper_glass_casing"
+    }
+  ]
+}

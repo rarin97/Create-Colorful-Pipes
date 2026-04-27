@@ -1,0 +1,16 @@
+{
+  "type": "create:item_application",
+  "ingredients": [
+    {
+      "item": "colorfulpipes:green_copper_casing"
+    },
+    {
+      "item": "minecraft:tinted_glass"
+    }
+  ],
+  "results": [
+    {
+      "id": "colorfulpipes:green_copper_tinted_glass_casing"
+    }
+  ]
+}

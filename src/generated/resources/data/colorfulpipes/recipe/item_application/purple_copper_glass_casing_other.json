@@ -1,0 +1,16 @@
+{
+  "type": "create:item_application",
+  "ingredients": [
+    {
+      "item": "colorfulpipes:copper_glass_casing"
+    },
+    {
+      "tag": "c:dyes/purple"
+    }
+  ],
+  "results": [
+    {
+      "id": "colorfulpipes:purple_copper_glass_casing"
+    }
+  ]
+}

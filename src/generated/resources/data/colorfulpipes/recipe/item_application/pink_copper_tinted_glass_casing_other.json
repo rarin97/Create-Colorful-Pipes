@@ -1,0 +1,16 @@
+{
+  "type": "create:item_application",
+  "ingredients": [
+    {
+      "item": "colorfulpipes:copper_tinted_glass_casing"
+    },
+    {
+      "tag": "c:dyes/pink"
+    }
+  ],
+  "results": [
+    {
+      "id": "colorfulpipes:pink_copper_tinted_glass_casing"
+    }
+  ]
+}

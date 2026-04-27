@@ -1,0 +1,22 @@
+{
+  "values": [
+    "colorfulpipes:purple_fluid_pipe",
+    "colorfulpipes:purple_smart_fluid_pipe",
+    "colorfulpipes:purple_mechanical_pump",
+    "colorfulpipes:purple_fluid_valve",
+    "colorfulpipes:purple_fluid_tank",
+    "colorfulpipes:purple_spout",
+    "colorfulpipes:purple_item_drain",
+    "colorfulpipes:purple_portable_fluid_interface",
+    "colorfulpipes:purple_hose_pulley",
+    "colorfulpipes:purple_steam_whistle",
+    "colorfulpipes:purple_copper_table_cloth",
+    "colorfulpipes:purple_copper_casing",
+    "colorfulpipes:purple_copper_glass_casing",
+    "colorfulpipes:purple_copper_tinted_glass_casing",
+    "colorfulpipes:purple_copper_scaffolding",
+    "colorfulpipes:purple_copper_ladder",
+    "colorfulpipes:purple_copper_door",
+    "colorfulpipes:purple_copper_bars"
+  ]
+}

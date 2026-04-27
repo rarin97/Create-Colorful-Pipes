@@ -1,0 +1,22 @@
+{
+  "values": [
+    "colorfulpipes:yellow_fluid_pipe",
+    "colorfulpipes:yellow_smart_fluid_pipe",
+    "colorfulpipes:yellow_mechanical_pump",
+    "colorfulpipes:yellow_fluid_valve",
+    "colorfulpipes:yellow_fluid_tank",
+    "colorfulpipes:yellow_spout",
+    "colorfulpipes:yellow_item_drain",
+    "colorfulpipes:yellow_portable_fluid_interface",
+    "colorfulpipes:yellow_hose_pulley",
+    "colorfulpipes:yellow_steam_whistle",
+    "colorfulpipes:yellow_copper_table_cloth",
+    "colorfulpipes:yellow_copper_casing",
+    "colorfulpipes:yellow_copper_glass_casing",
+    "colorfulpipes:yellow_copper_tinted_glass_casing",
+    "colorfulpipes:yellow_copper_scaffolding",
+    "colorfulpipes:yellow_copper_ladder",
+    "colorfulpipes:yellow_copper_door",
+    "colorfulpipes:yellow_copper_bars"
+  ]
+}

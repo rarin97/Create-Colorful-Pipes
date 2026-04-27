@@ -14,7 +14,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
-import net.rarin.colorfulpipes.CCPBlocks;
+import net.rarin.colorfulpipes.CCPPaletteBlocks;
 
 public class ColorfulCasingBlock extends CasingBlock {
 
@@ -42,7 +42,7 @@ public class ColorfulCasingBlock extends CasingBlock {
 			if (!level.isClientSide) {
 				level.levelEvent(2001, pos, Block.getId(state));
 
-				level.setBlock(pos, CCPBlocks.COLORFUL_COPPER_CASING.get(dyeColor).getDefaultState(), 3);
+				level.setBlock(pos, CCPPaletteBlocks.COLORFUL_COPPER_CASING.get(dyeColor).getDefaultState(), 3);
 			}
 			return ItemInteractionResult.SUCCESS;
 		}

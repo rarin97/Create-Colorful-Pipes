@@ -1,0 +1,13 @@
+{
+  "type": "create:splashing",
+  "ingredients": [
+    {
+      "tag": "colorfulpipes:colorful_copper_doors"
+    }
+  ],
+  "results": [
+    {
+      "id": "create:copper_door"
+    }
+  ]
+}

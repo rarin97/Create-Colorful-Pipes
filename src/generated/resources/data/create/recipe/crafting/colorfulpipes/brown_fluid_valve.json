@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "create:iron_sheet"
+    },
+    {
+      "item": "colorfulpipes:brown_fluid_pipe"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "colorfulpipes:brown_fluid_valve"
+  }
+}

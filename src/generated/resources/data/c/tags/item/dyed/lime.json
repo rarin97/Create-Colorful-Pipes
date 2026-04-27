@@ -1,0 +1,22 @@
+{
+  "values": [
+    "colorfulpipes:lime_fluid_pipe",
+    "colorfulpipes:lime_smart_fluid_pipe",
+    "colorfulpipes:lime_mechanical_pump",
+    "colorfulpipes:lime_fluid_valve",
+    "colorfulpipes:lime_fluid_tank",
+    "colorfulpipes:lime_spout",
+    "colorfulpipes:lime_item_drain",
+    "colorfulpipes:lime_portable_fluid_interface",
+    "colorfulpipes:lime_hose_pulley",
+    "colorfulpipes:lime_steam_whistle",
+    "colorfulpipes:lime_copper_table_cloth",
+    "colorfulpipes:lime_copper_casing",
+    "colorfulpipes:lime_copper_glass_casing",
+    "colorfulpipes:lime_copper_tinted_glass_casing",
+    "colorfulpipes:lime_copper_scaffolding",
+    "colorfulpipes:lime_copper_ladder",
+    "colorfulpipes:lime_copper_door",
+    "colorfulpipes:lime_copper_bars"
+  ]
+}

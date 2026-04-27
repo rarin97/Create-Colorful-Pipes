@@ -1,0 +1,22 @@
+{
+  "values": [
+    "colorfulpipes:green_fluid_pipe",
+    "colorfulpipes:green_smart_fluid_pipe",
+    "colorfulpipes:green_mechanical_pump",
+    "colorfulpipes:green_fluid_valve",
+    "colorfulpipes:green_fluid_tank",
+    "colorfulpipes:green_spout",
+    "colorfulpipes:green_item_drain",
+    "colorfulpipes:green_portable_fluid_interface",
+    "colorfulpipes:green_hose_pulley",
+    "colorfulpipes:green_steam_whistle",
+    "colorfulpipes:green_copper_table_cloth",
+    "colorfulpipes:green_copper_casing",
+    "colorfulpipes:green_copper_glass_casing",
+    "colorfulpipes:green_copper_tinted_glass_casing",
+    "colorfulpipes:green_copper_scaffolding",
+    "colorfulpipes:green_copper_ladder",
+    "colorfulpipes:green_copper_door",
+    "colorfulpipes:green_copper_bars"
+  ]
+}

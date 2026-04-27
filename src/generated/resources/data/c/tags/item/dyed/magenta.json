@@ -1,0 +1,22 @@
+{
+  "values": [
+    "colorfulpipes:magenta_fluid_pipe",
+    "colorfulpipes:magenta_smart_fluid_pipe",
+    "colorfulpipes:magenta_mechanical_pump",
+    "colorfulpipes:magenta_fluid_valve",
+    "colorfulpipes:magenta_fluid_tank",
+    "colorfulpipes:magenta_spout",
+    "colorfulpipes:magenta_item_drain",
+    "colorfulpipes:magenta_portable_fluid_interface",
+    "colorfulpipes:magenta_hose_pulley",
+    "colorfulpipes:magenta_steam_whistle",
+    "colorfulpipes:magenta_copper_table_cloth",
+    "colorfulpipes:magenta_copper_casing",
+    "colorfulpipes:magenta_copper_glass_casing",
+    "colorfulpipes:magenta_copper_tinted_glass_casing",
+    "colorfulpipes:magenta_copper_scaffolding",
+    "colorfulpipes:magenta_copper_ladder",
+    "colorfulpipes:magenta_copper_door",
+    "colorfulpipes:magenta_copper_bars"
+  ]
+}

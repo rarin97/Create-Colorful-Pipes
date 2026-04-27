@@ -2,6 +2,7 @@ package net.rarin.colorfulpipes;
 
 import com.simibubi.create.content.fluids.FluidTransportBehaviour;
 import dev.engine_room.flywheel.lib.model.baked.PartialModel;
+import net.createmod.catnip.data.Couple;
 import net.createmod.catnip.data.Iterate;
 import net.createmod.catnip.lang.Lang;
 import net.minecraft.core.Direction;
@@ -20,6 +21,8 @@ public class CCPPartialModels {
 	public static final Map<DyeColor,PartialModel>  COLORFUL_HOSE_HALF_MAGNET = new EnumMap<>(DyeColor.class);
 	public static final Map<DyeColor,PartialModel> COLORFUL_SPOUT_NOZZLE = new EnumMap<>(DyeColor.class);
 	public static final Map<DyeColor,PartialModel>  COLORFUL_FLUID_PIPE_CASINGS = new EnumMap<>(DyeColor.class);
+	public static final Map<DyeColor,PartialModel>  COLORFUL_PORTABLE_FLUID_INTERFACE_TOP = new EnumMap<>(DyeColor.class);
+	public static final Map<DyeColor, Couple<PartialModel>> COLORFUL_DOORS = new HashMap<>();
 	public static final Map<FluidTransportBehaviour.AttachmentTypes.ComponentPartials, Map<DyeColor,Map<Direction, PartialModel>>> COLORFUL_PIPE_ATTACHMENTS =
 			new EnumMap<>(FluidTransportBehaviour.AttachmentTypes.ComponentPartials.class);
 
@@ -52,6 +55,13 @@ public class CCPPartialModels {
 			COLORFUL_SPOUT_NOZZLE.put(color, block(color.getName() + "_spout_nozzle"));
 
 			COLORFUL_FLUID_PIPE_CASINGS.put(color, block(color.getName() + "_fluid_pipe/casing"));
+
+			COLORFUL_PORTABLE_FLUID_INTERFACE_TOP.put(color, block(color.getName() + "_portable_fluid_interface/block_top"));
+
+			COLORFUL_DOORS.put(color, Couple.create(
+					PartialModel.of(ColorfulPipes.asResource("block/" + color.getName() + "_copper_door/fold_left")),
+					PartialModel.of(ColorfulPipes.asResource("block/" + color.getName() + "_copper_door/fold_right"))));
+
 		}
 	}
 

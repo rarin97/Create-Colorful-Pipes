@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "P": {
+      "item": "minecraft:iron_bars"
+    },
+    "S": {
+      "item": "colorfulpipes:light_blue_copper_casing"
+    }
+  },
+  "pattern": [
+    "P",
+    "S"
+  ],
+  "result": {
+    "count": 1,
+    "id": "colorfulpipes:light_blue_item_drain"
+  }
+}

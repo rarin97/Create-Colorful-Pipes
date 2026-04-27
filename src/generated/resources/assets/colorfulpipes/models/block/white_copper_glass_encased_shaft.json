@@ -1,0 +1,7 @@
+{
+  "parent": "colorfulpipes:block/encased_shaft/block",
+  "textures": {
+    "casing": "colorfulpipes:block/copper_glass_casing/white",
+    "opening": "colorfulpipes:block/copper_gearbox/white"
+  }
+}

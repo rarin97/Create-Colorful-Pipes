@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:dyes/magenta"
+    },
+    {
+      "tag": "create:hose_pulleys"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "colorfulpipes:magenta_hose_pulley"
+  }
+}

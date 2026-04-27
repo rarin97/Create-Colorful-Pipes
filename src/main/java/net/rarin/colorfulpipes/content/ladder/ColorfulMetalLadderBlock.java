@@ -13,7 +13,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
-import net.rarin.colorfulpipes.CCPBlocks;
+import net.rarin.colorfulpipes.CCPPaletteBlocks;
 
 public class ColorfulMetalLadderBlock extends MetalLadderBlock {
 
@@ -36,7 +36,7 @@ public class ColorfulMetalLadderBlock extends MetalLadderBlock {
 			if (!level.isClientSide) {
 				level.levelEvent(2001, pos, Block.getId(state));
 
-				level.setBlock(pos, CCPBlocks.COLORFUL_COPPER_LADDER.get(dyeColor).getDefaultState()
+				level.setBlock(pos, CCPPaletteBlocks.COLORFUL_COPPER_LADDER.get(dyeColor).getDefaultState()
 						.setValue(FACING, state.getValue(FACING))
 						.setValue(WATERLOGGED, state.getValue(WATERLOGGED)), 3);
 			}

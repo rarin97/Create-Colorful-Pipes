@@ -1,11 +1,10 @@
 package net.rarin.colorfulpipes.content.slidingDoor;
 
 import com.simibubi.create.content.contraptions.ContraptionWorld;
-import com.simibubi.create.content.decoration.slidingDoor.SlidingDoorBlock;
-import com.simibubi.create.content.decoration.slidingDoor.SlidingDoorBlockEntity;
-
 import com.simibubi.create.content.decoration.slidingDoor.SlidingDoorShapes;
-
+import com.simibubi.create.content.equipment.wrench.IWrenchable;
+import com.simibubi.create.foundation.block.IBE;
+import com.simibubi.create.foundation.block.IHaveBigOutline;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
@@ -21,8 +20,11 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
@@ -34,13 +36,26 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+import net.rarin.colorfulpipes.CCPBlockEntityTypes;
+
 import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Supplier;
 
-public class ColorfulSlidingDoorBlock extends SlidingDoorBlock {
+public class ColorfulSlidingDoorBlock extends DoorBlock implements IWrenchable, IBE<ColorfulSlidingDoorBlockEntity>, IHaveBigOutline {
+	public static final Supplier<BlockSetType> TRAIN_SET_TYPE =
+			() -> new BlockSetType("create:train", true, true, true,
+					BlockSetType.PressurePlateSensitivity.EVERYTHING, SoundType.NETHERITE_BLOCK, SoundEvents.IRON_DOOR_CLOSE,
+					SoundEvents.IRON_DOOR_OPEN, SoundEvents.IRON_TRAPDOOR_CLOSE, SoundEvents.IRON_TRAPDOOR_OPEN,
+					SoundEvents.METAL_PRESSURE_PLATE_CLICK_OFF, SoundEvents.METAL_PRESSURE_PLATE_CLICK_ON,
+					SoundEvents.STONE_BUTTON_CLICK_OFF, SoundEvents.STONE_BUTTON_CLICK_ON);
 
-	protected final DyeColor color;
+	public static final Supplier<BlockSetType> GLASS_SET_TYPE =
+			() -> new BlockSetType("create:glass", true, true, true,
+					BlockSetType.PressurePlateSensitivity.EVERYTHING, SoundType.GLASS, SoundEvents.IRON_DOOR_CLOSE,
+					SoundEvents.IRON_DOOR_OPEN, SoundEvents.IRON_TRAPDOOR_CLOSE, SoundEvents.IRON_TRAPDOOR_OPEN,
+					SoundEvents.METAL_PRESSURE_PLATE_CLICK_OFF, SoundEvents.METAL_PRESSURE_PLATE_CLICK_ON,
+					SoundEvents.STONE_BUTTON_CLICK_OFF, SoundEvents.STONE_BUTTON_CLICK_ON);
 
 	public static final Supplier<BlockSetType> STONE_SET_TYPE =
 			() -> new BlockSetType("create:stone", true, true, true,
@@ -52,16 +67,29 @@ public class ColorfulSlidingDoorBlock extends SlidingDoorBlock {
 	public static final BooleanProperty VISIBLE = BooleanProperty.create("visible");
 	private final boolean folds;
 
-	public static SlidingDoorBlock stone(Properties properties, boolean folds) {
-		return new SlidingDoorBlock(properties, STONE_SET_TYPE.get(), folds);
+	public static ColorfulSlidingDoorBlock metal(Properties properties, boolean folds, DyeColor color) {
+		return new ColorfulSlidingDoorBlock(properties, TRAIN_SET_TYPE.get(), folds, color);
 	}
+
+	public static ColorfulSlidingDoorBlock glass(Properties properties, boolean folds,  DyeColor color) {
+		return new ColorfulSlidingDoorBlock(properties, GLASS_SET_TYPE.get(), folds, color);
+	}
+
+	public static ColorfulSlidingDoorBlock stone(Properties properties, boolean folds, DyeColor color) {
+		return new ColorfulSlidingDoorBlock(properties, STONE_SET_TYPE.get(), folds, color);
+	}
+
+	protected final DyeColor color;
 
 	public ColorfulSlidingDoorBlock(Properties properties, BlockSetType type, boolean folds, DyeColor color) {
-		super(properties, type, folds);
-		this.color = color;
+		super(type, properties);
 		this.folds = folds;
+		this.color = color;
 	}
 
+	public DyeColor getColor() {
+		return color;
+	}
 
 	public boolean isFoldingDoor() {
 		return folds;
@@ -148,6 +176,63 @@ public class ColorfulSlidingDoorBlock extends SlidingDoorBlock {
 	}
 
 	@Override
+	public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos,
+								boolean pIsMoving) {
+		boolean lower = pState.getValue(HALF) == DoubleBlockHalf.LOWER;
+		boolean isPowered = isDoorPowered(pLevel, pPos, pState);
+		if (defaultBlockState().is(pBlock))
+			return;
+		if (isPowered == pState.getValue(POWERED))
+			return;
+
+		ColorfulSlidingDoorBlockEntity be = getBlockEntity(pLevel, lower ? pPos : pPos.below());
+		if (be != null && be.deferUpdate)
+			return;
+
+		BlockState changedState = pState.setValue(POWERED, isPowered)
+				.setValue(OPEN, isPowered);
+		if (isPowered)
+			changedState = changedState.setValue(VISIBLE, false);
+
+		if (isPowered != pState.getValue(OPEN)) {
+			this.playSound(null, pLevel, pPos, isPowered);
+			pLevel.gameEvent(null, isPowered ? GameEvent.BLOCK_OPEN : GameEvent.BLOCK_CLOSE, pPos);
+
+			DoorHingeSide hinge = changedState.getValue(HINGE);
+			Direction facing = changedState.getValue(FACING);
+			BlockPos otherPos =
+					pPos.relative(hinge == DoorHingeSide.LEFT ? facing.getClockWise() : facing.getCounterClockWise());
+			BlockState otherDoor = pLevel.getBlockState(otherPos);
+
+			if (isDoubleDoor(changedState, hinge, facing, otherDoor)) {
+				otherDoor = otherDoor.setValue(POWERED, isPowered)
+						.setValue(OPEN, isPowered);
+				if (isPowered)
+					otherDoor = otherDoor.setValue(VISIBLE, false);
+				pLevel.setBlock(otherPos, otherDoor, Block.UPDATE_CLIENTS);
+			}
+		}
+
+		pLevel.setBlock(pPos, changedState, Block.UPDATE_CLIENTS);
+	}
+
+	public static boolean isDoorPowered(Level pLevel, BlockPos pPos, BlockState state) {
+		boolean lower = state.getValue(HALF) == DoubleBlockHalf.LOWER;
+		DoorHingeSide hinge = state.getValue(HINGE);
+		Direction facing = state.getValue(FACING);
+		BlockPos otherPos =
+				pPos.relative(hinge == DoorHingeSide.LEFT ? facing.getClockWise() : facing.getCounterClockWise());
+		BlockState otherDoor = pLevel.getBlockState(otherPos);
+
+		if (isDoubleDoor(state.cycle(OPEN), hinge, facing, otherDoor) && (pLevel.hasNeighborSignal(otherPos)
+				|| pLevel.hasNeighborSignal(otherPos.relative(lower ? Direction.UP : Direction.DOWN))))
+			return true;
+
+		return pLevel.hasNeighborSignal(pPos)
+				|| pLevel.hasNeighborSignal(pPos.relative(lower ? Direction.UP : Direction.DOWN));
+	}
+
+	@Override
 	protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
 		state = state.cycle(OPEN);
 		boolean isOpen = state.getValue(OPEN);
@@ -171,6 +256,10 @@ public class ColorfulSlidingDoorBlock extends SlidingDoorBlock {
 		return InteractionResult.sidedSuccess(level.isClientSide);
 	}
 
+	public void deferUpdate(LevelAccessor level, BlockPos pos) {
+		withBlockEntityDo(level, pos, sdte -> sdte.deferUpdate = true);
+	}
+
 	public static boolean isDoubleDoor(BlockState pState, DoorHingeSide hinge, Direction facing, BlockState otherDoor) {
 		return otherDoor.getBlock() == pState.getBlock() && otherDoor.getValue(HINGE) != hinge
 				&& otherDoor.getValue(FACING) == facing && otherDoor.getValue(OPEN) != pState.getValue(OPEN)
@@ -188,14 +277,22 @@ public class ColorfulSlidingDoorBlock extends SlidingDoorBlock {
 						.nextFloat() * 0.1F + 0.9F);
 	}
 
+	@Nullable
 	@Override
-	public Class<SlidingDoorBlockEntity> getBlockEntityClass() {
-		return SlidingDoorBlockEntity.class;
+	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+		if (state.getValue(HALF) == DoubleBlockHalf.UPPER)
+			return null;
+		return IBE.super.newBlockEntity(pos, state);
 	}
 
-//	@Override
-//	public BlockEntityType<? extends SlidingDoorBlockEntity> getBlockEntityType() {
-//		return CCPBlockEntityTypes.COLORFUL_SLIDING_DOOR.get();
-//	}
+	@Override
+	public Class<ColorfulSlidingDoorBlockEntity> getBlockEntityClass() {
+		return ColorfulSlidingDoorBlockEntity.class;
+	}
+
+	@Override
+	public BlockEntityType<? extends ColorfulSlidingDoorBlockEntity> getBlockEntityType() {
+		return CCPBlockEntityTypes.COLORFUL_SLIDING_DOOR.get();
+	}
 }
 

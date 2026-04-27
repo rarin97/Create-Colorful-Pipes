@@ -13,7 +13,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
-import net.rarin.colorfulpipes.CCPBlocks;
+import net.rarin.colorfulpipes.CCPPaletteBlocks;
 
 public class ColorfulMetalScaffoldingBlock extends MetalScaffoldingBlock {
 
@@ -36,7 +36,7 @@ public class ColorfulMetalScaffoldingBlock extends MetalScaffoldingBlock {
 			if (!level.isClientSide) {
 				level.levelEvent(2001, pos, Block.getId(state));
 
-				level.setBlock(pos, CCPBlocks.COLORFUL_COPPER_SCAFFOLD.get(dyeColor).getDefaultState()
+				level.setBlock(pos, CCPPaletteBlocks.COLORFUL_COPPER_SCAFFOLD.get(dyeColor).getDefaultState()
 						.setValue(BOTTOM, state.getValue(BOTTOM))
 						.setValue(WATERLOGGED, state.getValue(WATERLOGGED)), 3);
 			}

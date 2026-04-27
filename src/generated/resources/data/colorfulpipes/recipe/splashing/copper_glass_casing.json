@@ -1,0 +1,13 @@
+{
+  "type": "create:splashing",
+  "ingredients": [
+    {
+      "tag": "colorfulpipes:colorful_copper_glass_casings"
+    }
+  ],
+  "results": [
+    {
+      "id": "colorfulpipes:copper_glass_casing"
+    }
+  ]
+}

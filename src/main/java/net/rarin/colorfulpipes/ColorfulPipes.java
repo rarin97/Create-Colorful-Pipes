@@ -32,6 +32,7 @@ public class ColorfulPipes {
         CCPCreativeTabs.register(eventBus);
 
         CCPBlocks.register();
+		CCPPaletteBlocks.register();
         CCPBlockEntityTypes.register();
 
         CCPMountedStorageTypes.register();

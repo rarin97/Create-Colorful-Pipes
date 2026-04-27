@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "create:copper_bars"
+    },
+    {
+      "tag": "c:dyes/black"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "colorfulpipes:black_copper_bars"
+  }
+}
