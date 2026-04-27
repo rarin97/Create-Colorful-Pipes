@@ -7,7 +7,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.rarin.colorfulpipes.CCPSpriteShifts;
-import net.rarin.colorfulpipes.content.encasedPipe.ColorfulEncasedPipeBlock;
 import org.jetbrains.annotations.Nullable;
 
 public class ColorfulEncasedCTBehaviour extends EncasedCTBehaviour {

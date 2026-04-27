@@ -5,11 +5,7 @@ import com.simibubi.create.AllTags;
 import com.simibubi.create.Create;
 import com.simibubi.create.api.stress.BlockStressValues;
 import com.simibubi.create.content.contraptions.actors.psi.PortableStorageInterfaceMovement;
-import com.simibubi.create.content.decoration.MetalLadderBlock;
-import com.simibubi.create.content.decoration.MetalScaffoldingBlock;
-import com.simibubi.create.content.decoration.encasing.CasingBlock;
 import com.simibubi.create.content.decoration.encasing.EncasingRegistry;
-import com.simibubi.create.content.decoration.steamWhistle.WhistleBlock;
 import com.simibubi.create.content.fluids.drain.ItemDrainBlock;
 import com.simibubi.create.content.fluids.hosePulley.HosePulleyBlock;
 import com.simibubi.create.content.fluids.pipes.EncasedPipeBlock;
@@ -23,41 +19,36 @@ import com.simibubi.create.content.fluids.spout.SpoutBlock;
 import com.simibubi.create.content.fluids.tank.FluidTankBlock;
 import com.simibubi.create.content.fluids.tank.FluidTankGenerator;
 import com.simibubi.create.content.fluids.tank.FluidTankMovementBehavior;
-import com.simibubi.create.content.logistics.tableCloth.TableClothBlock;
+import com.simibubi.create.content.kinetics.steamEngine.SteamEngineBlock;
 import com.simibubi.create.foundation.block.DyedBlockList;
 import com.simibubi.create.foundation.data.AssetLookup;
 import com.simibubi.create.foundation.data.BlockStateGen;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.data.SharedProperties;
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
-import com.tterrag.registrate.util.entry.BlockEntry;
+
 import io.github.fabricators_of_create.porting_lib.models.generators.ConfiguredModel;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.Direction;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
-import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.material.MapColor;
+import net.rarin.colorfulpipes.CCPTags.ColorfulBlockTags;
+import net.rarin.colorfulpipes.CCPTags.ColorfulItemTags;
+import net.rarin.colorfulpipes.config.CStress;
 import net.rarin.colorfulpipes.content.ColorfulEncasedCTBehaviour;
 import net.rarin.colorfulpipes.content.ColorfulPipeAttachmentModel;
-import net.rarin.colorfulpipes.content.ScaffoldingBlock.ColorfulMetalScaffoldingBlock;
-import net.rarin.colorfulpipes.content.casing.ColorfulCasingBlock;
 import net.rarin.colorfulpipes.content.drain.ColorfulDrainBlock;
 import net.rarin.colorfulpipes.content.encasedPipe.ColorfulEncasedPipeBlock;
 import net.rarin.colorfulpipes.content.glassPipe.ColorfulGlassFluidPipeBlock;
 import net.rarin.colorfulpipes.content.hosePulley.ColorfulHosePulleyBlock;
-import net.rarin.colorfulpipes.content.ladder.ColorfulMetalLadderBlock;
 import net.rarin.colorfulpipes.content.pipe.ColorfulFluidPipeBlock;
 import net.rarin.colorfulpipes.content.portableFluidInterface.ColorfulPortableFluidInterfaceBlock;
 import net.rarin.colorfulpipes.content.pump.ColorfulPumpBlock;
 import net.rarin.colorfulpipes.content.smartPipe.ColorfulSmartFluidPipeBlock;
 import net.rarin.colorfulpipes.content.spout.ColorfulSpoutBlock;
-import net.rarin.colorfulpipes.content.steamWhistle.ColorfulWhistleBlock;
-import net.rarin.colorfulpipes.content.steamWhistle.ColorfulWhistleExtenderBlock;
-import net.rarin.colorfulpipes.content.steamWhistle.ColorfulWhistleGenerator;
-import net.rarin.colorfulpipes.content.table_cloth.ColorfulTableClothBlock;
+import net.rarin.colorfulpipes.content.steamEngine.ColorfulSteamEngineBlock;
 import net.rarin.colorfulpipes.content.tank.ColorfulFluidTankBlock;
 import net.rarin.colorfulpipes.content.tank.ColorfulFluidTankItem;
 import net.rarin.colorfulpipes.content.tank.ColorfulFluidTankModel;
@@ -66,8 +57,6 @@ import net.rarin.colorfulpipes.content.valve.ColorfulFluidValveBlock;
 import static com.simibubi.create.api.behaviour.display.DisplaySource.displaySource;
 import static com.simibubi.create.api.behaviour.movement.MovementBehaviour.movementBehaviour;
 import static com.simibubi.create.api.contraption.storage.fluid.MountedFluidStorageType.mountedFluidStorage;
-import static com.simibubi.create.foundation.data.CreateRegistrate.casingConnectivity;
-import static com.simibubi.create.foundation.data.CreateRegistrate.connectedTextures;
 import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
 import static com.simibubi.create.foundation.data.TagGen.axeOrPickaxe;
 import static com.simibubi.create.foundation.data.TagGen.pickaxeOnly;
@@ -89,21 +78,21 @@ public class CCPBlocks {
 				.onRegister(CCPRegistrate.ColorfulblockModel(() -> ColorfulPipeAttachmentModel::withAO, color))
 				.recipe((c, p) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, c.get())
 						.requires(color.getTag())
-						.requires(CCPTags.ColorfulItemTags.FLUID_PIPES.tag)
+						.requires(ColorfulItemTags.FLUID_PIPES.tag)
 						.unlockedBy("has_fluid_pipe", RegistrateRecipeProvider.has(AllBlocks.FLUID_PIPE.asItem()))
 						.save(p, ColorfulPipes.asResource("fluid_pipe/" + c.getName()))
 				)
-				.tag(CCPTags.ColorfulBlockTags.COLORFUL_PIPES.tag)
+				.tag(ColorfulBlockTags.COLORFUL_PIPES.tag)
 				.item()
-				.tag(CCPTags.ColorfulItemTags.COLORFUL_PIPES.tag)
-				.tag(CCPTags.ColorfulItemTags.FLUID_PIPES.tag)
+				.tag(ColorfulItemTags.COLORFUL_PIPES.tag)
+				.tag(ColorfulItemTags.FLUID_PIPES.tag)
 				.transform(customItemModel())
 				.register();
 	});
 
 	public static final DyedBlockList<EncasedPipeBlock> COLORFUL_ENCASED_FLUID_PIPES = new DyedBlockList<>(color -> {
 		String colorName = color.getSerializedName();
-		return REGISTRATE.block(colorName + "_encased_fluid_pipe", p -> new ColorfulEncasedPipeBlock(p, color, () -> CCPBlocks.COLORFUL_COPPER_CASING.get(color).get()))
+		return REGISTRATE.block(colorName + "_encased_fluid_pipe", p -> new ColorfulEncasedPipeBlock(p, color, () -> CCPPaletteBlocks.COLORFUL_COPPER_CASING.get(color).get()))
 				.initialProperties(SharedProperties::copperMetal)
 				.properties(p -> p.noOcclusion().mapColor(color.getMapColor()))
 				.transform(axeOrPickaxe())
@@ -153,14 +142,14 @@ public class CCPBlocks {
 				.onRegister(CCPRegistrate.ColorfulblockModel(() -> ColorfulPipeAttachmentModel::withAO, color))
 				.recipe((c, p) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, c.get())
 						.requires(color.getTag())
-						.requires(CCPTags.ColorfulItemTags.SMART_FLUID_PIPES.tag)
+						.requires(ColorfulItemTags.SMART_FLUID_PIPES.tag)
 						.unlockedBy("has_smart_fluid_pipe", RegistrateRecipeProvider.has(AllBlocks.SMART_FLUID_PIPE.asItem()))
 						.save(p, ColorfulPipes.asResource("smart_fluid_pipe/" + c.getName()))
 				)
-				.tag(CCPTags.ColorfulBlockTags.COLORFUL_SMART_PIPES.tag)
+				.tag(ColorfulBlockTags.COLORFUL_SMART_PIPES.tag)
 				.item()
-				.tag(CCPTags.ColorfulItemTags.COLORFUL_SMART_PIPES.tag)
-				.tag(CCPTags.ColorfulItemTags.SMART_FLUID_PIPES.tag)
+				.tag(ColorfulItemTags.COLORFUL_SMART_PIPES.tag)
+				.tag(ColorfulItemTags.SMART_FLUID_PIPES.tag)
 				.transform(customItemModel())
 				.register();
 	});
@@ -180,14 +169,14 @@ public class CCPBlocks {
 				})
 				.recipe((c, p) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, c.get())
 						.requires(color.getTag())
-						.requires(CCPTags.ColorfulItemTags.MECHANICAL_PUMPS.tag)
+						.requires(ColorfulItemTags.MECHANICAL_PUMPS.tag)
 						.unlockedBy("has_pump", RegistrateRecipeProvider.has(AllBlocks.MECHANICAL_PUMP.asItem()))
 						.save(p, ColorfulPipes.asResource("mechanical_pump/" + c.getName()))
 				)
-				.tag(CCPTags.ColorfulBlockTags.COLORFUL_PUMPS.tag)
+				.tag(ColorfulBlockTags.COLORFUL_PUMPS.tag)
 				.item()
-				.tag(CCPTags.ColorfulItemTags.COLORFUL_PUMPS.tag)
-				.tag(CCPTags.ColorfulItemTags.MECHANICAL_PUMPS.tag)
+				.tag(ColorfulItemTags.COLORFUL_PUMPS.tag)
+				.tag(ColorfulItemTags.MECHANICAL_PUMPS.tag)
 				.model((c, p) ->
 						p.withExistingParent(c.getName(), Create.asResource("block/mechanical_pump/item"))
 								.texture("4", ColorfulPipes.asResource("block/pump/" + colorName))
@@ -209,14 +198,14 @@ public class CCPBlocks {
 				.onRegister(CCPRegistrate.ColorfulblockModel(() -> ColorfulPipeAttachmentModel::withAO, color))
 				.recipe((c, p) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, c.get())
 						.requires(color.getTag())
-						.requires(CCPTags.ColorfulItemTags.FLUID_VALVES.tag)
+						.requires(ColorfulItemTags.FLUID_VALVES.tag)
 						.unlockedBy("has_fluid_valve", RegistrateRecipeProvider.has(AllBlocks.FLUID_VALVE.asItem()))
 						.save(p, ColorfulPipes.asResource("fluid_valve/" + c.getName()))
 				)
-				.tag(CCPTags.ColorfulBlockTags.COLORFUL_FLUID_VALVES.tag)
+				.tag(ColorfulBlockTags.COLORFUL_FLUID_VALVES.tag)
 				.item()
-				.tag(CCPTags.ColorfulItemTags.COLORFUL_FLUID_VALVES.tag)
-				.tag(CCPTags.ColorfulItemTags.FLUID_VALVES.tag)
+				.tag(ColorfulItemTags.COLORFUL_FLUID_VALVES.tag)
+				.tag(ColorfulItemTags.FLUID_VALVES.tag)
 				.transform(customItemModel())
 				.register();
 	});
@@ -235,14 +224,14 @@ public class CCPBlocks {
 				.onRegister(movementBehaviour(new FluidTankMovementBehavior()))
 				.recipe((c, p) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, c.get())
 						.requires(color.getTag())
-						.requires(CCPTags.ColorfulItemTags.FLUID_TANKS.tag)
+						.requires(ColorfulItemTags.FLUID_TANKS.tag)
 						.unlockedBy("has_fluid_tank", RegistrateRecipeProvider.has(AllBlocks.FLUID_TANK.asItem()))
 						.save(p, ColorfulPipes.asResource("fluid_tank/" + c.getName()))
 				)
-				.tag(CCPTags.ColorfulBlockTags.COLORFUL_FLUID_TANKS.tag)
+				.tag(ColorfulBlockTags.COLORFUL_FLUID_TANKS.tag)
 				.item(ColorfulFluidTankItem::new)
-				.tag(CCPTags.ColorfulItemTags.COLORFUL_FLUID_TANKS.tag)
-				.tag(CCPTags.ColorfulItemTags.FLUID_TANKS.tag)
+				.tag(ColorfulItemTags.COLORFUL_FLUID_TANKS.tag)
+				.tag(ColorfulItemTags.FLUID_TANKS.tag)
 				.model(AssetLookup.customBlockItemModel("_", "block_single_window"))
 				.build()
 				.register();
@@ -263,14 +252,14 @@ public class CCPBlocks {
 				})
 				.recipe((c, p) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, c.get())
 						.requires(color.getTag())
-						.requires(CCPTags.ColorfulItemTags.SPOUTS.tag)
+						.requires(ColorfulItemTags.SPOUTS.tag)
 						.unlockedBy("has_spout", RegistrateRecipeProvider.has(AllBlocks.SPOUT.asItem()))
 						.save(p, ColorfulPipes.asResource("spout/" + c.getName()))
 				)
-				.tag(CCPTags.ColorfulBlockTags.COLORFUL_SPOUTS.tag)
+				.tag(ColorfulBlockTags.COLORFUL_SPOUTS.tag)
 				.item()
-				.tag(CCPTags.ColorfulItemTags.COLORFUL_SPOUTS.tag)
-				.tag(CCPTags.ColorfulItemTags.SPOUTS.tag)
+				.tag(ColorfulItemTags.COLORFUL_SPOUTS.tag)
+				.tag(ColorfulItemTags.SPOUTS.tag)
 				.model((c, p) ->
 						p.withExistingParent(c.getName(), Create.asResource("block/spout/item"))
 								.texture("0", ColorfulPipes.asResource("block/spout/" + colorName))
@@ -297,15 +286,15 @@ public class CCPBlocks {
 				})
 				.recipe((c, p) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, c.get())
 						.requires(color.getTag())
-						.requires(CCPTags.ColorfulItemTags.ITEM_DRAINS.tag)
+						.requires(ColorfulItemTags.ITEM_DRAINS.tag)
 						.unlockedBy("has_item_drain", RegistrateRecipeProvider.has(AllBlocks.ITEM_DRAIN.asItem()))
 						.save(p, ColorfulPipes.asResource("item_drain/" + c.getName()))
 				)
-				.tag(CCPTags.ColorfulBlockTags.COLORFUL_DRAINS.tag)
+				.tag(ColorfulBlockTags.COLORFUL_DRAINS.tag)
 				.simpleItem()
 				.item()
-				.tag(CCPTags.ColorfulItemTags.COLORFUL_DRAINS.tag)
-				.tag(CCPTags.ColorfulItemTags.ITEM_DRAINS.tag)
+				.tag(ColorfulItemTags.COLORFUL_DRAINS.tag)
+				.tag(ColorfulItemTags.ITEM_DRAINS.tag)
 				.build()
 				.register();
 	});
@@ -319,15 +308,15 @@ public class CCPBlocks {
 				.blockstate((c, p) -> p.directionalBlock(c.get(), AssetLookup.partialBaseModel(c, p)))
 				.recipe((c, p) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, c.get())
 						.requires(color.getTag())
-						.requires(CCPTags.ColorfulItemTags.PORTABLE_FLUID_INTERFACES.tag)
+						.requires(ColorfulItemTags.PORTABLE_FLUID_INTERFACES.tag)
 						.unlockedBy("has_portable_fluid_interface", RegistrateRecipeProvider.has(AllBlocks.PORTABLE_FLUID_INTERFACE.asItem()))
 						.save(p, ColorfulPipes.asResource("portable_fluid_interface/" + c.getName()))
 				)
-				.tag(CCPTags.ColorfulBlockTags.COLORFUL_PORTABLE_FLUID_INTERFACES.tag)
+				.tag(ColorfulBlockTags.COLORFUL_PORTABLE_FLUID_INTERFACES.tag)
 				.onRegister(movementBehaviour(new PortableStorageInterfaceMovement()))
 				.item()
-				.tag(CCPTags.ColorfulItemTags.COLORFUL_PORTABLE_FLUID_INTERFACES.tag)
-				.tag(CCPTags.ColorfulItemTags.PORTABLE_FLUID_INTERFACES.tag)
+				.tag(ColorfulItemTags.COLORFUL_PORTABLE_FLUID_INTERFACES.tag)
+				.tag(ColorfulItemTags.PORTABLE_FLUID_INTERFACES.tag)
 				.tag(AllTags.AllItemTags.CONTRAPTION_CONTROLLED.tag)
 				.transform(customItemModel())
 				.register();
@@ -345,13 +334,14 @@ public class CCPBlocks {
 				.onRegister((block) -> BlockStressValues.IMPACTS.register(block, () -> 4.0))
 				.recipe((c, p) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, c.get())
 						.requires(color.getTag())
-						.requires(AllBlocks.HOSE_PULLEY.asItem())
+						.requires(ColorfulItemTags.HOSE_PULLEYS.tag)
 						.unlockedBy("has_hose_pulley", RegistrateRecipeProvider.has(AllBlocks.HOSE_PULLEY.asItem()))
 						.save(p, ColorfulPipes.asResource("hose_pulley/" + c.getName()))
 				)
-				.tag(CCPTags.ColorfulBlockTags.COLORFUL_HOSE_PULLEYS.tag)
+				.tag(ColorfulBlockTags.COLORFUL_HOSE_PULLEYS.tag)
 				.item()
-				.tag(CCPTags.ColorfulItemTags.COLORFUL_HOSE_PULLEYS.tag)
+				.tag(ColorfulItemTags.COLORFUL_HOSE_PULLEYS.tag)
+				.tag(ColorfulItemTags.HOSE_PULLEYS.tag)
 				.transform(customItemModel())
 				.register();
 	});
@@ -382,147 +372,7 @@ public class CCPBlocks {
 //				.register();
 //	});
 
-	static {
-		REGISTRATE.setCreativeTab(CCPCreativeTabs.PALETTES.key());
-	}
-
-	public static final DyedBlockList<WhistleBlock> COLORFUL_STEAM_WHISTLES = new DyedBlockList<>(color -> {
-		String colorName = color.getSerializedName();
-		return REGISTRATE.block(colorName + "_steam_whistle", p -> new ColorfulWhistleBlock(p, color))
-				.initialProperties(SharedProperties::copperMetal)
-				.properties(p -> p.mapColor(color.getMapColor()))
-				.transform(pickaxeOnly())
-				.blockstate(new ColorfulWhistleGenerator(color)::generate)
-				.recipe((c, p) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, c.get())
-						.requires(color.getTag())
-						.requires(CCPTags.ColorfulItemTags.STEAM_WHISTLES.tag)
-						.unlockedBy("has_steam_whistle", RegistrateRecipeProvider.has(AllBlocks.STEAM_WHISTLE.asItem()))
-						.save(p, ColorfulPipes.asResource("steam_whistle/" + c.getName()))
-				)
-				.tag(CCPTags.ColorfulBlockTags.COLORFUL_STEAM_WHISTLES.tag)
-				.item()
-				.tag(CCPTags.ColorfulItemTags.COLORFUL_STEAM_WHISTLES.tag)
-				.tag(CCPTags.ColorfulItemTags.STEAM_WHISTLES.tag)
-				.model((c, p) ->
-						p.withExistingParent(c.getName(), Create.asResource("block/steam_whistle/item"))
-								.texture("1", ColorfulPipes.asResource("block/engine/" + colorName))
-								.texture("2", ColorfulPipes.asResource("block/copper_redstone_plate/" + colorName))
-				)
-				.build()
-				.register();
-	});
-
-	public static final BlockEntry<ColorfulWhistleExtenderBlock> COLORFUL_STEAM_WHISTLE_EXTENSION =
-			REGISTRATE.block("steam_whistle_extension", ColorfulWhistleExtenderBlock::new)
-					.initialProperties(SharedProperties::copperMetal)
-					.properties(p -> p.mapColor(MapColor.GOLD).forceSolidOn())
-					.transform(pickaxeOnly())
-					.blockstate(BlockStateGen.whistleExtender())
-					.register();
-
-	public static final DyedBlockList<TableClothBlock> COLORFUL_TABLE_CLOTHS = new DyedBlockList<>(color -> {
-		String colorName = color.getSerializedName();
-		return REGISTRATE.block(colorName + "_copper_table_cloth", p -> new ColorfulTableClothBlock(p, "copper", color))
-				.transform(CCPBuilderTransformers.colorfultableCloth(color, SharedProperties::copperMetal, false))
-				.properties(p -> p.mapColor(color))
-				.blockstate((c, p) -> {
-					p.simpleBlock(c.get(), p.models().withExistingParent(c.getName(), Create.asResource("block/table_cloth/block"))
-							.texture("0", ColorfulPipes.asResource("block/table_cloth/" + colorName)));
-				})
-				.recipe((c, p) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, c.get())
-						.requires(color.getTag())
-						.requires(CCPTags.ColorfulItemTags.COPPER_TABLE_CLOTHS.tag)
-						.unlockedBy("has_copper_table_cloth", RegistrateRecipeProvider.has(AllBlocks.COPPER_TABLE_CLOTH.asItem()))
-						.save(p, ColorfulPipes.asResource("copper_table_cloth/" + c.getName()))
-				)
-				.register();
-	});
-
-	public static final DyedBlockList<CasingBlock> COLORFUL_COPPER_CASING = new DyedBlockList<>(color -> {
-		String colorName = color.getSerializedName();
-		return REGISTRATE.block(colorName + "_copper_casing", p -> new ColorfulCasingBlock(p, color))
-				.properties(p -> p.mapColor(color.getMapColor()).sound(SoundType.COPPER))
-				.transform(CCPBuilderTransformers.colorfulCasing(color))
-				.recipe((c, p) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, c.get())
-						.requires(color.getTag())
-						.requires(CCPTags.ColorfulItemTags.COPPER_CASINGS.tag)
-						.unlockedBy("has_copper_casing", RegistrateRecipeProvider.has(AllBlocks.STEAM_WHISTLE.asItem()))
-						.save(p, ColorfulPipes.asResource("copper_casing/" + c.getName()))
-				)
-				.tag(CCPTags.ColorfulBlockTags.COLORFUL_COPPER_CASINGS.tag)
-				.item()
-				.tag(CCPTags.ColorfulItemTags.COLORFUL_COPPER_CASINGS.tag)
-				.tag(CCPTags.ColorfulItemTags.COPPER_CASINGS.tag)
-				.build()
-				.register();
-	});
-
-	public static final DyedBlockList<MetalScaffoldingBlock> COLORFUL_COPPER_SCAFFOLD = new DyedBlockList<>(color -> {
-		String colorName = color.getSerializedName();
-		return REGISTRATE.block(colorName + "_copper_scaffolding", p -> new ColorfulMetalScaffoldingBlock(p, color))
-				.properties(p -> p.mapColor(color.getMapColor()))
-				.transform(CCPBuilderTransformers.colorfulscaffold(CCPSpriteShifts.COLORFUL_COPPER_SCAFFOLD.get(color),
-						CCPSpriteShifts.COLORFUL_COPPER_SCAFFOLD_INSIDE.get(color), CCPSpriteShifts.COLORFUL_COPPER_CASING.get(color)))
-				.blockstate((c, p) -> p.getVariantBuilder(c.get())
-						.forAllStatesExcept(s -> {
-							String suffix = s.getValue(MetalScaffoldingBlock.BOTTOM) ? "_horizontal" : "";
-							return ConfiguredModel.builder()
-									.modelFile(p.models()
-											.withExistingParent(c.getName() + suffix, Create.asResource("block/scaffold/block" + suffix))
-											.texture("top", ColorfulPipes.asResource("block/copper_funnel_frame/" + colorName))
-											.texture("inside", ColorfulPipes.asResource("block/copper_scaffold_inside/" + colorName))
-											.texture("side", ColorfulPipes.asResource("block/copper_scaffold/" + colorName))
-											.texture("casing", ColorfulPipes.asResource("block/copper_casing/" + colorName))
-											.texture("particle", ColorfulPipes.asResource("block/copper_scaffold/" + colorName)))
-									.build();
-						}, MetalScaffoldingBlock.WATERLOGGED, MetalScaffoldingBlock.DISTANCE))
-				//.onRegister(connectedTextures(() ->new ColorfulEncasedCTBehaviour(color)))
-				//.onRegister(casingConnectivity((block, cc) -> cc.make(block, CCPSpriteShifts.COLORFUL_COPPER_CASING.get(color))))
-				.recipe((c, p) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, c.get())
-						.requires(color.getTag())
-						.requires(CCPTags.ColorfulItemTags.COPPER_SCAFFOLDS.tag)
-						.unlockedBy("has_copper_scaffolding", RegistrateRecipeProvider.has(AllBlocks.COPPER_SCAFFOLD.asItem()))
-						.save(p, ColorfulPipes.asResource("copper_scaffolding/" + c.getName()))
-				)
-				.tag(CCPTags.ColorfulBlockTags.COLORFUL_COPPER_SCAFFOLDS.tag)
-				.register();
-	});
-
-	public static final DyedBlockList<MetalLadderBlock> COLORFUL_COPPER_LADDER = new DyedBlockList<>(color -> {
-		String colorName = color.getSerializedName();
-		return REGISTRATE.block(colorName + "_copper_ladder", p -> new ColorfulMetalLadderBlock(p, color))
-				.transform(CCPBuilderTransformers.colorfulladder(color))
-				.recipe((c, p) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, c.get())
-						.requires(color.getTag())
-						.requires(CCPTags.ColorfulItemTags.COPPER_LADDERS.tag)
-						.unlockedBy("has_copper_ladder", RegistrateRecipeProvider.has(AllBlocks.COPPER_LADDER.asItem()))
-						.save(p, ColorfulPipes.asResource("copper_ladder/" + c.getName()))
-				)
-				.register();
-	});
-
-//
-//	public static final DyedBlockList<SlidingDoorBlock> COLORFUL_COPPER_DOOR = new DyedBlockList<>(color -> {
-//		String colorName = color.getSerializedName();
-//		return REGISTRATE.block(colorName + "_copper_door", p -> ColorfulSlidingDoorBlock.stone(p, true))
-//				.transform(BuilderTransformers.slidingDoor("copper"))
-//				.properties(p -> p.mapColor(color).noOcclusion())
-//				.register();
-//	});
-//
-//
-//	public static final DyedBlockList<IronBarsBlock> COLORFUL_COPPER_BARS = new DyedBlockList<>(color -> {
-//		return MetalBarsGen.createBars("copper", true,
-//				() -> DataIngredient.tag(CommonMetal.COPPER.ingots), MapColor.COLOR_ORANGE);
-//	});
-
 
 	public static void register() {
 	}
 }
-
-
-
-
-
-

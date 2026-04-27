@@ -49,7 +49,7 @@ public class CCPCreativeTabs {
 
 	public static final TabInfo PALETTES = register("palettes", () -> FabricItemGroup.builder()
 			.title(Component.translatable("itemGroup.colorfulpipes.palettes"))
-			.icon(() -> CCPBlocks.COLORFUL_COPPER_CASING.get(DyeColor.RED).asStack())
+			.icon(() -> CCPPaletteBlocks.COLORFUL_COPPER_CASING.get(DyeColor.RED).asStack())
 			.displayItems(new ItemDisplay(true, () -> CCPCreativeTabs.PALETTES))
 			.build());
 
@@ -91,7 +91,13 @@ public class CCPCreativeTabs {
 			Set<Item> exclusions = new ReferenceOpenHashSet<>();
 
 			List<ItemProviderEntry<?>> simpleExclusions = List.of(
+					CCPPaletteBlocks.COPPER_ENCASED_COGWHEEL,
+					CCPPaletteBlocks.COPPER_ENCASED_LARGE_COGWHEEL
 			);
+
+			for (ItemProviderEntry<?> entry : simpleExclusions) {
+				exclusions.add(entry.asItem());
+			}
 
 			return exclusions::contains;
 		}
@@ -153,25 +159,6 @@ public class CCPCreativeTabs {
 				return CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS;
 			};
 		}
-
-		private static final DyeColor[] COLOR_ORDER = new DyeColor[]{
-				DyeColor.WHITE,
-				DyeColor.LIGHT_GRAY,
-				DyeColor.GRAY,
-				DyeColor.BLACK,
-				DyeColor.BROWN,
-				DyeColor.RED,
-				DyeColor.ORANGE,
-				DyeColor.YELLOW,
-				DyeColor.LIME,
-				DyeColor.GREEN,
-				DyeColor.LIGHT_BLUE,
-				DyeColor.CYAN,
-				DyeColor.BLUE,
-				DyeColor.PURPLE,
-				DyeColor.MAGENTA,
-				DyeColor.PINK
-		};
 
 		@Override
 		public void accept(CreativeModeTab.ItemDisplayParameters parameters, CreativeModeTab.Output output) {

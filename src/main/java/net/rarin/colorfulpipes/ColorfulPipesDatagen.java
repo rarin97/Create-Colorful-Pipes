@@ -2,6 +2,7 @@ package net.rarin.colorfulpipes;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.simibubi.create.foundation.data.recipe.CreateStandardRecipeGen;
 import com.simibubi.create.foundation.utility.FilesHelper;
 import com.tterrag.registrate.providers.ProviderType;
 import io.github.fabricators_of_create.porting_lib.data.ExistingFileHelper;
@@ -9,6 +10,7 @@ import net.createmod.ponder.foundation.PonderIndex;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.rarin.colorfulpipes.Datagen.CCPRecipeProvider;
+import net.rarin.colorfulpipes.Datagen.CCPStandardRecipeGen;
 import net.rarin.colorfulpipes.Datagen.CCPTagGen;
 
 import java.util.Map;
@@ -31,6 +33,7 @@ public class ColorfulPipesDatagen implements DataGeneratorEntrypoint {
 		ColorfulPipes.REGISTRATE.addLang("itemGroup", ColorfulPipes.asResource("main"), "Colorful Pipes");
 
 		pack.addProvider(CCPRecipeProvider::registerAllProcessing);
+		pack.addProvider(CCPStandardRecipeGen::new);
 	}
 
 	private static void addExtraRegistrateData() {

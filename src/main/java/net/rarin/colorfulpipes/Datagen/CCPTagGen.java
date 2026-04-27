@@ -4,10 +4,12 @@ import com.simibubi.create.AllBlocks;
 import com.simibubi.create.foundation.data.TagGen;
 import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.providers.RegistrateTagsProvider;
-
+import io.github.fabricators_of_create.porting_lib.tags.Tags;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.rarin.colorfulpipes.CCPTags.ColorfulBlockTags;
+import net.rarin.colorfulpipes.CCPBlocks;
+import net.rarin.colorfulpipes.CCPPaletteBlocks;
 import net.rarin.colorfulpipes.CCPTags.ColorfulItemTags;
 import net.rarin.colorfulpipes.ColorfulPipes;
 
@@ -20,8 +22,6 @@ public class CCPTagGen {
 	private static void genBlockTags(RegistrateTagsProvider<Block> provIn) {
 		TagGen.CreateTagsProvider<Block> prov = new TagGen.CreateTagsProvider<>(provIn, Block::builtInRegistryHolder);
 
-		prov.tag(ColorfulBlockTags.COLORFUL_PIPES.tag)
-				.add(AllBlocks.FLUID_PIPE.get());
 	}
 
 	private static void genItemTags(RegistrateTagsProvider<Item> provIn) {
@@ -51,6 +51,9 @@ public class CCPTagGen {
 		prov.tag(ColorfulItemTags.PORTABLE_FLUID_INTERFACES.tag)
 				.add(AllBlocks.PORTABLE_FLUID_INTERFACE.get().asItem());
 
+		prov.tag(ColorfulItemTags.HOSE_PULLEYS.tag)
+				.add(AllBlocks.HOSE_PULLEY.get().asItem());
+
 		prov.tag(ColorfulItemTags.STEAM_WHISTLES.tag)
 				.add(AllBlocks.STEAM_WHISTLE.get().asItem());
 
@@ -65,5 +68,12 @@ public class CCPTagGen {
 
 		prov.tag(ColorfulItemTags.COPPER_LADDERS.tag)
 				.add(AllBlocks.COPPER_LADDER.get().asItem());
+
+		prov.tag(ColorfulItemTags.COPPER_BARS.tag)
+				.add(AllBlocks.COPPER_BARS.get().asItem());
+
+		prov.tag(ColorfulItemTags.COPPER_DOORS.tag)
+				.add(AllBlocks.COPPER_DOOR.get().asItem());
+
 	}
 }

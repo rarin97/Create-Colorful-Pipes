@@ -26,6 +26,7 @@ public class ColorfulPipes implements ModInitializer {
 		LOGGER.info("initializing Create Colorful Pipes");
 		CCPCreativeTabs.register();
 		CCPBlocks.register();
+		CCPPaletteBlocks.register();
 		CCPBlockEntityTypes.register();
 		REGISTRATE.register();
 

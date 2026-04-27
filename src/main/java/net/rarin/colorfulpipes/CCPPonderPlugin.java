@@ -10,7 +10,7 @@ import net.rarin.colorfulpipes.Ponder.CCPPonderScenes;
 public class CCPPonderPlugin implements PonderPlugin {
 	@Override
 	public String getModId() {
-		return Create.ID;
+		return ColorfulPipes.ID;
 	}
 
 	@Override

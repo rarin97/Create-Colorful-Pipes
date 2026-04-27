@@ -1,0 +1,8 @@
+{
+  "parent": "colorfulpipes:block/white_copper_door/block_bottom",
+	"textures": {
+		"0": "colorfulpipes:block/copper_door_side/light_blue",
+		"2": "colorfulpipes:block/copper_door_bottom/light_blue",
+		"particle": "colorfulpipes:block/copper_casing/light_blue"
+	}
+}
