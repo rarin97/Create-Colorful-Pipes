@@ -1,6 +1,8 @@
 package net.rarin.colorfulpipes;
 
+import com.simibubi.create.content.fluids.drain.ItemDrainBlock;
 import com.simibubi.create.foundation.data.CreateRegistrate;
+import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.entry.ItemProviderEntry;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import it.unimi.dsi.fastutil.objects.Reference2ObjectOpenHashMap;
@@ -21,9 +23,16 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.item.CreativeModeTab.TabVisibility;
+import net.minecraft.world.item.CreativeModeTab.Output;
+import net.minecraft.world.item.CreativeModeTab.DisplayItemsGenerator;
+import net.minecraft.world.item.CreativeModeTab.ItemDisplayParameters;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
+
+import net.rarin.colorfulpipes.content.drain.ColorfulDrainBlock;
+
 import org.apache.commons.lang3.mutable.MutableObject;
 import java.util.LinkedList;
 import java.util.List;
@@ -32,12 +41,14 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
+import static net.minecraft.world.item.CreativeModeTab.builder;
+
 public class CCPCreativeTabs {
 	private static final DeferredRegister<CreativeModeTab> REGISTER =
 			DeferredRegister.create(Registries.CREATIVE_MODE_TAB, ColorfulPipes.ID);
 
 	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> MAIN = REGISTER.register("base",
-			() -> CreativeModeTab.builder()
+			() -> builder()
 					.title(Component.translatable("itemGroup.colorfulpipes.main"))
 					.withTabsBefore(com.simibubi.create.AllCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
 					.icon(() -> CCPBlocks.COLORFUL_SMART_FLUID_PIPES.get(DyeColor.ORANGE).asStack())
@@ -45,7 +56,7 @@ public class CCPCreativeTabs {
 					.build());
 
 	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> PALETTES = REGISTER.register("palettes",
-			() -> CreativeModeTab.builder()
+			() -> builder()
 					.title(Component.translatable("itemGroup.colorfulpipes.palettes"))
 					.withTabsBefore(com.simibubi.create.AllCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
 					.icon(() -> CCPPaletteBlocks.COLORFUL_COPPER_CASING.get(DyeColor.RED).asStack())
@@ -57,7 +68,7 @@ public class CCPCreativeTabs {
 		REGISTER.register(modEventBus);
 	}
 
-	public static class ItemDisplay implements CreativeModeTab.DisplayItemsGenerator {
+	public static class ItemDisplay implements DisplayItemsGenerator {
 		private static final Predicate<Item> IS_ITEM_3D_PREDICATE;
 
 		static {
@@ -134,10 +145,10 @@ public class CCPCreativeTabs {
 			};
 		}
 
-		private static Function<Item, CreativeModeTab.TabVisibility> makeVisibilityFunc() {
-			Map<Item, CreativeModeTab.TabVisibility> visibilities = new Reference2ObjectOpenHashMap<>();
+		private static Function<Item, TabVisibility> makeVisibilityFunc() {
+			Map<Item, TabVisibility> visibilities = new Reference2ObjectOpenHashMap<>();
 
-			Map<ItemProviderEntry<?, ?>, CreativeModeTab.TabVisibility> simpleVisibilities = Map.of(
+			Map<ItemProviderEntry<?, ?>, TabVisibility> simpleVisibilities = Map.of(
 			);
 
 			simpleVisibilities.forEach((entry, factory) -> {
@@ -145,20 +156,20 @@ public class CCPCreativeTabs {
 			});
 
 			return item -> {
-				CreativeModeTab.TabVisibility visibility = visibilities.get(item);
+				TabVisibility visibility = visibilities.get(item);
 				if (visibility != null) {
 					return visibility;
 				}
-				return CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS;
+				return TabVisibility.PARENT_AND_SEARCH_TABS;
 			};
 		}
 
 		@Override
-		public void accept(CreativeModeTab.ItemDisplayParameters parameters, CreativeModeTab.Output output) {
+		public void accept(ItemDisplayParameters parameters, Output output) {
 			Predicate<Item> exclusionPredicate = makeExclusionPredicate();
 			List<ItemOrdering> orderings = makeOrderings();
 			Function<Item, ItemStack> stackFunc = makeStackFunc();
-			Function<Item, CreativeModeTab.TabVisibility> visibilityFunc = makeVisibilityFunc();
+			Function<Item, TabVisibility> visibilityFunc = makeVisibilityFunc();
 
 			List<Item> items = new LinkedList<>();
 			if (addItems) {
@@ -224,7 +235,7 @@ public class CCPCreativeTabs {
 			}
 		}
 
-		private static void outputAll(CreativeModeTab.Output output, List<Item> items, Function<Item, ItemStack> stackFunc, Function<Item, CreativeModeTab.TabVisibility> visibilityFunc) {
+		private static void outputAll(Output output, List<Item> items, Function<Item, ItemStack> stackFunc, Function<Item, TabVisibility> visibilityFunc) {
 			for (Item item : items) {
 				output.accept(stackFunc.apply(item), visibilityFunc.apply(item));
 			}

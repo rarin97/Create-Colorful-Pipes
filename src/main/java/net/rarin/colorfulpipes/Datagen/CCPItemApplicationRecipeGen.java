@@ -8,9 +8,13 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Items;
 import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
+import net.neoforged.neoforge.common.conditions.NotCondition;
 import net.rarin.colorfulpipes.CCPBlocks;
 import net.rarin.colorfulpipes.CCPPaletteBlocks;
 import net.rarin.colorfulpipes.ColorfulPipes;
+import net.rarin.colorfulpipes.compat.Create_Connected.CCBlocks;
+import net.rarin.colorfulpipes.compat.Mods;
 
 import java.util.EnumMap;
 import java.util.concurrent.CompletableFuture;
@@ -31,7 +35,7 @@ public class CCPItemApplicationRecipeGen extends ItemApplicationRecipeGen {
 	final EnumMap<DyeColor, GeneratedRecipe> COLORFUL_COPPER_GLASS_CASING = new EnumMap<>(DyeColor.class);
 	final EnumMap<DyeColor, GeneratedRecipe> COLORFUL_COPPER_TINTED_GLASS_CASING = new EnumMap<>(DyeColor.class);
 	final EnumMap<DyeColor, GeneratedRecipe> COLORFUL_COPPER_SCAFFOLD = new EnumMap<>(DyeColor.class);
-	final EnumMap<DyeColor, GeneratedRecipe> COLORFUL_COPPER_LADDER = new EnumMap<>(DyeColor.class);
+	final EnumMap<DyeColor, GeneratedRecipe> COLORFUL_FLUID_VESSELS = new EnumMap<>(DyeColor.class);
 
 	{
 		for (DyeColor color : DyeColor.values()) {
@@ -55,10 +59,17 @@ public class CCPItemApplicationRecipeGen extends ItemApplicationRecipeGen {
 //							.require(color.getTag())
 //							.output(CCPBlocks.COLORFUL_FLUID_VALVES.get(color))));
 
-//			COLORFUL_FLUID_TANKS.put(color, create(color.getName() + "_fluid_tank",
-//					b -> b.require(AllBlocks.FLUID_TANK)
-//							.require(color.getTag())
-//							.output(CCPBlocks.COLORFUL_FLUID_TANKS.get(color))));
+			COLORFUL_FLUID_TANKS.put(color, create(color.getName() + "_fluid_tank",
+					b -> b.require(AllBlocks.FLUID_TANK)
+							.require(color.getTag())
+							.output(CCPBlocks.COLORFUL_FLUID_TANKS.get(color))
+							.withCondition(new NotCondition(new ModLoadedCondition(Mods.BITS_N_BOBS.id())))));
+
+			COLORFUL_FLUID_VESSELS.put(color, create(color.getName() + "_fluid_vessel",
+					b -> b.require(com.hlysine.create_connected.CCBlocks.FLUID_VESSEL)
+							.require(color.getTag())
+							.output(CCBlocks.COLORFUL_FLUID_VESSELS.get(color))
+							.withCondition(new ModLoadedCondition(Mods.CREATE_CONNECTED.id()))));
 
 			COLORFUL_SPOUTS.put(color, create(color.getName() + "_spout",
 					b -> b.require(AllBlocks.SPOUT.asItem())

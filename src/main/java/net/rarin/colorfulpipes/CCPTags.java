@@ -1,5 +1,6 @@
 package net.rarin.colorfulpipes;
 
+import com.hlysine.create_connected.CreateConnected;
 import com.simibubi.create.Create;
 import net.createmod.catnip.lang.Lang;
 import net.minecraft.core.registries.Registries;
@@ -7,16 +8,20 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.rarin.colorfulpipes.compat.Mods;
+
 import org.jetbrains.annotations.Nullable;
 
 import static net.rarin.colorfulpipes.CCPTags.NameSpace.CREATE;
+import static net.rarin.colorfulpipes.CCPTags.NameSpace.CREATE_CONNECTED;
 
 public class CCPTags {
 	public enum NameSpace {
 
 		MOD(ColorfulPipes.ID),
 		COMMON("c"),
-		CREATE(Create.ID);
+		CREATE(Create.ID),
+		CREATE_CONNECTED(Mods.CREATE_CONNECTED.id());
 
 		public final String id;
 
@@ -53,6 +58,7 @@ public class CCPTags {
 		COLORFUL_COPPER_LADDERS,
 		COLORFUL_COPPER_BARS,
 		COLORFUL_COPPER_DOORS,
+		COLORFUL_FLUID_VESSELS,
 
 		FLUID_PIPES(CREATE),
 		COPPER_CASINGS(CREATE),
@@ -71,7 +77,8 @@ public class CCPTags {
 		COPPER_TABLE_CLOTHS(CREATE),
 		COPPER_LADDERS(CREATE),
 		COPPER_BARS(CREATE),
-		COPPER_DOORS(CREATE);
+		COPPER_DOORS(CREATE),
+		FLUID_VESSELS(CREATE_CONNECTED);
 
 		public final TagKey<Item> tag;
 
@@ -107,7 +114,8 @@ public class CCPTags {
 			COLORFUL_COPPER_SCAFFOLDS,
 			COLORFUL_COPPER_LADDERS,
 			COLORFUL_COPPER_BARS,
-			COLORFUL_COPPER_DOORS;
+			COLORFUL_COPPER_DOORS,
+			COLORFUL_FLUID_VESSELS;
 
 			public final TagKey<Block> tag;
 

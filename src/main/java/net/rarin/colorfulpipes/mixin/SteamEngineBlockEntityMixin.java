@@ -5,12 +5,13 @@ import com.simibubi.create.content.kinetics.steamEngine.SteamEngineBlockEntity;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.rarin.colorfulpipes.content.steamEngine.ColorfulSteamEngineBlock;
+import net.rarin.colorfulpipes.compat.Create_Connected.content.ColorfulFluidVesselBlock;
+import net.rarin.colorfulpipes.compat.Mods;
 import net.rarin.colorfulpipes.content.tank.ColorfulFluidTankBlock;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(value = SteamEngineBlockEntity.class, remap = false)
@@ -31,6 +32,13 @@ public abstract class SteamEngineBlockEntityMixin {
 		if (state.getBlock() instanceof ColorfulFluidTankBlock) {
 			cir.setReturnValue(true);
 			cir.cancel();
+		}
+
+		if (Mods.CREATE_CONNECTED.isLoaded()) {
+			if (state.getBlock() instanceof ColorfulFluidVesselBlock) {
+				cir.setReturnValue(true);
+				cir.cancel();
+			}
 		}
 	}
 }

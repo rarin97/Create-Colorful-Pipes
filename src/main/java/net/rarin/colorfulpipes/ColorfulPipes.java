@@ -1,5 +1,6 @@
 package net.rarin.colorfulpipes;
 
+import com.mojang.logging.LogUtils;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.item.ItemDescription;
 import com.simibubi.create.foundation.item.KineticStats;
@@ -12,11 +13,18 @@ import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
+import net.rarin.colorfulpipes.compat.Create_Connected.CCBlockEntityTypes;
+import net.rarin.colorfulpipes.compat.Create_Connected.CCBlocks;
+import net.rarin.colorfulpipes.compat.Create_Connected.CCMountedStorageTypes;
+import net.rarin.colorfulpipes.compat.Mods;
+
+import org.slf4j.Logger;
 
 @Mod(ColorfulPipes.ID)
 public class ColorfulPipes {
     public static final String ID = "colorfulpipes";
     public static final String NAME = "ColorfulPipes";
+	public static final Logger LOGGER = LogUtils.getLogger();
 
     public static IEventBus modEventBus;
     public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(ID)
@@ -34,6 +42,12 @@ public class ColorfulPipes {
         CCPBlocks.register();
 		CCPPaletteBlocks.register();
         CCPBlockEntityTypes.register();
+
+		if (Mods.CREATE_CONNECTED.isLoaded()) {
+			CCBlocks.register();
+			CCBlockEntityTypes.register();
+			CCMountedStorageTypes.register();
+		}
 
         CCPMountedStorageTypes.register();
         CCPDisplaySources.register();

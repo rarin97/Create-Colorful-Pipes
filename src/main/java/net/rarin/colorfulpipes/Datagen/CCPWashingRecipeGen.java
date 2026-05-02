@@ -1,13 +1,16 @@
 package net.rarin.colorfulpipes.Datagen;
 
+import com.hlysine.create_connected.CCBlocks;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.api.data.recipe.WashingRecipeGen;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
+import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
 import net.rarin.colorfulpipes.CCPPaletteBlocks;
 import net.rarin.colorfulpipes.ColorfulPipes;
 import net.rarin.colorfulpipes.CCPTags.ColorfulItemTags;
+import net.rarin.colorfulpipes.compat.Mods;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -81,7 +84,13 @@ public class CCPWashingRecipeGen extends WashingRecipeGen {
 
 	COLORFUL_COPPER_DOOR = create("copper_door",
 			b -> b.require(ColorfulItemTags.COLORFUL_COPPER_DOORS.tag)
-					.output(AllBlocks.COPPER_DOOR.asItem()));
+					.output(AllBlocks.COPPER_DOOR.asItem())),
+
+	COLORFUL_FLUID_VESSELS = create("fluid_vessel",
+			b -> b.require(ColorfulItemTags.COLORFUL_FLUID_VESSELS.tag)
+					.output(CCBlocks.FLUID_VESSEL.asItem())
+					.withCondition(new ModLoadedCondition(Mods.CREATE_CONNECTED.id())));
+
 
 
 

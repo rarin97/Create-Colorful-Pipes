@@ -1,0 +1,22 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "create_connected"
+    }
+  ],
+  "type": "create:item_application",
+  "ingredients": [
+    {
+      "item": "create_connected:fluid_vessel"
+    },
+    {
+      "tag": "c:dyes/orange"
+    }
+  ],
+  "results": [
+    {
+      "id": "colorfulpipes:orange_fluid_vessel"
+    }
+  ]
+}

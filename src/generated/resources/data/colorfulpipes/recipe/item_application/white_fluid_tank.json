@@ -1,0 +1,25 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:mod_loaded",
+        "modid": "bits_n_bobs"
+      }
+    }
+  ],
+  "type": "create:item_application",
+  "ingredients": [
+    {
+      "item": "create:fluid_tank"
+    },
+    {
+      "tag": "c:dyes/white"
+    }
+  ],
+  "results": [
+    {
+      "id": "colorfulpipes:white_fluid_tank"
+    }
+  ]
+}

@@ -121,7 +121,6 @@ public class ColorfulFluidPipeBlock extends FluidPipeBlock {
 	@Override
 	public ItemInteractionResult useItemOn(ItemStack stack,BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
 
-
 		if (stack.getItem() instanceof DyeItem dye) {
 			DyeColor dyeColor = dye.getDyeColor();
 

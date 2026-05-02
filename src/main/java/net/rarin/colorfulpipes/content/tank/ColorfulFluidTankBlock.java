@@ -42,15 +42,7 @@ public class ColorfulFluidTankBlock extends FluidTankBlock {
 			if (!level.isClientSide) {
 				level.levelEvent(2001, pos, Block.getId(state));
 
-				FluidTankBlockEntity oldTank = (FluidTankBlockEntity) level.getBlockEntity(pos);
-				if (oldTank == null) return ItemInteractionResult.SUCCESS;
-
 				level.setBlock(pos, CCPBlocks.COLORFUL_FLUID_TANKS.get(dyeColor).getDefaultState(), 3);
-
-				FluidTankBlockEntity newTank = (FluidTankBlockEntity) level.getBlockEntity(pos);
-				if (newTank != null) {
-					newTank.getTank(0);
-				}
 			}
 			return ItemInteractionResult.SUCCESS;
 		}
@@ -58,6 +50,6 @@ public class ColorfulFluidTankBlock extends FluidTankBlock {
 	}
 
 	public BlockEntityType<? extends FluidTankBlockEntity> getBlockEntityType() {
-		return CCPBlockEntityTypes.COLORFUL_FLUID_TANKS.get();
+		return CCPBlockEntityTypes.COLORFUL_FLUID_TANKS.get(color).get();
 	}
 }

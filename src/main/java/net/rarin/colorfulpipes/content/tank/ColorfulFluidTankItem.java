@@ -1,12 +1,11 @@
 package net.rarin.colorfulpipes.content.tank;
 
-import com.simibubi.create.AllBlockEntityTypes;
-import com.simibubi.create.AllBlocks;
 import com.simibubi.create.api.connectivity.ConnectivityHandler;
 import com.simibubi.create.content.equipment.symmetryWand.SymmetryWandItem;
-import com.simibubi.create.content.fluids.tank.FluidTankBlock;
 import com.simibubi.create.content.fluids.tank.FluidTankBlockEntity;
 import com.simibubi.create.content.fluids.tank.FluidTankItem;
+import com.simibubi.create.foundation.block.IBE;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionResult;
@@ -16,7 +15,6 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.rarin.colorfulpipes.CCPBlockEntityTypes;
 
 public class ColorfulFluidTankItem extends FluidTankItem {
 	public ColorfulFluidTankItem(Block block, Properties properties) {
@@ -52,8 +50,7 @@ public class ColorfulFluidTankItem extends FluidTankItem {
 			return;
 		if (SymmetryWandItem.presentInHotbar(player))
 			return;
-		FluidTankBlockEntity tankAt = ConnectivityHandler.partAt(
-				CCPBlockEntityTypes.COLORFUL_FLUID_TANKS.get(), world, placedOnPos
+		FluidTankBlockEntity tankAt = ConnectivityHandler.partAt(((IBE)this.getBlock()).getBlockEntityType(), world, placedOnPos
 		);
 		if (tankAt == null)
 			return;

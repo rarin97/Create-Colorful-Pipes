@@ -1,5 +1,6 @@
 package net.rarin.colorfulpipes.Datagen;
 
+import com.hlysine.create_connected.CCBlocks;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.foundation.data.TagGen;
 import com.tterrag.registrate.providers.ProviderType;
@@ -13,6 +14,7 @@ import net.rarin.colorfulpipes.CCPBlocks;
 import net.rarin.colorfulpipes.CCPPaletteBlocks;
 import net.rarin.colorfulpipes.ColorfulPipes;
 import net.rarin.colorfulpipes.CCPTags.ColorfulItemTags;
+import net.rarin.colorfulpipes.compat.Mods;
 
 public class CCPTagGen {
 	public static void addGenerators() {
@@ -75,6 +77,11 @@ public class CCPTagGen {
 
 		prov.tag(ColorfulItemTags.COPPER_DOORS.tag)
 				.add(AllBlocks.COPPER_DOOR.get().asItem());
+
+		if (Mods.CREATE_CONNECTED.isLoaded()) {
+			prov.tag(ColorfulItemTags.FLUID_VESSELS.tag)
+					.add(CCBlocks.FLUID_VESSEL.get().asItem());
+		}
 
 		prov.tag(Tags.Items.DYED_WHITE)
 				.add(CCPBlocks.COLORFUL_FLUID_PIPES.get(DyeColor.WHITE).asItem(),

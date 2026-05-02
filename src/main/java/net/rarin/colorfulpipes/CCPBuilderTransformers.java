@@ -238,7 +238,7 @@ public class CCPBuilderTransformers {
 	}
 
 	public static <B extends EncasedShaftBlock, P> NonNullUnaryOperator<BlockBuilder<B, P>> encasedShaft(Supplier<CTSpriteShiftEntry> casingShift) {
-		return builder -> encasedBase(builder, () -> AllBlocks.SHAFT.get())
+		return builder -> encasedBase(builder, AllBlocks.SHAFT::get)
 				.onRegister(CreateRegistrate.connectedTextures(() -> new EncasedCTBehaviour(casingShift.get())))
 				.onRegister(CreateRegistrate.casingConnectivity((block, cc) -> cc.make(block, casingShift.get(),
 						(s, f) -> f.getAxis() != s.getValue(EncasedShaftBlock.AXIS))))
@@ -249,7 +249,7 @@ public class CCPBuilderTransformers {
 	}
 
 	public static <B extends EncasedShaftBlock, P> NonNullUnaryOperator<BlockBuilder<B, P>> colorfulencasedShaft(DyeColor color) {
-		return builder -> encasedBase(builder, () -> AllBlocks.SHAFT.get())
+		return builder -> encasedBase(builder, AllBlocks.SHAFT::get)
 				.onRegister(connectedTextures(() ->new ColorfulEncasedCTBehaviour(color)))
 				.onRegister(casingConnectivity((block, cc) -> cc.make(block, CCPSpriteShifts.COLORFUL_COPPER_CASING.get(color),
 						(s, f) -> f.getAxis() != s.getValue(EncasedShaftBlock.AXIS))))
@@ -260,7 +260,7 @@ public class CCPBuilderTransformers {
 	}
 
 	public static <B extends EncasedShaftBlock, P> NonNullUnaryOperator<BlockBuilder<B, P>> glassencasedShaft(Supplier<CTSpriteShiftEntry> casingShift) {
-		return builder -> encasedBase(builder, () -> AllBlocks.SHAFT.get())
+		return builder -> encasedBase(builder, AllBlocks.SHAFT::get)
 				.addLayer(() -> RenderType::cutoutMipped)
 				.onRegister(CreateRegistrate.connectedTextures(() -> new EncasedCTBehaviour(casingShift.get())))
 				.onRegister(CreateRegistrate.casingConnectivity((block, cc) -> cc.make(block, casingShift.get(),
@@ -272,7 +272,7 @@ public class CCPBuilderTransformers {
 	}
 
 	public static <B extends EncasedShaftBlock, P> NonNullUnaryOperator<BlockBuilder<B, P>> colorfulglassencasedShaft(DyeColor color) {
-		return builder -> encasedBase(builder, () -> AllBlocks.SHAFT.get())
+		return builder -> encasedBase(builder, AllBlocks.SHAFT::get)
 				.addLayer(() -> RenderType::cutoutMipped)
 				.onRegister(connectedTextures(() ->new ColorfulGlassCTBehaviour(color)))
 				.onRegister(casingConnectivity((block, cc) -> cc.make(block, CCPSpriteShifts.COLORFUL_COPPER_GLASS_CASING.get(color),
@@ -284,7 +284,7 @@ public class CCPBuilderTransformers {
 	}
 
 	public static <B extends EncasedShaftBlock, P> NonNullUnaryOperator<BlockBuilder<B, P>> tintedglassencasedShaft(Supplier<CTSpriteShiftEntry> casingShift) {
-		return builder -> encasedBase(builder, () -> AllBlocks.SHAFT.get())
+		return builder -> encasedBase(builder, AllBlocks.SHAFT::get)
 				.addLayer(() -> RenderType::translucent)
 				.onRegister(CreateRegistrate.connectedTextures(() -> new EncasedCTBehaviour(casingShift.get())))
 				.onRegister(CreateRegistrate.casingConnectivity((block, cc) -> cc.make(block, casingShift.get(),
@@ -296,7 +296,7 @@ public class CCPBuilderTransformers {
 	}
 
 	public static <B extends EncasedShaftBlock, P> NonNullUnaryOperator<BlockBuilder<B, P>> colorfultintedglassencasedShaft(DyeColor color) {
-		return builder -> encasedBase(builder, () -> AllBlocks.SHAFT.get())
+		return builder -> encasedBase(builder, AllBlocks.SHAFT::get)
 				.addLayer(() -> RenderType::translucent)
 				.onRegister(connectedTextures(() ->new ColorfulTintedGlassCTBehaviour(color)))
 				.onRegister(casingConnectivity((block, cc) -> cc.make(block, CCPSpriteShifts.COLORFUL_COPPER_TINTED_GLASS_CASING.get(color),
@@ -308,20 +308,20 @@ public class CCPBuilderTransformers {
 	}
 
 	public static <B extends EncasedCogwheelBlock, P> NonNullUnaryOperator<BlockBuilder<B, P>> encasedCogwheel(Supplier<CTSpriteShiftEntry> casingShift) {
-		return b -> encasedCogwheelBase(b, casingShift, () -> AllBlocks.COGWHEEL.get(), false);
+		return b -> encasedCogwheelBase(b, casingShift, AllBlocks.COGWHEEL::get, false);
 	}
 
 	public static <B extends EncasedCogwheelBlock, P> NonNullUnaryOperator<BlockBuilder<B, P>> encasedLargeCogwheel(Supplier<CTSpriteShiftEntry> casingShift) {
-		return b -> encasedCogwheelBase(b, casingShift, () -> AllBlocks.LARGE_COGWHEEL.get(), true)
+		return b -> encasedCogwheelBase(b, casingShift, AllBlocks.LARGE_COGWHEEL::get, true)
 				.onRegister(CreateRegistrate.connectedTextures(() -> new EncasedCogCTBehaviour(casingShift.get())));
 	}
 
 	public static <B extends EncasedCogwheelBlock, P> NonNullUnaryOperator<BlockBuilder<B, P>> colorfulencasedCogwheel(Supplier<CTSpriteShiftEntry> casingShift, DyeColor color) {
-		return b -> colorfulencasedCogwheelBase(b, casingShift, () -> AllBlocks.COGWHEEL.get(), false, color);
+		return b -> colorfulencasedCogwheelBase(b, casingShift, AllBlocks.COGWHEEL::get, false, color);
 	}
 
 	public static <B extends EncasedCogwheelBlock, P> NonNullUnaryOperator<BlockBuilder<B, P>> colorfulencasedLargeCogwheel(Supplier<CTSpriteShiftEntry> casingShift, DyeColor color) {
-		return b -> colorfulencasedCogwheelBase(b, casingShift, () -> AllBlocks.LARGE_COGWHEEL.get(), true, color)
+		return b -> colorfulencasedCogwheelBase(b, casingShift, AllBlocks.LARGE_COGWHEEL::get, true, color)
 				.onRegister(CreateRegistrate.connectedTextures(() -> new EncasedCogCTBehaviour(casingShift.get())));
 	}
 

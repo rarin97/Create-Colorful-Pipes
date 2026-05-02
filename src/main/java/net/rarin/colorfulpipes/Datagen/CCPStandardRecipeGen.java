@@ -1,15 +1,15 @@
 package net.rarin.colorfulpipes.Datagen;
 
 import com.google.common.base.Supplier;
+import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllItems;
-import com.simibubi.create.Create;
 import com.simibubi.create.api.data.recipe.BaseRecipeProvider;
 import com.simibubi.create.foundation.data.recipe.CommonMetal;
-import com.simibubi.create.foundation.data.recipe.Mods;
+import net.rarin.colorfulpipes.compat.Mods;
 import com.simibubi.create.foundation.mixin.accessor.MappedRegistryAccessor;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.entry.ItemEntry;
@@ -58,6 +58,7 @@ import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.conditions.ICondition;
 import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
 import net.neoforged.neoforge.common.conditions.NotCondition;
+import net.rarin.colorfulpipes.compat.Create_Connected.CCBlocks;
 import net.rarin.colorfulpipes.CCPBlocks;
 import net.rarin.colorfulpipes.CCPPaletteBlocks;
 import net.rarin.colorfulpipes.CCPTags;
@@ -79,9 +80,6 @@ import java.util.function.UnaryOperator;
 public class CCPStandardRecipeGen extends BaseRecipeProvider {
 	final List<GeneratedRecipe> all = new ArrayList<>();
 
-	private Marker Pipes = enterFolder("colorfulpipes");
-
-
 	final EnumMap<DyeColor, GeneratedRecipe> COLORFUL_FLUID_PIPES = new EnumMap<>(DyeColor.class);
 	final EnumMap<DyeColor, GeneratedRecipe> COLORFUL_SMART_FLUID_PIPES = new EnumMap<>(DyeColor.class);
 	final EnumMap<DyeColor, GeneratedRecipe> COLORFUL_PUMPS = new EnumMap<>(DyeColor.class);
@@ -90,12 +88,14 @@ public class CCPStandardRecipeGen extends BaseRecipeProvider {
 	final EnumMap<DyeColor, GeneratedRecipe> COLORFUL_SPOUTS = new EnumMap<>(DyeColor.class);
 	final EnumMap<DyeColor, GeneratedRecipe> COLORFUL_DRAINS = new EnumMap<>(DyeColor.class);
 	final EnumMap<DyeColor, GeneratedRecipe> COLORFUL_FLUID_INTERFACES = new EnumMap<>(DyeColor.class);
-	final EnumMap<DyeColor, GeneratedRecipe> COLORFUL_STEAM_WHISTLES = new EnumMap<>(DyeColor.class);
+	final EnumMap<DyeColor, GeneratedRecipe> COLORFUL_FLUID_VESSELS = new EnumMap<>(DyeColor.class);
 	final EnumMap<DyeColor, GeneratedRecipe> COLORFUL_COPPER_CASING = new EnumMap<>(DyeColor.class);
 	final EnumMap<DyeColor, GeneratedRecipe> COLORFUL_COPPER_GLASS_CASING = new EnumMap<>(DyeColor.class);
 	final EnumMap<DyeColor, GeneratedRecipe> COLORFUL_COPPER_TINTED_GLASS_CASING = new EnumMap<>(DyeColor.class);
 	final EnumMap<DyeColor, GeneratedRecipe> COLORFUL_COPPER_SCAFFOLD = new EnumMap<>(DyeColor.class);
 	final EnumMap<DyeColor, GeneratedRecipe> COLORFUL_COPPER_LADDER = new EnumMap<>(DyeColor.class);
+
+	private Marker KINETICS = enterFolder("kinetics");
 
 	{
 		for (DyeColor color : DyeColor.values()) {
@@ -123,11 +123,6 @@ public class CCPStandardRecipeGen extends BaseRecipeProvider {
 					.viaShapeless(b -> b.requires(AllItems.IRON_SHEET)
 							.requires(CCPBlocks.COLORFUL_FLUID_PIPES.get(color))));
 
-			COLORFUL_COPPER_GLASS_CASING.put(color, create(CCPPaletteBlocks.COLORFUL_COPPER_GLASS_CASING.get(color))
-					.unlockedBy(AllBlocks.COPPER_CASING::get)
-					.viaShapeless(b -> b.requires(Tags.Items.GLASS_BLOCKS_COLORLESS)
-							.requires(CCPPaletteBlocks.COLORFUL_COPPER_CASING.get(color))));
-
 			COLORFUL_DRAINS.put(color, create(CCPBlocks.COLORFUL_DRAINS.get(color))
 					.unlockedBy(AllBlocks.ITEM_DRAIN::get)
 					.viaShaped(b -> b.define('P', Blocks.IRON_BARS)
@@ -136,8 +131,8 @@ public class CCPStandardRecipeGen extends BaseRecipeProvider {
 							.pattern("S")));
 
 			COLORFUL_SPOUTS.put(color, create(CCPBlocks.COLORFUL_SPOUTS.get(color))
-							.unlockedBy(AllBlocks.SPOUT::get)
-							.viaShaped(b -> b.define('T',CCPPaletteBlocks.COLORFUL_COPPER_CASING.get(color))
+					.unlockedBy(AllBlocks.SPOUT::get)
+					.viaShaped(b -> b.define('T', CCPPaletteBlocks.COLORFUL_COPPER_CASING.get(color))
 							.define('P', Items.DRIED_KELP)
 							.pattern("T")
 							.pattern("P")));
@@ -147,14 +142,6 @@ public class CCPStandardRecipeGen extends BaseRecipeProvider {
 					.viaShapeless(b -> b.requires(CCPPaletteBlocks.COLORFUL_COPPER_CASING.get(color))
 							.requires(AllBlocks.CHUTE.get())));
 
-			COLORFUL_COPPER_TINTED_GLASS_CASING.put(color, create(CCPPaletteBlocks.COLORFUL_COPPER_TINTED_GLASS_CASING.get(color)).returns(2)
-					.unlockedBy(Items.AMETHYST_SHARD::asItem)
-					.viaShaped(b -> b.define('A', Items.AMETHYST_SHARD)
-							.define('G', CCPPaletteBlocks.COLORFUL_COPPER_GLASS_CASING.get(color))
-							.pattern(" A ")
-							.pattern("AGA")
-							.pattern(" A ")));
-
 			COLORFUL_HOSE_PULLEY.put(color, create(CCPBlocks.COLORFUL_HOSE_PULLEYS.get(color))
 					.unlockedBy(AllBlocks.HOSE_PULLEY::get)
 					.viaShaped(b -> b.define('B', CCPPaletteBlocks.COLORFUL_COPPER_CASING.get(color))
@@ -163,6 +150,36 @@ public class CCPStandardRecipeGen extends BaseRecipeProvider {
 							.pattern("B")
 							.pattern("C")
 							.pattern("I")));
+
+				COLORFUL_FLUID_VESSELS.put(color, create(CCBlocks.COLORFUL_FLUID_VESSELS.get(color))
+						.unlockedBy(AllBlocks.FLUID_TANK::get)
+						.whenModLoaded(Mods.CREATE_CONNECTED.id())
+						.viaShapeless(b -> b.requires(CCPTags.ColorfulItemTags.FLUID_VESSELS.tag)
+								.requires(color.getTag())));
+
+			COLORFUL_FLUID_VESSELS.put(color,
+					conversionCycle(ImmutableList.of(CCBlocks.COLORFUL_FLUID_VESSELS.get(color), CCPBlocks.COLORFUL_FLUID_TANKS.get(color)),
+							Mods.CREATE_CONNECTED.id()));
+		}
+	}
+
+	private final Marker PALETTES = enterFolder("palettes");
+
+	{
+		for (DyeColor color : DyeColor.values()) {
+
+			COLORFUL_COPPER_GLASS_CASING.put(color, create(CCPPaletteBlocks.COLORFUL_COPPER_GLASS_CASING.get(color))
+					.unlockedBy(AllBlocks.COPPER_CASING::get)
+					.viaShapeless(b -> b.requires(Tags.Items.GLASS_BLOCKS_COLORLESS)
+							.requires(CCPPaletteBlocks.COLORFUL_COPPER_CASING.get(color))));
+
+			COLORFUL_COPPER_TINTED_GLASS_CASING.put(color, create(CCPPaletteBlocks.COLORFUL_COPPER_TINTED_GLASS_CASING.get(color)).returns(2)
+					.unlockedBy(Items.AMETHYST_SHARD::asItem)
+					.viaShaped(b -> b.define('A', Items.AMETHYST_SHARD)
+							.define('G', CCPPaletteBlocks.COLORFUL_COPPER_GLASS_CASING.get(color))
+							.pattern(" A ")
+							.pattern("AGA")
+							.pattern(" A ")));
 
 		}
 	}
@@ -206,7 +223,7 @@ public class CCPStandardRecipeGen extends BaseRecipeProvider {
 
 	GeneratedRecipe createSpecial(Function<CraftingBookCategory, Recipe<?>> builder, String recipeType,
 								  String path) {
-		ResourceLocation location = Create.asResource(recipeType + "/" + currentFolder + "/" + path);
+		ResourceLocation location = ColorfulPipes.asResource(recipeType + "/" + currentFolder + "/" + path);
 		return register(consumer -> {
 			SpecialRecipeBuilder b = SpecialRecipeBuilder.special(builder);
 			b.save(consumer, location.toString());
@@ -218,20 +235,6 @@ public class CCPStandardRecipeGen extends BaseRecipeProvider {
 				.viaCooking(ingredient)
 				.rewardXP(.1f)
 				.inBlastFurnace();
-	}
-
-	GeneratedRecipe blastModdedCrushedMetal(ItemEntry<? extends Item> ingredient, CommonMetal metal) {
-		for (Mods mod : metal.mods) {
-			String metalName = metal.getName(mod);
-			ResourceLocation ingot = mod.ingotOf(metalName);
-			String modId = mod.getId();
-			create(ingot).withSuffix("_compat_" + modId)
-					.whenModLoaded(modId)
-					.viaCooking(ingredient::get)
-					.rewardXP(.1f)
-					.inBlastFurnace();
-		}
-		return null;
 	}
 
 	GeneratedRecipe recycleGlass(BlockEntry<? extends Block> ingredient) {
@@ -274,13 +277,14 @@ public class CCPStandardRecipeGen extends BaseRecipeProvider {
 		return result;
 	}
 
-	GeneratedRecipe conversionCycle(List<ItemProviderEntry<? extends ItemLike, ? extends ItemLike>> cycle) {
+	GeneratedRecipe conversionCycle(List<ItemProviderEntry<? extends ItemLike, ? extends ItemLike>> cycle, String modid) {
 		GeneratedRecipe result = null;
 		for (int i = 0; i < cycle.size(); i++) {
 			ItemProviderEntry<? extends ItemLike, ? extends ItemLike> currentEntry = cycle.get(i);
 			ItemProviderEntry<? extends ItemLike, ? extends ItemLike> nextEntry = cycle.get((i + 1) % cycle.size());
 			result = create(nextEntry).withSuffix("_from_conversion")
 					.unlockedBy(currentEntry::get)
+					.whenModLoaded(modid)
 					.viaShapeless(b -> b.requires(currentEntry.get()));
 		}
 		return result;
@@ -295,7 +299,7 @@ public class CCPStandardRecipeGen extends BaseRecipeProvider {
 	@Override
 	public void buildRecipes(RecipeOutput output) {
 		all.forEach(c -> c.register(output));
-		Create.LOGGER.info("{} registered {} recipe{}", getName(), all.size(), all.size() == 1 ? "" : "s");
+		ColorfulPipes.LOGGER.info("{} registered {} recipe{}", getName(), all.size(), all.size() == 1 ? "" : "s");
 	}
 
 	protected GeneratedRecipe register(GeneratedRecipe recipe) {
@@ -406,11 +410,11 @@ public class CCPStandardRecipeGen extends BaseRecipeProvider {
 		}
 
 		private ResourceLocation createSimpleLocation(String recipeType) {
-			return Create.asResource(recipeType + "/" + getRegistryName().getPath() + suffix);
+			return ColorfulPipes.asResource(recipeType + "/" + getRegistryName().getPath() + suffix);
 		}
 
 		private ResourceLocation createLocation(String recipeType) {
-			return Create.asResource(recipeType + "/" + path + "/" + getRegistryName().getPath() + suffix);
+			return ColorfulPipes.asResource(recipeType + "/" + path + "/" + getRegistryName().getPath() + suffix);
 		}
 
 		private ResourceLocation getRegistryName() {

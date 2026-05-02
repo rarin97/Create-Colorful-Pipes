@@ -16,6 +16,9 @@ import com.simibubi.create.content.logistics.tableCloth.TableClothRenderer;
 import com.simibubi.create.foundation.blockEntity.renderer.SmartBlockEntityRenderer;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
+
+import net.minecraft.world.item.DyeColor;
+import net.rarin.colorfulpipes.compat.Create_Connected.content.ColorfulFluidVesselBlockEntity;
 import net.rarin.colorfulpipes.content.drain.ColorfulDrainBlockEntity;
 import net.rarin.colorfulpipes.content.glassPipe.ColorfulGlassFluidPipeBlockEntity;
 import net.rarin.colorfulpipes.content.hosePulley.ColorfulHosePulleyBlockEntity;
@@ -38,6 +41,9 @@ import net.rarin.colorfulpipes.content.tank.ColorfulFluidTankRenderer;
 import net.rarin.colorfulpipes.content.valve.ColorfulFluidValveBlockEntity;
 import net.rarin.colorfulpipes.content.valve.ColorfulFluidValveRenderer;
 import net.rarin.colorfulpipes.content.valve.ColorfulFluidValveVisual;
+
+import java.util.EnumMap;
+import java.util.Map;
 
 public class CCPBlockEntityTypes {
 	private static final CreateRegistrate REGISTRATE = ColorfulPipes.REGISTRATE;
@@ -91,11 +97,24 @@ public class CCPBlockEntityTypes {
 			.renderer(() -> ColorfulFluidValveRenderer::new)
 			.register();
 
-	public static final BlockEntityEntry<ColorfulFluidTankBlockEntity> COLORFUL_FLUID_TANKS = REGISTRATE
-			.blockEntity("colorful_fluid_tank", ColorfulFluidTankBlockEntity::new)
-			.validBlocks(CCPBlocks.COLORFUL_FLUID_TANKS.toArray())
-			.renderer(() -> ColorfulFluidTankRenderer::new)
-			.register();
+
+	public static final Map<DyeColor, BlockEntityEntry<ColorfulFluidTankBlockEntity>> COLORFUL_FLUID_TANKS = new EnumMap<>(DyeColor.class);
+
+	static {
+		for (DyeColor color : DyeColor.values()) {
+			COLORFUL_FLUID_TANKS.put(color, REGISTRATE
+					.blockEntity(color.getSerializedName() + "_colorful_fluid_tank", ColorfulFluidTankBlockEntity::new)
+					.validBlocks(CCPBlocks.COLORFUL_FLUID_TANKS.toArray())
+					.renderer(() -> ColorfulFluidTankRenderer::new)
+					.register());
+		}
+	}
+
+//	public static final BlockEntityEntry<ColorfulFluidTankBlockEntity> COLORFUL_FLUID_TANKS = REGISTRATE
+//			.blockEntity("colorful_fluid_tank", ColorfulFluidTankBlockEntity::new)
+//			.validBlocks(CCPBlocks.COLORFUL_FLUID_TANKS.toArray())
+//			.renderer(() -> ColorfulFluidTankRenderer::new)
+//			.register();
 
 	public static final BlockEntityEntry<ColorfulHosePulleyBlockEntity> COLORFUL_HOSE_PULLEYS = REGISTRATE
 			.blockEntity("colorful_hose_pulley", ColorfulHosePulleyBlockEntity::new)
