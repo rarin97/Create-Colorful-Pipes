@@ -1,0 +1,22 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "create_enchantment_industry"
+    }
+  ],
+  "type": "create:item_application",
+  "ingredients": [
+    {
+      "item": "colorfulpipes:green_fluid_hatch"
+    },
+    {
+      "item": "create:experience_block"
+    }
+  ],
+  "results": [
+    {
+      "id": "colorfulpipes:green_experience_hatch"
+    }
+  ]
+}

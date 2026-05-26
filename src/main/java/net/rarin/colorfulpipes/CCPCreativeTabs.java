@@ -1,8 +1,6 @@
 package net.rarin.colorfulpipes;
 
-import com.simibubi.create.content.fluids.drain.ItemDrainBlock;
 import com.simibubi.create.foundation.data.CreateRegistrate;
-import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.entry.ItemProviderEntry;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import it.unimi.dsi.fastutil.objects.Reference2ObjectOpenHashMap;
@@ -30,8 +28,6 @@ import net.minecraft.world.item.CreativeModeTab.ItemDisplayParameters;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
-
-import net.rarin.colorfulpipes.content.drain.ColorfulDrainBlock;
 
 import org.apache.commons.lang3.mutable.MutableObject;
 import java.util.LinkedList;

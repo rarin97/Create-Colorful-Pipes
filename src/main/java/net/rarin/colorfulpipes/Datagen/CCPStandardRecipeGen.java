@@ -9,10 +9,12 @@ import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllItems;
 import com.simibubi.create.api.data.recipe.BaseRecipeProvider;
 import com.simibubi.create.foundation.data.recipe.CommonMetal;
+import net.minecraft.tags.ItemTags;
+import net.rarin.colorfulpipes.compat.CreateDragonsPlus.CDPBlocks;
+import net.rarin.colorfulpipes.compat.CreateEnchantmentIndustry.CEIBlocks;
 import net.rarin.colorfulpipes.compat.Mods;
 import com.simibubi.create.foundation.mixin.accessor.MappedRegistryAccessor;
 import com.tterrag.registrate.util.entry.BlockEntry;
-import com.tterrag.registrate.util.entry.ItemEntry;
 import com.tterrag.registrate.util.entry.ItemProviderEntry;
 import net.createmod.catnip.registry.RegisteredObjectsHelper;
 import net.minecraft.MethodsReturnNonnullByDefault;
@@ -61,7 +63,7 @@ import net.neoforged.neoforge.common.conditions.NotCondition;
 import net.rarin.colorfulpipes.compat.Create_Connected.CCBlocks;
 import net.rarin.colorfulpipes.CCPBlocks;
 import net.rarin.colorfulpipes.CCPPaletteBlocks;
-import net.rarin.colorfulpipes.CCPTags;
+import net.rarin.colorfulpipes.CCPTags.ColorfulItemTags;
 import net.rarin.colorfulpipes.ColorfulPipes;
 
 import org.jetbrains.annotations.Nullable;
@@ -77,6 +79,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 import java.util.function.UnaryOperator;
 
+import static net.rarin.colorfulpipes.CCPTags.ColorfulItemTags.EXPERIENCE_LANTERNS;
+
 public class CCPStandardRecipeGen extends BaseRecipeProvider {
 	final List<GeneratedRecipe> all = new ArrayList<>();
 
@@ -89,11 +93,13 @@ public class CCPStandardRecipeGen extends BaseRecipeProvider {
 	final EnumMap<DyeColor, GeneratedRecipe> COLORFUL_DRAINS = new EnumMap<>(DyeColor.class);
 	final EnumMap<DyeColor, GeneratedRecipe> COLORFUL_FLUID_INTERFACES = new EnumMap<>(DyeColor.class);
 	final EnumMap<DyeColor, GeneratedRecipe> COLORFUL_FLUID_VESSELS = new EnumMap<>(DyeColor.class);
-	final EnumMap<DyeColor, GeneratedRecipe> COLORFUL_COPPER_CASING = new EnumMap<>(DyeColor.class);
 	final EnumMap<DyeColor, GeneratedRecipe> COLORFUL_COPPER_GLASS_CASING = new EnumMap<>(DyeColor.class);
 	final EnumMap<DyeColor, GeneratedRecipe> COLORFUL_COPPER_TINTED_GLASS_CASING = new EnumMap<>(DyeColor.class);
-	final EnumMap<DyeColor, GeneratedRecipe> COLORFUL_COPPER_SCAFFOLD = new EnumMap<>(DyeColor.class);
-	final EnumMap<DyeColor, GeneratedRecipe> COLORFUL_COPPER_LADDER = new EnumMap<>(DyeColor.class);
+	final EnumMap<DyeColor, GeneratedRecipe> COLORFUL_COPPER_DOOR = new EnumMap<>(DyeColor.class);
+	final EnumMap<DyeColor, GeneratedRecipe> COLORFUL_FLUID_HATCHES = new EnumMap<>(DyeColor.class);
+	final EnumMap<DyeColor, GeneratedRecipe> COLORFUL_EXPERIENCE_HATCHES = new EnumMap<>(DyeColor.class);
+	final EnumMap<DyeColor, GeneratedRecipe> COLORFUL_EXPERIENCE_LANTERNS = new EnumMap<>(DyeColor.class);
+	final EnumMap<DyeColor, GeneratedRecipe> COLORFUL_PRINTERS = new EnumMap<>(DyeColor.class);
 
 	private Marker KINETICS = enterFolder("kinetics");
 
@@ -101,7 +107,7 @@ public class CCPStandardRecipeGen extends BaseRecipeProvider {
 		for (DyeColor color : DyeColor.values()) {
 			COLORFUL_FLUID_PIPES.put(color, create(CCPPaletteBlocks.COLORFUL_COPPER_BARS.get(color))
 					.unlockedBy(AllBlocks.COPPER_BARS::get)
-					.viaShapeless(b -> b.requires(CCPTags.ColorfulItemTags.COPPER_BARS.tag)
+					.viaShapeless(b -> b.requires(ColorfulItemTags.COPPER_BARS.tag)
 							.requires(color.getTag())));
 
 			COLORFUL_PUMPS.put(color, create(CCPBlocks.COLORFUL_PUMPS.get(color))
@@ -151,15 +157,6 @@ public class CCPStandardRecipeGen extends BaseRecipeProvider {
 							.pattern("C")
 							.pattern("I")));
 
-				COLORFUL_FLUID_VESSELS.put(color, create(CCBlocks.COLORFUL_FLUID_VESSELS.get(color))
-						.unlockedBy(AllBlocks.FLUID_TANK::get)
-						.whenModLoaded(Mods.CREATE_CONNECTED.id())
-						.viaShapeless(b -> b.requires(CCPTags.ColorfulItemTags.FLUID_VESSELS.tag)
-								.requires(color.getTag())));
-
-			COLORFUL_FLUID_VESSELS.put(color,
-					conversionCycle(ImmutableList.of(CCBlocks.COLORFUL_FLUID_VESSELS.get(color), CCPBlocks.COLORFUL_FLUID_TANKS.get(color)),
-							Mods.CREATE_CONNECTED.id()));
 		}
 	}
 
@@ -181,6 +178,11 @@ public class CCPStandardRecipeGen extends BaseRecipeProvider {
 							.pattern("AGA")
 							.pattern(" A ")));
 
+			COLORFUL_COPPER_DOOR.put(color, create(CCPPaletteBlocks.COLORFUL_COPPER_DOOR.get(color))
+					.unlockedBy(AllBlocks.COPPER_DOOR::get)
+					.viaShapeless(b -> b.requires(ItemTags.WOODEN_DOORS)
+							.requires(CCPPaletteBlocks.COLORFUL_COPPER_CASING.get(color))));
+
 		}
 	}
 
@@ -194,6 +196,74 @@ public class CCPStandardRecipeGen extends BaseRecipeProvider {
 							.pattern("AGA")
 							.pattern(" A "));
 
+	private final Marker COMPATS = enterFolder("compats");
+
+	{
+		for (DyeColor color : DyeColor.values()) {
+
+			COLORFUL_FLUID_VESSELS.put(color, create(CCBlocks.COLORFUL_FLUID_VESSELS.get(color))
+					.unlockedBy(AllBlocks.FLUID_TANK::get)
+					.whenModLoaded(Mods.CREATE_CONNECTED.id())
+					.viaShapeless(b -> b.requires(ColorfulItemTags.FLUID_VESSELS.tag)
+							.requires(color.getTag())));
+
+			COLORFUL_FLUID_VESSELS.put(color,
+					conversionCycle(ImmutableList.of(CCBlocks.COLORFUL_FLUID_VESSELS.get(color), CCPBlocks.COLORFUL_FLUID_TANKS.get(color)),
+							Mods.CREATE_CONNECTED.id()));
+
+			COLORFUL_FLUID_HATCHES.put(color, create(CDPBlocks.COLORFUL_FLUID_HATCHES.get(color))
+					.unlockedBy(AllBlocks.ITEM_DRAIN::get)
+					.whenModLoaded(Mods.CREATE_DRAGONS_PLUS.id())
+					.viaShapeless(b -> b.requires(ColorfulItemTags.FLUID_HATCHES.tag)
+							.requires(color.getTag())));
+
+			COLORFUL_FLUID_HATCHES.put(color, create(CDPBlocks.COLORFUL_FLUID_HATCHES.get(color))
+					.withSuffix("_from_drain")
+					.unlockedBy(AllBlocks.ITEM_DRAIN::get)
+					.whenModLoaded(Mods.CREATE_DRAGONS_PLUS.id())
+					.viaShapeless(b -> b.requires(Items.COPPER_INGOT)
+							.requires(CCPBlocks.COLORFUL_DRAINS.get(color))));
+
+			COLORFUL_EXPERIENCE_HATCHES.put(color, create(CEIBlocks.COLORFUL_EXPERIENCE_HATCHES.get(color))
+					.unlockedBy(plus.dragons.createenchantmentindustry.common.registry.CEIBlocks.EXPERIENCE_HATCH::get)
+					.whenModLoaded(Mods.CREATE_ENCHANTMENT_INDUSTRY.id())
+					.viaShapeless(b -> b.requires(ColorfulItemTags.EXPERIENCE_HATCHES.tag)
+							.requires(color.getTag())));
+
+			COLORFUL_EXPERIENCE_LANTERNS.put(color, create(CEIBlocks.COLORFUL_EXPERIENCE_LANTERNS.get(color))
+					.withSuffix("_from_dyes")
+					.unlockedBy(plus.dragons.createenchantmentindustry.common.registry.CEIBlocks.EXPERIENCE_LANTERN::get)
+					.whenModLoaded(Mods.CREATE_ENCHANTMENT_INDUSTRY.id())
+					.viaShapeless(b -> b.requires(EXPERIENCE_LANTERNS.tag)
+							.requires(color.getTag())));
+
+			COLORFUL_EXPERIENCE_LANTERNS.put(color, create(CEIBlocks.COLORFUL_EXPERIENCE_LANTERNS.get(color))
+					.unlockedBy(CCPPaletteBlocks.COLORFUL_COPPER_CASING.get(color)::get)
+					.whenModLoaded(Mods.CREATE_ENCHANTMENT_INDUSTRY.id())
+					.viaShaped(b -> b.define('a', AllBlocks.EXPERIENCE_BLOCK)
+							.define('s', Items.SPONGE).define('c', CCPPaletteBlocks.COLORFUL_COPPER_CASING.get(color))
+							.pattern("a")
+							.pattern("s")
+							.pattern("c")));
+
+			COLORFUL_PRINTERS.put(color, create(CEIBlocks.COLORFUL_PRINTERS.get(color))
+					.withSuffix("_from_dyes")
+					.unlockedBy(plus.dragons.createenchantmentindustry.common.registry.CEIBlocks.PRINTER::get)
+					.whenModLoaded(Mods.CREATE_ENCHANTMENT_INDUSTRY.id())
+					.viaShapeless(b -> b.requires(ColorfulItemTags.PRINTERS.tag)
+							.requires(color.getTag())));
+
+			COLORFUL_PRINTERS.put(color, create(CEIBlocks.COLORFUL_PRINTERS.get(color))
+					.unlockedBy(AllItems.BRASS_SHEET::get)
+					.whenModLoaded(Mods.CREATE_ENCHANTMENT_INDUSTRY.id())
+					.viaShaped(b -> b.define('-', CommonMetal.BRASS.plates)
+							.define('o', CCPBlocks.COLORFUL_SPOUTS.get(color)).define('=', Blocks.IRON_BLOCK)
+							.pattern("-")
+							.pattern("o")
+							.pattern("=")));
+
+		}
+	}
 
 	public CCPStandardRecipeGen(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
 		super(output, registries, ColorfulPipes.ID);

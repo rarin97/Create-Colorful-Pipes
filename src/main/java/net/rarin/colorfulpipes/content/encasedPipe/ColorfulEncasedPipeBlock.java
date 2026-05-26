@@ -16,13 +16,18 @@ import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.DyeItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.rarin.colorfulpipes.CCPBlockEntityTypes;
 import net.rarin.colorfulpipes.CCPBlocks;
+import net.rarin.colorfulpipes.content.casing.ColorfulCasingGlassBlock;
+import net.rarin.colorfulpipes.content.encasedshaft.ColorfulGlassEncasedShaftBlock;
 
 import java.util.function.Supplier;
 

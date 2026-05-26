@@ -1,7 +1,6 @@
 package net.rarin.colorfulpipes.compat.Create_Connected.content;
 
 import com.hlysine.create_connected.content.fluidvessel.FluidVesselBlock;
-
 import com.hlysine.create_connected.content.fluidvessel.FluidVesselBlockEntity;
 
 import net.minecraft.core.BlockPos;
@@ -16,7 +15,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
-import net.rarin.colorfulpipes.CCPBlocks;
 import net.rarin.colorfulpipes.compat.Create_Connected.CCBlockEntityTypes;
 import net.rarin.colorfulpipes.compat.Create_Connected.CCBlocks;
 

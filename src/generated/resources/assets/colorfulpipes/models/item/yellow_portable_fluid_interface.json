@@ -1,3 +1,8 @@
 {
-  "parent": "colorfulpipes:block/yellow_portable_fluid_interface/item"
+  "parent": "create:block/portable_fluid_interface/item",
+  "textures": {
+    "0": "colorfulpipes:block/portable_fluid_interface/yellow",
+    "2": "colorfulpipes:block/copper_underside/yellow",
+    "particle": "colorfulpipes:block/copper_underside/yellow"
+  }
 }

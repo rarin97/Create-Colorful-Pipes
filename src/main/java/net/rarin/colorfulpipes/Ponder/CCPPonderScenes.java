@@ -3,7 +3,6 @@ package net.rarin.colorfulpipes.Ponder;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.infrastructure.ponder.AllCreatePonderTags;
 import com.simibubi.create.infrastructure.ponder.scenes.MovementActorScenes;
-import com.simibubi.create.infrastructure.ponder.scenes.SteamScenes;
 import com.tterrag.registrate.util.entry.ItemProviderEntry;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.createmod.ponder.api.registration.PonderSceneRegistrationHelper;
@@ -18,7 +17,12 @@ import net.rarin.colorfulpipes.Ponder.scenes.KineticsScenes;
 import net.rarin.colorfulpipes.Ponder.scenes.PipeScenes;
 import net.rarin.colorfulpipes.Ponder.scenes.PumpScenes;
 import net.rarin.colorfulpipes.Ponder.scenes.SpoutScenes;
+import net.rarin.colorfulpipes.Ponder.scenes.SteamScenes;
 import net.rarin.colorfulpipes.Ponder.scenes.TableClothScenes;
+import net.rarin.colorfulpipes.compat.CreateEnchantmentIndustry.CEIBlocks;
+import net.rarin.colorfulpipes.compat.Mods;
+import plus.dragons.createenchantmentindustry.client.ponder.CEIPonderTags;
+import plus.dragons.createenchantmentindustry.client.ponder.scene.MiscScene;
 
 public class CCPPonderScenes {
 
@@ -87,8 +91,8 @@ public class CCPPonderScenes {
 		HELPER.forComponents(CCPPaletteBlocks.COLORFUL_STEAM_WHISTLES)
 				.addStoryBoard("colorful_steam_whistle", SteamScenes::whistle);
 
-//		HELPER.forComponents(CCPBlocks.COLORFUL_STEAM_ENGINES)
-//				.addStoryBoard("steam_engine", SteamScenes::engine);
+		HELPER.forComponents(CCPBlocks.COLORFUL_STEAM_ENGINES)
+				.addStoryBoard("colorful_steam_engine", SteamScenes::engine);
 
 		HELPER.forComponents(CCPBlocks.COLORFUL_FLUID_INTERFACES)
 				.addStoryBoard("portable_interface/colorful_transfer_fluid", FluidMovementActorScenes::transfer, AllCreatePonderTags.FLUIDS,
@@ -97,5 +101,16 @@ public class CCPPonderScenes {
 
 		HELPER.forComponents(CCPPaletteBlocks.COLORFUL_TABLE_CLOTHS)
 				.addStoryBoard("high_logistics/table_cloth", TableClothScenes::tableCloth);
+
+		if (Mods.CREATE_ENCHANTMENT_INDUSTRY.isLoaded()) {
+			HELPER.forComponents(CEIBlocks.COLORFUL_PRINTERS)
+					.addStoryBoard("printer", MiscScene::printer, CEIPonderTags.EXPERIENCE_APPLIANCES);
+
+			HELPER.forComponents(CEIBlocks.COLORFUL_EXPERIENCE_LANTERNS)
+					.addStoryBoard("experience_lantern", MiscScene::experienceLantern, CEIPonderTags.EXPERIENCE_APPLIANCES, AllCreatePonderTags.CONTRAPTION_ACTOR);
+
+			HELPER.forComponents(CEIBlocks.COLORFUL_EXPERIENCE_HATCHES)
+					.addStoryBoard("experience_hatch", MiscScene::experienceHatch, CEIPonderTags.EXPERIENCE_APPLIANCES);
+		}
 	}
 }

@@ -1,0 +1,19 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "create_dragons_plus"
+    }
+  ],
+  "type": "create:splashing",
+  "ingredients": [
+    {
+      "tag": "colorfulpipes:colorful_fluid_hatches"
+    }
+  ],
+  "results": [
+    {
+      "id": "create_dragons_plus:fluid_hatch"
+    }
+  ]
+}

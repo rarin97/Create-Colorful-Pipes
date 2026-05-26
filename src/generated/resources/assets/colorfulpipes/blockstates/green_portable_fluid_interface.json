@@ -1,28 +1,28 @@
 {
   "variants": {
     "facing=down": {
-      "model": "colorfulpipes:block/green_portable_fluid_interface/block",
+      "model": "colorfulpipes:block/green_portable_fluid_interface",
       "x": 180
     },
     "facing=east": {
-      "model": "colorfulpipes:block/green_portable_fluid_interface/block",
+      "model": "colorfulpipes:block/green_portable_fluid_interface",
       "x": 90,
       "y": 90
     },
     "facing=north": {
-      "model": "colorfulpipes:block/green_portable_fluid_interface/block",
+      "model": "colorfulpipes:block/green_portable_fluid_interface",
       "x": 90
     },
     "facing=south": {
-      "model": "colorfulpipes:block/green_portable_fluid_interface/block",
+      "model": "colorfulpipes:block/green_portable_fluid_interface",
       "x": 90,
       "y": 180
     },
     "facing=up": {
-      "model": "colorfulpipes:block/green_portable_fluid_interface/block"
+      "model": "colorfulpipes:block/green_portable_fluid_interface"
     },
     "facing=west": {
-      "model": "colorfulpipes:block/green_portable_fluid_interface/block",
+      "model": "colorfulpipes:block/green_portable_fluid_interface",
       "x": 90,
       "y": 270
     }

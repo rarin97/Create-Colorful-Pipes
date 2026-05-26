@@ -23,6 +23,7 @@ public abstract class SteamEngineBlockEntityMixin {
 		Level level = be.getLevel();
 
 		if (level == null) {
+			cir.setReturnValue(false);
 			return;
 		}
 
@@ -31,13 +32,11 @@ public abstract class SteamEngineBlockEntityMixin {
 
 		if (state.getBlock() instanceof ColorfulFluidTankBlock) {
 			cir.setReturnValue(true);
-			cir.cancel();
 		}
 
 		if (Mods.CREATE_CONNECTED.isLoaded()) {
 			if (state.getBlock() instanceof ColorfulFluidVesselBlock) {
 				cir.setReturnValue(true);
-				cir.cancel();
 			}
 		}
 	}

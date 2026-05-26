@@ -38,6 +38,7 @@ import net.rarin.colorfulpipes.content.portableFluidInterface.ColorfulPortableFl
 import net.rarin.colorfulpipes.content.pump.ColorfulPumpBlock;
 import net.rarin.colorfulpipes.content.smartPipe.ColorfulSmartFluidPipeBlock;
 import net.rarin.colorfulpipes.content.spout.ColorfulSpoutBlock;
+import net.rarin.colorfulpipes.content.steamEngine.ColorfulSteamEngineBlock;
 import net.rarin.colorfulpipes.content.tank.ColorfulFluidTankBlock;
 import net.rarin.colorfulpipes.content.tank.ColorfulFluidTankItem;
 import net.rarin.colorfulpipes.content.tank.ColorfulFluidTankModel;
@@ -296,7 +297,11 @@ public class CCPBlocks {
 				.initialProperties(SharedProperties::copperMetal)
 				.properties(p -> p.mapColor(color.getMapColor()))
 				.transform(axeOrPickaxe())
-				.blockstate((c, p) -> p.directionalBlock(c.get(), AssetLookup.partialBaseModel(c, p)))
+				.blockstate((c, p) ->
+					p.directionalBlock(c.get(), p.models().withExistingParent(c.getName(), Create.asResource("block/portable_fluid_interface/block"))
+							.texture("0", ColorfulPipes.asResource("block/portable_fluid_interface/" + colorName))
+							.texture("2", ColorfulPipes.asResource("block/copper_underside/" + colorName))
+							.texture("particle", ColorfulPipes.asResource("block/copper_underside/" + colorName))))
 				.recipe((c, p) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, c.get())
 						.requires(color.getTag())
 						.requires(ColorfulItemTags.PORTABLE_FLUID_INTERFACES.tag)
@@ -309,7 +314,12 @@ public class CCPBlocks {
 				.tag(ColorfulItemTags.COLORFUL_PORTABLE_FLUID_INTERFACES.tag)
 				.tag(ColorfulItemTags.PORTABLE_FLUID_INTERFACES.tag)
 				.tag(AllTags.AllItemTags.CONTRAPTION_CONTROLLED.tag)
-				.transform(customItemModel())
+				.model((c, p) ->
+						p.withExistingParent(c.getName(), Create.asResource("block/portable_fluid_interface/item"))
+								.texture("0", ColorfulPipes.asResource("block/portable_fluid_interface/" + colorName))
+								.texture("2", ColorfulPipes.asResource("block/copper_underside/" + colorName))
+								.texture( "particle", ColorfulPipes.asResource("block/copper_underside/" + colorName)))
+				.build()
 				.register();
 	});
 
@@ -321,7 +331,11 @@ public class CCPBlocks {
 				.transform(pickaxeOnly())
 				.addLayer(() -> RenderType::cutoutMipped)
 				.properties(BlockBehaviour.Properties::noOcclusion)
-				.blockstate(BlockStateGen.horizontalBlockProvider(true))
+				.blockstate((c, p) ->
+						p.horizontalBlock(c.get(), p.models().withExistingParent(c.getName(), Create.asResource("block/hose_pulley/block"))
+								.texture("1", ColorfulPipes.asResource("block/hose_pulley/" + colorName))
+								.texture("3", ColorfulPipes.asResource("block/pump/" + colorName))
+								.texture("particle", ColorfulPipes.asResource("block/copper_underside/" + colorName))))
 				.onRegister((block) -> BlockStressValues.IMPACTS.register(block, () -> 4.0))
 				.recipe((c, p) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, c.get())
 						.requires(color.getTag())
@@ -333,35 +347,44 @@ public class CCPBlocks {
 				.item()
 				.tag(ColorfulItemTags.COLORFUL_HOSE_PULLEYS.tag)
 				.tag(ColorfulItemTags.HOSE_PULLEYS.tag)
-				.transform(customItemModel())
+				.model((c, p) ->
+						p.withExistingParent(c.getName(), Create.asResource("block/hose_pulley/item"))
+								.texture("1", ColorfulPipes.asResource("block/hose_pulley/" + colorName))
+								.texture("3", ColorfulPipes.asResource("block/pump/" + colorName))
+								.texture( "particle", ColorfulPipes.asResource("block/copper_underside/" + colorName)))
+				.build()
 				.register();
 	});
 
-//	public static final DyedBlockList<ColorfulSteamEngineBlock> COLORFUL_STEAM_ENGINES = new DyedBlockList<>(color -> {
-//		String colorName = color.getSerializedName();
-//		return REGISTRATE.block(colorName + "_steam_engine", p -> new ColorfulSteamEngineBlock(p, color))
-//				.initialProperties(SharedProperties::copperMetal)
-//				.properties(p -> p.mapColor(color.getMapColor()))
-//				.transform(pickaxeOnly())
-//				.blockstate((c, p) -> p.horizontalFaceBlock(c.get(), AssetLookup.partialBaseModel(c, p)))
-//				.transform(CStress.setCapacity(1024.0))
-//				.onRegister(BlockStressValues.setGeneratorSpeed(64, true))
-//				.recipe((c, p) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, c.get())
-//						.requires(color.getTag())
-//						.requires(AllBlocks.STEAM_ENGINE.asItem())
-//						.unlockedBy("has_steam_engine", RegistrateRecipeProvider.has(AllBlocks.STEAM_ENGINE.asItem()))
-//						.save(p, ColorfulPipes.asResource("steam_engine/" + c.getName()))
-//				)
-//				.tag(ColorfulBlockTags.COLORFUL_STEAM_ENGINES.tag)
-//				.item()
-//				.tag(ColorfulItemTags.COLORFUL_STEAM_ENGINES.tag)
-//				.model((c, p) ->
-//						p.withExistingParent(c.getName(), Create.asResource("block/steam_engine/item"))
-//								.texture("1", ColorfulPipes.asResource("block/engine/" + colorName))
-//				)
-//				.build()
-//				.register();
-//	});
+	public static final DyedBlockList<ColorfulSteamEngineBlock> COLORFUL_STEAM_ENGINES = new DyedBlockList<>(color -> {
+		String colorName = color.getSerializedName();
+		return REGISTRATE.block(colorName + "_steam_engine", p -> new ColorfulSteamEngineBlock(p, color))
+				.initialProperties(SharedProperties::copperMetal)
+				.properties(p -> p.mapColor(color.getMapColor()))
+				.transform(pickaxeOnly())
+				.blockstate((c, p) ->
+						p.horizontalFaceBlock(c.get(), p.models().withExistingParent(c.getName(), Create.asResource("block/steam_engine/block"))
+						.texture("1", ColorfulPipes.asResource("block/engine/" + colorName))
+						.texture("particle", ColorfulPipes.asResource("block/copper_underside/" + colorName))))
+				.onRegister((block) -> BlockStressValues.CAPACITIES.register(block, () -> 1024.0))
+				.onRegister(BlockStressValues.setGeneratorSpeed(64, true))
+				.recipe((c, p) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, c.get())
+						.requires(color.getTag())
+						.requires(ColorfulItemTags.STEAM_ENGINES.tag)
+						.unlockedBy("has_steam_engine", RegistrateRecipeProvider.has(AllBlocks.STEAM_ENGINE.asItem()))
+						.save(p, ColorfulPipes.asResource("steam_engine/" + c.getName()))
+				)
+				.tag(ColorfulBlockTags.COLORFUL_STEAM_ENGINES.tag)
+				.item()
+				.tag(ColorfulItemTags.COLORFUL_STEAM_ENGINES.tag)
+				.tag(ColorfulItemTags.STEAM_ENGINES.tag)
+				.model((c, p) ->
+						p.withExistingParent(c.getName(), Create.asResource("block/steam_engine/item"))
+								.texture("1", ColorfulPipes.asResource("block/engine/" + colorName))
+				)
+				.build()
+				.register();
+	});
 
 	public static void register() {
 	}

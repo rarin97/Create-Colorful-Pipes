@@ -1,0 +1,11 @@
+{
+  "parent": "colorfulpipes:block/grindstone_drain/block",
+  "textures": {
+    "back": "colorfulpipes:block/mechanical_grinder_back/black",
+    "bottom": "colorfulpipes:block/copper_underside/black",
+    "front": "colorfulpipes:block/mechanical_grinder_front/black",
+    "inner": "colorfulpipes:block/pump/black",
+    "particle": "colorfulpipes:block/item_drain/black",
+    "side": "colorfulpipes:block/item_drain/black"
+  }
+}

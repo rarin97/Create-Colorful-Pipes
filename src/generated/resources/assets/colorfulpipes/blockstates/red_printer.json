@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "colorfulpipes:block/red_printer",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "colorfulpipes:block/red_printer"
+    },
+    "facing=south": {
+      "model": "colorfulpipes:block/red_printer",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "colorfulpipes:block/red_printer",
+      "y": 270
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "create_dragons_plus"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:copper_ingot"
+    },
+    {
+      "item": "colorfulpipes:gray_item_drain"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "colorfulpipes:gray_fluid_hatch"
+  }
+}

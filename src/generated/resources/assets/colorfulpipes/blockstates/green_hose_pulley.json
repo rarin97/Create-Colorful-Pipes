@@ -1,18 +1,18 @@
 {
   "variants": {
     "facing=east": {
-      "model": "colorfulpipes:block/green_hose_pulley/block",
+      "model": "colorfulpipes:block/green_hose_pulley",
       "y": 90
     },
     "facing=north": {
-      "model": "colorfulpipes:block/green_hose_pulley/block"
+      "model": "colorfulpipes:block/green_hose_pulley"
     },
     "facing=south": {
-      "model": "colorfulpipes:block/green_hose_pulley/block",
+      "model": "colorfulpipes:block/green_hose_pulley",
       "y": 180
     },
     "facing=west": {
-      "model": "colorfulpipes:block/green_hose_pulley/block",
+      "model": "colorfulpipes:block/green_hose_pulley",
       "y": 270
     }
   }

@@ -1,8 +1,0 @@
-{
-  "parent": "colorfulpipes:block/white_portable_fluid_interface/item",
-  "textures": {
-    "0": "colorfulpipes:block/portable_fluid_interface/green",
-    "2": "colorfulpipes:block/copper_underside/green",
-    "particle": "colorfulpipes:block/copper_underside/green"
-  }
-}

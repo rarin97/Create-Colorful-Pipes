@@ -1,10 +1,10 @@
 package net.rarin.colorfulpipes.compat.Create_Connected;
 
+import com.hlysine.create_connected.registries.CCMountedStorageTypes;
 import com.hlysine.create_connected.config.FeatureCategory;
 import com.hlysine.create_connected.config.FeatureToggle;
 import com.hlysine.create_connected.content.fluidvessel.FluidVesselBlock;
 import com.hlysine.create_connected.content.fluidvessel.FluidVesselGenerator;
-import com.simibubi.create.AllBlocks;
 import com.simibubi.create.api.connectivity.ConnectivityHandler;
 import com.simibubi.create.api.contraption.BlockMovementChecks;
 import com.simibubi.create.content.fluids.tank.FluidTankMovementBehavior;
@@ -13,12 +13,7 @@ import com.simibubi.create.foundation.data.AssetLookup;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.data.SharedProperties;
 
-import com.tterrag.registrate.providers.RegistrateRecipeProvider;
-
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.ShapelessRecipeBuilder;
-import net.minecraft.world.level.block.Blocks;
 import net.rarin.colorfulpipes.*;
 import net.rarin.colorfulpipes.compat.Create_Connected.content.ColorfulFluidVesselBlock;
 import net.rarin.colorfulpipes.compat.Create_Connected.content.ColorfulFluidVesselItem;
@@ -40,7 +35,7 @@ public class CCBlocks {
 		String colorName = color.getSerializedName();
 		return REGISTRATE.block(colorName + "_fluid_vessel", p -> new ColorfulFluidVesselBlock(p, color))
 				.initialProperties(SharedProperties::copperMetal)
-				.properties(p -> p.noOcclusion().isRedstoneConductor((p1, p2, p3) -> true))
+				.properties(p -> p.noOcclusion().isRedstoneConductor((p1, p2, p3) -> true).mapColor(color.getMapColor()))
 				.transform(pickaxeOnly())
 				.transform(FeatureToggle.register(FeatureCategory.LOGISTICS))
 				.blockstate(new FluidVesselGenerator()::generate)

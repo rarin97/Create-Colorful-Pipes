@@ -12,13 +12,15 @@ import com.simibubi.create.content.kinetics.base.SingleAxisRotatingVisual;
 import com.simibubi.create.content.kinetics.simpleRelays.SimpleKineticBlockEntity;
 import com.simibubi.create.content.kinetics.simpleRelays.encased.EncasedCogRenderer;
 import com.simibubi.create.content.kinetics.simpleRelays.encased.EncasedCogVisual;
+import com.simibubi.create.content.kinetics.steamEngine.SteamEngineBlockEntity;
+import com.simibubi.create.content.kinetics.steamEngine.SteamEngineRenderer;
+import com.simibubi.create.content.kinetics.steamEngine.SteamEngineVisual;
 import com.simibubi.create.content.logistics.tableCloth.TableClothRenderer;
 import com.simibubi.create.foundation.blockEntity.renderer.SmartBlockEntityRenderer;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 
 import net.minecraft.world.item.DyeColor;
-import net.rarin.colorfulpipes.compat.Create_Connected.content.ColorfulFluidVesselBlockEntity;
 import net.rarin.colorfulpipes.content.drain.ColorfulDrainBlockEntity;
 import net.rarin.colorfulpipes.content.glassPipe.ColorfulGlassFluidPipeBlockEntity;
 import net.rarin.colorfulpipes.content.hosePulley.ColorfulHosePulleyBlockEntity;
@@ -34,6 +36,9 @@ import net.rarin.colorfulpipes.content.slidingDoor.ColorfulSlidingDoorRenderer;
 import net.rarin.colorfulpipes.content.smartPipe.ColorfulSmartFluidPipeBlockEntity;
 import net.rarin.colorfulpipes.content.spout.ColorfulSpoutBlockEntity;
 import net.rarin.colorfulpipes.content.spout.ColorfulSpoutRenderer;
+import net.rarin.colorfulpipes.content.steamEngine.ColorfulSteamEngineBlockEntity;
+import net.rarin.colorfulpipes.content.steamEngine.ColorfulSteamEngineRenderer;
+import net.rarin.colorfulpipes.content.steamEngine.ColorfulSteamEngineVisual;
 import net.rarin.colorfulpipes.content.steamWhistle.ColorfulWhistleBlockEntity;
 import net.rarin.colorfulpipes.content.table_cloth.ColorfulTableClothBlockEntity;
 import net.rarin.colorfulpipes.content.tank.ColorfulFluidTankBlockEntity;
@@ -103,18 +108,12 @@ public class CCPBlockEntityTypes {
 	static {
 		for (DyeColor color : DyeColor.values()) {
 			COLORFUL_FLUID_TANKS.put(color, REGISTRATE
-					.blockEntity(color.getSerializedName() + "_colorful_fluid_tank", ColorfulFluidTankBlockEntity::new)
+					.blockEntity(color.getSerializedName() + "_fluid_tank", ColorfulFluidTankBlockEntity::new)
 					.validBlocks(CCPBlocks.COLORFUL_FLUID_TANKS.toArray())
 					.renderer(() -> ColorfulFluidTankRenderer::new)
 					.register());
 		}
 	}
-
-//	public static final BlockEntityEntry<ColorfulFluidTankBlockEntity> COLORFUL_FLUID_TANKS = REGISTRATE
-//			.blockEntity("colorful_fluid_tank", ColorfulFluidTankBlockEntity::new)
-//			.validBlocks(CCPBlocks.COLORFUL_FLUID_TANKS.toArray())
-//			.renderer(() -> ColorfulFluidTankRenderer::new)
-//			.register();
 
 	public static final BlockEntityEntry<ColorfulHosePulleyBlockEntity> COLORFUL_HOSE_PULLEYS = REGISTRATE
 			.blockEntity("colorful_hose_pulley", ColorfulHosePulleyBlockEntity::new)
@@ -130,12 +129,12 @@ public class CCPBlockEntityTypes {
 			.renderer(() -> ColorfulPortableFluidInterfaceRenderer::new)
 			.register();
 
-//	public static final BlockEntityEntry<ColorfulSteamEngineBlockEntity> COLORFUL_STEAM_ENGINES = REGISTRATE
-//			.blockEntity("colorful_steam_engine", ColorfulSteamEngineBlockEntity::new)
-//			.visual(() -> ColorfulSteamEngineVisual::new)
-//			.validBlocks(CCPBlocks.COLORFUL_STEAM_ENGINES.toArray())
-//			.renderer(() -> ColorfulSteamEngineRenderer::new)
-//			.register();
+	public static final BlockEntityEntry<ColorfulSteamEngineBlockEntity> COLORFUL_STEAM_ENGINES = REGISTRATE
+			.blockEntity("colorful_steam_engine", ColorfulSteamEngineBlockEntity::new)
+			.visual(() -> ColorfulSteamEngineVisual::new)
+			.validBlocks(CCPBlocks.COLORFUL_STEAM_ENGINES.toArray())
+			.renderer(() -> ColorfulSteamEngineRenderer::new)
+			.register();
 
 	public static final BlockEntityEntry<ColorfulWhistleBlockEntity> COLORFUL_STEAM_WHISTLES = REGISTRATE
 			.blockEntity("colorful_steam_whistle", ColorfulWhistleBlockEntity::new)

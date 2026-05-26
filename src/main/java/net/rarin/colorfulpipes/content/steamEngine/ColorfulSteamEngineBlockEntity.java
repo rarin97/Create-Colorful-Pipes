@@ -1,5 +1,6 @@
 package net.rarin.colorfulpipes.content.steamEngine;
 
+import com.hlysine.create_connected.registries.CCBlocks;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.api.equipment.goggles.IHaveGoggleInformation;
 import com.simibubi.create.content.contraptions.bearing.WindmillBearingBlockEntity;
@@ -30,11 +31,12 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-
 import org.jetbrains.annotations.Nullable;
-
 import java.lang.ref.WeakReference;
 import java.util.List;
+import net.rarin.colorfulpipes.compat.Create_Connected.content.ColorfulFluidVesselBlock;
+import net.rarin.colorfulpipes.compat.Mods;
+import net.rarin.colorfulpipes.content.tank.ColorfulFluidTankBlock;
 
 public class ColorfulSteamEngineBlockEntity extends SmartBlockEntity implements IHaveGoggleInformation {
 
@@ -99,7 +101,7 @@ public class ColorfulSteamEngineBlockEntity extends SmartBlockEntity implements 
 		verticalTarget = targetAxis == Direction.Axis.Y;
 
 		BlockState blockState = getBlockState();
-		if (!AllBlocks.STEAM_ENGINE.has(blockState))
+		if (!(blockState.getBlock() instanceof ColorfulSteamEngineBlock))
 			return;
 		Direction facing = ColorfulSteamEngineBlock.getFacing(blockState);
 		if (facing.getAxis() == Direction.Axis.Y)
@@ -182,7 +184,11 @@ public class ColorfulSteamEngineBlockEntity extends SmartBlockEntity implements 
 		if (level == null)
 			return false;
 
-		return level.getBlockState(getBlockPos().relative(dir)).is(AllBlocks.FLUID_TANK.get());
+		if (level.getBlockState(getBlockPos().relative(dir)).is(AllBlocks.FLUID_TANK.get())
+				|| level.getBlockState(getBlockPos().relative(dir)).getBlock() instanceof ColorfulFluidTankBlock)
+			return true;
+		return Mods.CREATE_CONNECTED.isLoaded() && (level.getBlockState(getBlockPos().relative(dir)).is(CCBlocks.FLUID_VESSEL.get())
+				 ||level.getBlockState(getBlockPos().relative(dir)).getBlock() instanceof ColorfulFluidVesselBlock);
 	}
 
 	@OnlyIn(Dist.CLIENT)
@@ -242,7 +248,7 @@ public class ColorfulSteamEngineBlockEntity extends SmartBlockEntity implements 
 	public Float getTargetAngle() {
 		float angle = 0;
 		BlockState blockState = getBlockState();
-		if (!AllBlocks.STEAM_ENGINE.has(blockState))
+		if (!(blockState.getBlock() instanceof ColorfulSteamEngineBlock))
 			return null;
 
 		Direction facing = ColorfulSteamEngineBlock.getFacing(blockState);

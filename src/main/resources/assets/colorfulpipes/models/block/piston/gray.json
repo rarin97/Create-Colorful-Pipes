@@ -1,0 +1,8 @@
+{
+  "credit": "By RaymondBlaze, made with Blockbench",
+  "parent": "colorfulpipes:block/printer/piston",
+  "textures": {
+    "hose": "colorfulpipes:block/hose/gray",
+    "head": "create:block/mechanical_press_head"
+  }
+}

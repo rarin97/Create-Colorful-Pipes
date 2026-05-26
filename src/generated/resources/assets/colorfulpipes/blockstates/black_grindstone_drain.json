@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "colorfulpipes:block/black_grindstone_drain",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "colorfulpipes:block/black_grindstone_drain"
+    },
+    "facing=south": {
+      "model": "colorfulpipes:block/black_grindstone_drain",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "colorfulpipes:block/black_grindstone_drain",
+      "y": 270
+    }
+  }
+}

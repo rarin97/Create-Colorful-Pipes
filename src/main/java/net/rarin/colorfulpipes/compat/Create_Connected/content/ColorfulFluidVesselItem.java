@@ -1,7 +1,5 @@
 package net.rarin.colorfulpipes.compat.Create_Connected.content;
 
-import com.hlysine.create_connected.CCBlockEntityTypes;
-import com.hlysine.create_connected.CCBlocks;
 import com.hlysine.create_connected.content.fluidvessel.FluidVesselBlock;
 import com.hlysine.create_connected.content.fluidvessel.FluidVesselBlockEntity;
 import com.hlysine.create_connected.content.fluidvessel.FluidVesselItem;
@@ -12,27 +10,40 @@ import com.simibubi.create.content.fluids.tank.FluidTankBlockEntity;
 import com.simibubi.create.foundation.block.IBE;
 
 import net.createmod.catnip.math.VecHelper;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.fluids.FluidStack;
+
+import java.util.List;
 
 public class ColorfulFluidVesselItem extends FluidVesselItem {
 	public ColorfulFluidVesselItem(Block block, Properties properties) {
 		super(block, properties);
 	}
+
+	@Override
+	public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
+		tooltip.add(Component.literal("Create: Connected")
+				.withStyle(ChatFormatting.BLUE, ChatFormatting.ITALIC));
+
+		super.appendHoverText(stack, context, tooltip, flag);
+	}
+
 
 	public InteractionResult place(BlockPlaceContext ctx) {
 		InteractionResult initialResult = super.place(ctx);

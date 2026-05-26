@@ -48,6 +48,7 @@ public class ColorfulPipesDatagen {
 			BiConsumer<String, String> langConsumer = provider::add;
 
 			provideDefaultLang("interface", langConsumer);
+			provideDefaultLang("tooltips", langConsumer);
 			providePonderLang(langConsumer);
 		});
 	}

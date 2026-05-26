@@ -1,0 +1,7 @@
+{
+  "parent": "colorfulpipes:block/experience_hatch",
+  "textures": {
+    "base": "colorfulpipes:block/experience_hatch/light_gray",
+    "particle": "colorfulpipes:block/item_drain/light_gray"
+  }
+}

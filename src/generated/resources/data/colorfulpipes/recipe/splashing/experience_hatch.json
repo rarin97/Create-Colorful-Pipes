@@ -1,0 +1,19 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "create_enchantment_industry"
+    }
+  ],
+  "type": "create:splashing",
+  "ingredients": [
+    {
+      "tag": "colorfulpipes:colorful_experience_hatches"
+    }
+  ],
+  "results": [
+    {
+      "id": "create_enchantment_industry:experience_hatch"
+    }
+  ]
+}

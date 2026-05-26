@@ -1,0 +1,13 @@
+{
+  "type": "create:splashing",
+  "ingredients": [
+    {
+      "tag": "colorfulpipes:colorful_steam_engines"
+    }
+  ],
+  "results": [
+    {
+      "id": "create:steam_engine"
+    }
+  ]
+}

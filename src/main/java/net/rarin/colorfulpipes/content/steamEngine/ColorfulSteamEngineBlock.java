@@ -1,5 +1,6 @@
 package net.rarin.colorfulpipes.content.steamEngine;
 
+import com.hlysine.create_connected.content.fluidvessel.FluidVesselBlock;
 import com.mojang.serialization.MapCodec;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllShapes;
@@ -7,6 +8,7 @@ import com.simibubi.create.content.fluids.tank.FluidTankBlock;
 import com.simibubi.create.content.kinetics.simpleRelays.ShaftBlock;
 import com.simibubi.create.content.kinetics.steamEngine.PoweredShaftBlock;
 import com.simibubi.create.content.kinetics.steamEngine.SteamEngineBlock;
+import com.simibubi.create.foundation.block.IBE;
 import com.simibubi.create.foundation.advancement.AdvancementBehaviour;
 import com.simibubi.create.foundation.utility.BlockHelper;
 import net.createmod.catnip.data.Couple;
@@ -22,6 +24,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.DyeItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -29,6 +32,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.FaceAttachedHorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -40,12 +44,17 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+import net.rarin.colorfulpipes.CCPBlocks;
+
+import net.rarin.colorfulpipes.compat.Mods;
+
 import org.jetbrains.annotations.NotNull;
 import java.util.function.Predicate;
+import net.rarin.colorfulpipes.CCPBlockEntityTypes;
 
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED;
 
-public class ColorfulSteamEngineBlock extends FaceAttachedHorizontalDirectionalBlock {//implements SimpleWaterloggedBlock, IWrenchable, IBE<ColorfulSteamEngineBlockEntity> {
+public class ColorfulSteamEngineBlock extends FaceAttachedHorizontalDirectionalBlock implements IBE<ColorfulSteamEngineBlockEntity> {
 
 	protected final DyeColor color;
 
@@ -58,24 +67,6 @@ public class ColorfulSteamEngineBlock extends FaceAttachedHorizontalDirectionalB
 		this.color = color;
 		registerDefaultState(stateDefinition.any().setValue(FACE, AttachFace.FLOOR).setValue(FACING, Direction.NORTH).setValue(WATERLOGGED, false));
 	}
-
-//		@Override
-//		public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-//
-//		if (stack.getItem() instanceof DyeItem dye) {
-//			DyeColor dyeColor = dye.getDyeColor();
-//
-//			if (dyeColor == this.color)
-//				return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
-//
-//			if (!level.isClientSide) {
-//				level.levelEvent(2001, pos, Block.getId(state));
-//				//level.setBlockAndUpdate(pos, CCPBlocks.COLORFUL_STEAM_ENGINES.get(dyeColor).getDefaultState());
-//			}
-//			return ItemInteractionResult.SUCCESS;
-//		}
-//		return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
-//	}
 
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
@@ -95,8 +86,10 @@ public class ColorfulSteamEngineBlock extends FaceAttachedHorizontalDirectionalB
 
 	public static boolean canAttach(LevelReader pReader, BlockPos pPos, Direction pDirection) {
 		BlockPos blockpos = pPos.relative(pDirection);
-		return pReader.getBlockState(blockpos)
-				.getBlock() instanceof FluidTankBlock;
+		Block block = pReader.getBlockState(blockpos).getBlock();
+		if (block instanceof FluidTankBlock)
+			return true;
+		return Mods.CREATE_CONNECTED.isLoaded() && block instanceof FluidVesselBlock;
 	}
 
 	@Override
@@ -110,6 +103,22 @@ public class ColorfulSteamEngineBlock extends FaceAttachedHorizontalDirectionalB
 		if (placementHelper.matchesItem(stack))
 			return placementHelper.getOffset(player, level, state, pos, hitResult)
 					.placeInWorld(level, (BlockItem) stack.getItem(), player, hand, hitResult);
+
+		if (stack.getItem() instanceof DyeItem dye) {
+			DyeColor dyeColor = dye.getDyeColor();
+
+			if (dyeColor == this.color)
+				return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+
+			if (!level.isClientSide) {
+				level.levelEvent(2001, pos, Block.getId(state));
+				level.setBlockAndUpdate(pos, CCPBlocks.COLORFUL_STEAM_ENGINES.get(dyeColor).getDefaultState()
+						.setValue(FACING, state.getValue(FACING)).setValue(WATERLOGGED, state.getValue(WATERLOGGED))
+						.setValue(FACE, state.getValue(FACE)));
+			}
+			return ItemInteractionResult.SUCCESS;
+		}
+
 		return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
 	}
 
@@ -179,14 +188,15 @@ public class ColorfulSteamEngineBlock extends FaceAttachedHorizontalDirectionalB
 				&& shaft.getValue(ShaftBlock.AXIS) != getFacing(state).getAxis();
 	}
 
-//	@Override
-//	public Class<ColorfulSteamEngineBlockEntity> getBlockEntityClass() {
-//		return ColorfulSteamEngineBlockEntity.class;
-//	}
-//
-//	public BlockEntityType<? extends ColorfulSteamEngineBlockEntity> getBlockEntityType() {
-//		return CCPBlockEntityTypes.COLORFUL_STEAM_ENGINES.get();
-//	}
+	@Override
+	public Class<ColorfulSteamEngineBlockEntity> getBlockEntityClass() {
+		return ColorfulSteamEngineBlockEntity.class;
+	}
+
+	@Override
+	public BlockEntityType<? extends ColorfulSteamEngineBlockEntity> getBlockEntityType() {
+		return CCPBlockEntityTypes.COLORFUL_STEAM_ENGINES.get();
+	}
 
 
 	@MethodsReturnNonnullByDefault

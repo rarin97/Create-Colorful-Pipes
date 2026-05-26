@@ -1,6 +1,6 @@
 package net.rarin.colorfulpipes.Datagen;
 
-import com.hlysine.create_connected.CCBlocks;
+import com.hlysine.create_connected.registries.CCBlocks;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.api.data.recipe.WashingRecipeGen;
 
@@ -11,6 +11,8 @@ import net.rarin.colorfulpipes.CCPPaletteBlocks;
 import net.rarin.colorfulpipes.ColorfulPipes;
 import net.rarin.colorfulpipes.CCPTags.ColorfulItemTags;
 import net.rarin.colorfulpipes.compat.Mods;
+import plus.dragons.createdragonsplus.common.registry.CDPBlocks;
+import plus.dragons.createenchantmentindustry.common.registry.CEIBlocks;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -54,6 +56,10 @@ public class CCPWashingRecipeGen extends WashingRecipeGen {
 			b -> b.require(ColorfulItemTags.COLORFUL_HOSE_PULLEYS.tag)
 					.output(AllBlocks.HOSE_PULLEY.asItem())),
 
+	COLORFUL_STEAM_ENGINES = create("steam_engine",
+			b -> b.require(ColorfulItemTags.COLORFUL_STEAM_ENGINES.tag)
+					.output(AllBlocks.STEAM_ENGINE.asItem())),
+
 	COLORFUL_STEAM_WHISTLES = create("steam_whistle",
 			b -> b.require(ColorfulItemTags.COLORFUL_STEAM_WHISTLES.tag)
 					.output(AllBlocks.STEAM_WHISTLE.asItem())),
@@ -89,9 +95,27 @@ public class CCPWashingRecipeGen extends WashingRecipeGen {
 	COLORFUL_FLUID_VESSELS = create("fluid_vessel",
 			b -> b.require(ColorfulItemTags.COLORFUL_FLUID_VESSELS.tag)
 					.output(CCBlocks.FLUID_VESSEL.asItem())
-					.withCondition(new ModLoadedCondition(Mods.CREATE_CONNECTED.id())));
+					.withCondition(new ModLoadedCondition(Mods.CREATE_CONNECTED.id()))),
 
+	COLORFUL_FLUID_HATCHES = create("fluid_hatch",
+			b -> b.require(ColorfulItemTags.COLORFUL_FLUID_HATCHES.tag)
+					.output(CDPBlocks.FLUID_HATCH.asItem())
+					.withCondition(new ModLoadedCondition(Mods.CREATE_DRAGONS_PLUS.id()))),
 
+			COLORFUL_EXPERIENCE_HATCHES = create("experience_hatch",
+					b -> b.require(ColorfulItemTags.COLORFUL_EXPERIENCE_HATCHES.tag)
+							.output(CEIBlocks.EXPERIENCE_HATCH.asItem())
+							.withCondition(new ModLoadedCondition(Mods.CREATE_ENCHANTMENT_INDUSTRY.id()))),
+
+	COLORFUL_EXPERIENCE_LANTERNS = create("experience_lantern",
+			b -> b.require(ColorfulItemTags.COLORFUL_EXPERIENCE_LANTERNS.tag)
+					.output(CEIBlocks.EXPERIENCE_LANTERN.asItem())
+					.withCondition(new ModLoadedCondition(Mods.CREATE_ENCHANTMENT_INDUSTRY.id()))),
+
+			COLORFUL_PRINTERS = create("printer",
+					b -> b.require(ColorfulItemTags.COLORFUL_PRINTERS.tag)
+							.output(CEIBlocks.PRINTER.asItem())
+							.withCondition(new ModLoadedCondition(Mods.CREATE_ENCHANTMENT_INDUSTRY.id())));
 
 
 	public CCPWashingRecipeGen(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {

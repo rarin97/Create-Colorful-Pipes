@@ -13,6 +13,8 @@ import net.neoforged.neoforge.common.conditions.NotCondition;
 import net.rarin.colorfulpipes.CCPBlocks;
 import net.rarin.colorfulpipes.CCPPaletteBlocks;
 import net.rarin.colorfulpipes.ColorfulPipes;
+import net.rarin.colorfulpipes.compat.CreateDragonsPlus.CDPBlocks;
+import net.rarin.colorfulpipes.compat.CreateEnchantmentIndustry.CEIBlocks;
 import net.rarin.colorfulpipes.compat.Create_Connected.CCBlocks;
 import net.rarin.colorfulpipes.compat.Mods;
 
@@ -29,8 +31,8 @@ public class CCPItemApplicationRecipeGen extends ItemApplicationRecipeGen {
 	final EnumMap<DyeColor, GeneratedRecipe> COLORFUL_SPOUTS = new EnumMap<>(DyeColor.class);
 	final EnumMap<DyeColor, GeneratedRecipe> COLORFUL_DRAINS = new EnumMap<>(DyeColor.class);
 	final EnumMap<DyeColor, GeneratedRecipe> COLORFUL_FLUID_INTERFACES = new EnumMap<>(DyeColor.class);
-	final EnumMap<DyeColor, GeneratedRecipe> COLORFUL_HOSE_PULLEY = new EnumMap<>(DyeColor.class);
-	final EnumMap<DyeColor, GeneratedRecipe> COLORFUL_STEAM_WHISTLES = new EnumMap<>(DyeColor.class);
+	final EnumMap<DyeColor, GeneratedRecipe> COLORFUL_GRINDSTONE_DRAIN = new EnumMap<>(DyeColor.class);
+	final EnumMap<DyeColor, GeneratedRecipe> COLORFUL_EXPERIENCE_HATCHES = new EnumMap<>(DyeColor.class);
 	final EnumMap<DyeColor, GeneratedRecipe> COLORFUL_COPPER_CASING = new EnumMap<>(DyeColor.class);
 	final EnumMap<DyeColor, GeneratedRecipe> COLORFUL_COPPER_GLASS_CASING = new EnumMap<>(DyeColor.class);
 	final EnumMap<DyeColor, GeneratedRecipe> COLORFUL_COPPER_TINTED_GLASS_CASING = new EnumMap<>(DyeColor.class);
@@ -66,7 +68,7 @@ public class CCPItemApplicationRecipeGen extends ItemApplicationRecipeGen {
 							.withCondition(new NotCondition(new ModLoadedCondition(Mods.BITS_N_BOBS.id())))));
 
 			COLORFUL_FLUID_VESSELS.put(color, create(color.getName() + "_fluid_vessel",
-					b -> b.require(com.hlysine.create_connected.CCBlocks.FLUID_VESSEL)
+					b -> b.require(com.hlysine.create_connected.registries.CCBlocks.FLUID_VESSEL)
 							.require(color.getTag())
 							.output(CCBlocks.COLORFUL_FLUID_VESSELS.get(color))
 							.withCondition(new ModLoadedCondition(Mods.CREATE_CONNECTED.id()))));
@@ -135,6 +137,18 @@ public class CCPItemApplicationRecipeGen extends ItemApplicationRecipeGen {
 //					b -> b.require(ColorfulItemTags.COPPER_LADDERS.tag)
 //							.require(color.getTag())
 //							.output(CCPBlocks.COLORFUL_COPPER_LADDER.get(color))));
+
+			COLORFUL_EXPERIENCE_HATCHES.put(color, create(color.getName() + "_experience_hatch",
+					b -> b.require(CDPBlocks.COLORFUL_FLUID_HATCHES.get(color))
+							.require(AllBlocks.EXPERIENCE_BLOCK)
+							.output(CEIBlocks.COLORFUL_EXPERIENCE_HATCHES.get(color))
+							.withCondition(new ModLoadedCondition(Mods.CREATE_ENCHANTMENT_INDUSTRY.id()))));
+
+//			COLORFUL_GRINDSTONE_DRAIN.put(color, create(color.getName() + "_grindstone_drain",
+//					b -> b.require(CCPBlocks.COLORFUL_DRAINS.get(color))
+//							.require(plus.dragons.createenchantmentindustry.common.registry.CEIBlocks.MECHANICAL_GRINDSTONE)
+//							.output(CEIBlocks.COLORFUL_GRINDSTONE_DRAIN.get(color))
+//							.withCondition(new ModLoadedCondition(Mods.CREATE_ENCHANTMENT_INDUSTRY.id()))));
 		}
 
 	}

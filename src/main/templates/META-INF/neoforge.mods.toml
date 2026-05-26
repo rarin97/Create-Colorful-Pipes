@@ -6,7 +6,7 @@ license = "${mod_license}"
 modId = "${mod_id}" #mandatory
 version = "${mod_version}" #mandatory
 displayName = "${mod_name}" #mandatory
-logoFile= "assets/colorfulpipes/icon.png"
+logoFile= "../assets/colorfulpipes/icon.png"
 authors = "Rarin"
 description = "adds colored variants of pipes & tanks for Create"
 
@@ -30,6 +30,27 @@ side = "BOTH"
 modId="create"
 type="required"
 versionRange="[6.0.9,6.1.0)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies."${mod_id}"]]
+modId="create_connected"
+type="optional"
+versionRange="[1.2.0-mc1.21.1,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies."${mod_id}"]]
+modId="create_dragons_plus"
+type="optional"
+versionRange="[1.10.1,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies."${mod_id}"]]
+modId="create_enchantment_industry"
+type="optional"
+versionRange="[2.3.1,)"
 ordering="NONE"
 side="BOTH"
 

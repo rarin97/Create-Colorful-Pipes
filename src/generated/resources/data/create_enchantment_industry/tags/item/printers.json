@@ -1,0 +1,21 @@
+{
+  "values": [
+    "create_enchantment_industry:printer",
+    "colorfulpipes:white_printer",
+    "colorfulpipes:orange_printer",
+    "colorfulpipes:magenta_printer",
+    "colorfulpipes:light_blue_printer",
+    "colorfulpipes:yellow_printer",
+    "colorfulpipes:lime_printer",
+    "colorfulpipes:pink_printer",
+    "colorfulpipes:gray_printer",
+    "colorfulpipes:light_gray_printer",
+    "colorfulpipes:cyan_printer",
+    "colorfulpipes:purple_printer",
+    "colorfulpipes:blue_printer",
+    "colorfulpipes:brown_printer",
+    "colorfulpipes:green_printer",
+    "colorfulpipes:red_printer",
+    "colorfulpipes:black_printer"
+  ]
+}

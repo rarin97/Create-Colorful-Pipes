@@ -1,12 +1,12 @@
 package net.rarin.colorfulpipes.mixin;
 
-
 import com.hlysine.create_connected.content.fluidvessel.BoilerData;
 
 import com.simibubi.create.AllBlocks;
 import com.tterrag.registrate.util.entry.BlockEntry;
 
 import net.minecraft.world.level.block.state.BlockState;
+import net.rarin.colorfulpipes.compat.ModMixin;
 import net.rarin.colorfulpipes.content.steamEngine.ColorfulSteamEngineBlock;
 import net.rarin.colorfulpipes.content.steamWhistle.ColorfulWhistleBlock;
 
@@ -14,6 +14,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
+@ModMixin(mods = {"create_connected"})
 @Mixin(BoilerData.class)
 public class CCBoilerDataMixin {
 

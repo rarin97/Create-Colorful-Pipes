@@ -1,12 +1,12 @@
 package net.rarin.colorfulpipes;
 
-import com.hlysine.create_connected.CreateConnected;
 import com.simibubi.create.Create;
 import net.createmod.catnip.lang.Lang;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.rarin.colorfulpipes.compat.Mods;
 
@@ -14,6 +14,10 @@ import org.jetbrains.annotations.Nullable;
 
 import static net.rarin.colorfulpipes.CCPTags.NameSpace.CREATE;
 import static net.rarin.colorfulpipes.CCPTags.NameSpace.CREATE_CONNECTED;
+import static net.rarin.colorfulpipes.CCPTags.NameSpace.CREATE_DRAGONS_PLUS;
+import static net.rarin.colorfulpipes.CCPTags.NameSpace.CREATE_ENCHANTMENT_INDUSTRY;
+import static net.rarin.colorfulpipes.CCPTags.NameSpace.MINECRAFT;
+import static net.rarin.colorfulpipes.CCPTags.NameSpace.SABLE;
 
 public class CCPTags {
 	public enum NameSpace {
@@ -21,7 +25,11 @@ public class CCPTags {
 		MOD(ColorfulPipes.ID),
 		COMMON("c"),
 		CREATE(Create.ID),
-		CREATE_CONNECTED(Mods.CREATE_CONNECTED.id());
+		CREATE_CONNECTED(Mods.CREATE_CONNECTED.id()),
+		CREATE_DRAGONS_PLUS(Mods.CREATE_DRAGONS_PLUS.id()),
+		CREATE_ENCHANTMENT_INDUSTRY(Mods.CREATE_ENCHANTMENT_INDUSTRY.id()),
+		SABLE(Mods.SABLE.id()),
+		MINECRAFT("minecraft");
 
 		public final String id;
 
@@ -59,6 +67,10 @@ public class CCPTags {
 		COLORFUL_COPPER_BARS,
 		COLORFUL_COPPER_DOORS,
 		COLORFUL_FLUID_VESSELS,
+		COLORFUL_FLUID_HATCHES,
+		COLORFUL_EXPERIENCE_HATCHES,
+		COLORFUL_EXPERIENCE_LANTERNS,
+		COLORFUL_PRINTERS,
 
 		FLUID_PIPES(CREATE),
 		COPPER_CASINGS(CREATE),
@@ -72,13 +84,18 @@ public class CCPTags {
 		SPOUTS(CREATE),
 		PORTABLE_FLUID_INTERFACES(CREATE),
 		HOSE_PULLEYS(CREATE),
+		STEAM_ENGINES(CREATE),
 		STEAM_WHISTLES(CREATE),
 		COPPER_SCAFFOLDS(CREATE),
 		COPPER_TABLE_CLOTHS(CREATE),
 		COPPER_LADDERS(CREATE),
 		COPPER_BARS(CREATE),
 		COPPER_DOORS(CREATE),
-		FLUID_VESSELS(CREATE_CONNECTED);
+		FLUID_VESSELS(CREATE_CONNECTED),
+		FLUID_HATCHES(CREATE_DRAGONS_PLUS),
+		EXPERIENCE_HATCHES(CREATE_ENCHANTMENT_INDUSTRY),
+		EXPERIENCE_LANTERNS(CREATE_ENCHANTMENT_INDUSTRY),
+		PRINTERS(CREATE_ENCHANTMENT_INDUSTRY);
 
 		public final TagKey<Item> tag;
 
@@ -92,6 +109,10 @@ public class CCPTags {
 
 		ColorfulItemTags(NameSpace namespace, @Nullable String pathOverride) {
 			this.tag = TagKey.create(Registries.ITEM, namespace.id(this, pathOverride));
+		}
+
+		public boolean matches(ItemStack stack) {
+			return stack.is(tag);
 		}
 	}
 
@@ -115,7 +136,15 @@ public class CCPTags {
 			COLORFUL_COPPER_LADDERS,
 			COLORFUL_COPPER_BARS,
 			COLORFUL_COPPER_DOORS,
-			COLORFUL_FLUID_VESSELS;
+			COLORFUL_FLUID_VESSELS,
+			COLORFUL_FLUID_HATCHES,
+			COLORFUL_EXPERIENCE_HATCHES,
+
+			LIGHT(SABLE),
+			SUPER_LIGHT(SABLE),
+			QUARTER_VOLUMES(SABLE),
+
+			IMPERMEABLE(MINECRAFT);
 
 			public final TagKey<Block> tag;
 

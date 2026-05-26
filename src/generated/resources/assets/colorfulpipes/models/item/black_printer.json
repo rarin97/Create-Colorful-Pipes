@@ -1,0 +1,10 @@
+{
+  "parent": "colorfulpipes:block/printer/item",
+  "textures": {
+    "filter": "colorfulpipes:block/smart_pipe_2/black",
+    "hose": "colorfulpipes:block/hose/black",
+    "nozzle": "colorfulpipes:block/spout_nozzle/black",
+    "tank": "colorfulpipes:block/spout/black",
+    "tank_bottom": "colorfulpipes:block/encased_pipe/black"
+  }
+}

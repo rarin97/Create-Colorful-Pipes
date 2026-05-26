@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:dyes/purple"
+    },
+    {
+      "tag": "create:steam_engines"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "colorfulpipes:purple_steam_engine"
+  }
+}

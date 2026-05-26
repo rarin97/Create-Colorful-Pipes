@@ -1,0 +1,7 @@
+{
+  "parent": "create:block/steam_engine/block",
+  "textures": {
+    "1": "colorfulpipes:block/engine/light_gray",
+    "particle": "colorfulpipes:block/copper_underside/light_gray"
+  }
+}

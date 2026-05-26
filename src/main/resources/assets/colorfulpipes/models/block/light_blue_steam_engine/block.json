@@ -1,7 +1,0 @@
-{
-  "parent": "colorfulpipes:block/white_steam_engine/block",
-  "textures": {
-    "1": "colorfulpipes:block/engine/light_blue",
-    "particle": "colorfulpipes:block/copper_underside/light_blue"
-  }
-}
