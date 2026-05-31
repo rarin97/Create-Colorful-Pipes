@@ -1,20 +1,20 @@
 {
   "values": [
-    "colorfulpipes:white_experience_lantern",
-    "colorfulpipes:orange_experience_lantern",
-    "colorfulpipes:magenta_experience_lantern",
-    "colorfulpipes:light_blue_experience_lantern",
-    "colorfulpipes:yellow_experience_lantern",
-    "colorfulpipes:lime_experience_lantern",
-    "colorfulpipes:pink_experience_lantern",
-    "colorfulpipes:gray_experience_lantern",
-    "colorfulpipes:light_gray_experience_lantern",
-    "colorfulpipes:cyan_experience_lantern",
-    "colorfulpipes:purple_experience_lantern",
-    "colorfulpipes:blue_experience_lantern",
-    "colorfulpipes:brown_experience_lantern",
-    "colorfulpipes:green_experience_lantern",
-    "colorfulpipes:red_experience_lantern",
-    "colorfulpipes:black_experience_lantern"
+    { "id": "colorfulpipes:white_experience_lantern", "required": false },
+    { "id": "colorfulpipes:orange_experience_lantern", "required": false },
+    { "id": "colorfulpipes:magenta_experience_lantern", "required": false },
+    { "id": "colorfulpipes:light_blue_experience_lantern", "required": false },
+    { "id": "colorfulpipes:yellow_experience_lantern", "required": false },
+    { "id": "colorfulpipes:lime_experience_lantern", "required": false },
+    { "id": "colorfulpipes:pink_experience_lantern", "required": false },
+    { "id": "colorfulpipes:gray_experience_lantern", "required": false },
+    { "id": "colorfulpipes:light_gray_experience_lantern", "required": false },
+    { "id": "colorfulpipes:cyan_experience_lantern", "required": false },
+    { "id": "colorfulpipes:purple_experience_lantern", "required": false },
+    { "id": "colorfulpipes:blue_experience_lantern", "required": false },
+    { "id": "colorfulpipes:brown_experience_lantern", "required": false },
+    { "id": "colorfulpipes:green_experience_lantern", "required": false },
+    { "id": "colorfulpipes:red_experience_lantern", "required": false },
+    { "id": "colorfulpipes:black_experience_lantern", "required": false }
   ]
 }

@@ -1,0 +1,10 @@
+{
+  "parent": "create:block/smart_fluid_pipe/block",
+  "textures": {
+    "2": "colorfulpipes:block/smart_pipe_1/orange",
+    "3": "colorfulpipes:block/smart_pipe_2/orange",
+    "4": "colorfulpipes:block/fluid_pipe/orange",
+    "5": "create:block/smart_pipe_3",
+    "particle": "colorfulpipes:block/copper_underside/orange"
+  }
+}

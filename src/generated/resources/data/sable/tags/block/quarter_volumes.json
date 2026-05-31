@@ -1,7 +1,16 @@
 {
   "values": [
-    "#colorfulpipes:colorful_copper_ladders",
-    "#colorfulpipes:colorful_copper_doors",
-    "#colorfulpipes:colorful_copper_bars"
+    {
+      "id": "#colorfulpipes:colorful_copper_ladders",
+      "required": false
+    },
+    {
+      "id": "#colorfulpipes:colorful_copper_doors",
+      "required": false
+    },
+    {
+      "id": "#colorfulpipes:colorful_copper_bars",
+      "required": false
+    }
   ]
 }

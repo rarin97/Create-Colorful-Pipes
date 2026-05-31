@@ -1,0 +1,13 @@
+{
+  "parent": "create:block/fluid_vessel/block_z_single_window",
+  "textures": {
+    "0": "colorfulpipes:block/fluid_tank_top/magenta",
+    "1": "colorfulpipes:block/fluid_tank/magenta",
+    "3": "colorfulpipes:block/fluid_tank_window/magenta",
+    "4": "colorfulpipes:block/fluid_tank_inner/magenta",
+    "5": "colorfulpipes:block/fluid_tank_window_single/magenta",
+    "6": "colorfulpipes:block/fluid_container_window/magenta",
+    "7": "colorfulpipes:block/fluid_container_window_single/magenta",
+    "particle": "colorfulpipes:block/fluid_tank/magenta"
+  }
+}

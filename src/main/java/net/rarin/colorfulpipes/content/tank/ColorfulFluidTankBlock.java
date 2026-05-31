@@ -1,8 +1,10 @@
 package net.rarin.colorfulpipes.content.tank;
 
+import com.simibubi.create.api.connectivity.ConnectivityHandler;
 import com.simibubi.create.content.fluids.tank.FluidTankBlock;
 import com.simibubi.create.content.fluids.tank.FluidTankBlockEntity;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -16,6 +18,11 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.rarin.colorfulpipes.CCPBlockEntityTypes;
 import net.rarin.colorfulpipes.CCPBlocks;
+
+import java.util.ArrayDeque;
+import java.util.HashSet;
+import java.util.Queue;
+import java.util.Set;
 
 public class ColorfulFluidTankBlock extends FluidTankBlock {
 
@@ -42,7 +49,36 @@ public class ColorfulFluidTankBlock extends FluidTankBlock {
 			if (!level.isClientSide) {
 				level.levelEvent(2001, pos, Block.getId(state));
 
-				level.setBlock(pos, CCPBlocks.COLORFUL_FLUID_TANKS.get(dyeColor).getDefaultState(), 3);
+				ColorfulFluidTankBlockEntity controller = ConnectivityHandler.partAt(CCPBlockEntityTypes.COLORFUL_FLUID_TANKS.get(this.color).get(), level, pos);
+
+				Set<BlockPos> tanks = new HashSet<>();
+				Queue<BlockPos> queue = new ArrayDeque<>();
+
+				queue.add(pos);
+				tanks.add(pos);
+
+				while (!queue.isEmpty()) {
+					BlockPos current = queue.poll();
+
+					for (Direction dir : Direction.values()) {
+
+						if (tanks.contains(current.relative(dir)))
+							continue;
+
+						if (!(level.getBlockEntity(current.relative(dir)) instanceof ColorfulFluidTankBlockEntity tank))
+							continue;
+
+						if (!tank.getController().equals(controller.getController()))
+							continue;
+
+						tanks.add(current.relative(dir));
+						queue.add(current.relative(dir));
+					}
+				}
+
+				for (BlockPos p : tanks) {
+					level.setBlock(p, CCPBlocks.COLORFUL_FLUID_TANKS.get(dyeColor).getDefaultState(), 3);
+				}
 			}
 			return ItemInteractionResult.SUCCESS;
 		}

@@ -1,5 +1,8 @@
 {
   "values": [
-    "#colorfulpipes:colorful_fluid_hatches"
+    {
+      "id": "#colorfulpipes:colorful_fluid_hatches",
+      "required": false
+    }
   ]
 }

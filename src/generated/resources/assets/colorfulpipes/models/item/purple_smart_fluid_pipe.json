@@ -1,3 +1,9 @@
 {
-  "parent": "colorfulpipes:block/purple_smart_fluid_pipe/item"
+  "parent": "create:block/smart_fluid_pipe/item",
+  "textures": {
+    "1": "colorfulpipes:block/fluid_pipe/purple",
+    "2": "colorfulpipes:block/smart_pipe_1/purple",
+    "3": "colorfulpipes:block/smart_pipe_2/purple",
+    "4": "create:block/smart_pipe_3"
+  }
 }

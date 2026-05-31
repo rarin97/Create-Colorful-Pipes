@@ -1,0 +1,13 @@
+{
+  "parent": "create:block/fluid_vessel/block_x_negative_window_single",
+  "textures": {
+    "0": "colorfulpipes:block/fluid_tank_top/red",
+    "1": "colorfulpipes:block/fluid_tank/red",
+    "3": "colorfulpipes:block/fluid_tank_window/red",
+    "4": "colorfulpipes:block/fluid_tank_inner/red",
+    "5": "colorfulpipes:block/fluid_tank_window_single/red",
+    "6": "colorfulpipes:block/fluid_container_window/red",
+    "7": "colorfulpipes:block/fluid_container_window_single/red",
+    "particle": "colorfulpipes:block/fluid_tank/red"
+  }
+}

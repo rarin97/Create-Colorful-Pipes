@@ -1,36 +1,5 @@
 {
   "values": [
-    "colorfulpipes:white_copper_door",
-    "colorfulpipes:orange_copper_door",
-    "colorfulpipes:magenta_copper_door",
-    "colorfulpipes:light_blue_copper_door",
-    "colorfulpipes:yellow_copper_door",
-    "colorfulpipes:lime_copper_door",
-    "colorfulpipes:pink_copper_door",
-    "colorfulpipes:gray_copper_door",
-    "colorfulpipes:light_gray_copper_door",
-    "colorfulpipes:cyan_copper_door",
-    "colorfulpipes:purple_copper_door",
-    "colorfulpipes:blue_copper_door",
-    "colorfulpipes:brown_copper_door",
-    "colorfulpipes:green_copper_door",
-    "colorfulpipes:red_copper_door",
-    "colorfulpipes:black_copper_door",
-    "colorfulpipes:maroon_copper_door",
-    "colorfulpipes:rose_copper_door",
-    "colorfulpipes:coral_copper_door",
-    "colorfulpipes:indigo_copper_door",
-    "colorfulpipes:navy_copper_door",
-    "colorfulpipes:slate_copper_door",
-    "colorfulpipes:olive_copper_door",
-    "colorfulpipes:amber_copper_door",
-    "colorfulpipes:beige_copper_door",
-    "colorfulpipes:teal_copper_door",
-    "colorfulpipes:mint_copper_door",
-    "colorfulpipes:aqua_copper_door",
-    "colorfulpipes:verdant_copper_door",
-    "colorfulpipes:forest_copper_door",
-    "colorfulpipes:ginger_copper_door",
-    "colorfulpipes:tan_copper_door"
+    { "id": "#colorfulpipes:colorful_copper_doors", "required": false }
   ]
 }

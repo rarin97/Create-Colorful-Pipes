@@ -1,21 +1,6 @@
 {
   "values": [
     "create_connected:fluid_vessel",
-    "colorfulpipes:white_fluid_vessel",
-    "colorfulpipes:light_gray_fluid_vessel",
-    "colorfulpipes:gray_fluid_vessel",
-    "colorfulpipes:black_fluid_vessel",
-    "colorfulpipes:brown_fluid_vessel",
-    "colorfulpipes:red_fluid_vessel",
-    "colorfulpipes:orange_fluid_vessel",
-    "colorfulpipes:yellow_fluid_vessel",
-    "colorfulpipes:lime_fluid_vessel",
-    "colorfulpipes:green_fluid_vessel",
-    "colorfulpipes:cyan_fluid_vessel",
-    "colorfulpipes:light_blue_fluid_vessel",
-    "colorfulpipes:blue_fluid_vessel",
-    "colorfulpipes:purple_fluid_vessel",
-    "colorfulpipes:magenta_fluid_vessel",
-    "colorfulpipes:pink_fluid_vessel"
+    { "id": "#colorfulpipes:colorful_fluid_vessels", "required": false }
   ]
 }

@@ -1,20 +1,20 @@
 {
   "values": [
-    "colorfulpipes:white_fluid_hatch",
-    "colorfulpipes:orange_fluid_hatch",
-    "colorfulpipes:magenta_fluid_hatch",
-    "colorfulpipes:light_blue_fluid_hatch",
-    "colorfulpipes:yellow_fluid_hatch",
-    "colorfulpipes:lime_fluid_hatch",
-    "colorfulpipes:pink_fluid_hatch",
-    "colorfulpipes:gray_fluid_hatch",
-    "colorfulpipes:light_gray_fluid_hatch",
-    "colorfulpipes:cyan_fluid_hatch",
-    "colorfulpipes:purple_fluid_hatch",
-    "colorfulpipes:blue_fluid_hatch",
-    "colorfulpipes:brown_fluid_hatch",
-    "colorfulpipes:green_fluid_hatch",
-    "colorfulpipes:red_fluid_hatch",
-    "colorfulpipes:black_fluid_hatch"
+    { "id": "colorfulpipes:white_fluid_hatch", "required": false },
+    { "id": "colorfulpipes:light_gray_fluid_hatch", "required": false },
+    { "id": "colorfulpipes:gray_fluid_hatch", "required": false },
+    { "id": "colorfulpipes:black_fluid_hatch", "required": false },
+    { "id": "colorfulpipes:brown_fluid_hatch", "required": false },
+    { "id": "colorfulpipes:red_fluid_hatch", "required": false },
+    { "id": "colorfulpipes:orange_fluid_hatch", "required": false },
+    { "id": "colorfulpipes:yellow_fluid_hatch", "required": false },
+    { "id": "colorfulpipes:lime_fluid_hatch", "required": false },
+    { "id": "colorfulpipes:green_fluid_hatch", "required": false },
+    { "id": "colorfulpipes:cyan_fluid_hatch", "required": false },
+    { "id": "colorfulpipes:light_blue_fluid_hatch", "required": false },
+    { "id": "colorfulpipes:blue_fluid_hatch", "required": false },
+    { "id": "colorfulpipes:purple_fluid_hatch", "required": false },
+    { "id": "colorfulpipes:magenta_fluid_hatch", "required": false },
+    { "id": "colorfulpipes:pink_fluid_hatch", "required": false }
   ]
 }

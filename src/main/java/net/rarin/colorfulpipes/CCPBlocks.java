@@ -10,7 +10,6 @@ import com.simibubi.create.content.fluids.pipes.*;
 import com.simibubi.create.content.fluids.pipes.valve.FluidValveBlock;
 import com.simibubi.create.content.fluids.pump.PumpBlock;
 import com.simibubi.create.content.fluids.spout.SpoutBlock;
-import com.simibubi.create.content.fluids.tank.FluidTankGenerator;
 import com.simibubi.create.content.fluids.tank.FluidTankMovementBehavior;
 import com.simibubi.create.foundation.block.DyedBlockList;
 import com.simibubi.create.foundation.data.AssetLookup;
@@ -37,9 +36,11 @@ import net.rarin.colorfulpipes.content.portableFluidInterface.ColorfulPortableFl
 import net.rarin.colorfulpipes.content.portableFluidInterface.ColorfulPortableFluidInterfaceMovement;
 import net.rarin.colorfulpipes.content.pump.ColorfulPumpBlock;
 import net.rarin.colorfulpipes.content.smartPipe.ColorfulSmartFluidPipeBlock;
+import net.rarin.colorfulpipes.content.smartPipe.ColorfulSmartFluidPipeGenerator;
 import net.rarin.colorfulpipes.content.spout.ColorfulSpoutBlock;
 import net.rarin.colorfulpipes.content.steamEngine.ColorfulSteamEngineBlock;
 import net.rarin.colorfulpipes.content.tank.ColorfulFluidTankBlock;
+import net.rarin.colorfulpipes.content.tank.ColorfulFluidTankGenerator;
 import net.rarin.colorfulpipes.content.tank.ColorfulFluidTankItem;
 import net.rarin.colorfulpipes.content.tank.ColorfulFluidTankModel;
 import net.rarin.colorfulpipes.content.valve.ColorfulFluidValveBlock;
@@ -130,7 +131,7 @@ public class CCPBlocks {
 				.initialProperties(SharedProperties::copperMetal)
 				.properties(p -> p.mapColor(color.getMapColor()))
 				.transform(pickaxeOnly())
-				.blockstate(new SmartFluidPipeGenerator()::generate)
+				.blockstate(new ColorfulSmartFluidPipeGenerator(color)::generate)
 				.onRegister(CCPRegistrate.ColorfulblockModel(() -> ColorfulPipeAttachmentModel::withAO, color))
 				.recipe((c, p) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, c.get())
 						.requires(color.getTag())
@@ -142,7 +143,7 @@ public class CCPBlocks {
 				.item()
 				.tag(ColorfulItemTags.COLORFUL_SMART_PIPES.tag)
 				.tag(ColorfulItemTags.SMART_FLUID_PIPES.tag)
-				.transform(customItemModel())
+				.transform(customItemModel(colorName + "_smart_fluid_pipe"))
 				.register();
 	});
 
@@ -209,7 +210,7 @@ public class CCPBlocks {
 				.properties(p -> p.noOcclusion().isRedstoneConductor((p1, p2, p3) -> true).mapColor(color.getMapColor()))
 				.transform(pickaxeOnly())
 				.addLayer(() -> RenderType::cutoutMipped)
-				.blockstate(new FluidTankGenerator()::generate)
+				.blockstate(new ColorfulFluidTankGenerator(color)::generate)
 				.onRegister(CCPRegistrate.ColorfulblockModel(() -> ColorfulFluidTankModel::standard, color))
 				.transform(displaySource(CCPDisplaySources.BOILER))
 				.transform(mountedFluidStorage(CCPMountedStorageTypes.FLUID_TANK))
@@ -374,6 +375,7 @@ public class CCPBlocks {
 						.unlockedBy("has_steam_engine", RegistrateRecipeProvider.has(AllBlocks.STEAM_ENGINE.asItem()))
 						.save(p, ColorfulPipes.asResource("steam_engine/" + c.getName()))
 				)
+				.tag(AllTags.AllBlockTags.WRENCH_PICKUP.tag)
 				.tag(ColorfulBlockTags.COLORFUL_STEAM_ENGINES.tag)
 				.item()
 				.tag(ColorfulItemTags.COLORFUL_STEAM_ENGINES.tag)

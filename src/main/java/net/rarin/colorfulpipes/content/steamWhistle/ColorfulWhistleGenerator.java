@@ -34,7 +34,6 @@ public class ColorfulWhistleGenerator extends SpecialBlockStateGen {
 	@Override
 	public <T extends Block> ModelFile getModel(DataGenContext<Block, T> ctx, RegistrateBlockstateProvider prov,
 												BlockState state) {
-		String colorName = color.getSerializedName();
 		String wall = state.getValue(WhistleBlock.WALL) ? "wall" : "floor";
 		String size = state.getValue(WhistleBlock.SIZE).getSerializedName();
 		boolean powered = state.getValue(WhistleBlock.POWERED);
@@ -48,7 +47,7 @@ public class ColorfulWhistleGenerator extends SpecialBlockStateGen {
 
 		return prov.models()
 				.withExistingParent(parentLocation.getPath() + "_powered", parentLocation)
-				.texture("2", ColorfulPipes.asResource("block/copper_redstone_plate_powered/" + colorName));
+				.texture("2", ColorfulPipes.asResource("block/copper_redstone_plate_powered/" + color));
 	}
 
 }

@@ -30,17 +30,17 @@ public class CCPTagGen {
 		TagGen.CreateTagsProvider<Block> prov = new TagGen.CreateTagsProvider<>(provIn, Block::builtInRegistryHolder);
 
 		prov.tag(ColorfulBlockTags.LIGHT.tag)
-				.addTag(ColorfulBlockTags.COLORFUL_FLUID_HATCHES.tag);
+				.addOptionalTag(ColorfulBlockTags.COLORFUL_FLUID_HATCHES.tag);
 
 		prov.tag(ColorfulBlockTags.SUPER_LIGHT.tag)
-				.addTag(ColorfulBlockTags.COLORFUL_COPPER_LADDERS.tag)
-				.addTag(ColorfulBlockTags.COLORFUL_COPPER_DOORS.tag)
-				.addTag(ColorfulBlockTags.COLORFUL_COPPER_BARS.tag);
+				.addOptionalTag(ColorfulBlockTags.COLORFUL_COPPER_LADDERS.tag)
+				.addOptionalTag(ColorfulBlockTags.COLORFUL_COPPER_DOORS.tag)
+				.addOptionalTag(ColorfulBlockTags.COLORFUL_COPPER_BARS.tag);
 
 		prov.tag(ColorfulBlockTags.QUARTER_VOLUMES.tag)
-				.addTag(ColorfulBlockTags.COLORFUL_COPPER_LADDERS.tag)
-				.addTag(ColorfulBlockTags.COLORFUL_COPPER_DOORS.tag)
-				.addTag(ColorfulBlockTags.COLORFUL_COPPER_BARS.tag);
+				.addOptionalTag(ColorfulBlockTags.COLORFUL_COPPER_LADDERS.tag)
+				.addOptionalTag(ColorfulBlockTags.COLORFUL_COPPER_DOORS.tag)
+				.addOptionalTag(ColorfulBlockTags.COLORFUL_COPPER_BARS.tag);
 
 	}
 

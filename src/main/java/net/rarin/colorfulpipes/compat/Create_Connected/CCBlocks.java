@@ -4,7 +4,6 @@ import com.hlysine.create_connected.registries.CCMountedStorageTypes;
 import com.hlysine.create_connected.config.FeatureCategory;
 import com.hlysine.create_connected.config.FeatureToggle;
 import com.hlysine.create_connected.content.fluidvessel.FluidVesselBlock;
-import com.hlysine.create_connected.content.fluidvessel.FluidVesselGenerator;
 import com.simibubi.create.api.connectivity.ConnectivityHandler;
 import com.simibubi.create.api.contraption.BlockMovementChecks;
 import com.simibubi.create.content.fluids.tank.FluidTankMovementBehavior;
@@ -16,6 +15,7 @@ import com.simibubi.create.foundation.data.SharedProperties;
 import net.minecraft.client.renderer.RenderType;
 import net.rarin.colorfulpipes.*;
 import net.rarin.colorfulpipes.compat.Create_Connected.content.ColorfulFluidVesselBlock;
+import net.rarin.colorfulpipes.compat.Create_Connected.content.ColorfulFluidVesselGenerator;
 import net.rarin.colorfulpipes.compat.Create_Connected.content.ColorfulFluidVesselItem;
 import net.rarin.colorfulpipes.compat.Create_Connected.content.ColorfulFluidVesselModel;
 
@@ -38,7 +38,7 @@ public class CCBlocks {
 				.properties(p -> p.noOcclusion().isRedstoneConductor((p1, p2, p3) -> true).mapColor(color.getMapColor()))
 				.transform(pickaxeOnly())
 				.transform(FeatureToggle.register(FeatureCategory.LOGISTICS))
-				.blockstate(new FluidVesselGenerator()::generate)
+				.blockstate(new ColorfulFluidVesselGenerator(color)::generate)
 				.onRegister(CCPRegistrate.ColorfulblockModel(() -> ColorfulFluidVesselModel::standard, color))
 				.onRegister(b -> BlockMovementChecks.registerAttachedCheck((state, world, pos, direction) -> {
 					if (state.getBlock() instanceof FluidVesselBlock)
