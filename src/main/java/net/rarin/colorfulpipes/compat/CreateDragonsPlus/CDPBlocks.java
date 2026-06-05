@@ -24,7 +24,7 @@ public class CDPBlocks {
 		return REGISTRATE.block(colorName + "_fluid_hatch", p -> new ColorfulFluidHatchBlock(p, color))
 				.initialProperties(SharedProperties::copperMetal)
 				.properties(p -> p.mapColor(color.getMapColor()))
-				.transform(pickaxeOnly())
+				.transform(pickaxeOnly()).asOptional()
 				.blockstate((c, p) ->
 						p.horizontalBlock(c.get(), p.models().withExistingParent(c.getName(), ColorfulPipes.asResource("block/fluid_hatch"))
 								.texture("base", ColorfulPipes.asResource("block/fluid_hatch/" + colorName))
@@ -33,8 +33,8 @@ public class CDPBlocks {
 				.tag(ColorfulBlockTags.COLORFUL_FLUID_HATCHES.tag)
 				.simpleItem()
 				.item(DragonsPlusItem::new)
-				.tag(ColorfulItemTags.FLUID_HATCHES.tag)
-				.tag(ColorfulItemTags.COLORFUL_FLUID_HATCHES.tag)
+				.tag(ColorfulItemTags.FLUID_HATCHES.tag).asOptional()
+				.tag(ColorfulItemTags.COLORFUL_FLUID_HATCHES.tag).asOptional()
 				.build()
 				.register();
 	});

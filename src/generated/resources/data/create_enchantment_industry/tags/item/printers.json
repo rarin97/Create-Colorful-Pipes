@@ -1,6 +1,6 @@
 {
   "values": [
-    "create_enchantment_industry:printer",
+    { "id": "create_enchantment_industry:printer", "required": false },
     { "id": "#colorfulpipes:colorful_printers", "required": false }
   ]
 }

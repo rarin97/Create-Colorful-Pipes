@@ -86,69 +86,82 @@ public class ColorfulFluidVesselItem extends FluidVesselItem {
 
 	private void tryMultiPlace(BlockPlaceContext ctx) {
 		Player player = ctx.getPlayer();
-		if (player != null) {
-			if (!player.isShiftKeyDown()) {
-				Direction face = ctx.getClickedFace();
-				if (face.getAxis().isHorizontal()) {
-					ItemStack stack = ctx.getItemInHand();
-					Level world = ctx.getLevel();
-					BlockPos pos = ctx.getClickedPos();
-					BlockPos placedOnPos = pos.relative(face.getOpposite());
-					BlockState placedOnState = world.getBlockState(placedOnPos);
-					if (FluidVesselBlock.isVessel(placedOnState)) {
-						if (!SymmetryWandItem.presentInHotbar(player)) {
-							FluidVesselBlockEntity tankAt = ConnectivityHandler.partAt(((IBE)this.getBlock()).getBlockEntityType(), world, placedOnPos);
-							if (tankAt != null) {
-								FluidVesselBlockEntity controllerBE = tankAt.getControllerBE();
-								if (controllerBE != null) {
-									int width = controllerBE.getWidth();
-									if (width != 1) {
-										int tanksToPlace = 0;
-										Direction.Axis vesselAxis = (Direction.Axis)placedOnState.getOptionalValue(FluidVesselBlock.AXIS).orElse((Direction.Axis) null);
-										if (vesselAxis != null) {
-											if (face.getAxis() == vesselAxis) {
-												Direction vesselFacing = Direction.fromAxisAndDirection(vesselAxis, Direction.AxisDirection.POSITIVE);
-												BlockPos startPos = face == vesselFacing.getOpposite() ? controllerBE.getBlockPos().relative(vesselFacing.getOpposite()) : controllerBE.getBlockPos().relative(vesselFacing, controllerBE.getHeight());
-												if (VecHelper.getCoordinate(startPos, vesselAxis) == VecHelper.getCoordinate(pos, vesselAxis)) {
-													for(int xOffset = 0; xOffset < width; ++xOffset) {
-														for(int zOffset = 0; zOffset < width; ++zOffset) {
-															BlockPos offsetPos = vesselAxis == Direction.Axis.X ? startPos.offset(0, xOffset, zOffset) : startPos.offset(xOffset, zOffset, 0);
-															BlockState blockState = world.getBlockState(offsetPos);
-															if (!FluidVesselBlock.isVessel(blockState)) {
-																if (!blockState.canBeReplaced()) {
-																	return;
-																}
+		if (player == null)
+			return;
+		if (player.isShiftKeyDown())
+			return;
+		Direction face = ctx.getClickedFace();
+		if (!face.getAxis()
+				.isHorizontal())
+			return;
+		ItemStack stack = ctx.getItemInHand();
+		Level world = ctx.getLevel();
+		BlockPos pos = ctx.getClickedPos();
+		BlockPos placedOnPos = pos.relative(face.getOpposite());
+		BlockState placedOnState = world.getBlockState(placedOnPos);
 
-																++tanksToPlace;
-															}
-														}
-													}
+		if (!ColorfulFluidVesselBlock.isVessel(placedOnState))
+			return;
+		if (SymmetryWandItem.presentInHotbar(player))
+			return;
+		FluidVesselBlockEntity tankAt = ConnectivityHandler.partAt(((IBE)this.getBlock()).getBlockEntityType(), world, placedOnPos);
+		if (tankAt == null)
+			return;
+		FluidVesselBlockEntity controllerBE = tankAt.getControllerBE();
+		if (controllerBE == null)
+			return;
 
-													if (player.isCreative() || stack.getCount() >= tanksToPlace) {
-														for(int xOffset = 0; xOffset < width; ++xOffset) {
-															for(int zOffset = 0; zOffset < width; ++zOffset) {
-																BlockPos offsetPos = vesselAxis == Direction.Axis.X ? startPos.offset(0, xOffset, zOffset) : startPos.offset(xOffset, zOffset, 0);
-																BlockState blockState = world.getBlockState(offsetPos);
-																if (!FluidVesselBlock.isVessel(blockState)) {
-																	BlockPlaceContext context = BlockPlaceContext.at(ctx, offsetPos, face);
-																	player.getPersistentData().putBoolean("SilenceVesselSound", true);
-																	super.place(context);
-																	player.getPersistentData().remove("SilenceVesselSound");
-																}
-															}
-														}
+		int width = controllerBE.getWidth();
+		if (width == 1)
+			return;
 
-													}
-												}
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}
+		int tanksToPlace = 0;
+		Direction.Axis vesselAxis = placedOnState.getOptionalValue(FluidVesselBlock.AXIS).orElse(null);
+		if (vesselAxis == null)
+			return;
+		if (face.getAxis() != vesselAxis)
+			return;
+
+		Direction vesselFacing = Direction.fromAxisAndDirection(vesselAxis, Direction.AxisDirection.POSITIVE);
+		BlockPos startPos = face == vesselFacing.getOpposite()
+				? controllerBE.getBlockPos().relative(vesselFacing.getOpposite())
+				: controllerBE.getBlockPos().relative(vesselFacing, controllerBE.getHeight());
+
+		if (VecHelper.getCoordinate(startPos, vesselAxis) != VecHelper.getCoordinate(pos, vesselAxis))
+			return;
+
+		for (int xOffset = 0; xOffset < width; xOffset++) {
+			for (int zOffset = 0; zOffset < width; zOffset++) {
+				BlockPos offsetPos = vesselAxis == Direction.Axis.X
+						? startPos.offset(0, xOffset, zOffset)
+						: startPos.offset(xOffset, zOffset, 0);
+				BlockState blockState = world.getBlockState(offsetPos);
+				if (ColorfulFluidVesselBlock.isVessel(blockState))
+					continue;
+				if (!blockState.canBeReplaced())
+					return;
+				tanksToPlace++;
+			}
+		}
+
+		if (!player.isCreative() && stack.getCount() < tanksToPlace)
+			return;
+
+		for (int xOffset = 0; xOffset < width; xOffset++) {
+			for (int zOffset = 0; zOffset < width; zOffset++) {
+				BlockPos offsetPos = vesselAxis == Direction.Axis.X
+						? startPos.offset(0, xOffset, zOffset)
+						: startPos.offset(xOffset, zOffset, 0);
+				BlockState blockState = world.getBlockState(offsetPos);
+				if (ColorfulFluidVesselBlock.isVessel(blockState))
+					continue;
+				BlockPlaceContext context = BlockPlaceContext.at(ctx, offsetPos, face);
+				player.getPersistentData()
+						.putBoolean("SilenceVesselSound", true);
+				super.place(context);
+				player.getPersistentData().remove("SilenceVesselSound");
 			}
 		}
 	}
+
 }

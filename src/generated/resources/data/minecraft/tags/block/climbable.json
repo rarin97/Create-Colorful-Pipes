@@ -15,22 +15,6 @@
     "colorfulpipes:brown_copper_ladder",
     "colorfulpipes:green_copper_ladder",
     "colorfulpipes:red_copper_ladder",
-    "colorfulpipes:black_copper_ladder",
-    "colorfulpipes:white_copper_scaffolding",
-    "colorfulpipes:orange_copper_scaffolding",
-    "colorfulpipes:magenta_copper_scaffolding",
-    "colorfulpipes:light_blue_copper_scaffolding",
-    "colorfulpipes:yellow_copper_scaffolding",
-    "colorfulpipes:lime_copper_scaffolding",
-    "colorfulpipes:pink_copper_scaffolding",
-    "colorfulpipes:gray_copper_scaffolding",
-    "colorfulpipes:light_gray_copper_scaffolding",
-    "colorfulpipes:cyan_copper_scaffolding",
-    "colorfulpipes:purple_copper_scaffolding",
-    "colorfulpipes:blue_copper_scaffolding",
-    "colorfulpipes:brown_copper_scaffolding",
-    "colorfulpipes:green_copper_scaffolding",
-    "colorfulpipes:red_copper_scaffolding",
-    "colorfulpipes:black_copper_scaffolding"
+    "colorfulpipes:black_copper_ladder"
   ]
 }

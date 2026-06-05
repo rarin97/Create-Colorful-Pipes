@@ -40,7 +40,7 @@ public class CEIBlocks {
 		return REGISTRATE.block(colorName + "_experience_hatch", p -> new ColorfulExperienceHatchBlock(p, color))
 				.initialProperties(SharedProperties::copperMetal)
 				.properties(p -> p.mapColor(color.getMapColor()))
-				.transform(pickaxeOnly())
+				.transform(pickaxeOnly()).asOptional()
 				.blockstate((c, p) ->
 						p.horizontalBlock(c.get(), p.models().withExistingParent(c.getName(), ColorfulPipes.asResource("block/experience_hatch"))
 								.texture("base", ColorfulPipes.asResource("block/experience_hatch/" + colorName))
@@ -48,8 +48,8 @@ public class CEIBlocks {
 				)
 				.simpleItem()
 				.item(EnchantmentIndustryItem::new)
-				.tag(ColorfulItemTags.EXPERIENCE_HATCHES.tag)
-				.tag(ColorfulItemTags.COLORFUL_EXPERIENCE_HATCHES.tag)
+				.tag(ColorfulItemTags.EXPERIENCE_HATCHES.tag).asOptional()
+				.tag(ColorfulItemTags.COLORFUL_EXPERIENCE_HATCHES.tag).asOptional()
 				.build()
 				.register();
 	});
@@ -59,7 +59,7 @@ public class CEIBlocks {
 		return REGISTRATE.block(colorName + "_experience_lantern", p -> new ColorfulExperienceLanternBlock(p, color))
 				.initialProperties(SharedProperties::softMetal)
 				.properties(p -> p.mapColor(MapColor.COLOR_LIGHT_GREEN))
-				.transform(pickaxeOnly())
+				.transform(pickaxeOnly()).asOptional()
 				.transform(mountedFluidStorage(CEIMountedStorageTypes.EXPERIENCE_LANTERN))
 				.onRegister(block -> MovementBehaviour.REGISTRY.register(block, new ExperienceLanternMovementBehaviour()))
 				.addLayer(() -> RenderType::cutoutMipped)
@@ -71,8 +71,8 @@ public class CEIBlocks {
 				)
 				.simpleItem()
 				.item(EnchantmentIndustryItem::new)
-				.tag(ColorfulItemTags.EXPERIENCE_LANTERNS.tag)
-				.tag(ColorfulItemTags.COLORFUL_EXPERIENCE_LANTERNS.tag)
+				.tag(ColorfulItemTags.EXPERIENCE_LANTERNS.tag).asOptional()
+				.tag(ColorfulItemTags.COLORFUL_EXPERIENCE_LANTERNS.tag).asOptional()
 				.build()
 				.register();
 	});
@@ -82,7 +82,7 @@ public class CEIBlocks {
 		return REGISTRATE.block(colorName + "_printer", p -> new ColorfulPrinterBlock(p, color))
 				.initialProperties(SharedProperties::copperMetal)
 				.properties(p -> p.mapColor(color.getMapColor()))
-				.transform(pickaxeOnly())
+				.transform(pickaxeOnly()).asOptional()
 				.blockstate((c, p) ->
 						p.horizontalBlock(c.get(), p.models().withExistingParent(c.getName(), ColorfulPipes.asResource("block/printer/block"))
 								.texture("tank", ColorfulPipes.asResource("block/spout/" + colorName))
@@ -91,8 +91,8 @@ public class CEIBlocks {
 								.texture("particle", ColorfulPipes.asResource("block/encased_pipe/" + colorName)))
 				)
 				.item(EnchantmentIndustryItem::new)
-				.tag(ColorfulItemTags.PRINTERS.tag)
-				.tag(ColorfulItemTags.COLORFUL_PRINTERS.tag)
+				.tag(ColorfulItemTags.PRINTERS.tag).asOptional()
+				.tag(ColorfulItemTags.COLORFUL_PRINTERS.tag).asOptional()
 				.model((c, p) ->
 						p.withExistingParent(c.getName(), ColorfulPipes.asResource("block/printer/item"))
 								.texture("tank", ColorfulPipes.asResource("block/spout/" + colorName))
@@ -110,7 +110,7 @@ public class CEIBlocks {
 		return REGISTRATE.block(colorName + "_grindstone_drain", p -> new ColorfulGrindstoneDrainBlock(p, color))
 				.initialProperties(SharedProperties::copperMetal)
 				.onRegister((block) -> BlockStressValues.IMPACTS.register(block, () -> 4.0))
-				.transform(pickaxeOnly())
+				.transform(pickaxeOnly()).asOptional()
 				.blockstate((c, p) ->
 						p.horizontalBlock(c.get(), p.models().withExistingParent(c.getName(), ColorfulPipes.asResource("block/grindstone_drain/block"))
 								.texture("front", ColorfulPipes.asResource("block/mechanical_grinder_front/" + colorName))
