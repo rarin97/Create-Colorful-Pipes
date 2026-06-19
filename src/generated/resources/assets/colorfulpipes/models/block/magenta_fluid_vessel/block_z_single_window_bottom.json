@@ -1,5 +1,5 @@
 {
-  "parent": "create:block/fluid_vessel/block_z_single_window_bottom",
+  "parent": "create_connected:block/fluid_vessel/block_z_single_window_bottom",
   "textures": {
     "0": "colorfulpipes:block/fluid_tank_top/magenta",
     "1": "colorfulpipes:block/fluid_tank/magenta",

@@ -37,6 +37,10 @@ public class ColorfulGlassFluidPipeBlock extends GlassFluidPipeBlock {
 		this.color = color;
 	}
 
+	public DyeColor getColor() {
+		return color;
+	}
+
 	@Override
 	public InteractionResult onWrenched(BlockState state, UseOnContext context) {
 		if (tryRemoveBracket(context))

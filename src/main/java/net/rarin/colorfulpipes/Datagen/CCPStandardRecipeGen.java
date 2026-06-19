@@ -192,9 +192,9 @@ public class CCPStandardRecipeGen extends BaseRecipeProvider {
 			.unlockedBy(Items.AMETHYST_SHARD::asItem)
 			.viaShaped(b -> b.define('A', Items.AMETHYST_SHARD)
 					.define('G', CCPPaletteBlocks.COPPER_GLASS_CASING.get())
-							.pattern(" A ")
-							.pattern("AGA")
-							.pattern(" A "));
+					.pattern(" A ")
+					.pattern("AGA")
+					.pattern(" A "));
 
 	private final Marker COMPATS = enterFolder("compats");
 
@@ -678,7 +678,8 @@ public class CCPStandardRecipeGen extends BaseRecipeProvider {
 
 	@ParametersAreNonnullByDefault
 	@MethodsReturnNonnullByDefault
-	private record ModdedCookingRecipeOutput(RecipeOutput wrapped, ResourceLocation outputOverride) implements RecipeOutput {
+	private record ModdedCookingRecipeOutput(RecipeOutput wrapped,
+											 ResourceLocation outputOverride) implements RecipeOutput {
 
 		@Override
 		public Advancement.Builder advancement() {

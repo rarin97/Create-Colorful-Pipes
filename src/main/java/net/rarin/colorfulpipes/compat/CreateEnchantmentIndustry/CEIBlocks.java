@@ -21,6 +21,7 @@ import net.rarin.colorfulpipes.compat.CreateEnchantmentIndustry.content.Colorful
 import net.rarin.colorfulpipes.compat.CreateEnchantmentIndustry.content.ColorfulGrindstoneDrainBlock;
 import net.rarin.colorfulpipes.compat.CreateEnchantmentIndustry.content.ColorfulPrinterBlock;
 import net.rarin.colorfulpipes.compat.CreateEnchantmentIndustry.content.EnchantmentIndustryItem;
+import plus.dragons.createenchantmentindustry.common.CEICommon;
 import plus.dragons.createenchantmentindustry.common.fluids.lantern.ExperienceLanternMovementBehaviour;
 import plus.dragons.createenchantmentindustry.common.registry.CEIMountedStorageTypes;
 
@@ -42,7 +43,7 @@ public class CEIBlocks {
 				.properties(p -> p.mapColor(color.getMapColor()))
 				.transform(pickaxeOnly()).asOptional()
 				.blockstate((c, p) ->
-						p.horizontalBlock(c.get(), p.models().withExistingParent(c.getName(), ColorfulPipes.asResource("block/experience_hatch"))
+						p.horizontalBlock(c.get(), p.models().withExistingParent(c.getName(), CEICommon.asResource("block/experience_hatch"))
 								.texture("base", ColorfulPipes.asResource("block/experience_hatch/" + colorName))
 								.texture("particle", ColorfulPipes.asResource("block/item_drain/" + colorName)))
 				)
@@ -64,7 +65,7 @@ public class CEIBlocks {
 				.onRegister(block -> MovementBehaviour.REGISTRY.register(block, new ExperienceLanternMovementBehaviour()))
 				.addLayer(() -> RenderType::cutoutMipped)
 				.blockstate((c, p) ->
-						p.directionalBlock(c.get(), p.models().withExistingParent(c.getName(), ColorfulPipes.asResource("block/experience_lantern"))
+						p.directionalBlock(c.get(), p.models().withExistingParent(c.getName(), CEICommon.asResource("block/experience_lantern"))
 								.texture("1", ColorfulPipes.asResource("block/experience_lantern_bottom/" + colorName))
 								.texture("2", ColorfulPipes.asResource("block/experience_lantern_side/" + colorName))
 								.texture("particle", ColorfulPipes.asResource("block/experience_lantern_side/" + colorName)))
@@ -84,7 +85,7 @@ public class CEIBlocks {
 				.properties(p -> p.mapColor(color.getMapColor()))
 				.transform(pickaxeOnly()).asOptional()
 				.blockstate((c, p) ->
-						p.horizontalBlock(c.get(), p.models().withExistingParent(c.getName(), ColorfulPipes.asResource("block/printer/block"))
+						p.horizontalBlock(c.get(), p.models().withExistingParent(c.getName(), CEICommon.asResource("block/printer/block"))
 								.texture("tank", ColorfulPipes.asResource("block/spout/" + colorName))
 								.texture("tank_bottom", ColorfulPipes.asResource("block/encased_pipe/" + colorName))
 								.texture("filter", ColorfulPipes.asResource("block/smart_pipe_2/" + colorName))
@@ -94,7 +95,7 @@ public class CEIBlocks {
 				.tag(ColorfulItemTags.PRINTERS.tag).asOptional()
 				.tag(ColorfulItemTags.COLORFUL_PRINTERS.tag).asOptional()
 				.model((c, p) ->
-						p.withExistingParent(c.getName(), ColorfulPipes.asResource("block/printer/item"))
+						p.withExistingParent(c.getName(), CEICommon.asResource("block/printer/item"))
 								.texture("tank", ColorfulPipes.asResource("block/spout/" + colorName))
 								.texture("tank_bottom", ColorfulPipes.asResource("block/encased_pipe/" + colorName))
 								.texture("filter", ColorfulPipes.asResource("block/smart_pipe_2/" + colorName))
@@ -112,7 +113,7 @@ public class CEIBlocks {
 				.onRegister((block) -> BlockStressValues.IMPACTS.register(block, () -> 4.0))
 				.transform(pickaxeOnly()).asOptional()
 				.blockstate((c, p) ->
-						p.horizontalBlock(c.get(), p.models().withExistingParent(c.getName(), ColorfulPipes.asResource("block/grindstone_drain/block"))
+						p.horizontalBlock(c.get(), p.models().withExistingParent(c.getName(), CEICommon.asResource("block/grindstone_drain/block"))
 								.texture("front", ColorfulPipes.asResource("block/mechanical_grinder_front/" + colorName))
 								.texture("back", ColorfulPipes.asResource("block/mechanical_grinder_back/" + colorName))
 								.texture("side", ColorfulPipes.asResource("block/item_drain/" + colorName))

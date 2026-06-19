@@ -28,7 +28,7 @@ public class CCPTags {
 		CREATE_CONNECTED(Mods.CREATE_CONNECTED.id()),
 		CREATE_DRAGONS_PLUS(Mods.CREATE_DRAGONS_PLUS.id()),
 		CREATE_ENCHANTMENT_INDUSTRY(Mods.CREATE_ENCHANTMENT_INDUSTRY.id()),
-		SABLE(Mods.SABLE.id()),
+		SABLE("sable"),
 		MINECRAFT("minecraft");
 
 		public final String id;

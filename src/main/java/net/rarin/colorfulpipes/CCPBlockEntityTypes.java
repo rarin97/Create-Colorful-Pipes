@@ -83,6 +83,7 @@ public class CCPBlockEntityTypes {
 	public static final BlockEntityEntry<ColorfulFluidPipeBlockEntity> COLORFUL_ENCASED_FLUID_PIPES = REGISTRATE
 			.blockEntity("colorful_encased_fluid_pipe", ColorfulFluidPipeBlockEntity::new)
 			.validBlocks(CCPBlocks.COLORFUL_ENCASED_FLUID_PIPES.toArray())
+			.validBlocks(CCPBlocks.COLORFUL_ENCASED_FLUID_PIPES.toArray())
 			.register();
 
 	public static final BlockEntityEntry<ColorfulGlassFluidPipeBlockEntity> COLORFUL_GLASS_FLUID_PIPES = REGISTRATE

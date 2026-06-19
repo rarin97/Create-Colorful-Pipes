@@ -1,7 +1,7 @@
 package net.rarin.colorfulpipes.compat.Create_Connected.content;
 
+import com.hlysine.create_connected.CreateConnected;
 import com.hlysine.create_connected.content.fluidvessel.FluidVesselBlock;
-import com.simibubi.create.Create;
 import com.simibubi.create.foundation.data.AssetLookup;
 import com.simibubi.create.foundation.data.SpecialBlockStateGen;
 import com.tterrag.registrate.providers.DataGenContext;
@@ -66,7 +66,7 @@ public class ColorfulFluidVesselGenerator extends SpecialBlockStateGen {
 		if (prefix.isEmpty())
 			return prov.models()
 					.withExistingParent( "block/" + color + "_fluid_vessel/block_" + prefix + modelName,
-							Create.asResource("block/fluid_vessel/block_" + modelName))
+							CreateConnected.asResource("block/fluid_vessel/block_" + modelName))
 					.texture("0", prov.modLoc("block/" + prefix + "fluid_tank_top/" + color))
 					.texture("1", prov.modLoc("block/" + prefix + "fluid_tank/" + color))
 					.texture("3", prov.modLoc("block/" + prefix + "fluid_tank_window/" + color))

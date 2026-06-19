@@ -16,7 +16,7 @@ public class CCPRecipeProvider {
 		final List<ProcessingRecipeGen<?, ?, ?>> GENERATORS = new ArrayList<>();
 
 		GENERATORS.add(new CCPItemApplicationRecipeGen(output, registries));
-		GENERATORS.add(new CCPWashingRecipeGen(output,registries));
+		GENERATORS.add(new CCPWashingRecipeGen(output, registries));
 
 		gen.addProvider(true, new DataProvider() {
 

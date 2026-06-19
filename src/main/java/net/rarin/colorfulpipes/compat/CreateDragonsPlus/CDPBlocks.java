@@ -9,6 +9,7 @@ import net.rarin.colorfulpipes.ColorfulPipes;
 import net.rarin.colorfulpipes.compat.CreateDragonsPlus.content.ColorfulFluidHatchBlock;
 import net.rarin.colorfulpipes.CCPTags.ColorfulItemTags;
 import net.rarin.colorfulpipes.compat.CreateDragonsPlus.content.DragonsPlusItem;
+import plus.dragons.createdragonsplus.common.CDPCommon;
 
 import static com.simibubi.create.foundation.data.TagGen.pickaxeOnly;
 
@@ -26,11 +27,11 @@ public class CDPBlocks {
 				.properties(p -> p.mapColor(color.getMapColor()))
 				.transform(pickaxeOnly()).asOptional()
 				.blockstate((c, p) ->
-						p.horizontalBlock(c.get(), p.models().withExistingParent(c.getName(), ColorfulPipes.asResource("block/fluid_hatch"))
+						p.horizontalBlock(c.get(), p.models().withExistingParent(c.getName(), CDPCommon.asResource("block/fluid_hatch"))
 								.texture("base", ColorfulPipes.asResource("block/fluid_hatch/" + colorName))
 								.texture("particle", ColorfulPipes.asResource("block/item_drain/" + colorName)))
 				)
-				.tag(ColorfulBlockTags.COLORFUL_FLUID_HATCHES.tag)
+				.tag(ColorfulBlockTags.COLORFUL_FLUID_HATCHES.tag).asOptional()
 				.simpleItem()
 				.item(DragonsPlusItem::new)
 				.tag(ColorfulItemTags.FLUID_HATCHES.tag).asOptional()

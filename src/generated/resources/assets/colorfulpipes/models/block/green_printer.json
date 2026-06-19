@@ -1,5 +1,5 @@
 {
-  "parent": "colorfulpipes:block/printer/block",
+  "parent": "create_enchantment_industry:block/printer/block",
   "textures": {
     "filter": "colorfulpipes:block/smart_pipe_2/green",
     "particle": "colorfulpipes:block/encased_pipe/green",

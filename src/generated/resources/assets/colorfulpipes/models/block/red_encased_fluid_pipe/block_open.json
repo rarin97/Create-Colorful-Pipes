@@ -1,0 +1,7 @@
+{
+  "parent": "create:block/encased_fluid_pipe/block_open",
+  "textures": {
+    "0": "colorfulpipes:block/encased_pipe/red",
+    "particle": "colorfulpipes:block/encased_pipe/red"
+  }
+}

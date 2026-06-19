@@ -40,7 +40,8 @@ neoForge {
 
         data {
             data()
-            programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
+            programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath(), '--existing-mod', 'create',
+					'--existing-mod' ,'create_connected', '--existing-mod', 'create_dragons_plus', '--existing-mod', 'create_enchantment_industry'
         }
 
         configureEach {
@@ -76,16 +77,11 @@ dependencies {
     implementation("com.tterrag.registrate:Registrate:${registrate_version}")
 
 	implementation("plus.dragons.createdragonsplus:create-dragons-plus-${minecraft_version}:${create_dragons_plus_version_range}")
-	implementation "curse.maven:create-connected-947914:8142873"
-	implementation "curse.maven:create-enchantment-industry-688768:7970748"
+	implementation "curse.maven:create-connected-947914:8221350"
+	implementation "curse.maven:create-enchantment-industry-688768:8204326"
 
 	implementation "maven.modrinth:jade:${project.jade_version}"
-
-
-    // compileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"
-    // compileOnly "mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}"
 	implementation("mezz.jei:jei-$minecraft_version-neoforge:$jei_version")
-
 }
 
 var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {

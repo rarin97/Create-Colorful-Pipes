@@ -84,7 +84,7 @@ public class CCPWashingRecipeGen extends WashingRecipeGen {
 			b -> b.require(ColorfulItemTags.COLORFUL_COPPER_TINTED_GLASS_CASINGS.tag)
 					.output(CCPPaletteBlocks.COPPER_TINTED_GLASS_CASING.asItem())),
 
-	COLORFUL_COPPER_BARS= create("copper_bar",
+	COLORFUL_COPPER_BARS = create("copper_bar",
 			b -> b.require(ColorfulItemTags.COLORFUL_COPPER_BARS.tag)
 					.output(AllBlocks.COPPER_BARS.asItem())),
 
@@ -102,20 +102,20 @@ public class CCPWashingRecipeGen extends WashingRecipeGen {
 					.output(CDPBlocks.FLUID_HATCH.asItem())
 					.withCondition(new ModLoadedCondition(Mods.CREATE_DRAGONS_PLUS.id()))),
 
-			COLORFUL_EXPERIENCE_HATCHES = create("experience_hatch",
-					b -> b.require(ColorfulItemTags.COLORFUL_EXPERIENCE_HATCHES.tag)
-							.output(CEIBlocks.EXPERIENCE_HATCH.asItem())
-							.withCondition(new ModLoadedCondition(Mods.CREATE_ENCHANTMENT_INDUSTRY.id()))),
+	COLORFUL_EXPERIENCE_HATCHES = create("experience_hatch",
+			b -> b.require(ColorfulItemTags.COLORFUL_EXPERIENCE_HATCHES.tag)
+					.output(CEIBlocks.EXPERIENCE_HATCH.asItem())
+					.withCondition(new ModLoadedCondition(Mods.CREATE_ENCHANTMENT_INDUSTRY.id()))),
 
 	COLORFUL_EXPERIENCE_LANTERNS = create("experience_lantern",
 			b -> b.require(ColorfulItemTags.COLORFUL_EXPERIENCE_LANTERNS.tag)
 					.output(CEIBlocks.EXPERIENCE_LANTERN.asItem())
 					.withCondition(new ModLoadedCondition(Mods.CREATE_ENCHANTMENT_INDUSTRY.id()))),
 
-			COLORFUL_PRINTERS = create("printer",
-					b -> b.require(ColorfulItemTags.COLORFUL_PRINTERS.tag)
-							.output(CEIBlocks.PRINTER.asItem())
-							.withCondition(new ModLoadedCondition(Mods.CREATE_ENCHANTMENT_INDUSTRY.id())));
+	COLORFUL_PRINTERS = create("printer",
+			b -> b.require(ColorfulItemTags.COLORFUL_PRINTERS.tag)
+					.output(CEIBlocks.PRINTER.asItem())
+					.withCondition(new ModLoadedCondition(Mods.CREATE_ENCHANTMENT_INDUSTRY.id())));
 
 
 	public CCPWashingRecipeGen(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {

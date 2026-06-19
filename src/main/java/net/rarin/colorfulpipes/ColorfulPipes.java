@@ -25,6 +25,7 @@ import net.rarin.colorfulpipes.compat.Create_Connected.CCBlocks;
 import net.rarin.colorfulpipes.compat.Create_Connected.content.ColorfulFluidVesselBlockEntity;
 import net.rarin.colorfulpipes.compat.Mods;
 
+import net.rarin.colorfulpipes.config.CCPConfigs;
 import net.rarin.colorfulpipes.content.drain.ColorfulDrainBlockEntity;
 import net.rarin.colorfulpipes.content.hosePulley.ColorfulHosePulleyBlockEntity;
 import net.rarin.colorfulpipes.content.portableFluidInterface.ColorfulPortableFluidInterfaceBlockEntity;
@@ -59,6 +60,8 @@ public class ColorfulPipes {
 		CCPMountedStorageTypes.register();
 		CCPDisplaySources.register();
 
+		CCPConfigs.register(modContainer);
+
 		if (Mods.CREATE_CONNECTED.isLoaded()) {
 			CCBlocks.register();
 			CCBlockEntityTypes.register();
@@ -79,7 +82,7 @@ public class ColorfulPipes {
 
     }
 
-	@EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD)
+	@EventBusSubscriber(modid = ColorfulPipes.ID)
 	public class ModBusEvents {
 
 		@SubscribeEvent

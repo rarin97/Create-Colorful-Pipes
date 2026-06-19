@@ -26,7 +26,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Supplier;
 
 public class ColorfulPipeAttachmentModel extends BakedModelWrapperWithData {
 	private static final ModelProperty<ColorfulPipeModelData> PIPE_PROPERTY = new ModelProperty<>();

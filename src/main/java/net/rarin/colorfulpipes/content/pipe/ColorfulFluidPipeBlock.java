@@ -42,6 +42,10 @@ public class ColorfulFluidPipeBlock extends FluidPipeBlock {
 		this.color = color;
 	}
 
+	public DyeColor getColor() {
+		return color;
+	}
+
 	@Override
 	public InteractionResult onWrenched(BlockState state, UseOnContext context) {
 		if (tryRemoveBracket(context))
@@ -133,10 +137,6 @@ public class ColorfulFluidPipeBlock extends FluidPipeBlock {
 				BlockState newState  = CCPBlocks.COLORFUL_FLUID_PIPES.get(dyeColor).getDefaultState()
 						.setValue(BlockStateProperties.WATERLOGGED, state.getValue(BlockStateProperties.WATERLOGGED));
 
-				for (Direction dir : Iterate.directions)
-					newState = newState.setValue(FluidPipeBlock.PROPERTY_BY_DIRECTION.get(dir),
-							state.getValue(FluidPipeBlock.PROPERTY_BY_DIRECTION.get(dir)));
-
 				Direction firstFound = Direction.UP;
 				for (Direction d : Iterate.directions)
 					if (state.getValue(FluidPipeBlock.PROPERTY_BY_DIRECTION.get(d))) {
@@ -156,6 +156,7 @@ public class ColorfulFluidPipeBlock extends FluidPipeBlock {
 		 return super.useItemOn(stack, state, level, pos, player, hand, hit);
 	}
 
+	@Override
 	public BlockEntityType<? extends FluidPipeBlockEntity> getBlockEntityType() {
 		return CCPBlockEntityTypes.COLORFUL_FLUID_PIPES.get();
 	}

@@ -1,5 +1,5 @@
 {
-  "parent": "colorfulpipes:block/experience_hatch",
+  "parent": "create_enchantment_industry:block/experience_hatch",
   "textures": {
     "base": "colorfulpipes:block/experience_hatch/black",
     "particle": "colorfulpipes:block/item_drain/black"

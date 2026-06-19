@@ -1,5 +1,5 @@
 {
-  "parent": "colorfulpipes:block/experience_lantern",
+  "parent": "create_enchantment_industry:block/experience_lantern",
   "textures": {
     "1": "colorfulpipes:block/experience_lantern_bottom/brown",
     "2": "colorfulpipes:block/experience_lantern_side/brown",

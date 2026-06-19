@@ -1,5 +1,5 @@
 {
-  "parent": "colorfulpipes:block/grindstone_drain/block",
+  "parent": "create_enchantment_industry:block/grindstone_drain/block",
   "textures": {
     "back": "colorfulpipes:block/mechanical_grinder_back/orange",
     "bottom": "colorfulpipes:block/copper_underside/orange",

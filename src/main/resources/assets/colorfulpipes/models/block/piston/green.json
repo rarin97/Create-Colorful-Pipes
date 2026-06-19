@@ -1,8 +1,7 @@
 {
   "credit": "By RaymondBlaze, made with Blockbench",
-  "parent": "colorfulpipes:block/printer/piston",
+  "parent": "create_enchantment_industry:block/printer/piston",
   "textures": {
-    "hose": "colorfulpipes:block/hose/green",
-    "head": "create:block/mechanical_press_head"
+    "hose": "colorfulpipes:block/hose/green"
   }
 }

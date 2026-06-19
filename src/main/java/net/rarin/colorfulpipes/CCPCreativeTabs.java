@@ -29,7 +29,14 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import net.rarin.colorfulpipes.compat.CreateDragonsPlus.CDPBlocks;
+import net.rarin.colorfulpipes.compat.CreateEnchantmentIndustry.CEIBlocks;
+import net.rarin.colorfulpipes.compat.Create_Connected.CCBlocks;
+import net.rarin.colorfulpipes.compat.Mods;
+import net.rarin.colorfulpipes.config.CCPConfigs;
+
 import org.apache.commons.lang3.mutable.MutableObject;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -90,14 +97,62 @@ public class CCPCreativeTabs {
 		private static Predicate<Item> makeExclusionPredicate() {
 			Set<Item> exclusions = new ReferenceOpenHashSet<>();
 
-			List<ItemProviderEntry<?, ?>> simpleExclusions = List.of(
-					CCPPaletteBlocks.COPPER_ENCASED_COGWHEEL,
-					CCPPaletteBlocks.COPPER_ENCASED_LARGE_COGWHEEL
-			);
-
-			for (ItemProviderEntry<?, ?> entry : simpleExclusions) {
-				exclusions.add(entry.asItem());
+			for (DyeColor color : DyeColor.values()) {
+				if (!CCPConfigs.common().toggle.Pipe.get())
+					exclusions.add(CCPBlocks.COLORFUL_FLUID_PIPES.get(color).asItem());
+				if (!CCPConfigs.common().toggle.SmartPipe.get())
+					exclusions.add(CCPBlocks.COLORFUL_SMART_FLUID_PIPES.get(color).asItem());
+				if (!CCPConfigs.common().toggle.Pump.get())
+					exclusions.add(CCPBlocks.COLORFUL_PUMPS.get(color).asItem());
+				if (!CCPConfigs.common().toggle.Valve.get())
+					exclusions.add(CCPBlocks.COLORFUL_FLUID_VALVES.get(color).asItem());
+				if (!CCPConfigs.common().toggle.Tank.get())
+					exclusions.add(CCPBlocks.COLORFUL_FLUID_TANKS.get(color).asItem());
+				if (!CCPConfigs.common().toggle.Spout.get())
+					exclusions.add(CCPBlocks.COLORFUL_SPOUTS.get(color).asItem());
+				if (!CCPConfigs.common().toggle.Drain.get())
+					exclusions.add(CCPBlocks.COLORFUL_DRAINS.get(color).asItem());
+				if (!CCPConfigs.common().toggle.FluidInterface.get())
+					exclusions.add(CCPBlocks.COLORFUL_FLUID_INTERFACES.get(color).asItem());
+				if (!CCPConfigs.common().toggle.HosePulley.get())
+					exclusions.add(CCPBlocks.COLORFUL_HOSE_PULLEYS.get(color).asItem());
+				if (!CCPConfigs.common().toggle.Engine.get())
+					exclusions.add(CCPBlocks.COLORFUL_STEAM_ENGINES.get(color).asItem());
+				if (!CCPConfigs.common().toggle.Whistle.get())
+					exclusions.add(CCPPaletteBlocks.COLORFUL_STEAM_WHISTLES.get(color).asItem());
+				if (!CCPConfigs.common().toggle.TableCloth.get())
+					exclusions.add(CCPPaletteBlocks.COLORFUL_TABLE_CLOTHS.get(color).asItem());
+				if (!CCPConfigs.common().toggle.Casing.get())
+					exclusions.add(CCPPaletteBlocks.COLORFUL_COPPER_CASING.get(color).asItem());
+				if (!CCPConfigs.common().toggle.GlassCasing.get()) {
+					exclusions.add(CCPPaletteBlocks.COLORFUL_COPPER_GLASS_CASING.get(color).asItem());
+					exclusions.add(CCPPaletteBlocks.COPPER_GLASS_CASING.asItem());
+				}
+				if (!CCPConfigs.common().toggle.TintedGlassCasing.get()) {
+					exclusions.add(CCPPaletteBlocks.COLORFUL_COPPER_TINTED_GLASS_CASING.get(color).asItem());
+					exclusions.add(CCPPaletteBlocks.COPPER_TINTED_GLASS_CASING.asItem());
+				}
+				if (!CCPConfigs.common().toggle.Ladder.get())
+					exclusions.add(CCPPaletteBlocks.COLORFUL_COPPER_LADDER.get(color).asItem());
+				if (!CCPConfigs.common().toggle.Scaffold.get())
+					exclusions.add(CCPPaletteBlocks.COLORFUL_COPPER_SCAFFOLD.get(color).asItem());
+				if (!CCPConfigs.common().toggle.Bar.get())
+					exclusions.add(CCPPaletteBlocks.COLORFUL_COPPER_BARS.get(color).asItem());
+				if (!CCPConfigs.common().toggle.Door.get())
+					exclusions.add(CCPPaletteBlocks.COLORFUL_COPPER_DOOR.get(color).asItem());
+				if (!CCPConfigs.common().toggle.Vessel.get() && Mods.CREATE_CONNECTED.isLoaded())
+					exclusions.add(CCBlocks.COLORFUL_FLUID_VESSELS.get(color).asItem());
+				if (!CCPConfigs.common().toggle.FluidHatch.get() && Mods.CREATE_DRAGONS_PLUS.isLoaded())
+					exclusions.add(CDPBlocks.COLORFUL_FLUID_HATCHES.get(color).asItem());
+				if (!CCPConfigs.common().toggle.XPHatch.get() && Mods.CREATE_ENCHANTMENT_INDUSTRY.isLoaded())
+					exclusions.add(CEIBlocks.COLORFUL_EXPERIENCE_HATCHES.get(color).asItem());
+				if (!CCPConfigs.common().toggle.XPLantern.get() && Mods.CREATE_ENCHANTMENT_INDUSTRY.isLoaded())
+					exclusions.add(CEIBlocks.COLORFUL_EXPERIENCE_LANTERNS.get(color).asItem());
+				if (!CCPConfigs.common().toggle.Printer.get() && Mods.CREATE_ENCHANTMENT_INDUSTRY.isLoaded())
+					exclusions.add(CEIBlocks.COLORFUL_PRINTERS.get(color).asItem());
 			}
+				exclusions.add(CCPPaletteBlocks.COPPER_ENCASED_COGWHEEL.asItem());
+				exclusions.add(CCPPaletteBlocks.COPPER_ENCASED_LARGE_COGWHEEL.asItem());
 
 			return exclusions::contains;
 		}

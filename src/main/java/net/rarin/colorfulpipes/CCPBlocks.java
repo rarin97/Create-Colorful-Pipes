@@ -25,6 +25,7 @@ import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
+import net.rarin.colorfulpipes.Datagen.CCPBlockStateGen;
 import net.rarin.colorfulpipes.content.ColorfulEncasedCTBehaviour;
 import net.rarin.colorfulpipes.content.ColorfulPipeAttachmentModel;
 import net.rarin.colorfulpipes.content.drain.ColorfulDrainBlock;
@@ -89,7 +90,7 @@ public class CCPBlocks {
 				.initialProperties(SharedProperties::copperMetal)
 				.properties(p -> p.noOcclusion().mapColor(color.getMapColor()))
 				.transform(axeOrPickaxe())
-				.blockstate(BlockStateGen.encasedPipe())
+				.blockstate(CCPBlockStateGen.encasedPipe(color))
 				.onRegister(CreateRegistrate.connectedTextures(() -> new ColorfulEncasedCTBehaviour(color)))
 				.onRegister(CreateRegistrate.casingConnectivity((block, cc) -> cc.make(block, CCPSpriteShifts.COLORFUL_COPPER_CASING.get(color),
 						(s, f) -> !s.getValue(EncasedPipeBlock.FACING_TO_PROPERTY_MAP.get(f)))))

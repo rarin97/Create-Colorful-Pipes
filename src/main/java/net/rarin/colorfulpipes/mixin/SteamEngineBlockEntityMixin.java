@@ -34,10 +34,8 @@ public abstract class SteamEngineBlockEntityMixin {
 			cir.setReturnValue(true);
 		}
 
-		if (Mods.CREATE_CONNECTED.isLoaded()) {
-			if (state.getBlock() instanceof ColorfulFluidVesselBlock) {
-				cir.setReturnValue(true);
-			}
+		if (Mods.CREATE_CONNECTED.isLoaded() && state.getBlock() instanceof ColorfulFluidVesselBlock) {
+			cir.setReturnValue(true);
 		}
 	}
 }

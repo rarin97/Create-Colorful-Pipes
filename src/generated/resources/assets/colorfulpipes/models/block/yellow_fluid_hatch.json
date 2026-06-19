@@ -1,5 +1,5 @@
 {
-  "parent": "colorfulpipes:block/fluid_hatch",
+  "parent": "create_dragons_plus:block/fluid_hatch",
   "textures": {
     "base": "colorfulpipes:block/fluid_hatch/yellow",
     "particle": "colorfulpipes:block/item_drain/yellow"

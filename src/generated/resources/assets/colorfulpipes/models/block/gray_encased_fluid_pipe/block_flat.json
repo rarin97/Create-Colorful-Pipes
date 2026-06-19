@@ -1,0 +1,7 @@
+{
+  "parent": "create:block/encased_fluid_pipe/block_flat",
+  "textures": {
+    "0": "colorfulpipes:block/copper_casing/gray",
+    "particle": "colorfulpipes:block/copper_casing/gray"
+  }
+}

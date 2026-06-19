@@ -10,6 +10,8 @@
     "ColorfulSteamEngineBlockMixin",
     "SteamEngineBlockEntityMixin",
     "dyed.FluidPipeBlockMixin",
+    "dyed.FluidTankBlockMixin",
+    "dyed.FluidVesselBlockMixin",
     "dyed.SteamEngineBlockMixin",
     "dyed.WhistleBlockMixin"
   ],

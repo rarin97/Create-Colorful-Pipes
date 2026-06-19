@@ -1,7 +1,6 @@
 package net.rarin.colorfulpipes.mixin.dyed;
 
 import com.simibubi.create.content.decoration.steamWhistle.WhistleBlock;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
@@ -13,11 +12,10 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
-
 import net.rarin.colorfulpipes.CCPPaletteBlocks;
+import net.rarin.colorfulpipes.config.CCPConfigs;
 
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -30,22 +28,15 @@ import static com.simibubi.create.content.decoration.steamWhistle.WhistleBlock.W
 @Mixin(WhistleBlock.class)
 public class WhistleBlockMixin {
 
-	@Unique
-	private DyeColor color;
-
-	public WhistleBlockMixin(DyeColor color) {
-		this.color = color;
-	}
-
 	@Inject(method = "useItemOn", at = @At("HEAD"), cancellable = true)
-	private void useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult, CallbackInfoReturnable<ItemInteractionResult> cir) {
+	private void useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand,
+						   BlockHitResult hitResult, CallbackInfoReturnable<ItemInteractionResult> cir) {
+
+		if (!CCPConfigs.server().recipes.enableWhistleItemApplication.get())
+			return;
+
 		if (stack.getItem() instanceof DyeItem dye) {
 			DyeColor dyeColor = dye.getDyeColor();
-
-			if (dyeColor == this.color) {
-				cir.setReturnValue(ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION);
-				return;
-			}
 
 			if (!level.isClientSide) {
 				level.levelEvent(2001, pos, Block.getId(state));
