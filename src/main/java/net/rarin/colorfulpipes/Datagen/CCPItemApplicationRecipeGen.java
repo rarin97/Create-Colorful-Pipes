@@ -67,7 +67,7 @@ public class CCPItemApplicationRecipeGen extends ItemApplicationRecipeGen {
 							.output(CCPPaletteBlocks.COLORFUL_COPPER_TINTED_GLASS_CASING.get(color))));
 
 			COLORFUL_COPPER_SCAFFOLD.put(color, create(color.getName() + "_copper_scaffolding",
-					b -> b.require(/*ColorfulItemTags.COPPER_SCAFFOLDS.tag*/AllBlocks.COPPER_SCAFFOLD.asItem())
+					b -> b.require(AllBlocks.COPPER_SCAFFOLD.asItem())
 							.require(color.getTag())
 							.output(CCPPaletteBlocks.COLORFUL_COPPER_SCAFFOLD.get(color))));
 

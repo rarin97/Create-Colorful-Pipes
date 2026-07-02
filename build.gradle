@@ -77,11 +77,13 @@ dependencies {
     implementation("com.tterrag.registrate:Registrate:${registrate_version}")
 
 	implementation("plus.dragons.createdragonsplus:create-dragons-plus-${minecraft_version}:${create_dragons_plus_version_range}")
-	implementation "curse.maven:create-connected-947914:8221350"
-	implementation "curse.maven:create-enchantment-industry-688768:8204326"
+	implementation "maven.modrinth:create-connected:${create_connected_version}"
+	implementation "maven.modrinth:create-enchantment-industry:${create_enchantment_industry_version}"
 
 	implementation "maven.modrinth:jade:${project.jade_version}"
 	implementation("mezz.jei:jei-$minecraft_version-neoforge:$jei_version")
+
+	implementation "maven.modrinth:create-Encased:${create_encased_version}"
 }
 
 var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {

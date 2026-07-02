@@ -157,7 +157,7 @@ public class CCPBlocks {
 				.onRegister((block) -> BlockStressValues.IMPACTS.register(block, () -> 4.0))
 				.onRegister(CCPRegistrate.ColorfulblockModel(() -> ColorfulPipeAttachmentModel::withAO, color))
 				.blockstate((c, p) -> {
-					p.directionalBlock(c.get(),p.models().withExistingParent(c.getName(), Create.asResource("block/mechanical_pump/block"))
+					p.directionalBlock(c.get(), p.models().withExistingParent(c.getName(), Create.asResource("block/mechanical_pump/block"))
 							.texture("4", ColorfulPipes.asResource("block/pump/" + colorName))
 							.texture("particle", ColorfulPipes.asResource("block/pump/" + colorName)));
 				})
@@ -300,10 +300,10 @@ public class CCPBlocks {
 				.properties(p -> p.mapColor(color.getMapColor()))
 				.transform(axeOrPickaxe())
 				.blockstate((c, p) ->
-					p.directionalBlock(c.get(), p.models().withExistingParent(c.getName(), Create.asResource("block/portable_fluid_interface/block"))
-							.texture("0", ColorfulPipes.asResource("block/portable_fluid_interface/" + colorName))
-							.texture("2", ColorfulPipes.asResource("block/copper_underside/" + colorName))
-							.texture("particle", ColorfulPipes.asResource("block/copper_underside/" + colorName))))
+						p.directionalBlock(c.get(), p.models().withExistingParent(c.getName(), Create.asResource("block/portable_fluid_interface/block"))
+								.texture("0", ColorfulPipes.asResource("block/portable_fluid_interface/" + colorName))
+								.texture("2", ColorfulPipes.asResource("block/copper_underside/" + colorName))
+								.texture("particle", ColorfulPipes.asResource("block/copper_underside/" + colorName))))
 				.recipe((c, p) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, c.get())
 						.requires(color.getTag())
 						.requires(ColorfulItemTags.PORTABLE_FLUID_INTERFACES.tag)
@@ -320,7 +320,7 @@ public class CCPBlocks {
 						p.withExistingParent(c.getName(), Create.asResource("block/portable_fluid_interface/item"))
 								.texture("0", ColorfulPipes.asResource("block/portable_fluid_interface/" + colorName))
 								.texture("2", ColorfulPipes.asResource("block/copper_underside/" + colorName))
-								.texture( "particle", ColorfulPipes.asResource("block/copper_underside/" + colorName)))
+								.texture("particle", ColorfulPipes.asResource("block/copper_underside/" + colorName)))
 				.build()
 				.register();
 	});
@@ -353,7 +353,7 @@ public class CCPBlocks {
 						p.withExistingParent(c.getName(), Create.asResource("block/hose_pulley/item"))
 								.texture("1", ColorfulPipes.asResource("block/hose_pulley/" + colorName))
 								.texture("3", ColorfulPipes.asResource("block/pump/" + colorName))
-								.texture( "particle", ColorfulPipes.asResource("block/copper_underside/" + colorName)))
+								.texture("particle", ColorfulPipes.asResource("block/copper_underside/" + colorName)))
 				.build()
 				.register();
 	});
@@ -366,8 +366,8 @@ public class CCPBlocks {
 				.transform(pickaxeOnly())
 				.blockstate((c, p) ->
 						p.horizontalFaceBlock(c.get(), p.models().withExistingParent(c.getName(), Create.asResource("block/steam_engine/block"))
-						.texture("1", ColorfulPipes.asResource("block/engine/" + colorName))
-						.texture("particle", ColorfulPipes.asResource("block/copper_underside/" + colorName))))
+								.texture("1", ColorfulPipes.asResource("block/engine/" + colorName))
+								.texture("particle", ColorfulPipes.asResource("block/copper_underside/" + colorName))))
 				.onRegister((block) -> BlockStressValues.CAPACITIES.register(block, () -> 1024.0))
 				.onRegister(BlockStressValues.setGeneratorSpeed(64, true))
 				.recipe((c, p) -> ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, c.get())

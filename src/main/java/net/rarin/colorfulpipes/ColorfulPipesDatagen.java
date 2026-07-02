@@ -49,7 +49,7 @@ public class ColorfulPipesDatagen {
 
 			provideDefaultLang("interface", langConsumer);
 			provideDefaultLang("tooltips", langConsumer);
-			providePonderLang(langConsumer);
+			//providePonderLang(langConsumer);
 		});
 	}
 
