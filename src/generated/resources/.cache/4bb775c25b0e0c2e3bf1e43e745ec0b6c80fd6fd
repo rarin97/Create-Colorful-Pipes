@@ -1,4 +1,4 @@
-// 1.21.1	2026-06-12T01:02:22.5450065	Create: Colorful Pipe's Processing Recipes
+// 1.21.1	2026-08-23T14:11:58.7799496	Create: Colorful Pipe's Processing Recipes
 7008be1683e0dc194842e6ba1936d5ec80add737 data/colorfulpipes/recipe/item_application/black_copper_casing.json
 ddc94278e8abf99073bbee4e51b0560a18d27c99 data/colorfulpipes/recipe/item_application/black_copper_glass_casing.json
 8056359a8ba78e331e7783dd3353c8bd21ae478f data/colorfulpipes/recipe/item_application/black_copper_glass_casing_other.json
@@ -152,6 +152,7 @@ c3f29710e8bcfc819b34e8e584b6ab666d5ee452 data/colorfulpipes/recipe/splashing/cop
 0c2c0f23bd74b491335197a8dc8256717672cccd data/colorfulpipes/recipe/splashing/copper_ladder.json
 72eb3caa3c604090d9ed2d64d48c437da1dd6fd1 data/colorfulpipes/recipe/splashing/copper_scaffolding.json
 a34145fc1b45da23c6b0346290be8522b2f8fba2 data/colorfulpipes/recipe/splashing/copper_tinted_glass_casing.json
+162136fbac7acd9984cf5ff777b5fcfe708e14e4 data/colorfulpipes/recipe/splashing/electric_pump.json
 b0d7f79be6dbda34d45c607a9be184f52547f4b5 data/colorfulpipes/recipe/splashing/experience_hatch.json
 c0b05989e5a8c7516648e49c0fd89f3f3b6cb351 data/colorfulpipes/recipe/splashing/experience_lantern.json
 3104c798c9e1bab50a7cb834848e829f7f23c6be data/colorfulpipes/recipe/splashing/fluid_hatch.json

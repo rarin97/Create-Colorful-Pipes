@@ -33,6 +33,7 @@ public class CCPFeatures extends ConfigBase {
 	public final ConfigBool XPHatch = b(true, "Experience Hatches", Comments.fluid);
 	public final ConfigBool XPLantern = b(true, "Experience Lanterns", Comments.fluid);
 	public final ConfigBool Printer = b(true, "Printers", Comments.fluid);
+	public final ConfigBool ElectricPump = b(true, "Electric Pump", Comments.fluid);
 
 	@Override
 	public String getName() {

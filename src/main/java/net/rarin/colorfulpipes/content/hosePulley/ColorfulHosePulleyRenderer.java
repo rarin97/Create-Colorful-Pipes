@@ -3,6 +3,7 @@ package net.rarin.colorfulpipes.content.hosePulley;
 import com.simibubi.create.AllPartialModels;
 import com.simibubi.create.AllSpriteShifts;
 import com.simibubi.create.content.fluids.hosePulley.HosePulleyBlock;
+import com.simibubi.create.content.fluids.hosePulley.HosePulleyBlockEntity;
 
 import dev.engine_room.flywheel.lib.model.baked.PartialModel;
 import net.createmod.catnip.render.CachedBuffers;
@@ -13,14 +14,14 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.item.DyeColor;
 import net.rarin.colorfulpipes.CCPPartialModels;
 
-public class ColorfulHosePulleyRenderer extends AbstractPulleyRenderer<ColorfulHosePulleyBlockEntity> {
+public class ColorfulHosePulleyRenderer extends AbstractPulleyRenderer<HosePulleyBlockEntity> {
 
 	public ColorfulHosePulleyRenderer(BlockEntityRendererProvider.Context context) {
 		super(context, AllPartialModels.HOSE_HALF, AllPartialModels.HOSE_HALF_MAGNET);
 	}
 
 	@Override
-	protected Direction.Axis getShaftAxis(ColorfulHosePulleyBlockEntity be) {
+	protected Direction.Axis getShaftAxis(HosePulleyBlockEntity be) {
 		return be.getBlockState()
 				.getValue(HosePulleyBlock.HORIZONTAL_FACING)
 				.getClockWise()
@@ -33,23 +34,23 @@ public class ColorfulHosePulleyRenderer extends AbstractPulleyRenderer<ColorfulH
 	}
 
 	@Override
-	protected SuperByteBuffer renderRope(ColorfulHosePulleyBlockEntity be) {
+	protected SuperByteBuffer renderRope(HosePulleyBlockEntity be) {
 		return CachedBuffers.partial(AllPartialModels.HOSE, be.getBlockState());
 	}
 
 	@Override
-	protected SuperByteBuffer renderMagnet(ColorfulHosePulleyBlockEntity be) {
+	protected SuperByteBuffer renderMagnet(HosePulleyBlockEntity be) {
 		DyeColor color = ((ColorfulHosePulleyBlock) be.getBlockState().getBlock()).color;
 		return CachedBuffers.partial(CCPPartialModels.COLORFUL_HOSE_MAGNET.get(color), be.getBlockState());
 	}
 
-	protected SuperByteBuffer renderhalfMagnet(ColorfulHosePulleyBlockEntity be) {
+	protected SuperByteBuffer renderhalfMagnet(HosePulleyBlockEntity be) {
 		DyeColor color = ((ColorfulHosePulleyBlock) be.getBlockState().getBlock()).color;
 		return CachedBuffers.partial(CCPPartialModels.COLORFUL_HOSE_HALF_MAGNET.get(color), be.getBlockState());
 	}
 
 	@Override
-	protected float getOffset(ColorfulHosePulleyBlockEntity be, float partialTicks) {
+	protected float getOffset(HosePulleyBlockEntity be, float partialTicks) {
 		return be.getInterpolatedOffset(partialTicks);
 	}
 
@@ -59,7 +60,7 @@ public class ColorfulHosePulleyRenderer extends AbstractPulleyRenderer<ColorfulH
 	}
 
 	@Override
-	protected boolean isRunning(ColorfulHosePulleyBlockEntity be) {
+	protected boolean isRunning(HosePulleyBlockEntity be) {
 		return true;
 	}
 

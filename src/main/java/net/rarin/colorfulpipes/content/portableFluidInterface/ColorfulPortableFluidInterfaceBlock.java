@@ -35,6 +35,10 @@ public class ColorfulPortableFluidInterfaceBlock extends WrenchableDirectionalBl
 		this.color = color;
 	}
 
+	public DyeColor getColor() {
+		return color;
+	}
+
 	@Override
 	public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
 

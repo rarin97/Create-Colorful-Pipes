@@ -1,11 +1,17 @@
 {
-  "parent": "create_enchantment_industry:block/grindstone_drain/block",
-  "textures": {
-    "back": "colorfulpipes:block/mechanical_grinder_back/white",
-    "bottom": "colorfulpipes:block/copper_underside/white",
-    "front": "colorfulpipes:block/mechanical_grinder_front/white",
-    "inner": "colorfulpipes:block/pump/white",
-    "particle": "colorfulpipes:block/item_drain/white",
-    "side": "colorfulpipes:block/item_drain/white"
-  }
+    "neoforge:conditions": [
+        {
+            "type": "neoforge:mod_loaded",
+            "modid": "create_enchantment_industry"
+        }
+    ],
+    "parent": "create_enchantment_industry:block/grindstone_drain/block",
+    "textures": {
+        "back": "colorfulpipes:block/mechanical_grinder_back/white",
+        "bottom": "colorfulpipes:block/copper_underside/white",
+        "front": "colorfulpipes:block/mechanical_grinder_front/white",
+        "inner": "colorfulpipes:block/pump/white",
+        "particle": "colorfulpipes:block/item_drain/white",
+        "side": "colorfulpipes:block/item_drain/white"
+    }
 }

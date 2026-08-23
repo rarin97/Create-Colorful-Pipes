@@ -1,21 +1,27 @@
 {
-  "type": "minecraft:block",
-  "pools": [
-    {
-      "bonus_rolls": 0.0,
-      "conditions": [
+    "neoforge:conditions": [
         {
-          "condition": "minecraft:survives_explosion"
+            "type": "neoforge:mod_loaded",
+            "modid": "create_enchantment_industry"
         }
-      ],
-      "entries": [
+    ],
+    "type": "minecraft:block",
+    "pools": [
         {
-          "type": "minecraft:item",
-          "name": "colorfulpipes:green_printer"
+            "bonus_rolls": 0.0,
+            "conditions": [
+                {
+                    "condition": "minecraft:survives_explosion"
+                }
+            ],
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "name": "colorfulpipes:green_printer"
+                }
+            ],
+            "rolls": 1.0
         }
-      ],
-      "rolls": 1.0
-    }
-  ],
-  "random_sequence": "colorfulpipes:blocks/green_printer"
+    ],
+    "random_sequence": "colorfulpipes:blocks/green_printer"
 }

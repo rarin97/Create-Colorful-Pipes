@@ -1,19 +1,25 @@
 {
-  "variants": {
-    "facing=east": {
-      "model": "colorfulpipes:block/yellow_printer",
-      "y": 90
-    },
-    "facing=north": {
-      "model": "colorfulpipes:block/yellow_printer"
-    },
-    "facing=south": {
-      "model": "colorfulpipes:block/yellow_printer",
-      "y": 180
-    },
-    "facing=west": {
-      "model": "colorfulpipes:block/yellow_printer",
-      "y": 270
+    "neoforge:conditions": [
+        {
+            "type": "neoforge:mod_loaded",
+            "modid": "create_enchantment_industry"
+        }
+    ],
+    "variants": {
+        "facing=east": {
+            "model": "colorfulpipes:block/yellow_printer",
+            "y": 90
+        },
+        "facing=north": {
+            "model": "colorfulpipes:block/yellow_printer"
+        },
+        "facing=south": {
+            "model": "colorfulpipes:block/yellow_printer",
+            "y": 180
+        },
+        "facing=west": {
+            "model": "colorfulpipes:block/yellow_printer",
+            "y": 270
+        }
     }
-  }
 }

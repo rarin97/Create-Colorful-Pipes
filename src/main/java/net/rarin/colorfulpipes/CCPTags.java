@@ -16,6 +16,7 @@ import static net.rarin.colorfulpipes.CCPTags.NameSpace.CREATE;
 import static net.rarin.colorfulpipes.CCPTags.NameSpace.CREATE_CONNECTED;
 import static net.rarin.colorfulpipes.CCPTags.NameSpace.CREATE_DRAGONS_PLUS;
 import static net.rarin.colorfulpipes.CCPTags.NameSpace.CREATE_ENCHANTMENT_INDUSTRY;
+import static net.rarin.colorfulpipes.CCPTags.NameSpace.ELECTROENERGETICS;
 import static net.rarin.colorfulpipes.CCPTags.NameSpace.MINECRAFT;
 import static net.rarin.colorfulpipes.CCPTags.NameSpace.SABLE;
 
@@ -28,6 +29,7 @@ public class CCPTags {
 		CREATE_CONNECTED(Mods.CREATE_CONNECTED.id()),
 		CREATE_DRAGONS_PLUS(Mods.CREATE_DRAGONS_PLUS.id()),
 		CREATE_ENCHANTMENT_INDUSTRY(Mods.CREATE_ENCHANTMENT_INDUSTRY.id()),
+		ELECTROENERGETICS(Mods.ELECTROENERGETICS.id()),
 		SABLE("sable"),
 		MINECRAFT("minecraft");
 
@@ -71,6 +73,7 @@ public class CCPTags {
 		COLORFUL_EXPERIENCE_HATCHES,
 		COLORFUL_EXPERIENCE_LANTERNS,
 		COLORFUL_PRINTERS,
+		COLORFUL_ELECTRIC_PUMPS,
 
 		FLUID_PIPES(CREATE),
 		COPPER_CASINGS(CREATE),
@@ -95,7 +98,8 @@ public class CCPTags {
 		FLUID_HATCHES(CREATE_DRAGONS_PLUS),
 		EXPERIENCE_HATCHES(CREATE_ENCHANTMENT_INDUSTRY),
 		EXPERIENCE_LANTERNS(CREATE_ENCHANTMENT_INDUSTRY),
-		PRINTERS(CREATE_ENCHANTMENT_INDUSTRY);
+		PRINTERS(CREATE_ENCHANTMENT_INDUSTRY),
+		ELECTRIC_PUMPS(ELECTROENERGETICS);
 
 		public final TagKey<Item> tag;
 
@@ -139,6 +143,7 @@ public class CCPTags {
 			COLORFUL_FLUID_VESSELS,
 			COLORFUL_FLUID_HATCHES,
 			COLORFUL_EXPERIENCE_HATCHES,
+			COLORFUL_ELECTRIC_PUMPS,
 
 			LIGHT(SABLE),
 			SUPER_LIGHT(SABLE),

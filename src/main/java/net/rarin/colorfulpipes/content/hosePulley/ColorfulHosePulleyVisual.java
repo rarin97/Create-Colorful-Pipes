@@ -3,8 +3,10 @@ package net.rarin.colorfulpipes.content.hosePulley;
 import com.simibubi.create.AllPartialModels;
 import com.simibubi.create.AllSpriteShifts;
 import com.simibubi.create.content.contraptions.pulley.AbstractPulleyVisual;
+import com.simibubi.create.content.fluids.hosePulley.HosePulleyBlockEntity;
 import com.simibubi.create.content.processing.burner.ScrollInstance;
 import com.simibubi.create.foundation.render.AllInstanceTypes;
+
 import dev.engine_room.flywheel.api.instance.Instancer;
 import dev.engine_room.flywheel.api.visualization.VisualizationContext;
 import dev.engine_room.flywheel.lib.instance.InstanceTypes;
@@ -14,8 +16,8 @@ import net.createmod.catnip.render.SpriteShiftEntry;
 import net.minecraft.world.item.DyeColor;
 import net.rarin.colorfulpipes.CCPPartialModels;
 
-public class ColorfulHosePulleyVisual extends AbstractPulleyVisual<ColorfulHosePulleyBlockEntity> {
-	public ColorfulHosePulleyVisual(VisualizationContext dispatcher, ColorfulHosePulleyBlockEntity blockEntity, float partialTick) {
+public class ColorfulHosePulleyVisual extends AbstractPulleyVisual<HosePulleyBlockEntity> {
+	public ColorfulHosePulleyVisual(VisualizationContext dispatcher, HosePulleyBlockEntity blockEntity, float partialTick) {
 		super(dispatcher, blockEntity, partialTick);
 	}
 

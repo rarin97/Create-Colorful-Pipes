@@ -1,5 +1,6 @@
 package net.rarin.colorfulpipes.content.valve;
 
+import com.simibubi.create.content.fluids.pipes.valve.FluidValveBlockEntity;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntityRenderer;
 import com.simibubi.create.content.kinetics.base.ShaftVisual;
 
@@ -15,10 +16,11 @@ import net.minecraft.core.Direction;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.DyeColor;
 import net.rarin.colorfulpipes.CCPPartialModels;
+import net.rarin.colorfulpipes.mixin.accessor.FluidValveBlockEntityAccessor;
 
 import java.util.function.Consumer;
 
-public class ColorfulFluidValveVisual extends ShaftVisual<ColorfulFluidValveBlockEntity> implements SimpleDynamicVisual {
+public class ColorfulFluidValveVisual extends ShaftVisual<FluidValveBlockEntity> implements SimpleDynamicVisual {
 
 	protected TransformedInstance pointer;
 	protected boolean settled;
@@ -27,7 +29,7 @@ public class ColorfulFluidValveVisual extends ShaftVisual<ColorfulFluidValveBloc
 	protected final double yRot;
 	protected final int pointerRotationOffset;
 
-	public ColorfulFluidValveVisual(VisualizationContext dispatcher, ColorfulFluidValveBlockEntity blockEntity, float partialTick) {
+	public ColorfulFluidValveVisual(VisualizationContext dispatcher, FluidValveBlockEntity blockEntity, float partialTick) {
 		super(dispatcher, blockEntity, partialTick);
 
 		Direction facing = blockState.getValue(ColorfulFluidValveBlock.FACING);
@@ -49,16 +51,16 @@ public class ColorfulFluidValveVisual extends ShaftVisual<ColorfulFluidValveBloc
 
 	@Override
 	public void beginFrame(DynamicVisual.Context ctx) {
-		if (blockEntity.pointer.settled() && settled)
+		if (((FluidValveBlockEntityAccessor)blockEntity).getPointer().settled() && settled)
 			return;
 
 		transformPointer(ctx.partialTick());
 	}
 
 	private void transformPointer(float partialTick) {
-		float value = blockEntity.pointer.getValue(partialTick);
+		float value = ((FluidValveBlockEntityAccessor)blockEntity).getPointer().getValue(partialTick);
 		float pointerRotation = Mth.lerp(value, 0, -90);
-		settled = (value == 0 || value == 1) && blockEntity.pointer.settled();
+		settled = (value == 0 || value == 1) && ((FluidValveBlockEntityAccessor)blockEntity).getPointer().settled();
 
 		pointer.setIdentityTransform()
 				.translate(getVisualPosition())

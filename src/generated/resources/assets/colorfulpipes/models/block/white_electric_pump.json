@@ -1,0 +1,13 @@
+{
+    "neoforge:conditions": [
+        {
+            "type": "neoforge:mod_loaded",
+            "modid": "electroenergetics"
+        }
+    ],
+    "parent": "electroenergetics:block/electric_pump/block",
+    "textures": {
+        "4": "colorfulpipes:block/electrical_pump/electrical_pump_white",
+        "particle": "colorfulpipes:block/electrical_pump/electrical_pump_white"
+    }
+}

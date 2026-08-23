@@ -1,5 +1,6 @@
 package net.rarin.colorfulpipes.Datagen;
 
+import com.george_vi.electroenergetics.CEEBlocks;
 import com.hlysine.create_connected.registries.CCBlocks;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.foundation.data.TagGen;
@@ -112,6 +113,9 @@ public class CCPTagGen {
 
 		prov.tag(ColorfulItemTags.PRINTERS.tag)
 				.add(CEIBlocks.PRINTER.get().asItem());
+
+		prov.tag(ColorfulItemTags.ELECTRIC_PUMPS.tag)
+				.add(CEEBlocks.ELECTRIC_PUMP.get().asItem());
 
 
 		for (var color : DyeColor.values()) {

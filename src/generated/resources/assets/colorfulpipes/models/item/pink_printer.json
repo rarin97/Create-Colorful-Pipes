@@ -1,10 +1,16 @@
 {
-  "parent": "create_enchantment_industry:block/printer/item",
-  "textures": {
-    "filter": "colorfulpipes:block/smart_pipe_2/pink",
-    "hose": "colorfulpipes:block/hose/pink",
-    "nozzle": "colorfulpipes:block/spout_nozzle/pink",
-    "tank": "colorfulpipes:block/spout/pink",
-    "tank_bottom": "colorfulpipes:block/encased_pipe/pink"
-  }
+    "neoforge:conditions": [
+        {
+            "type": "neoforge:mod_loaded",
+            "modid": "create_enchantment_industry"
+        }
+    ],
+    "parent": "create_enchantment_industry:block/printer/item",
+    "textures": {
+        "filter": "colorfulpipes:block/smart_pipe_2/pink",
+        "hose": "colorfulpipes:block/hose/pink",
+        "nozzle": "colorfulpipes:block/spout_nozzle/pink",
+        "tank": "colorfulpipes:block/spout/pink",
+        "tank_bottom": "colorfulpipes:block/encased_pipe/pink"
+    }
 }

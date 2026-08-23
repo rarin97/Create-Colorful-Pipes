@@ -1,6 +1,7 @@
 {
-  "parent": "colorfulpipes:block/white_steam_whistle/block_large_floor",
+  "parent": "create:block/steam_whistle/block_large_floor_powered",
   "textures": {
+    "1": "colorfulpipes:block/engine/white",
     "2": "colorfulpipes:block/copper_redstone_plate_powered/white"
   }
 }

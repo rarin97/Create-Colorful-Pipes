@@ -9,6 +9,7 @@ import com.simibubi.create.content.decoration.MetalScaffoldingBlockItem;
 import com.simibubi.create.content.decoration.MetalScaffoldingCTBehaviour;
 import com.simibubi.create.content.decoration.encasing.CasingBlock;
 import com.simibubi.create.content.decoration.encasing.EncasedCTBehaviour;
+import com.simibubi.create.content.decoration.slidingDoor.SlidingDoorBlock;
 import com.simibubi.create.content.decoration.slidingDoor.SlidingDoorMovementBehaviour;
 import com.simibubi.create.content.kinetics.base.RotatedPillarKineticBlock;
 import com.simibubi.create.content.kinetics.simpleRelays.encased.EncasedCogCTBehaviour;
@@ -47,7 +48,6 @@ import net.rarin.colorfulpipes.CCPTags.ColorfulItemTags;
 import net.rarin.colorfulpipes.CCPTags.ColorfulBlockTags;
 import net.rarin.colorfulpipes.content.ColorfulGlassCTBehaviour;
 import net.rarin.colorfulpipes.content.ColorfulTintedGlassCTBehaviour;
-import net.rarin.colorfulpipes.content.slidingDoor.ColorfulSlidingDoorBlock;
 
 import java.util.function.Supplier;
 
@@ -211,7 +211,7 @@ public class CCPBuilderTransformers {
 	}
 
 
-	public static <B extends ColorfulSlidingDoorBlock, P> NonNullUnaryOperator<BlockBuilder<B, P>> colorfulslidingDoor(String type) {
+	public static <B extends SlidingDoorBlock, P> NonNullUnaryOperator<BlockBuilder<B, P>> colorfulslidingDoor(String type) {
 		return b -> b.initialProperties(() -> Blocks.IRON_DOOR)
 				.properties(p -> p.requiresCorrectToolForDrops().strength(3.0F, 6.0F))
 				.blockstate((c, p) -> {

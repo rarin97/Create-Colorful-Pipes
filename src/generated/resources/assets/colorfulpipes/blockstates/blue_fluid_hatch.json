@@ -1,34 +1,40 @@
 {
-  "variants": {
-    "facing=east,waterlogged=false": {
-      "model": "colorfulpipes:block/blue_fluid_hatch",
-      "y": 90
-    },
-    "facing=east,waterlogged=true": {
-      "model": "colorfulpipes:block/blue_fluid_hatch",
-      "y": 90
-    },
-    "facing=north,waterlogged=false": {
-      "model": "colorfulpipes:block/blue_fluid_hatch"
-    },
-    "facing=north,waterlogged=true": {
-      "model": "colorfulpipes:block/blue_fluid_hatch"
-    },
-    "facing=south,waterlogged=false": {
-      "model": "colorfulpipes:block/blue_fluid_hatch",
-      "y": 180
-    },
-    "facing=south,waterlogged=true": {
-      "model": "colorfulpipes:block/blue_fluid_hatch",
-      "y": 180
-    },
-    "facing=west,waterlogged=false": {
-      "model": "colorfulpipes:block/blue_fluid_hatch",
-      "y": 270
-    },
-    "facing=west,waterlogged=true": {
-      "model": "colorfulpipes:block/blue_fluid_hatch",
-      "y": 270
+    "neoforge:conditions": [
+        {
+            "type": "neoforge:mod_loaded",
+            "modid": "create_dragons_plus"
+        }
+    ],
+    "variants": {
+        "facing=east,waterlogged=false": {
+            "model": "colorfulpipes:block/blue_fluid_hatch",
+            "y": 90
+        },
+        "facing=east,waterlogged=true": {
+            "model": "colorfulpipes:block/blue_fluid_hatch",
+            "y": 90
+        },
+        "facing=north,waterlogged=false": {
+            "model": "colorfulpipes:block/blue_fluid_hatch"
+        },
+        "facing=north,waterlogged=true": {
+            "model": "colorfulpipes:block/blue_fluid_hatch"
+        },
+        "facing=south,waterlogged=false": {
+            "model": "colorfulpipes:block/blue_fluid_hatch",
+            "y": 180
+        },
+        "facing=south,waterlogged=true": {
+            "model": "colorfulpipes:block/blue_fluid_hatch",
+            "y": 180
+        },
+        "facing=west,waterlogged=false": {
+            "model": "colorfulpipes:block/blue_fluid_hatch",
+            "y": 270
+        },
+        "facing=west,waterlogged=true": {
+            "model": "colorfulpipes:block/blue_fluid_hatch",
+            "y": 270
+        }
     }
-  }
 }

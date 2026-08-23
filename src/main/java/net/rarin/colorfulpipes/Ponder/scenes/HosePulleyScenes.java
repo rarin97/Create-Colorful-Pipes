@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.simibubi.create.content.fluids.hosePulley.HosePulleyBlockEntity;
 import com.simibubi.create.content.fluids.tank.FluidTankBlockEntity;
 import com.simibubi.create.foundation.ponder.CreateSceneBuilder;
 
@@ -23,7 +24,6 @@ import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler.FluidAction;
-import net.rarin.colorfulpipes.content.hosePulley.ColorfulHosePulleyBlockEntity;
 import net.rarin.colorfulpipes.content.pump.ColorfulPumpBlock;
 
 public class HosePulleyScenes {
@@ -124,7 +124,7 @@ public class HosePulleyScenes {
 			scene.idle(3);
 		}
 
-		scene.world().modifyBlockEntity(util.grid().at(1, 5, 1), ColorfulHosePulleyBlockEntity.class, be -> {
+		scene.world().modifyBlockEntity(util.grid().at(1, 5, 1), HosePulleyBlockEntity.class, be -> {
 			IFluidHandler ifh = be.getLevel().getCapability(Capabilities.FluidHandler.BLOCK, be.getBlockPos(), null);
 			if (ifh != null)
 				ifh.fill(new FluidStack(Fluids.WATER, 100), FluidAction.EXECUTE);
@@ -228,7 +228,7 @@ public class HosePulleyScenes {
 
 		scene.world().showSectionAndMerge(cogs, Direction.NORTH, hoselink);
 		scene.world().showSectionAndMerge(pipes, Direction.WEST, hoselink);
-		scene.world().modifyBlockEntity(util.grid().at(1, 6, 1), ColorfulHosePulleyBlockEntity.class, be -> {
+		scene.world().modifyBlockEntity(util.grid().at(1, 6, 1), HosePulleyBlockEntity.class, be -> {
 			IFluidHandler ifh = be.getLevel().getCapability(Capabilities.FluidHandler.BLOCK, be.getBlockPos(), null);
 			if (ifh != null)
 				ifh.fill(new FluidStack(Fluids.WATER, 100), FluidAction.EXECUTE);
@@ -344,7 +344,7 @@ public class HosePulleyScenes {
 			.pointAt(entryPoint);
 
 		scene.idle(40);
-		scene.world().modifyBlockEntity(util.grid().at(1, 3, 2), ColorfulHosePulleyBlockEntity.class, be -> {
+		scene.world().modifyBlockEntity(util.grid().at(1, 3, 2), HosePulleyBlockEntity.class, be -> {
 			IFluidHandler ifh = be.getLevel().getCapability(Capabilities.FluidHandler.BLOCK, be.getBlockPos(), null);
 			if (ifh != null)
 				ifh.fill(new FluidStack(Fluids.WATER, 1000), FluidAction.EXECUTE);

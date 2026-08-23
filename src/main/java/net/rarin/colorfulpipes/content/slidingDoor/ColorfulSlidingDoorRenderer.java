@@ -2,7 +2,8 @@ package net.rarin.colorfulpipes.content.slidingDoor;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.simibubi.create.foundation.blockEntity.renderer.SafeBlockEntityRenderer;
+import com.simibubi.create.content.decoration.slidingDoor.SlidingDoorBlockEntity;
+import com.simibubi.create.content.decoration.slidingDoor.SlidingDoorRenderer;
 
 import dev.engine_room.flywheel.lib.model.baked.PartialModel;
 import net.createmod.catnip.data.Couple;
@@ -22,16 +23,20 @@ import net.minecraft.world.level.block.state.properties.DoorHingeSide;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.phys.Vec3;
 import net.rarin.colorfulpipes.CCPPartialModels;
+import net.rarin.colorfulpipes.mixin.accessor.SlidingDoorBlockEntityAccessor;
 
-public class ColorfulSlidingDoorRenderer extends SafeBlockEntityRenderer<ColorfulSlidingDoorBlockEntity> {
+public class ColorfulSlidingDoorRenderer extends SlidingDoorRenderer {
 
-	public ColorfulSlidingDoorRenderer(BlockEntityRendererProvider.Context context) {}
+	public ColorfulSlidingDoorRenderer(BlockEntityRendererProvider.Context context) {
+		super(context);
+	}
 
 	@Override
-	protected void renderSafe(ColorfulSlidingDoorBlockEntity be, float partialTicks, PoseStack ms, MultiBufferSource buffer,
+	protected void renderSafe(SlidingDoorBlockEntity be, float partialTicks, PoseStack ms, MultiBufferSource buffer,
 							  int light, int overlay) {
+
 		BlockState blockState = be.getBlockState();
-		if (!be.shouldRenderSpecial(blockState))
+		if (!((SlidingDoorBlockEntityAccessor)be).getShouldRenderSpecial(blockState))
 			return;
 
 		Direction facing = blockState.getValue(DoorBlock.FACING);
@@ -40,7 +45,7 @@ public class ColorfulSlidingDoorRenderer extends SafeBlockEntityRenderer<Colorfu
 		if (blockState.getValue(DoorBlock.HINGE) == DoorHingeSide.LEFT)
 			movementDirection = movementDirection.getOpposite();
 
-		float value = be.animation.getValue(partialTicks);
+		float value = ((SlidingDoorBlockEntityAccessor)be).getAnimation().getValue(partialTicks);
 		float value2 = Mth.clamp(value * 10, 0, 1);
 
 		VertexConsumer vb = buffer.getBuffer(RenderType.cutoutMipped());
@@ -50,7 +55,7 @@ public class ColorfulSlidingDoorRenderer extends SafeBlockEntityRenderer<Colorfu
 						.scale(value2 * 1 / 32f));
 
 		if (((ColorfulSlidingDoorBlock) blockState.getBlock()).isFoldingDoor()) {
-			 DyeColor color = ((ColorfulSlidingDoorBlock) blockState.getBlock()).getColor();
+			DyeColor color = ((ColorfulSlidingDoorBlock) blockState.getBlock()).getColor();
 			Couple<PartialModel> partials = CCPPartialModels.COLORFUL_DOORS.get(color);
 
 			boolean flip = blockState.getValue(DoorBlock.HINGE) == DoorHingeSide.RIGHT;

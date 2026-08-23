@@ -1,3 +1,9 @@
 {
-  "parent": "colorfulpipes:block/gray_experience_lantern"
+    "neoforge:conditions": [
+        {
+            "type": "neoforge:mod_loaded",
+            "modid": "create_enchantment_industry"
+        }
+    ],
+    "parent": "colorfulpipes:block/gray_experience_lantern"
 }

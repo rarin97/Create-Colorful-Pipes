@@ -17,6 +17,7 @@ import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.phys.AABB;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.rarin.colorfulpipes.CCPPartialModels;
+import net.rarin.colorfulpipes.mixin.accessor.SpoutBlockEntityAccessor;
 
 public class ColorfulSpoutRenderer extends SpoutRenderer {
 
@@ -27,14 +28,8 @@ public class ColorfulSpoutRenderer extends SpoutRenderer {
 	@Override
 	protected void renderSafe(SpoutBlockEntity be, float partialTicks, PoseStack ms, MultiBufferSource buffer,
 							  int light, int overlay) {
-		if (!(be instanceof ColorfulSpoutBlockEntity colorfulspoutBe)) return;
 
-		if (!(colorfulspoutBe.getBlockState().getBlock() instanceof ColorfulSpoutBlock block))
-			return;
-
-		DyeColor color = block.getColor();
-
-		SmartFluidTankBehaviour tank = colorfulspoutBe.getTank();
+		SmartFluidTankBehaviour tank = ((SpoutBlockEntityAccessor)be).getTank();
 		if (tank == null)
 			return;
 
@@ -44,7 +39,9 @@ public class ColorfulSpoutRenderer extends SpoutRenderer {
 				.getValue(partialTicks);
 
 		if (!fluidStack.isEmpty() && level != 0) {
-			boolean top = fluidStack.getFluid().getFluidType().isLighterThanAir();
+			boolean top = fluidStack.getFluid()
+					.getFluidType()
+					.isLighterThanAir();
 
 			level = Math.max(level, 0.175f);
 			float min = 2.5f / 16f;
@@ -55,10 +52,8 @@ public class ColorfulSpoutRenderer extends SpoutRenderer {
 			if (!top) ms.translate(0, yOffset, 0);
 			else ms.translate(0, max - min, 0);
 
-			NeoForgeCatnipServices.FLUID_RENDERER.renderFluidBox(fluidStack,
-					min, min - yOffset, min,
-					max, min, max,
-					buffer, ms, light, false, true);
+			NeoForgeCatnipServices.FLUID_RENDERER.renderFluidBox(fluidStack, min, min - yOffset, min, max, min,
+					max, buffer, ms, light, false, true);
 
 			ms.popPose();
 		}
@@ -86,9 +81,10 @@ public class ColorfulSpoutRenderer extends SpoutRenderer {
 
 		ms.pushPose();
 
-		PartialModel[] bits =
-				{AllPartialModels.SPOUT_TOP, AllPartialModels.SPOUT_MIDDLE, CCPPartialModels.COLORFUL_SPOUT_NOZZLE.get(color)
-		};
+		ColorfulSpoutBlock block = (ColorfulSpoutBlock) be.getBlockState().getBlock();
+		DyeColor color = block.getColor();
+
+		PartialModel[] bits = { AllPartialModels.SPOUT_TOP, AllPartialModels.SPOUT_MIDDLE, CCPPartialModels.COLORFUL_SPOUT_NOZZLE.get(color) };
 
 		for (PartialModel bit : bits) {
 			CachedBuffers.partial(bit, be.getBlockState())

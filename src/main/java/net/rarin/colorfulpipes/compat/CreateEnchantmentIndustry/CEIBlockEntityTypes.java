@@ -7,13 +7,11 @@ import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
-import net.rarin.colorfulpipes.compat.CreateEnchantmentIndustry.content.ColorfulPrinterBlockEntity;
 import net.rarin.colorfulpipes.compat.CreateEnchantmentIndustry.content.ColorfulPrinterRenderer;
 import plus.dragons.createenchantmentindustry.client.model.CEIPartialModels;
 import plus.dragons.createenchantmentindustry.common.fluids.experience.ExperienceHatchBlockEntity;
 import plus.dragons.createenchantmentindustry.common.fluids.lantern.ExperienceLanternBlockEntity;
 import plus.dragons.createenchantmentindustry.common.fluids.printer.PrinterBlockEntity;
-import plus.dragons.createenchantmentindustry.common.fluids.printer.PrinterRenderer;
 import plus.dragons.createenchantmentindustry.common.kinetics.grindstone.GrindstoneDrainBlockEntity;
 import plus.dragons.createenchantmentindustry.common.kinetics.grindstone.GrindstoneDrainRenderer;
 
@@ -32,8 +30,8 @@ public class CEIBlockEntityTypes {
 			.validBlocks(CEIBlocks.COLORFUL_EXPERIENCE_LANTERNS.toArray())
 			.register();
 
-	public static final BlockEntityEntry<ColorfulPrinterBlockEntity> COLORFUL_PRINTER = REGISTRATE
-			.blockEntity("printer", ColorfulPrinterBlockEntity::new)
+	public static final BlockEntityEntry<PrinterBlockEntity> COLORFUL_PRINTER = REGISTRATE
+			.blockEntity("printer", PrinterBlockEntity::new)
 			.renderer(() -> ColorfulPrinterRenderer::new)
 			.validBlocks(CEIBlocks.COLORFUL_PRINTERS.toArray())
 			.register();

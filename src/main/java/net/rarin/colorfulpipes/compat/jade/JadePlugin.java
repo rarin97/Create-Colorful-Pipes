@@ -1,6 +1,7 @@
 package net.rarin.colorfulpipes.compat.jade;
 
 import net.rarin.colorfulpipes.compat.CreateDragonsPlus.content.ColorfulFluidHatchBlock;
+import net.rarin.colorfulpipes.compat.CreateElectroEnergetics.content.ColorfulElectricPumpBlock;
 import net.rarin.colorfulpipes.compat.CreateEnchantmentIndustry.content.ColorfulExperienceHatchBlock;
 import net.rarin.colorfulpipes.compat.CreateEnchantmentIndustry.content.ColorfulExperienceLanternBlock;
 import net.rarin.colorfulpipes.compat.CreateEnchantmentIndustry.content.ColorfulGrindstoneDrainBlock;
@@ -27,6 +28,9 @@ public class JadePlugin implements IWailaPlugin {
 			registration.registerBlockComponent(EnchantmentIndustryComponentProvider.INSTANCE, ColorfulExperienceLanternBlock.class);
 			registration.registerBlockComponent(EnchantmentIndustryComponentProvider.INSTANCE, ColorfulPrinterBlock.class);
 			registration.registerBlockComponent(EnchantmentIndustryComponentProvider.INSTANCE, ColorfulGrindstoneDrainBlock.class);
+		}
+		if (Mods.ELECTROENERGETICS.isLoaded()) {
+			registration.registerBlockComponent(ElectroEnergeticsComponentProvider.INSTANCE, ColorfulElectricPumpBlock.class);
 		}
 	}
 }

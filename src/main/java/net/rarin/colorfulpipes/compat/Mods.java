@@ -15,7 +15,8 @@ import java.util.function.Supplier;
 public enum Mods {
 	CREATE_CONNECTED,
 	CREATE_DRAGONS_PLUS,
-	CREATE_ENCHANTMENT_INDUSTRY;
+	CREATE_ENCHANTMENT_INDUSTRY,
+	ELECTROENERGETICS;
 
 	private final String id;
 

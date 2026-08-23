@@ -1,46 +1,46 @@
 package net.rarin.colorfulpipes;
 
 import com.simibubi.create.AllPartialModels;
+import com.simibubi.create.content.decoration.slidingDoor.SlidingDoorBlockEntity;
 import com.simibubi.create.content.decoration.steamWhistle.WhistleRenderer;
+import com.simibubi.create.content.fluids.drain.ItemDrainBlockEntity;
 import com.simibubi.create.content.fluids.drain.ItemDrainRenderer;
+import com.simibubi.create.content.fluids.hosePulley.HosePulleyBlockEntity;
+import com.simibubi.create.content.fluids.pipes.FluidPipeBlockEntity;
 import com.simibubi.create.content.fluids.pipes.GlassPipeVisual;
+import com.simibubi.create.content.fluids.pipes.SmartFluidPipeBlockEntity;
+import com.simibubi.create.content.fluids.pipes.StraightPipeBlockEntity;
 import com.simibubi.create.content.fluids.pipes.TransparentStraightPipeRenderer;
+import com.simibubi.create.content.fluids.pipes.valve.FluidValveBlockEntity;
+import com.simibubi.create.content.fluids.pump.PumpBlockEntity;
 import com.simibubi.create.content.fluids.pump.PumpRenderer;
+import com.simibubi.create.content.fluids.spout.SpoutBlockEntity;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
 import com.simibubi.create.content.kinetics.base.ShaftRenderer;
 import com.simibubi.create.content.kinetics.base.SingleAxisRotatingVisual;
 import com.simibubi.create.content.kinetics.simpleRelays.SimpleKineticBlockEntity;
 import com.simibubi.create.content.kinetics.simpleRelays.encased.EncasedCogRenderer;
 import com.simibubi.create.content.kinetics.simpleRelays.encased.EncasedCogVisual;
+import com.simibubi.create.content.kinetics.steamEngine.SteamEngineBlockEntity;
+import com.simibubi.create.content.kinetics.steamEngine.SteamEngineRenderer;
+import com.simibubi.create.content.kinetics.steamEngine.SteamEngineVisual;
+import com.simibubi.create.content.logistics.tableCloth.TableClothBlockEntity;
 import com.simibubi.create.content.logistics.tableCloth.TableClothRenderer;
 import com.simibubi.create.foundation.blockEntity.renderer.SmartBlockEntityRenderer;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 
 import net.minecraft.world.item.DyeColor;
-import net.rarin.colorfulpipes.content.drain.ColorfulDrainBlockEntity;
-import net.rarin.colorfulpipes.content.glassPipe.ColorfulGlassFluidPipeBlockEntity;
-import net.rarin.colorfulpipes.content.hosePulley.ColorfulHosePulleyBlockEntity;
 import net.rarin.colorfulpipes.content.hosePulley.ColorfulHosePulleyRenderer;
 import net.rarin.colorfulpipes.content.hosePulley.ColorfulHosePulleyVisual;
-import net.rarin.colorfulpipes.content.pipe.ColorfulFluidPipeBlockEntity;
 import net.rarin.colorfulpipes.content.portableFluidInterface.ColorfulPSIVisual;
 import net.rarin.colorfulpipes.content.portableFluidInterface.ColorfulPortableFluidInterfaceBlockEntity;
 import net.rarin.colorfulpipes.content.portableFluidInterface.ColorfulPortableFluidInterfaceRenderer;
-import net.rarin.colorfulpipes.content.pump.ColorfulPumpBlockEntity;
-import net.rarin.colorfulpipes.content.slidingDoor.ColorfulSlidingDoorBlockEntity;
 import net.rarin.colorfulpipes.content.slidingDoor.ColorfulSlidingDoorRenderer;
-import net.rarin.colorfulpipes.content.smartPipe.ColorfulSmartFluidPipeBlockEntity;
-import net.rarin.colorfulpipes.content.spout.ColorfulSpoutBlockEntity;
 import net.rarin.colorfulpipes.content.spout.ColorfulSpoutRenderer;
-import net.rarin.colorfulpipes.content.steamEngine.ColorfulSteamEngineBlockEntity;
-import net.rarin.colorfulpipes.content.steamEngine.ColorfulSteamEngineRenderer;
-import net.rarin.colorfulpipes.content.steamEngine.ColorfulSteamEngineVisual;
 import net.rarin.colorfulpipes.content.steamWhistle.ColorfulWhistleBlockEntity;
-import net.rarin.colorfulpipes.content.table_cloth.ColorfulTableClothBlockEntity;
 import net.rarin.colorfulpipes.content.tank.ColorfulFluidTankBlockEntity;
 import net.rarin.colorfulpipes.content.tank.ColorfulFluidTankRenderer;
-import net.rarin.colorfulpipes.content.valve.ColorfulFluidValveBlockEntity;
 import net.rarin.colorfulpipes.content.valve.ColorfulFluidValveRenderer;
 import net.rarin.colorfulpipes.content.valve.ColorfulFluidValveVisual;
 
@@ -50,51 +50,51 @@ import java.util.Map;
 public class CCPBlockEntityTypes {
 	private static final CreateRegistrate REGISTRATE = ColorfulPipes.REGISTRATE;
 
-	public static final BlockEntityEntry<ColorfulDrainBlockEntity> COLORFUL_DRAINS = REGISTRATE
-			.blockEntity("colorful_item_drain", ColorfulDrainBlockEntity::new)
+	public static final BlockEntityEntry<ItemDrainBlockEntity> COLORFUL_DRAINS = REGISTRATE
+			.blockEntity("colorful_item_drain", ItemDrainBlockEntity::new)
 			.validBlocks(CCPBlocks.COLORFUL_DRAINS.toArray())
 			.renderer(() -> ItemDrainRenderer::new)
 			.register();
 
-	public static final BlockEntityEntry<ColorfulPumpBlockEntity> COLORFUL_PUMPS = REGISTRATE
-			.blockEntity("colorful_mechanical_pump", ColorfulPumpBlockEntity::new)
+	public static final BlockEntityEntry<PumpBlockEntity> COLORFUL_PUMPS = REGISTRATE
+			.blockEntity("colorful_mechanical_pump", PumpBlockEntity::new)
 			.visual(() -> SingleAxisRotatingVisual.ofZ(AllPartialModels.MECHANICAL_PUMP_COG))
 			.validBlocks(CCPBlocks.COLORFUL_PUMPS.toArray())
 			.renderer(() -> PumpRenderer::new)
 			.register();
 
-	public static final BlockEntityEntry<ColorfulSpoutBlockEntity> COLORFUL_SPOUTS = REGISTRATE
-			.blockEntity("colorful_spout", ColorfulSpoutBlockEntity::new)
+	public static final BlockEntityEntry<SpoutBlockEntity> COLORFUL_SPOUTS = REGISTRATE
+			.blockEntity("colorful_spout", SpoutBlockEntity::new)
 			.validBlocks(CCPBlocks.COLORFUL_SPOUTS.toArray())
 			.renderer(() -> ColorfulSpoutRenderer::new)
 			.register();
 
-	public static final BlockEntityEntry<ColorfulSmartFluidPipeBlockEntity> COLORFUL_SMART_FLUID_PIPES = REGISTRATE
-			.blockEntity("colorful_smart_fluid_pipe", ColorfulSmartFluidPipeBlockEntity::new)
+	public static final BlockEntityEntry<SmartFluidPipeBlockEntity> COLORFUL_SMART_FLUID_PIPES = REGISTRATE
+			.blockEntity("colorful_smart_fluid_pipe", SmartFluidPipeBlockEntity::new)
 			.validBlocks(CCPBlocks.COLORFUL_SMART_FLUID_PIPES.toArray())
 			.renderer(() -> SmartBlockEntityRenderer::new)
 			.register();
 
-	public static final BlockEntityEntry<ColorfulFluidPipeBlockEntity> COLORFUL_FLUID_PIPES = REGISTRATE
-			.blockEntity("colorful_fluid_pipe", ColorfulFluidPipeBlockEntity::new)
+	public static final BlockEntityEntry<FluidPipeBlockEntity> COLORFUL_FLUID_PIPES = REGISTRATE
+			.blockEntity("colorful_fluid_pipe", FluidPipeBlockEntity::new)
 			.validBlocks(CCPBlocks.COLORFUL_FLUID_PIPES.toArray())
 			.register();
 
-	public static final BlockEntityEntry<ColorfulFluidPipeBlockEntity> COLORFUL_ENCASED_FLUID_PIPES = REGISTRATE
-			.blockEntity("colorful_encased_fluid_pipe", ColorfulFluidPipeBlockEntity::new)
+	public static final BlockEntityEntry<FluidPipeBlockEntity> COLORFUL_ENCASED_FLUID_PIPES = REGISTRATE
+			.blockEntity("colorful_encased_fluid_pipe", FluidPipeBlockEntity::new)
 			.validBlocks(CCPBlocks.COLORFUL_ENCASED_FLUID_PIPES.toArray())
 			.validBlocks(CCPBlocks.COLORFUL_ENCASED_FLUID_PIPES.toArray())
 			.register();
 
-	public static final BlockEntityEntry<ColorfulGlassFluidPipeBlockEntity> COLORFUL_GLASS_FLUID_PIPES = REGISTRATE
-			.blockEntity("colorful_glass_fluid_pipe", ColorfulGlassFluidPipeBlockEntity::new)
+	public static final BlockEntityEntry<StraightPipeBlockEntity> COLORFUL_GLASS_FLUID_PIPES = REGISTRATE
+			.blockEntity("colorful_glass_fluid_pipe", StraightPipeBlockEntity::new)
 			.visual(() -> GlassPipeVisual::new, false)
 			.validBlocks(CCPBlocks.COLORFUL_GLASS_FLUID_PIPES.toArray())
 			.renderer(() -> TransparentStraightPipeRenderer::new)
 			.register();
 
-	public static final BlockEntityEntry<ColorfulFluidValveBlockEntity> COLORFUL_FLUID_VALVES = REGISTRATE
-			.blockEntity("colorful_fluid_valve", ColorfulFluidValveBlockEntity::new)
+	public static final BlockEntityEntry<FluidValveBlockEntity> COLORFUL_FLUID_VALVES = REGISTRATE
+			.blockEntity("colorful_fluid_valve", FluidValveBlockEntity::new)
 			.visual(() -> ColorfulFluidValveVisual::new)
 			.validBlocks(CCPBlocks.COLORFUL_FLUID_VALVES.toArray())
 			.renderer(() -> ColorfulFluidValveRenderer::new)
@@ -113,8 +113,8 @@ public class CCPBlockEntityTypes {
 		}
 	}
 
-	public static final BlockEntityEntry<ColorfulHosePulleyBlockEntity> COLORFUL_HOSE_PULLEYS = REGISTRATE
-			.blockEntity("colorful_hose_pulley", ColorfulHosePulleyBlockEntity::new)
+	public static final BlockEntityEntry<HosePulleyBlockEntity> COLORFUL_HOSE_PULLEYS = REGISTRATE
+			.blockEntity("colorful_hose_pulley", HosePulleyBlockEntity::new)
 			.visual(() -> ColorfulHosePulleyVisual::new)
 			.validBlocks(CCPBlocks.COLORFUL_HOSE_PULLEYS.toArray())
 			.renderer(() -> ColorfulHosePulleyRenderer::new)
@@ -127,11 +127,11 @@ public class CCPBlockEntityTypes {
 			.renderer(() -> ColorfulPortableFluidInterfaceRenderer::new)
 			.register();
 
-	public static final BlockEntityEntry<ColorfulSteamEngineBlockEntity> COLORFUL_STEAM_ENGINES = REGISTRATE
-			.blockEntity("colorful_steam_engine", ColorfulSteamEngineBlockEntity::new)
-			.visual(() -> ColorfulSteamEngineVisual::new)
+	public static final BlockEntityEntry<SteamEngineBlockEntity> COLORFUL_STEAM_ENGINES = REGISTRATE
+			.blockEntity("colorful_steam_engine", SteamEngineBlockEntity::new)
+			.visual(() -> SteamEngineVisual::new)
 			.validBlocks(CCPBlocks.COLORFUL_STEAM_ENGINES.toArray())
-			.renderer(() -> ColorfulSteamEngineRenderer::new)
+			.renderer(() -> SteamEngineRenderer::new)
 			.register();
 
 	public static final BlockEntityEntry<ColorfulWhistleBlockEntity> COLORFUL_STEAM_WHISTLES = REGISTRATE
@@ -140,14 +140,14 @@ public class CCPBlockEntityTypes {
 			.renderer(() -> WhistleRenderer::new)
 			.register();
 
-	public static final BlockEntityEntry<ColorfulTableClothBlockEntity> COLORFUL_TABLE_CLOTH = REGISTRATE
-			.blockEntity("colorful_table_cloth", ColorfulTableClothBlockEntity::new)
+	public static final BlockEntityEntry<TableClothBlockEntity> COLORFUL_TABLE_CLOTH = REGISTRATE
+			.blockEntity("colorful_table_cloth", TableClothBlockEntity::new)
 			.validBlocks(CCPPaletteBlocks.COLORFUL_TABLE_CLOTHS.toArray())
 			.renderer(() -> TableClothRenderer::new)
 			.register();
 
-	public static final BlockEntityEntry<ColorfulSlidingDoorBlockEntity> COLORFUL_SLIDING_DOOR = REGISTRATE
-			.blockEntity("colorful_sliding_door", ColorfulSlidingDoorBlockEntity::new)
+	public static final BlockEntityEntry<SlidingDoorBlockEntity> COLORFUL_SLIDING_DOOR = REGISTRATE
+			.blockEntity("colorful_sliding_door", SlidingDoorBlockEntity::new)
 			.renderer(() -> ColorfulSlidingDoorRenderer::new)
 			.validBlocks(CCPPaletteBlocks.COLORFUL_COPPER_DOOR.toArray())
 			.register();

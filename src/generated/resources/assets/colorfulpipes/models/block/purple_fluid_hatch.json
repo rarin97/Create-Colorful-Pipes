@@ -1,7 +1,13 @@
 {
-  "parent": "create_dragons_plus:block/fluid_hatch",
-  "textures": {
-    "base": "colorfulpipes:block/fluid_hatch/purple",
-    "particle": "colorfulpipes:block/item_drain/purple"
-  }
+    "neoforge:conditions": [
+        {
+            "type": "neoforge:mod_loaded",
+            "modid": "create_dragons_plus"
+        }
+    ],
+    "parent": "create_dragons_plus:block/fluid_hatch",
+    "textures": {
+        "base": "colorfulpipes:block/fluid_hatch/purple",
+        "particle": "colorfulpipes:block/item_drain/purple"
+    }
 }

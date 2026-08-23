@@ -1,24 +1,30 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "misc",
-  "key": {
-    "a": {
-      "item": "create:experience_block"
+    "neoforge:conditions": [
+        {
+            "type": "neoforge:mod_loaded",
+            "modid": "create_enchantment_industry"
+        }
+    ],
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "key": {
+        "a": {
+            "item": "create:experience_block"
+        },
+        "c": {
+            "item": "colorfulpipes:white_copper_casing"
+        },
+        "s": {
+            "item": "minecraft:sponge"
+        }
     },
-    "c": {
-      "item": "colorfulpipes:white_copper_casing"
-    },
-    "s": {
-      "item": "minecraft:sponge"
+    "pattern": [
+        "a",
+        "s",
+        "c"
+    ],
+    "result": {
+        "count": 1,
+        "id": "colorfulpipes:white_experience_lantern"
     }
-  },
-  "pattern": [
-    "a",
-    "s",
-    "c"
-  ],
-  "result": {
-    "count": 1,
-    "id": "colorfulpipes:white_experience_lantern"
-  }
 }

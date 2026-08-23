@@ -1,7 +1,13 @@
 {
-  "parent": "create_enchantment_industry:block/experience_hatch",
-  "textures": {
-    "base": "colorfulpipes:block/experience_hatch/pink",
-    "particle": "colorfulpipes:block/item_drain/pink"
-  }
+    "neoforge:conditions": [
+        {
+            "type": "neoforge:mod_loaded",
+            "modid": "create_enchantment_industry"
+        }
+    ],
+    "parent": "create_enchantment_industry:block/experience_hatch",
+    "textures": {
+        "base": "colorfulpipes:block/experience_hatch/pink",
+        "particle": "colorfulpipes:block/item_drain/pink"
+    }
 }

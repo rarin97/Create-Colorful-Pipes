@@ -27,12 +27,6 @@ public class CCBlockEntityTypes {
 		}
 	}
 
-//	public static final BlockEntityEntry<ColorfulFluidVesselBlockEntity> COLORFUL_FLUID_VESSELS = REGISTRATE
-//			.blockEntity("colorful_fluid_vessel", ColorfulFluidVesselBlockEntity::new)
-//			.validBlocks(CCBlocks.COLORFUL_FLUID_VESSELS.toArray())
-//			.renderer(() -> ColorfulFluidVesselRenderer::new)
-//			.register();
-
 	public static void register() {
 	}
 }

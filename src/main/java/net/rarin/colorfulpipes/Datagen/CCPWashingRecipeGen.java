@@ -1,5 +1,6 @@
 package net.rarin.colorfulpipes.Datagen;
 
+import com.george_vi.electroenergetics.CEEBlocks;
 import com.hlysine.create_connected.registries.CCBlocks;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.api.data.recipe.WashingRecipeGen;
@@ -115,8 +116,12 @@ public class CCPWashingRecipeGen extends WashingRecipeGen {
 	COLORFUL_PRINTERS = create("printer",
 			b -> b.require(ColorfulItemTags.COLORFUL_PRINTERS.tag)
 					.output(CEIBlocks.PRINTER.asItem())
-					.withCondition(new ModLoadedCondition(Mods.CREATE_ENCHANTMENT_INDUSTRY.id())));
+					.withCondition(new ModLoadedCondition(Mods.CREATE_ENCHANTMENT_INDUSTRY.id()))),
 
+	COLORFUL_ELECTRIC_PUMP = create("electric_pump",
+							   b -> b.require(ColorfulItemTags.COLORFUL_ELECTRIC_PUMPS.tag)
+			.output(CEEBlocks.ELECTRIC_PUMP.asItem())
+			.withCondition(new ModLoadedCondition(Mods.ELECTROENERGETICS.id())));
 
 	public CCPWashingRecipeGen(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
 		super(output, registries, ColorfulPipes.ID);

@@ -1,6 +1,7 @@
 package net.rarin.colorfulpipes.Ponder.scenes;
 
 import com.simibubi.create.AllFluids;
+import com.simibubi.create.content.contraptions.actors.psi.PortableFluidInterfaceBlockEntity;
 import com.simibubi.create.content.fluids.pump.PumpBlock;
 import com.simibubi.create.content.fluids.tank.FluidTankBlockEntity;
 import com.simibubi.create.foundation.fluid.FluidHelper;
@@ -20,7 +21,6 @@ import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler.FluidAction;
-import net.rarin.colorfulpipes.content.portableFluidInterface.ColorfulPortableFluidInterfaceBlockEntity;
 
 public class FluidMovementActorScenes {
 
@@ -106,7 +106,7 @@ public class FluidMovementActorScenes {
 		scene.idle(38);
 
 		Selection both = util.select().fromTo(2, 2, 2, 4, 2, 2);
-		Class<ColorfulPortableFluidInterfaceBlockEntity> psiClass = ColorfulPortableFluidInterfaceBlockEntity.class;
+		Class<PortableFluidInterfaceBlockEntity> psiClass = PortableFluidInterfaceBlockEntity.class;
 
 		scene.world().modifyBlockEntityNBT(both, psiClass, nbt -> {
 			nbt.putFloat("Distance", 1);

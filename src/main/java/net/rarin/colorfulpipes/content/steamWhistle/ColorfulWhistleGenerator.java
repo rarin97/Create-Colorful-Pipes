@@ -1,8 +1,8 @@
 package net.rarin.colorfulpipes.content.steamWhistle;
 
 
+import com.simibubi.create.Create;
 import com.simibubi.create.content.decoration.steamWhistle.WhistleBlock;
-import com.simibubi.create.foundation.data.AssetLookup;
 import com.simibubi.create.foundation.data.SpecialBlockStateGen;
 import com.tterrag.registrate.providers.DataGenContext;
 import com.tterrag.registrate.providers.RegistrateBlockstateProvider;
@@ -38,7 +38,10 @@ public class ColorfulWhistleGenerator extends SpecialBlockStateGen {
 		String size = state.getValue(WhistleBlock.SIZE).getSerializedName();
 		boolean powered = state.getValue(WhistleBlock.POWERED);
 
-		ModelFile model = AssetLookup.partialBaseModel(ctx, prov, size, wall);
+		ModelFile model = prov.models()
+				.withExistingParent("block/" + color + "_steam_whistle/block_" + size + "_" + wall, Create.asResource("block/steam_whistle/block_" + size + "_" + wall))
+				.texture("1", ColorfulPipes.asResource("block/engine/" + color))
+				.texture("2", ColorfulPipes.asResource("block/copper_redstone_plate/" + color));
 
 		if (!powered)
 			return model;
@@ -46,7 +49,8 @@ public class ColorfulWhistleGenerator extends SpecialBlockStateGen {
 		ResourceLocation parentLocation = model.getLocation();
 
 		return prov.models()
-				.withExistingParent(parentLocation.getPath() + "_powered", parentLocation)
+				.withExistingParent(parentLocation.getPath() + "_powered", Create.asResource("block/steam_whistle/block_" + size + "_" + wall + "_powered"))
+				.texture("1", ColorfulPipes.asResource("block/engine/" + color))
 				.texture("2", ColorfulPipes.asResource("block/copper_redstone_plate_powered/" + color));
 	}
 

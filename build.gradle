@@ -1,3 +1,6 @@
+import groovy.json.JsonOutput
+import groovy.json.JsonSlurper
+
 plugins {
     id 'java-library'
     id 'maven-publish'
@@ -41,7 +44,7 @@ neoForge {
         data {
             data()
             programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath(), '--existing-mod', 'create',
-					'--existing-mod' ,'create_connected', '--existing-mod', 'create_dragons_plus', '--existing-mod', 'create_enchantment_industry'
+					'--existing-mod' ,'create_connected', '--existing-mod', 'create_dragons_plus', '--existing-mod', 'create_enchantment_industry', '--existing-mod', 'electroenergetics', '--existing-mod', 'vsfluidlink'
         }
 
         configureEach {
@@ -57,17 +60,79 @@ neoForge {
     }
 }
 
+def generatedResources = layout.projectDirectory.dir("src/generated/resources").asFile
+
+tasks.register("conditionCompats") {
+	doLast {
+		def parser = new JsonSlurper()
+		[
+				new File(generatedResources, "assets/colorfulpipes/blockstates"),
+				new File(generatedResources, "assets/colorfulpipes/models/block"),
+				new File(generatedResources, "assets/colorfulpipes/models/item"),
+				new File(generatedResources, "data/colorfulpipes/loot_table/blocks"),
+				new File(generatedResources, "data/colorfulpipes/recipe/crafting/compats")
+		].each { dir ->
+			if (!dir.exists())
+				return
+
+			dir.eachFileRecurse { file ->
+				String modid = null
+
+				switch (true) {
+					case file.name.endsWith("_fluid_hatch.json"):
+						modid = "create_dragons_plus"
+						break
+
+					case file.name.endsWith("_fluid_vessel.json"):
+						modid = "create_connected"
+						break
+
+					case (file.name.endsWith("_electric_pump.json") || file.name.endsWith("_electric_pump_roll.json")):
+						modid = "electroenergetics"
+						break
+
+					case (file.name.endsWith("_experience_hatch.json") || file.name.endsWith("_experience_lantern.json") ||
+							file.name.endsWith("_printer.json") || file.name.endsWith("_grindstone_drain.json")):
+						modid = "create_enchantment_industry"
+						break
+
+					default:
+						return
+				}
+
+				def json = parser.parse(file)
+
+				if (json instanceof Map && json.containsKey("neoforge:conditions"))
+					return
+
+				def wrapped = new LinkedHashMap()
+				wrapped["neoforge:conditions"] = [[
+														  type : "neoforge:mod_loaded",
+														  modid: modid
+												  ]]
+				wrapped.putAll(json)
+
+				file.text = JsonOutput.prettyPrint(JsonOutput.toJson(wrapped))
+			}
+		}
+	}
+}
+
+tasks.named("runData") {
+	finalizedBy("conditionCompats")
+}
+
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
-    maven { url = "https://maven.createmod.net" } // Create, Ponder, Flywheel
-    maven { url = "https://maven.ithundxr.dev/snapshots" } // Registrate
-	maven { url = "https://cursemaven.com" }
+	maven { url = "https://maven.createmod.net" } // Create, Ponder, Flywheel
+	maven { url = "https://maven.ithundxr.dev/snapshots" } // Registrate
 	maven { url = "https://maven.blamejared.com" }
 	maven { url = "https://api.modrinth.com/maven" }
 	maven { url = "https://maven.dragons.plus/releases" } // DragonsPlusMinecraft Maven
 	maven { url = "https://maven.fallenbreath.me/releases" } // Conditional Mixin
 
+	maven {url = "https://maven.ryanhcode.dev/releases" }
 }
 dependencies {
     implementation("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false }
@@ -76,9 +141,13 @@ dependencies {
     runtimeOnly("dev.engine-room.flywheel:flywheel-neoforge-${minecraft_version}:${flywheel_version}")
     implementation("com.tterrag.registrate:Registrate:${registrate_version}")
 
-	implementation("plus.dragons.createdragonsplus:create-dragons-plus-${minecraft_version}:${create_dragons_plus_version_range}")
+	//implementation("plus.dragons.createdragonsplus:create-dragons-plus-${minecraft_version}:${create_dragons_plus_version}")
+	implementation("maven.modrinth:create-dragons-plus:${create_dragons_plus_version}")
 	implementation "maven.modrinth:create-connected:${create_connected_version}"
 	implementation "maven.modrinth:create-enchantment-industry:${create_enchantment_industry_version}"
+	implementation "maven.modrinth:create-electro-energetics:${create_electro_energetics_version}"
+	//implementation "maven.modrinth:create-aeronautics:${create_aeronautics_version}"
+	//implementation "maven.modrinth:sable:${sable_version}"
 
 	implementation "maven.modrinth:jade:${project.jade_version}"
 	implementation("mezz.jei:jei-$minecraft_version-neoforge:$jei_version")
@@ -113,9 +182,9 @@ publishing {
         }
     }
     repositories {
-        maven {
-            url "file://${project.projectDir}/repo"
-        }
+		maven {
+			url = layout.projectDirectory.dir("repo")
+		}
     }
 }
 

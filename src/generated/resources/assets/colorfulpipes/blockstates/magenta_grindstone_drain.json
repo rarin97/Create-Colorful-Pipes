@@ -1,19 +1,25 @@
 {
-  "variants": {
-    "facing=east": {
-      "model": "colorfulpipes:block/magenta_grindstone_drain",
-      "y": 90
-    },
-    "facing=north": {
-      "model": "colorfulpipes:block/magenta_grindstone_drain"
-    },
-    "facing=south": {
-      "model": "colorfulpipes:block/magenta_grindstone_drain",
-      "y": 180
-    },
-    "facing=west": {
-      "model": "colorfulpipes:block/magenta_grindstone_drain",
-      "y": 270
+    "neoforge:conditions": [
+        {
+            "type": "neoforge:mod_loaded",
+            "modid": "create_enchantment_industry"
+        }
+    ],
+    "variants": {
+        "facing=east": {
+            "model": "colorfulpipes:block/magenta_grindstone_drain",
+            "y": 90
+        },
+        "facing=north": {
+            "model": "colorfulpipes:block/magenta_grindstone_drain"
+        },
+        "facing=south": {
+            "model": "colorfulpipes:block/magenta_grindstone_drain",
+            "y": 180
+        },
+        "facing=west": {
+            "model": "colorfulpipes:block/magenta_grindstone_drain",
+            "y": 270
+        }
     }
-  }
 }

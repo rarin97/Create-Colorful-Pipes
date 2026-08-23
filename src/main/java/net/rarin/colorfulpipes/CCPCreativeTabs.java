@@ -30,6 +30,7 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import net.rarin.colorfulpipes.compat.CreateDragonsPlus.CDPBlocks;
+import net.rarin.colorfulpipes.compat.CreateElectroEnergetics.CEEBlocks;
 import net.rarin.colorfulpipes.compat.CreateEnchantmentIndustry.CEIBlocks;
 import net.rarin.colorfulpipes.compat.Create_Connected.CCBlocks;
 import net.rarin.colorfulpipes.compat.Mods;
@@ -150,6 +151,8 @@ public class CCPCreativeTabs {
 					exclusions.add(CEIBlocks.COLORFUL_EXPERIENCE_LANTERNS.get(color).asItem());
 				if (!CCPConfigs.common().toggle.Printer.get() && Mods.CREATE_ENCHANTMENT_INDUSTRY.isLoaded())
 					exclusions.add(CEIBlocks.COLORFUL_PRINTERS.get(color).asItem());
+				if (!CCPConfigs.common().toggle.ElectricPump.get() && Mods.ELECTROENERGETICS.isLoaded())
+					exclusions.add(CEEBlocks.COLORFUL_ELECTRIC_PUMPS.get(color).asItem());
 			}
 				exclusions.add(CCPPaletteBlocks.COPPER_ENCASED_COGWHEEL.asItem());
 				exclusions.add(CCPPaletteBlocks.COPPER_ENCASED_LARGE_COGWHEEL.asItem());

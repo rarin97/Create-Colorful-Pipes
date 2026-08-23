@@ -1,0 +1,72 @@
+{
+  "values": [
+    {
+      "id": "electroenergetics:electric_pump",
+      "required": false
+    },
+    {
+      "id": "colorfulpipes:white_electric_pump",
+      "required": false
+    },
+    {
+      "id": "colorfulpipes:orange_electric_pump",
+      "required": false
+    },
+    {
+      "id": "colorfulpipes:magenta_electric_pump",
+      "required": false
+    },
+    {
+      "id": "colorfulpipes:light_blue_electric_pump",
+      "required": false
+    },
+    {
+      "id": "colorfulpipes:yellow_electric_pump",
+      "required": false
+    },
+    {
+      "id": "colorfulpipes:lime_electric_pump",
+      "required": false
+    },
+    {
+      "id": "colorfulpipes:pink_electric_pump",
+      "required": false
+    },
+    {
+      "id": "colorfulpipes:gray_electric_pump",
+      "required": false
+    },
+    {
+      "id": "colorfulpipes:light_gray_electric_pump",
+      "required": false
+    },
+    {
+      "id": "colorfulpipes:cyan_electric_pump",
+      "required": false
+    },
+    {
+      "id": "colorfulpipes:purple_electric_pump",
+      "required": false
+    },
+    {
+      "id": "colorfulpipes:blue_electric_pump",
+      "required": false
+    },
+    {
+      "id": "colorfulpipes:brown_electric_pump",
+      "required": false
+    },
+    {
+      "id": "colorfulpipes:green_electric_pump",
+      "required": false
+    },
+    {
+      "id": "colorfulpipes:red_electric_pump",
+      "required": false
+    },
+    {
+      "id": "colorfulpipes:black_electric_pump",
+      "required": false
+    }
+  ]
+}

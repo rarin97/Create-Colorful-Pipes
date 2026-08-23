@@ -1,0 +1,19 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "electroenergetics"
+    }
+  ],
+  "type": "create:splashing",
+  "ingredients": [
+    {
+      "tag": "colorfulpipes:colorful_electric_pumps"
+    }
+  ],
+  "results": [
+    {
+      "id": "electroenergetics:electric_pump"
+    }
+  ]
+}

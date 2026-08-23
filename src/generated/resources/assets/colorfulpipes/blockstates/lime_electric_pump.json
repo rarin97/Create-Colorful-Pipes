@@ -1,0 +1,114 @@
+{
+    "neoforge:conditions": [
+        {
+            "type": "neoforge:mod_loaded",
+            "modid": "electroenergetics"
+        }
+    ],
+    "variants": {
+        "facing=down,roll=false,waterlogged=false": {
+            "model": "colorfulpipes:block/lime_electric_pump",
+            "x": 180
+        },
+        "facing=down,roll=false,waterlogged=true": {
+            "model": "colorfulpipes:block/lime_electric_pump",
+            "x": 180
+        },
+        "facing=down,roll=true,waterlogged=false": {
+            "model": "colorfulpipes:block/lime_electric_pump_roll",
+            "x": 180
+        },
+        "facing=down,roll=true,waterlogged=true": {
+            "model": "colorfulpipes:block/lime_electric_pump_roll",
+            "x": 180
+        },
+        "facing=east,roll=false,waterlogged=false": {
+            "model": "colorfulpipes:block/lime_electric_pump",
+            "x": 90,
+            "y": 90
+        },
+        "facing=east,roll=false,waterlogged=true": {
+            "model": "colorfulpipes:block/lime_electric_pump",
+            "x": 90,
+            "y": 90
+        },
+        "facing=east,roll=true,waterlogged=false": {
+            "model": "colorfulpipes:block/lime_electric_pump_roll",
+            "x": 90,
+            "y": 90
+        },
+        "facing=east,roll=true,waterlogged=true": {
+            "model": "colorfulpipes:block/lime_electric_pump_roll",
+            "x": 90,
+            "y": 90
+        },
+        "facing=north,roll=false,waterlogged=false": {
+            "model": "colorfulpipes:block/lime_electric_pump",
+            "x": 90
+        },
+        "facing=north,roll=false,waterlogged=true": {
+            "model": "colorfulpipes:block/lime_electric_pump",
+            "x": 90
+        },
+        "facing=north,roll=true,waterlogged=false": {
+            "model": "colorfulpipes:block/lime_electric_pump_roll",
+            "x": 90
+        },
+        "facing=north,roll=true,waterlogged=true": {
+            "model": "colorfulpipes:block/lime_electric_pump_roll",
+            "x": 90
+        },
+        "facing=south,roll=false,waterlogged=false": {
+            "model": "colorfulpipes:block/lime_electric_pump",
+            "x": 90,
+            "y": 180
+        },
+        "facing=south,roll=false,waterlogged=true": {
+            "model": "colorfulpipes:block/lime_electric_pump",
+            "x": 90,
+            "y": 180
+        },
+        "facing=south,roll=true,waterlogged=false": {
+            "model": "colorfulpipes:block/lime_electric_pump_roll",
+            "x": 90,
+            "y": 180
+        },
+        "facing=south,roll=true,waterlogged=true": {
+            "model": "colorfulpipes:block/lime_electric_pump_roll",
+            "x": 90,
+            "y": 180
+        },
+        "facing=up,roll=false,waterlogged=false": {
+            "model": "colorfulpipes:block/lime_electric_pump"
+        },
+        "facing=up,roll=false,waterlogged=true": {
+            "model": "colorfulpipes:block/lime_electric_pump"
+        },
+        "facing=up,roll=true,waterlogged=false": {
+            "model": "colorfulpipes:block/lime_electric_pump_roll"
+        },
+        "facing=up,roll=true,waterlogged=true": {
+            "model": "colorfulpipes:block/lime_electric_pump_roll"
+        },
+        "facing=west,roll=false,waterlogged=false": {
+            "model": "colorfulpipes:block/lime_electric_pump",
+            "x": 90,
+            "y": 270
+        },
+        "facing=west,roll=false,waterlogged=true": {
+            "model": "colorfulpipes:block/lime_electric_pump",
+            "x": 90,
+            "y": 270
+        },
+        "facing=west,roll=true,waterlogged=false": {
+            "model": "colorfulpipes:block/lime_electric_pump_roll",
+            "x": 90,
+            "y": 270
+        },
+        "facing=west,roll=true,waterlogged=true": {
+            "model": "colorfulpipes:block/lime_electric_pump_roll",
+            "x": 90,
+            "y": 270
+        }
+    }
+}

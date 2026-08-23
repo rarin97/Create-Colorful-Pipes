@@ -1,8 +1,14 @@
 {
-  "parent": "create_enchantment_industry:block/experience_lantern",
-  "textures": {
-    "1": "colorfulpipes:block/experience_lantern_bottom/black",
-    "2": "colorfulpipes:block/experience_lantern_side/black",
-    "particle": "colorfulpipes:block/experience_lantern_side/black"
-  }
+    "neoforge:conditions": [
+        {
+            "type": "neoforge:mod_loaded",
+            "modid": "create_enchantment_industry"
+        }
+    ],
+    "parent": "create_enchantment_industry:block/experience_lantern",
+    "textures": {
+        "1": "colorfulpipes:block/experience_lantern_bottom/black",
+        "2": "colorfulpipes:block/experience_lantern_side/black",
+        "particle": "colorfulpipes:block/experience_lantern_side/black"
+    }
 }

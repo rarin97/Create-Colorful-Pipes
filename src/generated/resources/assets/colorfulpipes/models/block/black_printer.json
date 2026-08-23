@@ -1,9 +1,15 @@
 {
-  "parent": "create_enchantment_industry:block/printer/block",
-  "textures": {
-    "filter": "colorfulpipes:block/smart_pipe_2/black",
-    "particle": "colorfulpipes:block/encased_pipe/black",
-    "tank": "colorfulpipes:block/spout/black",
-    "tank_bottom": "colorfulpipes:block/encased_pipe/black"
-  }
+    "neoforge:conditions": [
+        {
+            "type": "neoforge:mod_loaded",
+            "modid": "create_enchantment_industry"
+        }
+    ],
+    "parent": "create_enchantment_industry:block/printer/block",
+    "textures": {
+        "filter": "colorfulpipes:block/smart_pipe_2/black",
+        "particle": "colorfulpipes:block/encased_pipe/black",
+        "tank": "colorfulpipes:block/spout/black",
+        "tank_bottom": "colorfulpipes:block/encased_pipe/black"
+    }
 }

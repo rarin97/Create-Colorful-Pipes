@@ -1,5 +1,6 @@
 package net.rarin.colorfulpipes.Datagen;
 
+import com.george_vi.electroenergetics.CEEItems;
 import com.google.common.base.Supplier;
 import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
@@ -11,6 +12,7 @@ import com.simibubi.create.api.data.recipe.BaseRecipeProvider;
 import com.simibubi.create.foundation.data.recipe.CommonMetal;
 import net.minecraft.tags.ItemTags;
 import net.rarin.colorfulpipes.compat.CreateDragonsPlus.CDPBlocks;
+import net.rarin.colorfulpipes.compat.CreateElectroEnergetics.CEEBlocks;
 import net.rarin.colorfulpipes.compat.CreateEnchantmentIndustry.CEIBlocks;
 import net.rarin.colorfulpipes.compat.Mods;
 import com.simibubi.create.foundation.mixin.accessor.MappedRegistryAccessor;
@@ -100,6 +102,7 @@ public class CCPStandardRecipeGen extends BaseRecipeProvider {
 	final EnumMap<DyeColor, GeneratedRecipe> COLORFUL_EXPERIENCE_HATCHES = new EnumMap<>(DyeColor.class);
 	final EnumMap<DyeColor, GeneratedRecipe> COLORFUL_EXPERIENCE_LANTERNS = new EnumMap<>(DyeColor.class);
 	final EnumMap<DyeColor, GeneratedRecipe> COLORFUL_PRINTERS = new EnumMap<>(DyeColor.class);
+	final EnumMap<DyeColor, GeneratedRecipe> COLORFUL_ELECTRIC_PUMP = new EnumMap<>(DyeColor.class);
 
 	private Marker KINETICS = enterFolder("kinetics");
 
@@ -261,6 +264,37 @@ public class CCPStandardRecipeGen extends BaseRecipeProvider {
 							.pattern("-")
 							.pattern("o")
 							.pattern("=")));
+
+			COLORFUL_ELECTRIC_PUMP.put(color, create(CEEBlocks.COLORFUL_ELECTRIC_PUMPS.get(color))
+					.withSuffix("_from_dyes")
+					.unlockedBy(com.george_vi.electroenergetics.CEEBlocks.ELECTRIC_PUMP::get)
+					.whenModLoaded(Mods.ELECTROENERGETICS.id())
+					.viaShapeless(b -> b.requires(ColorfulItemTags.ELECTRIC_PUMPS.tag)
+							.requires(color.getTag())));
+
+			COLORFUL_ELECTRIC_PUMP.put(color, create(CEEBlocks.COLORFUL_ELECTRIC_PUMPS.get(color))
+					.unlockedBy(CEEItems.WIRE_SPOOL::get)
+					.whenModLoaded(Mods.ELECTROENERGETICS.id())
+					.viaShaped(b -> b.define('P', CCPBlocks.COLORFUL_PUMPS.get(color))
+							.define('C', com.george_vi.electroenergetics.CEEBlocks.CONNECTOR)
+							.define('M', com.george_vi.electroenergetics.CEEBlocks.MAGNET_BLOCK)
+							.define('A', AllItems.ANDESITE_ALLOY)
+							.define('W', CEEItems.WIRE_SPOOL)
+							.pattern(" MC")
+							.pattern("APA")
+							.pattern("CW ")));
+
+//			ShapedRecipeBuilder.shaped(RecipeCategory.MISC, CEEBlocks.ELECTRIC_PUMP)
+//					.pattern(" MC")
+//					.pattern("APA")
+//					.pattern("CW ")
+//					.define('P', AllBlocks.MECHANICAL_PUMP)
+//					.define('C', CEEBlocks.CONNECTOR)
+//					.define('M', CEEBlocks.MAGNET_BLOCK)
+//					.define('A', AllItems.ANDESITE_ALLOY)
+//					.define('W', CEEItems.WIRE_SPOOL)
+//					.unlockedBy("has_wire_spool", has(CEEItems.WIRE_SPOOL))
+//					.save(recipeOutput, CreateElectroEnergetics.rl("crafting/electric_pump"));
 
 		}
 	}

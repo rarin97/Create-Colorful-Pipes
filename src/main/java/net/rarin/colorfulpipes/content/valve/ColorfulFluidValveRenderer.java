@@ -2,7 +2,8 @@ package net.rarin.colorfulpipes.content.valve;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.simibubi.create.content.fluids.pipes.valve.FluidValveBlock;
-import com.simibubi.create.content.kinetics.base.KineticBlockEntityRenderer;
+import com.simibubi.create.content.fluids.pipes.valve.FluidValveBlockEntity;
+import com.simibubi.create.content.fluids.pipes.valve.FluidValveRenderer;
 import dev.engine_room.flywheel.api.visualization.VisualizationManager;
 import net.createmod.catnip.math.AngleHelper;
 import net.createmod.catnip.render.CachedBuffers;
@@ -15,15 +16,16 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.rarin.colorfulpipes.CCPPartialModels;
+import net.rarin.colorfulpipes.mixin.accessor.FluidValveBlockEntityAccessor;
 
-public class ColorfulFluidValveRenderer extends KineticBlockEntityRenderer<ColorfulFluidValveBlockEntity> {
+public class ColorfulFluidValveRenderer extends FluidValveRenderer {
 
 	public ColorfulFluidValveRenderer(BlockEntityRendererProvider.Context context) {
 		super(context);
 	}
 
 	@Override
-	protected void renderSafe(ColorfulFluidValveBlockEntity be, float partialTicks, PoseStack ms, MultiBufferSource buffer,
+	protected void renderSafe(FluidValveBlockEntity be, float partialTicks, PoseStack ms, MultiBufferSource buffer,
 							  int light, int overlay) {
 
 		if (VisualizationManager.supportsVisualization(be.getLevel())) return;
@@ -34,7 +36,7 @@ public class ColorfulFluidValveRenderer extends KineticBlockEntityRenderer<Color
 		SuperByteBuffer pointer = CachedBuffers.partial(CCPPartialModels.COLORFUL_FLUID_VALVE_POINTER.get(color), blockState);
 		Direction facing = blockState.getValue(FluidValveBlock.FACING);
 
-		float pointerRotation = Mth.lerp(be.pointer.getValue(partialTicks), 0, -90);
+		float pointerRotation = Mth.lerp(((FluidValveBlockEntityAccessor)be).getPointer().getValue(partialTicks), 0, -90);
 		Direction.Axis pipeAxis = FluidValveBlock.getPipeAxis(blockState);
 		Direction.Axis shaftAxis = getRotationAxisOf(be);
 
@@ -49,10 +51,5 @@ public class ColorfulFluidValveRenderer extends KineticBlockEntityRenderer<Color
 				.uncenter()
 				.light(light)
 				.renderInto(ms, buffer.getBuffer(RenderType.solid()));
-	}
-
-	@Override
-	protected BlockState getRenderedBlockState(ColorfulFluidValveBlockEntity be) {
-		return shaft(getRotationAxisOf(be));
 	}
 }
